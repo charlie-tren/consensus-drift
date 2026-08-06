@@ -35,6 +35,17 @@ class TestRevisionPct:
     def test_zero_current_is_missing(self):
         assert revision_pct(0.0, 6.72) is None
 
+    # a base near zero makes the percentage meaningless - WBD came back with a prior
+    # estimate of -0.001 and a "revision" of +7116%, which alone set the chart axis
+    def test_near_zero_base_is_rejected(self):
+        assert revision_pct(0.039, -0.001) is None
+
+    def test_small_but_usable_base_is_kept(self):
+        assert revision_pct(0.15, 0.12) is not None
+
+    def test_floor_is_on_the_prior_not_the_current(self):
+        assert revision_pct(0.001, 5.0) is not None
+
     def test_none_either_side(self):
         assert revision_pct(None, 1.0) is None
         assert revision_pct(1.0, None) is None

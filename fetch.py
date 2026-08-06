@@ -17,6 +17,13 @@ import yfinance as yf
 WINDOW_LABEL = "90daysAgo"   # the revision window we plot
 PRICE_DAYS = 90
 
+# A percentage change computed off a near-zero base is noise, not information.
+# At 40 names this never showed up; at 665 it did - WBD came back with a prior
+# estimate of -0.001 and a "revision" of +7116%, which would set the axis on its
+# own and squash every real name into the middle. Anything below this floor is
+# dropped and disclosed rather than plotted.
+MIN_BASE_EPS = 0.10
+
 
 def _num(x):
     """Yahoo hands back numpy scalars, None, and NaN interchangeably."""
@@ -41,6 +48,8 @@ def revision_pct(current, prior):
     if current is None or prior is None:
         return None
     if current == 0 or prior == 0:
+        return None
+    if abs(prior) < MIN_BASE_EPS:
         return None
     return (current - prior) / abs(prior) * 100.0
 

@@ -117,8 +117,8 @@ TEMPLATE = """<!DOCTYPE html>
         display:inline-flex;align-items:center;gap:.5rem;transition:color .2s}
   .home:hover{color:var(--accent)}
   .home .back{color:var(--accent);font-size:14px}
-  .mark{font:600 13px/1 ui-sans-serif,system-ui,sans-serif;letter-spacing:.16em;
-        text-transform:uppercase;color:var(--ink)}
+  .mark{font:600 26px/1 ui-sans-serif,system-ui,sans-serif;letter-spacing:.20em;
+        text-transform:uppercase;color:var(--ink);text-align:center;margin:0 0 2.4rem}
 
   h1{font-weight:400;font-size:clamp(1.9rem,3.6vw,2.5rem);line-height:1.1;
      letter-spacing:-.015em;margin:0 0 .8rem;max-width:20ch}
@@ -156,6 +156,7 @@ TEMPLATE = """<!DOCTYPE html>
   h2{font-weight:400;font-size:1.5rem;letter-spacing:-.01em;margin:3.4rem 0 .4rem}
   .sub{color:var(--faint);font:400 14px/1.5 ui-sans-serif,system-ui,sans-serif;margin:0 0 .4rem}
   p{max-width:70ch;color:var(--soft)}
+  .method{font-size:14.5px;line-height:1.6;color:var(--faint);max-width:76ch}
 
   table{width:100%;border-collapse:collapse;margin-top:1rem;
         font:400 14.5px/1.5 ui-sans-serif,system-ui,sans-serif}
@@ -174,6 +175,11 @@ TEMPLATE = """<!DOCTYPE html>
   td.muted{color:var(--faint)}
   th.n{text-align:right}
   tr.hide{display:none}
+  tr.filters td{padding:.35rem .6rem .7rem;border-bottom:1px solid var(--rule)}
+  tr.filters input{width:100%;min-width:0;font:400 12.5px/1 ui-sans-serif,system-ui,sans-serif;
+        color:var(--ink);background:#10141b;border:1px solid var(--rule);border-radius:5px;
+        padding:.4rem .45rem}
+  tr.filters input::placeholder{color:#4a525f}
   #empty{display:none;color:var(--faint);padding:1.3rem .2rem;
          font:400 14px/1.5 ui-sans-serif,system-ui,sans-serif}
 
@@ -188,8 +194,8 @@ TEMPLATE = """<!DOCTYPE html>
 <div class="wrap">
   <div class="bar">
     <a class="home" href="https://charlietrenorden.com/"><span class="back">&larr;</span>Other projects</a>
-    <span class="mark">Consensus Drift</span>
   </div>
+  <p class="mark">Consensus Drift</p>
 
   <h1>__HEADLINE__</h1>
   <p class="lede">__LEDE__</p>
@@ -232,6 +238,16 @@ TEMPLATE = """<!DOCTYPE html>
       <th data-k="gap" class="n">Gap (pp)<span class="ar">&#9650;</span></th>
       <th data-k="analysts" class="n">Analysts<span class="ar">&#9650;</span></th>
       <th data-k="bandlabel">Reading<span class="ar">&#9650;</span></th>
+    </tr>
+    <tr class="filters">
+      <td><input id="c-ticker" type="search" placeholder="filter" aria-label="Filter ticker"></td>
+      <td><input id="c-name" type="search" placeholder="filter" aria-label="Filter name"></td>
+      <td class="sec"><input id="c-sector" type="search" placeholder="filter" aria-label="Filter sector"></td>
+      <td class="n"><input id="c-rev" type="text" inputmode="decimal" placeholder="min |%|" aria-label="Minimum absolute estimate change"></td>
+      <td class="n"><input id="c-price" type="text" inputmode="decimal" placeholder="min |%|" aria-label="Minimum absolute price change"></td>
+      <td class="n"><input id="c-gap" type="text" inputmode="decimal" placeholder="min |pp|" aria-label="Minimum absolute gap"></td>
+      <td class="n"><input id="c-analysts" type="text" inputmode="numeric" placeholder="min" aria-label="Minimum analysts"></td>
+      <td></td>
     </tr></thead>
     <tbody id="tbody">
 __ROWS__
@@ -240,17 +256,13 @@ __ROWS__
   <p id="empty">Nothing matches those filters.</p>
 
   <h2>Method</h2>
-  <p>The vertical axis is the change in consensus FY2 earnings per share over 90 days,
-  taken from Yahoo's published estimate history rather than reconstructed. The horizontal
-  axis is total price change over the same window. The <em>gap</em> is the difference
-  between the two in percentage points, and it is what the colouring and the default sort
-  key off, on the basis that a 15% upgrade against a 4% price move is a different
-  situation from a 1% upgrade against a 43% move.</p>
-  <p>Revisions divide by the absolute prior estimate, so a loss-maker narrowing from
-  -1.00 to -0.50 registers as an upgrade. A name drops out when Yahoo carries no
-  comparable figure 90 days back, which it reports as <code>0.0</code> rather than as
-  missing.__DROPNOTE__ Estimates are opinions, and a revision records only that analysts
-  changed their minds.</p>
+  <p class="method">The vertical axis is the 90-day change in consensus FY2 earnings per
+  share, from Yahoo's published estimate history. The horizontal axis is total price change
+  over the same window. The gap between them, in percentage points, is what the colouring
+  and the default sort use.</p>
+  <p class="method">Revisions divide by the absolute prior estimate, so a narrowing loss
+  registers as an upgrade. A name drops out where Yahoo carries no comparable figure 90 days
+  back.__DROPNOTE__ Names beyond the plotted range sit on the frame edge, drawn hollow. A revision records that analysts changed their minds, nothing more.</p>
 
   <p class="foot">Built by <a href="https://charlietrenorden.com/">Charlie Trenorden</a>.
   Data from Yahoo Finance, refreshed weekly.</p>
@@ -275,6 +287,35 @@ __ROWS__
     gap:    document.getElementById("f-gap"),
     text:   document.getElementById("f-text")
   };
+  // per-column filters in the table head: substring on the text columns, minimum
+  // absolute value on the numeric ones
+  var cols = {
+    ticker: document.getElementById("c-ticker"),
+    name: document.getElementById("c-name"),
+    sector: document.getElementById("c-sector"),
+    rev: document.getElementById("c-rev"),
+    price: document.getElementById("c-price"),
+    gap: document.getElementById("c-gap"),
+    analysts: document.getElementById("c-analysts")
+  };
+
+  function colMatch(r) {
+    var t;
+    for (var k in cols) {
+      if (!Object.prototype.hasOwnProperty.call(cols, k)) continue;
+      var v = cols[k].value.trim();
+      if (!v) continue;
+      if (k === "ticker" || k === "name" || k === "sector") {
+        if (String(r[k]).toLowerCase().indexOf(v.toLowerCase()) < 0) return false;
+      } else {
+        var min = parseFloat(v);
+        if (isNaN(min)) continue;
+        t = k === "analysts" ? (r.analysts == null ? -1 : r.analysts) : Math.abs(r[k]);
+        if (t < min) return false;
+      }
+    }
+    return true;
+  }
 
   function svgEl(tag, attrs, text) {
     var e = document.createElementNS(NS, tag), k;
@@ -301,7 +342,7 @@ __ROWS__
     if (els.gap.value && r.bandkey !== els.gap.value) return false;
     var q = els.text.value.trim().toLowerCase();
     if (q && (r.ticker + " " + r.name + " " + r.sector).toLowerCase().indexOf(q) < 0) return false;
-    return true;
+    return colMatch(r);
   }
 
   function clear(node) { while (node.firstChild) node.removeChild(node.firstChild); }
@@ -310,8 +351,15 @@ __ROWS__
     clear(chart);
     if (!rows.length) return;
 
-    var all = rows.map(function (r) { return r.price; }).concat(rows.map(function (r) { return r.rev; }));
-    var b = bound(all);                       // one scale on both axes so the 45 degree line means something
+    // scale to the 98th percentile, not the maximum: a handful of names whose
+    // estimates flipped from profit to loss run to several hundred percent and would
+    // squash everything else into the middle. Outliers are pinned to the frame edge
+    // and drawn hollow so they read as off-scale rather than as real positions.
+    var all = rows.map(function (r) { return Math.abs(r.price); })
+                  .concat(rows.map(function (r) { return Math.abs(r.rev); }))
+                  .sort(function (a, c) { return a - c; });
+    var b = bound([all[Math.floor(all.length * 0.98)] || 5]);
+    var clamp = function (v) { return Math.max(-b, Math.min(b, v)); };
     var x0 = PAD.l, x1 = W - PAD.r, y0 = PAD.t, y1 = H - PAD.b;
     var cx = x0 + (x1 - x0) / 2, cy = y0 + (y1 - y0) / 2;
     var px = function (v) { return x0 + (v + b) / (2 * b) * (x1 - x0); };
@@ -320,12 +368,21 @@ __ROWS__
     var svg = svgEl("svg", {viewBox: "0 0 " + W + " " + H, role: "img",
       "aria-label": "Earnings estimate change against share price change"});
 
-    // band either side of the 45 degree line, where the two moves agree
-    var poly = [[px(-b), py(-b + THRESH)], [px(b - THRESH), py(b)],
-                [px(b), py(b - THRESH)], [px(-b + THRESH), py(-b)]];
+    // band either side of the 45 degree line, where the two moves agree.
+    // Drawn well beyond the frame and clipped to the plot, so it runs edge to edge
+    // instead of stopping short in the corners.
+    var defs = svgEl("defs", {});
+    var clip = svgEl("clipPath", {id: "plot"});
+    clip.appendChild(svgEl("rect", {x: x0, y: y0, width: x1 - x0, height: y1 - y0}));
+    defs.appendChild(clip);
+    svg.appendChild(defs);
+
+    var E = b * 3;                                   // far outside the visible range
+    var poly = [[px(-E), py(-E + THRESH)], [px(E), py(E + THRESH)],
+                [px(E), py(E - THRESH)], [px(-E), py(-E - THRESH)]];
     svg.appendChild(svgEl("polygon", {
       points: poly.map(function (p) { return p[0].toFixed(1) + "," + p[1].toFixed(1); }).join(" "),
-      fill: "#6b7480", opacity: 0.07}));
+      fill: "#6b7480", opacity: 0.07, "clip-path": "url(#plot)"}));
 
     [-0.5, 0.5].forEach(function (f) {
       svg.appendChild(svgEl("line", {x1: px(b * f), y1: y0, x2: px(b * f), y2: y1, stroke: "#262d38"}));
@@ -334,7 +391,7 @@ __ROWS__
     svg.appendChild(svgEl("line", {x1: cx, y1: y0, x2: cx, y2: y1, stroke: "#39424f"}));
     svg.appendChild(svgEl("line", {x1: x0, y1: cy, x2: x1, y2: cy, stroke: "#39424f"}));
     // the line where the estimate move equals the price move
-    svg.appendChild(svgEl("line", {x1: px(-b), y1: py(-b), x2: px(b), y2: py(b),
+    svg.appendChild(svgEl("line", {x1: x0, y1: y1, x2: x1, y2: y0,
                                    stroke: "#5d6675", "stroke-width": 1.2, "stroke-dasharray": "5 5"}));
 
     var LAB = {"font-family": "ui-sans-serif,system-ui,sans-serif", "font-size": 12.5,
@@ -366,9 +423,14 @@ __ROWS__
       "Earnings estimate change, 90 days"));
 
     rows.forEach(function (r) {
-      var c = svgEl("circle", {"class": "pt", cx: px(r.price).toFixed(1), cy: py(r.rev).toFixed(1),
-                               r: 5.2, fill: BANDS[r.bandkey][0], "fill-opacity": 0.85,
-                               stroke: "#0f1319", "stroke-width": 1});
+      var off = Math.abs(r.price) > b || Math.abs(r.rev) > b;
+      var c = svgEl("circle", {"class": "pt", cx: px(clamp(r.price)).toFixed(1),
+                               cy: py(clamp(r.rev)).toFixed(1),
+                               r: 5.2,
+                               fill: off ? "none" : BANDS[r.bandkey][0],
+                               "fill-opacity": 0.85,
+                               stroke: off ? BANDS[r.bandkey][0] : "#0f1319",
+                               "stroke-width": off ? 1.6 : 1});
       c.addEventListener("mouseenter", function () {
         c.setAttribute("r", 8);
         showTip(r, svg, px(r.price), py(r.rev));
@@ -475,9 +537,11 @@ __ROWS__
   Object.keys(els).forEach(function (k) {
     els[k].addEventListener(els[k].tagName === "SELECT" ? "change" : "input", apply);
   });
+  Object.keys(cols).forEach(function (k) { cols[k].addEventListener("input", apply); });
   document.getElementById("reset").addEventListener("click", function () {
     els.market.value = ""; els.sector.value = ""; els.band.value = "";
     els.gap.value = ""; els.text.value = "";
+    Object.keys(cols).forEach(function (k) { cols[k].value = ""; });
     sortKey = "gap"; sortDir = -1;
     apply();
   });
@@ -519,7 +583,7 @@ def main():
     page = (TEMPLATE
             .replace("__HEADLINE__", "Where price and estimates have moved apart.")
             .replace("__LEDE__", "Every name below, ranked by how far its earnings "
-                                 "estimates and its share price have diverged over 90 days.")
+                                 "estimates and its share price have diverged over the last 90 days.")
             .replace("__N__", str(len(rows)))
             .replace("__DATE__", data["generated_utc"][:10])
             .replace("__MARKETS__", options(markets, "All markets"))
