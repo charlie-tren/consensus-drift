@@ -125,7 +125,7 @@ TEMPLATE = """<!DOCTYPE html>
   @media (max-width:720px){ .mark{font-size:18px;letter-spacing:.2em} .bar-pad{display:none}
     .home,.bar-pad{min-width:0} }
 
-  h1{font-weight:400;font-size:clamp(1.9rem,3.6vw,2.5rem);line-height:1.1;
+  h1{font-weight:400;font-size:clamp(1.7rem,3vw,2.15rem);line-height:1.1;
      letter-spacing:-.015em;margin:0 0 .8rem;max-width:20ch}
   .lede{font-size:1.05rem;color:var(--soft);max-width:60ch;margin:0}
 
@@ -240,8 +240,7 @@ TEMPLATE = """<!DOCTYPE html>
     <span><b style="color:#6b7480">In Line</b> &middot; Within __THRESH__ points</span>
   </div>
 
-  <h2>Full List</h2>
-  <p class="sub" id="count"></p>
+  <p class="sub" id="count" hidden></p>
   <table>
     <thead><tr>
       <th data-k="ticker">Ticker<span class="ar">&#9650;</span></th>
@@ -275,10 +274,10 @@ __ROWS__
   </div>
 
   <h2>Method</h2>
-  <p class="method">The vertical axis is the 90-day change in consensus FY2 earnings per
-  share, from Yahoo's published estimate history. The horizontal axis is total price change
-  over the same window. The gap between them, in percentage points, is what the colouring
-  and the default sort use.</p>
+  <p class="method">The vertical axis is how much the average analyst forecast for next
+  financial year's earnings per share has moved over 90 days. The horizontal axis is what
+  the share price did over the same window. The gap between the two, in percentage points,
+  is what the colouring and the default sort use.</p>
   <p class="method">Revisions divide by the absolute prior estimate, so a narrowing loss
   registers as an upgrade. A name drops out where Yahoo carries no comparable figure 90 days
   back, or where the prior estimate is too close to zero for a percentage to mean
@@ -295,7 +294,7 @@ __ROWS__
   var BANDS = __BANDCFG__;
   var THRESH = __THRESHNUM__;
   var NS = "http://www.w3.org/2000/svg";
-  var W = 940, H = 620, PAD = {l: 74, r: 26, t: 30, b: 62};
+  var W = 940, H = 640, PAD = {l: 74, r: 26, t: 46, b: 78};
 
   var chart = document.getElementById("chart");
   var tip = document.getElementById("tip");
@@ -435,8 +434,9 @@ __ROWS__
       a.x = x; a.y = y; a["text-anchor"] = anchor; a.fill = fill;
       svg.appendChild(svgEl("text", a, text));
     }
-    tag(x0 + 12, y0 + 20, "start", "#82a8ca", "PRICE BEHIND");
-    tag(x1 - 12, y1 - 10, "end", "#c98a6a", "PRICE AHEAD");
+    // above and below the frame, not inside it - they were colliding with the data
+    tag(x0, y0 - 12, "start", "#82a8ca", "PRICE BEHIND");
+    tag(x1, y1 + 34, "end", "#c98a6a", "PRICE AHEAD");
 
     var TICK = {"font-family": "ui-monospace,Consolas,monospace", "font-size": 11, fill: "#5d6675"};
     [-1, -0.5, 0.5, 1].forEach(function (f) {
@@ -455,6 +455,7 @@ __ROWS__
       transform: "translate(20," + cy + ") rotate(-90)", "text-anchor": "middle"}),
       "Earnings estimate change, 90 days"));
 
+    var drawn = [];
     rows.forEach(function (r) {
       var off = Math.abs(r.price) > b || Math.abs(r.rev) > b;
       var pos = place(r.price, r.rev);
@@ -465,17 +466,36 @@ __ROWS__
                                "fill-opacity": 0.85,
                                stroke: off ? BANDS[r.bandkey][0] : "#0f1319",
                                "stroke-width": off ? 1.6 : 1});
-      c.addEventListener("mouseenter", function () {
-        c.setAttribute("r", 8);
-        showTip(r, svg, px(pos[0]), py(pos[1]));
-      });
-      c.addEventListener("mouseleave", function () { c.setAttribute("r", 5.2); });
+      c.__row = r; c.__x = px(pos[0]); c.__y = py(pos[1]);
       svg.appendChild(c);
+      drawn.push(c);
     });
-    // hide only when the pointer leaves the plot entirely. Hiding on each circle's
-    // mouseleave made the tooltip strobe wherever dots overlap, which is everywhere
-    // along the frame edge once off-scale names are pinned there.
-    svg.addEventListener("mouseleave", function () { tip.style.opacity = 0; });
+
+    // One handler for the whole plot, resolving to the nearest point. Per-circle
+    // mouseenter handed the tooltip back and forth between overlapping neighbours on
+    // every pixel of movement, which is what made it strobe.
+    var current = null;
+    svg.addEventListener("mousemove", function (ev) {
+      var box = svg.getBoundingClientRect();
+      var scale = W / box.width;
+      var mx = (ev.clientX - box.left) * scale, my = (ev.clientY - box.top) * scale;
+      var best = null, bestD = 14 * 14;            // only within a sensible radius
+      for (var i = 0; i < drawn.length; i++) {
+        var dx = drawn[i].__x - mx, dy = drawn[i].__y - my, d = dx * dx + dy * dy;
+        if (d < bestD) { bestD = d; best = drawn[i]; }
+      }
+      if (best === current) return;                // nothing changed - leave it alone
+      if (current) current.setAttribute("r", 5.2);
+      current = best;
+      if (!best) { tip.style.opacity = 0; return; }
+      best.setAttribute("r", 8);
+      showTip(best.__row, svg, best.__x, best.__y);
+    });
+    svg.addEventListener("mouseleave", function () {
+      if (current) current.setAttribute("r", 5.2);
+      current = null;
+      tip.style.opacity = 0;
+    });
     chart.appendChild(svg);
   }
 
@@ -506,10 +526,6 @@ __ROWS__
     // flip rather than let it hang off the edge, then keep it off the corner captions
     if (left + w > fb.width - 8) left -= w + 28;
     if (top + h > fb.height - 8) top -= h - 10;
-    var capTop = box.top - fb.top + 34 * scale;         // PRICE BEHIND sits here
-    var capBot = box.top - fb.top + (H - 72) * scale;   // PRICE AHEAD sits here
-    if (top < capTop && left < fb.width * 0.4) top = capTop;
-    if (top + h > capBot && left + w > fb.width * 0.6) top = capBot - h;
     tip.style.left = Math.max(6, Math.min(left, fb.width - w - 6)) + "px";
     tip.style.top = Math.max(6, top) + "px";
   }
@@ -643,8 +659,8 @@ def main():
 
     page = (TEMPLATE
             .replace("__HEADLINE__", "Where price and estimates have moved apart.")
-            .replace("__LEDE__", "Every name below, ranked by how far its earnings "
-                                 "estimates and its share price have diverged over the last 90 days.")
+            .replace("__LEDE__", "Analysts have been raising or cutting their profit "
+                                 "forecasts. Sometimes the share price agrees. This is where it does not.")
             .replace("__N__", str(len(rows)))
             .replace("__DATE__", data["generated_utc"][:10])
             .replace("__MARKETS__", options(markets, "All markets"))
