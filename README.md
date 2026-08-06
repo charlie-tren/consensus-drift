@@ -33,6 +33,7 @@ means the two moves genuinely tracked rather than merely pointed the same way.
 pip install -r requirements.txt
 python fetch.py      # -> data/latest.json   (~20s for 40 names)
 python build.py      # -> docs/index.html
+python archive.py    # -> appends this snapshot to data/history.csv
 python -m pytest tests -q
 python -m http.server 8000 -d docs
 ```
@@ -68,6 +69,24 @@ about 13 minutes, which is fine for a weekly job.
 3. **Divide by the absolute prior estimate.** For a loss-maker, -1.00 -> -0.50 is
    an upgrade; dividing by the raw negative base flips the sign and reports it as a
    downgrade. Both cases are covered in `tests/test_calc.py`.
+
+## The history file
+
+Yahoo only exposes 90 days of the revision path, so anything older is gone the moment
+it rolls off. Every run appends its snapshot to `data/history.csv`, which after a year
+gives a real panel: ~650 names x 52 observations of estimates, price and gap.
+
+CSV rather than a binary database on purpose - it diffs in git, needs no driver, and
+pandas / DuckDB / Excel read it directly:
+
+```python
+import pandas as pd
+h = pd.read_csv("data/history.csv", parse_dates=["asof"])
+h.pivot_table(index="asof", columns="ticker", values="gap_pp")
+```
+
+Re-running on the same date replaces that date's rows rather than duplicating them,
+so a re-run after a failed fetch is safe. About 65 KB a snapshot, so ~3.4 MB a year.
 
 ## Deployment
 
