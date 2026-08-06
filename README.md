@@ -9,15 +9,23 @@ Served as a GitHub Pages PROJECT site. Because the user site `charlie-tren.githu
 carries the custom domain, project sites inherit it as `<domain>/<repo>/` - so this
 needed no subdomain and no DNS record of its own.
 
-Estimates move in trends rather than jumps, so the interesting picture is the
-*revision path*, not the level - and specifically the two off-diagonal quadrants:
+The vertical axis is the 90-day change in consensus FY2 EPS; the horizontal axis is the
+price change over the same window. What matters is the **gap** between them, in
+percentage points.
 
-| Quadrant | Meaning |
+| Reading | Meaning |
 |---|---|
-| **Unearned** | price up, estimates down - re-rating without support |
-| **Overlooked** | estimates up, price hasn't followed |
-| Earned | both up, they agree |
-| Confirmed | both down, they agree |
+| **Price Behind** | estimates rose more than the price, by 10pp or more |
+| **Price Ahead** | price rose more than the estimates, by 10pp or more |
+| In Line | the two moved together |
+
+**Why the gap and not the quadrant.** The first version classified on the sign of each
+axis, which put NVIDIA (estimates +14.8%, price +3.8%) in the same box as a name whose
+price had run 43% on a 1.4% upgrade, because both were "up and up". Those are opposite
+situations. Classifying on the delta fixes it: NVIDIA reads Price Behind at +11pp.
+
+The 10pp threshold is roughly the median absolute gap across the universe, so In Line
+means the two moves genuinely tracked rather than merely pointed the same way.
 
 ## Running it
 
