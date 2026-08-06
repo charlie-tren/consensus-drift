@@ -26,8 +26,13 @@
         display:inline-flex;align-items:center;gap:.5rem;transition:color .2s}
   .home:hover{color:var(--accent)}
   .home .back{color:var(--accent);font-size:14px}
-  .mark{font:600 26px/1 ui-sans-serif,system-ui,sans-serif;letter-spacing:.20em;
-        text-transform:uppercase;color:var(--ink);text-align:center;margin:0 0 2.4rem}
+  .mark{font:300 30px/1 ui-sans-serif,system-ui,sans-serif;letter-spacing:.30em;
+        text-transform:uppercase;color:var(--ink);text-align:center;
+        flex:1 1 auto;padding-left:.30em}
+  .bar{align-items:baseline}
+  .home,.bar-pad{flex:0 0 auto;min-width:9.5rem}
+  @media (max-width:720px){ .mark{font-size:18px;letter-spacing:.2em} .bar-pad{display:none}
+    .home,.bar-pad{min-width:0} }
 
   h1{font-weight:400;font-size:clamp(1.9rem,3.6vw,2.5rem);line-height:1.1;
      letter-spacing:-.015em;margin:0 0 .8rem;max-width:20ch}
@@ -70,13 +75,14 @@
   table{width:100%;border-collapse:collapse;margin-top:1rem;
         font:400 14.5px/1.5 ui-sans-serif,system-ui,sans-serif}
   th{text-align:left;font:600 11.5px/1.3 ui-sans-serif,system-ui,sans-serif;letter-spacing:.11em;
-     text-transform:uppercase;color:var(--faint);padding:0 .6rem .7rem;
+     text-transform:uppercase;color:var(--faint);padding:0 .6rem .55rem;
      border-bottom:1px solid var(--rule);cursor:pointer;user-select:none;white-space:nowrap}
   th:hover{color:var(--soft)}
   th .ar{opacity:0;margin-left:.25rem}
   th.asc .ar,th.desc .ar{opacity:1;color:var(--accent)}
   th.desc .ar{display:inline-block;transform:rotate(180deg)}
-  td{padding:.58rem .6rem;border-bottom:1px solid var(--rule);color:var(--ink)}
+  td{padding:.55rem .6rem;border-bottom:1px solid var(--rule);color:var(--ink);
+     height:2.5rem}
   td.n{text-align:right;font-family:ui-monospace,Consolas,monospace;font-size:13px}
   td.tk{font-family:ui-monospace,Consolas,monospace;font-size:12.5px;color:var(--soft)}
   td.sec{color:var(--soft);font-size:13.5px}
@@ -84,7 +90,7 @@
   td.muted{color:var(--faint)}
   th.n{text-align:right}
   tr.hide{display:none}
-  tr.filters td{padding:.35rem .6rem .7rem;border-bottom:1px solid var(--rule)}
+  tr.filters td{padding:.42rem .6rem;border-bottom:1px solid var(--rule)}
   tr.filters input{width:100%;min-width:0;font:400 12.5px/1 ui-sans-serif,system-ui,sans-serif;
         color:var(--ink);background:#10141b;border:1px solid var(--rule);border-radius:5px;
         padding:.4rem .45rem}
@@ -103,8 +109,9 @@
 <div class="wrap">
   <div class="bar">
     <a class="home" href="https://charlietrenorden.com/"><span class="back">&larr;</span>Other projects</a>
+    <span class="mark">Consensus Drift</span>
+    <span class="bar-pad" aria-hidden="true"></span>
   </div>
-  <p class="mark">Consensus Drift</p>
 
   <h1>Where price and estimates have moved apart.</h1>
   <p class="lede">Every name below, ranked by how far its earnings estimates and its share price have diverged over the last 90 days.</p>
@@ -821,7 +828,8 @@
   and the default sort use.</p>
   <p class="method">Revisions divide by the absolute prior estimate, so a narrowing loss
   registers as an upgrade. A name drops out where Yahoo carries no comparable figure 90 days
-  back. This week that is AZO, BBY, DECK, DTE, ERIE, FDX, FDXF, FOX, GIS, HONA, L, MDT, UHS, AFI.AX, ARG.AX, ASK.AX, BFL.AX, CBA.AX, CEN.AX, FRW.AX, GMG.AX, GQG.AX, HUB.AX, HVN.AX, IFL.AX, LLC.AX, LSF.AX, MFF.AX, MXT.AX, NSR.AX, RYM.AX, SNZ.AX, TWE.AX, WAM.AX, WLE.AX, XYX.AX, YAL.AX, ZIM.AX, WBD, EOS.AX, TUA.AX, DYL.AX, TPG.AX, L1G.AX, DRO.AX, PDI.AX, SIG.AX, HDN.AX, GNE.AX, TAH.AX, MSB.AX, 4DX.AX. Names beyond the plotted range sit on the frame edge, drawn hollow. A revision records that analysts changed their minds, nothing more.</p>
+  back, or where the prior estimate is too close to zero for a percentage to mean
+  anything. That is 52 of the 703 tracked this week. Names beyond the plotted range sit on the frame edge, drawn hollow. A revision records that analysts changed their minds, nothing more.</p>
 
   <p class="foot">Built by <a href="https://charlietrenorden.com/">Charlie Trenorden</a>.
   Data from Yahoo Finance, refreshed weekly.</p>
@@ -918,7 +926,20 @@
                   .concat(rows.map(function (r) { return Math.abs(r.rev); }))
                   .sort(function (a, c) { return a - c; });
     var b = bound([all[Math.floor(all.length * 0.98)] || 5]);
-    var clamp = function (v) { return Math.max(-b, Math.min(b, v)); };
+
+    // Bringing an off-scale name into frame by clamping each axis separately CHANGED
+    // its gap, so a blue dot could land inside the grey band and contradict its own
+    // colour (Liontown: price -55.7 clamped to -50 while estimates stayed -40.7, so a
+    // +15pp gap displayed as +9.3pp). The gap is constant along the 45 degree line, so
+    // slide the point down that diagonal instead - position moves, gap does not.
+    function place(x, y) {
+      var t = 0;
+      if (Math.max(x, y) > b) t = Math.max(x, y) - b;
+      else if (Math.min(x, y) < -b) t = Math.min(x, y) + b;
+      var nx = x - t, ny = y - t;
+      // a gap wider than the whole frame cannot be shown faithfully; corner it
+      return [Math.max(-b, Math.min(b, nx)), Math.max(-b, Math.min(b, ny))];
+    }
     var x0 = PAD.l, x1 = W - PAD.r, y0 = PAD.t, y1 = H - PAD.b;
     var cx = x0 + (x1 - x0) / 2, cy = y0 + (y1 - y0) / 2;
     var px = function (v) { return x0 + (v + b) / (2 * b) * (x1 - x0); };
@@ -983,8 +1004,9 @@
 
     rows.forEach(function (r) {
       var off = Math.abs(r.price) > b || Math.abs(r.rev) > b;
-      var c = svgEl("circle", {"class": "pt", cx: px(clamp(r.price)).toFixed(1),
-                               cy: py(clamp(r.rev)).toFixed(1),
+      var pos = place(r.price, r.rev);
+      var c = svgEl("circle", {"class": "pt", cx: px(pos[0]).toFixed(1),
+                               cy: py(pos[1]).toFixed(1),
                                r: 5.2,
                                fill: off ? "none" : BANDS[r.bandkey][0],
                                "fill-opacity": 0.85,
@@ -992,14 +1014,15 @@
                                "stroke-width": off ? 1.6 : 1});
       c.addEventListener("mouseenter", function () {
         c.setAttribute("r", 8);
-        showTip(r, svg, px(r.price), py(r.rev));
+        showTip(r, svg, px(pos[0]), py(pos[1]));
       });
-      c.addEventListener("mouseleave", function () {
-        c.setAttribute("r", 5.2);
-        tip.style.opacity = 0;
-      });
+      c.addEventListener("mouseleave", function () { c.setAttribute("r", 5.2); });
       svg.appendChild(c);
     });
+    // hide only when the pointer leaves the plot entirely. Hiding on each circle's
+    // mouseleave made the tooltip strobe wherever dots overlap, which is everywhere
+    // along the frame edge once off-scale names are pinned there.
+    svg.addEventListener("mouseleave", function () { tip.style.opacity = 0; });
     chart.appendChild(svg);
   }
 
@@ -1024,10 +1047,17 @@
     var fb = chart.parentNode.getBoundingClientRect();
     var scale = box.width / W;
     tip.style.opacity = 1;
+    var w = tip.offsetWidth, h = tip.offsetHeight;
     var left = box.left - fb.left + sx * scale + 14;
     var top = box.top - fb.top + sy * scale - 12;
-    if (left + tip.offsetWidth > fb.width - 8) left -= tip.offsetWidth + 28;
-    tip.style.left = Math.max(6, left) + "px";
+    // flip rather than let it hang off the edge, then keep it off the corner captions
+    if (left + w > fb.width - 8) left -= w + 28;
+    if (top + h > fb.height - 8) top -= h - 10;
+    var capTop = box.top - fb.top + 34 * scale;         // PRICE BEHIND sits here
+    var capBot = box.top - fb.top + (H - 72) * scale;   // PRICE AHEAD sits here
+    if (top < capTop && left < fb.width * 0.4) top = capTop;
+    if (top + h > capBot && left + w > fb.width * 0.6) top = capBot - h;
+    tip.style.left = Math.max(6, Math.min(left, fb.width - w - 6)) + "px";
     tip.style.top = Math.max(6, top) + "px";
   }
 
