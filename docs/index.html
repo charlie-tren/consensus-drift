@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Consensus Drift - where price and estimates disagree</title>
+<meta name="description" content="Sell-side EPS estimate revisions plotted against share price change over 90 days. The interesting names are the ones where the two disagree.">
+<link rel="canonical" href="https://drift.charlietrenorden.com/">
+<meta property="og:title" content="Consensus Drift">
+<meta property="og:description" content="Estimate revisions against price change. The interesting names are where the two disagree.">
+<meta property="og:url" content="https://drift.charlietrenorden.com/">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='24' fill='%231a212b'/><path d='M72.5 37 A26 26 0 1 0 72.5 63' fill='none' stroke='%2382a8ca' stroke-width='13' stroke-linecap='round'/><circle cx='50' cy='50' r='6.5' fill='%2382a8ca'/></svg>">
+<style>
+  *,*::before,*::after{box-sizing:border-box}
+  :root{--bg:#0f1319;--raised:#171c24;--ink:#e6e9ee;--soft:#8a94a3;--faint:#5d6675;
+        --rule:#262d38;--accent:#82a8ca}
+  body{margin:0;background:var(--bg);color:var(--ink);
+       font:400 17px/1.65 "Iowan Old Style","Palatino Linotype",Palatino,Georgia,serif;
+       -webkit-font-smoothing:antialiased}
+  .wrap{max-width:1000px;margin:0 auto;padding:2.2rem 1.5rem 5rem}
+  .bar{display:flex;justify-content:space-between;align-items:center;margin-bottom:3.4rem;gap:1rem}
+  .mark{font:600 17px/1 ui-sans-serif,system-ui,sans-serif;letter-spacing:.12em;text-transform:uppercase}
+  .back{font:500 14px/1 ui-sans-serif,system-ui,sans-serif;color:var(--soft);text-decoration:none;
+        border:1px solid var(--rule);border-radius:999px;padding:.5rem .9rem}
+  .back:hover{color:var(--ink);border-color:var(--accent)}
+  h1{font-weight:400;font-size:clamp(2.1rem,5vw,3rem);line-height:1.06;letter-spacing:-.015em;margin:0 0 1rem}
+  .lede{font-size:1.14rem;color:var(--soft);max-width:62ch;margin:0 0 .6rem}
+  .stamp{font:500 13px/1.5 ui-monospace,Consolas,monospace;color:var(--faint);margin:1.4rem 0 0}
+  figure{margin:2.6rem 0 0;background:var(--raised);border:1px solid var(--rule);border-radius:8px;padding:.6rem}
+  figure svg{display:block;width:100%;height:auto}
+  .key{display:flex;flex-wrap:wrap;gap:1.4rem;margin:1.4rem 0 0;
+       font:500 13px/1.4 ui-sans-serif,system-ui,sans-serif;color:var(--soft)}
+  .key b{font-weight:600}
+  h2{font-weight:400;font-size:1.5rem;letter-spacing:-.01em;margin:3.4rem 0 .8rem}
+  p{max-width:68ch;color:var(--soft)}
+  table{width:100%;border-collapse:collapse;margin-top:1.2rem;
+        font:400 14.5px/1.5 ui-sans-serif,system-ui,sans-serif}
+  th{text-align:left;font:600 11.5px/1 ui-sans-serif,system-ui,sans-serif;letter-spacing:.13em;
+     text-transform:uppercase;color:var(--faint);padding:0 .7rem .7rem;border-bottom:1px solid var(--rule)}
+  td{padding:.62rem .7rem;border-bottom:1px solid var(--rule);color:var(--ink)}
+  td.n{text-align:right;font-family:ui-monospace,Consolas,monospace;font-size:13.5px}
+  td.tk{font-family:ui-monospace,Consolas,monospace;font-size:13px;color:var(--soft)}
+  td.q{font-size:12.5px;letter-spacing:.05em}
+  td.muted{color:var(--faint)}
+  th.n{text-align:right}
+  .foot{margin-top:3.4rem;padding-top:1.4rem;border-top:1px solid var(--rule);
+        color:var(--faint);font:400 13.5px/1.65 ui-sans-serif,system-ui,sans-serif;max-width:70ch}
+  .foot a{color:var(--accent)}
+  code{font-family:ui-monospace,Consolas,monospace;font-size:.9em;color:var(--ink)}
+  @media (max-width:640px){ .key{gap:.8rem} td,th{padding-left:.35rem;padding-right:.35rem} }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="bar">
+    <span class="mark">Consensus Drift</span>
+    <a class="back" href="https://charlietrenorden.com/">Other projects &#8599;</a>
+  </div>
+
+  <h1>Where price and estimates disagree.</h1>
+  <p class="lede">Sell-side earnings estimates move in trends, not jumps. Plotting the
+  <em>revision path</em> against what the share price did over the same window puts every
+  name in one of four boxes - and the two off-diagonal boxes are the ones worth a
+  second look.</p>
+  <p class="stamp">38 names  |  90-day window  |  updated 2026-08-06  |  source: Yahoo Finance</p>
+
+  <figure><svg viewBox="0 0 940 620" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Estimate revisions against price change"><defs><style>.gl{stroke:#262d38;stroke-width:1}</style></defs><rect x="494.0" y="30" width="420.0" height="264.0" fill="#7fae8f" opacity="0.05"/><rect x="494.0" y="294.0" width="420.0" height="264.0" fill="#c98a6a" opacity="0.09"/><rect x="74" y="30" width="420.0" height="264.0" fill="#82a8ca" opacity="0.09"/><line class="gl" x1="284.0" y1="30" x2="284.0" y2="558"/><line class="gl" x1="74" y1="426.0" x2="914" y2="426.0"/><line class="gl" x1="704.0" y1="30" x2="704.0" y2="558"/><line class="gl" x1="74" y1="162.0" x2="914" y2="162.0"/><line x1="494.0" y1="30" x2="494.0" y2="558" stroke="#5d6675" stroke-width="1.4"/><line x1="74" y1="294.0" x2="914" y2="294.0" stroke="#5d6675" stroke-width="1.4"/><text x="904" y="50" text-anchor="end" fill="#7fae8f" font-family="ui-sans-serif,system-ui,sans-serif" font-size="12.5" letter-spacing="0.11em">EARNED</text><text x="904" y="548" text-anchor="end" fill="#c98a6a" font-family="ui-sans-serif,system-ui,sans-serif" font-size="12.5" letter-spacing="0.11em">UNEARNED</text><text x="84" y="50" fill="#82a8ca" font-family="ui-sans-serif,system-ui,sans-serif" font-size="12.5" letter-spacing="0.11em">OVERLOOKED</text><text x="84" y="548" fill="#6b7480" font-family="ui-sans-serif,system-ui,sans-serif" font-size="12.5" letter-spacing="0.11em">CONFIRMED</text><text x="74.0" y="576" text-anchor="middle" font-family="ui-monospace,Consolas,monospace" font-size="11" fill="#5d6675">-50%</text><text x="64" y="562.0" text-anchor="end" font-family="ui-monospace,Consolas,monospace" font-size="11" fill="#5d6675">-20%</text><text x="284.0" y="576" text-anchor="middle" font-family="ui-monospace,Consolas,monospace" font-size="11" fill="#5d6675">-25%</text><text x="64" y="430.0" text-anchor="end" font-family="ui-monospace,Consolas,monospace" font-size="11" fill="#5d6675">-10%</text><text x="704.0" y="576" text-anchor="middle" font-family="ui-monospace,Consolas,monospace" font-size="11" fill="#5d6675">+25%</text><text x="64" y="166.0" text-anchor="end" font-family="ui-monospace,Consolas,monospace" font-size="11" fill="#5d6675">+10%</text><text x="914.0" y="576" text-anchor="middle" font-family="ui-monospace,Consolas,monospace" font-size="11" fill="#5d6675">+50%</text><text x="64" y="34.0" text-anchor="end" font-family="ui-monospace,Consolas,monospace" font-size="11" fill="#5d6675">+20%</text><text x="494.0" y="604" text-anchor="middle" font-family="ui-sans-serif,system-ui,sans-serif" font-size="12.5" fill="#8a94a3">Share price change, 90 days</text><text transform="translate(20,294.0) rotate(-90)" text-anchor="middle" font-family="ui-sans-serif,system-ui,sans-serif" font-size="12.5" fill="#8a94a3">FY2 consensus EPS revision, 90 days</text><g><title>Santos (STO.AX)  -  price +0.5%, estimates -16.5%</title><circle cx="497.9" cy="511.7" r="5.5" fill="#c98a6a" fill-opacity="0.85" stroke="#0f1319" stroke-width="1"/></g><text x="497.9" y="500.7" text-anchor="middle" fill="#e6e9ee" font-family="ui-sans-serif,system-ui,sans-serif" font-size="12">STO.AX</text><g><title>CSL (CSL.AX)  -  price +9.4%, estimates -13.8%</title><circle cx="573.0" cy="475.9" r="5.5" fill="#c98a6a" fill-opacity="0.85" stroke="#0f1319" stroke-width="1"/></g><text x="573.0" y="464.9" text-anchor="middle" fill="#e6e9ee" font-family="ui-sans-serif,system-ui,sans-serif" font-size="12">CSL.AX</text><g><title>Woodside Energy (WDS.AX)  -  price +5.4%, estimates -11.0%</title><circle cx="539.1" cy="439.1" r="5.5" fill="#c98a6a" fill-opacity="0.85" stroke="#0f1319" stroke-width="1"/></g><text x="539.1" y="428.1" text-anchor="middle" fill="#e6e9ee" font-family="ui-sans-serif,system-ui,sans-serif" font-size="12">WDS.AX</text><g><title>Fortescue (FMG.AX)  -  price -13.1%, estimates -4.5%</title><circle cx="384.2" cy="353.8" r="5.5" fill="#6b7480" fill-opacity="0.85" stroke="#0f1319" stroke-width="1"/></g><g><title>Meta Platforms (META)  -  price -4.5%, estimates -2.0%</title><circle cx="456.5" cy="319.9" r="5.5" fill="#6b7480" fill-opacity="0.85" stroke="#0f1319" stroke-width="1"/></g><g><title>PepsiCo (PEP)  -  price -10.3%, estimates -1.9%</title><circle cx="407.7" cy="319.2" r="5.5" fill="#6b7480" fill-opacity="0.85" stroke="#0f1319" stroke-width="1"/></g><g><title>National Australia Bank (NAB.AX)  -  price +11.3%, estimates -1.7%</title><circle cx="589.0" cy="316.8" r="5.5" fill="#c98a6a" fill-opacity="0.85" stroke="#0f1319" stroke-width="1"/></g><g><title>McDonald&#x27;s (MCD)  -  price -2.8%, estimates -1.7%</title><circle cx="470.8" cy="316.2" r="5.5" fill="#6b7480" fill-opacity="0.85" stroke="#0f1319" stroke-width="1"/></g><g><title>Westpac (WBC.AX)  -  price +2.9%, estimates -1.6%</title><circle cx="518.4" cy="315.3" r="5.5" fill="#c98a6a" fill-opacity="0.85" stroke="#0f1319" stroke-width="1"/></g><g><title>BHP Group (BHP.AX)  -  price +8.2%, estimates -1.5%</title><circle cx="562.7" cy="314.3" r="5.5" fill="#c98a6a" fill-opacity="0.85" stroke="#0f1319" stroke-width="1"/></g><g><title>Home Depot (HD)  -  price +10.3%, estimates -1.2%</title><circle cx="580.3" cy="310.5" r="5.5" fill="#c98a6a" fill-opacity="0.85" stroke="#0f1319" stroke-width="1"/></g><g><title>Telstra (TLS.AX)  -  price -6.7%, estimates -1.2%</title><circle cx="437.8" cy="309.6" r="5.5" fill="#6b7480" fill-opacity="0.85" stroke="#0f1319" stroke-width="1"/></g><g><title>Procter &amp; Gamble (PG)  -  price +1.3%, estimates -1.2%</title><circle cx="504.6" cy="309.3" r="5.5" fill="#c98a6a" fill-opacity="0.85" stroke="#0f1319" stroke-width="1"/></g><g><title>Berkshire Hathaway (BRK-B)  -  price +9.2%, estimates -0.8%</title><circle cx="571.4" cy="304.8" r="5.5" fill="#c98a6a" fill-opacity="0.85" stroke="#0f1319" stroke-width="1"/></g><g><title>REA Group (REA.AX)  -  price -3.0%, estimates -0.8%</title><circle cx="469.1" cy="304.0" r="5.5" fill="#6b7480" fill-opacity="0.85" stroke="#0f1319" stroke-width="1"/></g><g><title>ANZ Group (ANZ.AX)  -  price +5.9%, estimates -0.4%</title><circle cx="543.7" cy="299.5" r="5.5" fill="#c98a6a" fill-opacity="0.85" stroke="#0f1319" stroke-width="1"/></g><g><title>Apple (AAPL)  -  price +8.3%, estimates -0.3%</title><circle cx="563.7" cy="298.1" r="5.5" fill="#c98a6a" fill-opacity="0.85" stroke="#0f1319" stroke-width="1"/></g><g><title>Coles Group (COL.AX)  -  price +11.8%, estimates -0.2%</title><circle cx="593.5" cy="296.2" r="5.5" fill="#c98a6a" fill-opacity="0.85" stroke="#0f1319" stroke-width="1"/></g><g><title>Walmart (WMT)  -  price -13.6%, estimates -0.0%</title><circle cx="380.2" cy="294.4" r="5.5" fill="#6b7480" fill-opacity="0.85" stroke="#0f1319" stroke-width="1"/></g><g><title>Johnson &amp; Johnson (JNJ)  -  price +16.4%, estimates +0.6%</title><circle cx="632.0" cy="286.3" r="5.5" fill="#7fae8f" fill-opacity="0.85" stroke="#0f1319" stroke-width="1"/></g><g><title>QBE Insurance (QBE.AX)  -  price +9.5%, estimates +0.7%</title><circle cx="573.6" cy="284.2" r="5.5" fill="#7fae8f" fill-opacity="0.85" stroke="#0f1319" stroke-width="1"/></g><g><title>Wesfarmers (WES.AX)  -  price +26.2%, estimates +0.8%</title><circle cx="714.2" cy="283.2" r="5.5" fill="#7fae8f" fill-opacity="0.85" stroke="#0f1319" stroke-width="1"/></g><g><title>Costco (COST)  -  price -6.8%, estimates +0.8%</title><circle cx="437.0" cy="283.0" r="5.5" fill="#82a8ca" fill-opacity="0.85" stroke="#0f1319" stroke-width="1"/></g><g><title>Visa (V)  -  price +14.9%, estimates +1.0%</title><circle cx="619.6" cy="281.3" r="5.5" fill="#7fae8f" fill-opacity="0.85" stroke="#0f1319" stroke-width="1"/></g><g><title>Woolworths (WOW.AX)  -  price +19.2%, estimates +1.3%</title><circle cx="655.6" cy="277.2" r="5.5" fill="#7fae8f" fill-opacity="0.85" stroke="#0f1319" stroke-width="1"/></g><g><title>Aristocrat Leisure (ALL.AX)  -  price +43.2%, estimates +1.4%</title><circle cx="856.5" cy="275.8" r="5.5" fill="#7fae8f" fill-opacity="0.85" stroke="#0f1319" stroke-width="1"/></g><g><title>Macquarie Group (MQG.AX)  -  price +13.7%, estimates +1.4%</title><circle cx="608.7" cy="275.5" r="5.5" fill="#7fae8f" fill-opacity="0.85" stroke="#0f1319" stroke-width="1"/></g><g><title>Coca-Cola (KO)  -  price +11.4%, estimates +1.5%</title><circle cx="589.9" cy="274.5" r="5.5" fill="#7fae8f" fill-opacity="0.85" stroke="#0f1319" stroke-width="1"/></g><g><title>Transurban (TCL.AX)  -  price +4.2%, estimates +2.4%</title><circle cx="529.0" cy="262.5" r="5.5" fill="#7fae8f" fill-opacity="0.85" stroke="#0f1319" stroke-width="1"/></g><g><title>Rio Tinto (RIO.AX)  -  price -1.6%, estimates +2.9%</title><circle cx="480.4" cy="255.6" r="5.5" fill="#82a8ca" fill-opacity="0.85" stroke="#0f1319" stroke-width="1"/></g><g><title>Alphabet (GOOGL)  -  price -8.9%, estimates +3.0%</title><circle cx="419.4" cy="254.1" r="5.5" fill="#82a8ca" fill-opacity="0.85" stroke="#0f1319" stroke-width="1"/></g><g><title>Microsoft (MSFT)  -  price +16.1%, estimates +4.3%</title><circle cx="629.2" cy="236.6" r="5.5" fill="#7fae8f" fill-opacity="0.85" stroke="#0f1319" stroke-width="1"/></g><g><title>Exxon Mobil (XOM)  -  price +4.2%, estimates +4.7%</title><circle cx="528.9" cy="231.8" r="5.5" fill="#7fae8f" fill-opacity="0.85" stroke="#0f1319" stroke-width="1"/></g><g><title>JPMorgan Chase (JPM)  -  price +17.8%, estimates +5.2%</title><circle cx="643.7" cy="225.1" r="5.5" fill="#7fae8f" fill-opacity="0.85" stroke="#0f1319" stroke-width="1"/></g><g><title>Amazon (AMZN)  -  price +0.6%, estimates +5.5%</title><circle cx="498.6" cy="221.0" r="5.5" fill="#7fae8f" fill-opacity="0.85" stroke="#0f1319" stroke-width="1"/></g><g><title>Chevron (CVX)  -  price +3.1%, estimates +7.7%</title><circle cx="519.9" cy="191.8" r="5.5" fill="#7fae8f" fill-opacity="0.85" stroke="#0f1319" stroke-width="1"/></g><text x="519.9" y="180.8" text-anchor="middle" fill="#e6e9ee" font-family="ui-sans-serif,system-ui,sans-serif" font-size="12">CVX</text><g><title>UnitedHealth (UNH)  -  price +12.3%, estimates +8.1%</title><circle cx="597.1" cy="187.1" r="5.5" fill="#7fae8f" fill-opacity="0.85" stroke="#0f1319" stroke-width="1"/></g><text x="597.1" y="176.1" text-anchor="middle" fill="#e6e9ee" font-family="ui-sans-serif,system-ui,sans-serif" font-size="12">UNH</text><g><title>NVIDIA (NVDA)  -  price +3.8%, estimates +14.8%</title><circle cx="525.7" cy="98.6" r="5.5" fill="#7fae8f" fill-opacity="0.85" stroke="#0f1319" stroke-width="1"/></g><text x="525.7" y="87.6" text-anchor="middle" fill="#e6e9ee" font-family="ui-sans-serif,system-ui,sans-serif" font-size="12">NVDA</text></svg></figure>
+
+  <div class="key">
+    <span><b style="color:#c98a6a">Unearned</b> &middot; price up, estimates down</span>
+    <span><b style="color:#82a8ca">Overlooked</b> &middot; estimates up, price down</span>
+    <span><b style="color:#7fae8f">Earned</b> &middot; both up</span>
+    <span><b style="color:#6b7480">Confirmed</b> &middot; both down</span>
+  </div>
+
+  <h2>Every name</h2>
+  <table>
+    <thead><tr><th>Ticker</th><th>Name</th><th class="n">EPS revision</th>
+    <th class="n">Price</th><th class="n">Analysts</th><th>Quadrant</th></tr></thead>
+    <tbody>
+<tr><td class="tk">STO.AX</td><td>Santos</td><td class="n" style="color:#c98a6a">-16.49%</td><td class="n">+0.47%</td><td class="n muted">10</td><td class="q" style="color:#c98a6a">unearned</td></tr>
+<tr><td class="tk">CSL.AX</td><td>CSL</td><td class="n" style="color:#c98a6a">-13.78%</td><td class="n">+9.41%</td><td class="n muted">16</td><td class="q" style="color:#c98a6a">unearned</td></tr>
+<tr><td class="tk">WDS.AX</td><td>Woodside Energy</td><td class="n" style="color:#c98a6a">-10.99%</td><td class="n">+5.37%</td><td class="n muted">8</td><td class="q" style="color:#c98a6a">unearned</td></tr>
+<tr><td class="tk">FMG.AX</td><td>Fortescue</td><td class="n" style="color:#6b7480">-4.53%</td><td class="n">-13.07%</td><td class="n muted">15</td><td class="q" style="color:#6b7480">confirmed</td></tr>
+<tr><td class="tk">META</td><td>Meta Platforms</td><td class="n" style="color:#6b7480">-1.96%</td><td class="n">-4.46%</td><td class="n muted">53</td><td class="q" style="color:#6b7480">confirmed</td></tr>
+<tr><td class="tk">PEP</td><td>PepsiCo</td><td class="n" style="color:#6b7480">-1.91%</td><td class="n">-10.27%</td><td class="n muted">23</td><td class="q" style="color:#6b7480">confirmed</td></tr>
+<tr><td class="tk">NAB.AX</td><td>National Australia Bank</td><td class="n" style="color:#c98a6a">-1.73%</td><td class="n">+11.31%</td><td class="n muted">8</td><td class="q" style="color:#c98a6a">unearned</td></tr>
+<tr><td class="tk">MCD</td><td>McDonald&#x27;s</td><td class="n" style="color:#6b7480">-1.68%</td><td class="n">-2.76%</td><td class="n muted">33</td><td class="q" style="color:#6b7480">confirmed</td></tr>
+<tr><td class="tk">WBC.AX</td><td>Westpac</td><td class="n" style="color:#c98a6a">-1.61%</td><td class="n">+2.91%</td><td class="n muted">10</td><td class="q" style="color:#c98a6a">unearned</td></tr>
+<tr><td class="tk">BHP.AX</td><td>BHP Group</td><td class="n" style="color:#c98a6a">-1.54%</td><td class="n">+8.18%</td><td class="n muted">17</td><td class="q" style="color:#c98a6a">unearned</td></tr>
+<tr><td class="tk">HD</td><td>Home Depot</td><td class="n" style="color:#c98a6a">-1.25%</td><td class="n">+10.27%</td><td class="n muted">34</td><td class="q" style="color:#c98a6a">unearned</td></tr>
+<tr><td class="tk">TLS.AX</td><td>Telstra</td><td class="n" style="color:#6b7480">-1.18%</td><td class="n">-6.69%</td><td class="n muted">11</td><td class="q" style="color:#6b7480">confirmed</td></tr>
+<tr><td class="tk">PG</td><td>Procter &amp; Gamble</td><td class="n" style="color:#c98a6a">-1.16%</td><td class="n">+1.26%</td><td class="n muted">22</td><td class="q" style="color:#c98a6a">unearned</td></tr>
+<tr><td class="tk">BRK-B</td><td>Berkshire Hathaway</td><td class="n" style="color:#c98a6a">-0.82%</td><td class="n">+9.21%</td><td class="n muted">3</td><td class="q" style="color:#c98a6a">unearned</td></tr>
+<tr><td class="tk">REA.AX</td><td>REA Group</td><td class="n" style="color:#6b7480">-0.76%</td><td class="n">-2.97%</td><td class="n muted">14</td><td class="q" style="color:#6b7480">confirmed</td></tr>
+<tr><td class="tk">ANZ.AX</td><td>ANZ Group</td><td class="n" style="color:#c98a6a">-0.42%</td><td class="n">+5.92%</td><td class="n muted">12</td><td class="q" style="color:#c98a6a">unearned</td></tr>
+<tr><td class="tk">AAPL</td><td>Apple</td><td class="n" style="color:#c98a6a">-0.31%</td><td class="n">+8.30%</td><td class="n muted">41</td><td class="q" style="color:#c98a6a">unearned</td></tr>
+<tr><td class="tk">COL.AX</td><td>Coles Group</td><td class="n" style="color:#c98a6a">-0.17%</td><td class="n">+11.84%</td><td class="n muted">15</td><td class="q" style="color:#c98a6a">unearned</td></tr>
+<tr><td class="tk">WMT</td><td>Walmart</td><td class="n" style="color:#6b7480">-0.03%</td><td class="n">-13.55%</td><td class="n muted">39</td><td class="q" style="color:#6b7480">confirmed</td></tr>
+<tr><td class="tk">JNJ</td><td>Johnson &amp; Johnson</td><td class="n" style="color:#7fae8f">+0.58%</td><td class="n">+16.43%</td><td class="n muted">22</td><td class="q" style="color:#7fae8f">earned</td></tr>
+<tr><td class="tk">QBE.AX</td><td>QBE Insurance</td><td class="n" style="color:#7fae8f">+0.74%</td><td class="n">+9.48%</td><td class="n muted">10</td><td class="q" style="color:#7fae8f">earned</td></tr>
+<tr><td class="tk">WES.AX</td><td>Wesfarmers</td><td class="n" style="color:#7fae8f">+0.82%</td><td class="n">+26.21%</td><td class="n muted">14</td><td class="q" style="color:#7fae8f">earned</td></tr>
+<tr><td class="tk">COST</td><td>Costco</td><td class="n" style="color:#82a8ca">+0.83%</td><td class="n">-6.78%</td><td class="n muted">34</td><td class="q" style="color:#82a8ca">overlooked</td></tr>
+<tr><td class="tk">V</td><td>Visa</td><td class="n" style="color:#7fae8f">+0.96%</td><td class="n">+14.95%</td><td class="n muted">40</td><td class="q" style="color:#7fae8f">earned</td></tr>
+<tr><td class="tk">WOW.AX</td><td>Woolworths</td><td class="n" style="color:#7fae8f">+1.27%</td><td class="n">+19.24%</td><td class="n muted">15</td><td class="q" style="color:#7fae8f">earned</td></tr>
+<tr><td class="tk">ALL.AX</td><td>Aristocrat Leisure</td><td class="n" style="color:#7fae8f">+1.38%</td><td class="n">+43.16%</td><td class="n muted">16</td><td class="q" style="color:#7fae8f">earned</td></tr>
+<tr><td class="tk">MQG.AX</td><td>Macquarie Group</td><td class="n" style="color:#7fae8f">+1.40%</td><td class="n">+13.66%</td><td class="n muted">8</td><td class="q" style="color:#7fae8f">earned</td></tr>
+<tr><td class="tk">KO</td><td>Coca-Cola</td><td class="n" style="color:#7fae8f">+1.48%</td><td class="n">+11.42%</td><td class="n muted">24</td><td class="q" style="color:#7fae8f">earned</td></tr>
+<tr><td class="tk">TCL.AX</td><td>Transurban</td><td class="n" style="color:#7fae8f">+2.39%</td><td class="n">+4.17%</td><td class="n muted">6</td><td class="q" style="color:#7fae8f">earned</td></tr>
+<tr><td class="tk">RIO.AX</td><td>Rio Tinto</td><td class="n" style="color:#82a8ca">+2.91%</td><td class="n">-1.62%</td><td class="n muted">13</td><td class="q" style="color:#82a8ca">overlooked</td></tr>
+<tr><td class="tk">GOOGL</td><td>Alphabet</td><td class="n" style="color:#82a8ca">+3.02%</td><td class="n">-8.88%</td><td class="n muted">55</td><td class="q" style="color:#82a8ca">overlooked</td></tr>
+<tr><td class="tk">MSFT</td><td>Microsoft</td><td class="n" style="color:#7fae8f">+4.35%</td><td class="n">+16.10%</td><td class="n muted">33</td><td class="q" style="color:#7fae8f">earned</td></tr>
+<tr><td class="tk">XOM</td><td>Exxon Mobil</td><td class="n" style="color:#7fae8f">+4.71%</td><td class="n">+4.15%</td><td class="n muted">23</td><td class="q" style="color:#7fae8f">earned</td></tr>
+<tr><td class="tk">JPM</td><td>JPMorgan Chase</td><td class="n" style="color:#7fae8f">+5.22%</td><td class="n">+17.82%</td><td class="n muted">12</td><td class="q" style="color:#7fae8f">earned</td></tr>
+<tr><td class="tk">AMZN</td><td>Amazon</td><td class="n" style="color:#7fae8f">+5.53%</td><td class="n">+0.55%</td><td class="n muted">54</td><td class="q" style="color:#7fae8f">earned</td></tr>
+<tr><td class="tk">CVX</td><td>Chevron</td><td class="n" style="color:#7fae8f">+7.74%</td><td class="n">+3.08%</td><td class="n muted">24</td><td class="q" style="color:#7fae8f">earned</td></tr>
+<tr><td class="tk">UNH</td><td>UnitedHealth</td><td class="n" style="color:#7fae8f">+8.10%</td><td class="n">+12.27%</td><td class="n muted">27</td><td class="q" style="color:#7fae8f">earned</td></tr>
+<tr><td class="tk">NVDA</td><td>NVIDIA</td><td class="n" style="color:#7fae8f">+14.80%</td><td class="n">+3.77%</td><td class="n muted">50</td><td class="q" style="color:#7fae8f">earned</td></tr>
+    </tbody>
+  </table>
+
+  <h2>How this is built</h2>
+  <p>For each name the FY2 (next full year) consensus EPS is taken as it stands today and
+  as it stood 90 days ago, and the change between the two is the revision. That is the
+  number on the vertical axis. The horizontal axis is the share price change over the same
+  90 days. Both come from Yahoo Finance, which publishes the estimate at several points in
+  the past - so this reads the revision path directly rather than reconstructing it
+  from stored history.</p>
+  <p>A revision is divided by the <em>absolute</em> prior estimate, so a loss-making name
+  moving from -1.00 to -0.50 registers as an upgrade rather than a downgrade.
+  Where Yahoo has no prior estimate it returns <code>0.0</code> rather than an empty value;
+  those names are dropped rather than plotted as an infinite revision. Dropped this run: CBA.AX, GMG.AX - 2 of 40 tracked.</p>
+  <p>Estimates are opinions with a poor forecasting record, and a revision says only that
+  analysts changed their minds - not that they were right. Nothing here is a view,
+  a recommendation, or advice.</p>
+
+  <p class="foot">Built by <a href="https://charlietrenorden.com/">Charlie Trenorden</a>.
+  Data from Yahoo Finance, refreshed weekly. General information only, not advice, and not
+  affiliated with Yahoo.</p>
+</div>
+</body>
+</html>
