@@ -9,8 +9,8 @@ import sys
 
 sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
-from build import nice_bound                      # noqa: E402
-from fetch import quadrant, revision_pct          # noqa: E402
+from build import band, nice_bound                # noqa: E402
+from fetch import gap_pp, revision_pct            # noqa: E402
 
 
 class TestRevisionPct:
@@ -40,25 +40,40 @@ class TestRevisionPct:
         assert revision_pct(1.0, None) is None
 
 
-class TestQuadrant:
-    def test_both_up_is_earned(self):
-        assert quadrant(5.0, 5.0) == "earned"
+class TestGap:
+    def test_gap_is_estimates_minus_price(self):
+        assert round(gap_pp(3.77, 14.80), 2) == 11.03
 
-    def test_price_up_estimates_down_is_unearned(self):
-        assert quadrant(5.0, -5.0) == "unearned"
+    def test_gap_negative_when_price_outruns(self):
+        assert round(gap_pp(43.37, 1.38), 2) == -41.99
 
-    def test_estimates_up_price_down_is_overlooked(self):
-        assert quadrant(-5.0, 5.0) == "overlooked"
+    def test_missing_either_side(self):
+        assert gap_pp(None, 1.0) is None
+        assert gap_pp(1.0, None) is None
 
-    def test_both_down_is_confirmed(self):
-        assert quadrant(-5.0, -5.0) == "confirmed"
 
-    def test_exact_zero_counts_as_up(self):
-        # a name sitting exactly on an axis has to land somewhere deterministic
-        assert quadrant(0.0, 0.0) == "earned"
+class TestBand:
+    # the NVDA case: sign-of-each-axis called this "both up" and filed it with names
+    # whose price had run 40% on a 1% upgrade. It is the opposite situation.
+    def test_nvda_reads_as_price_behind(self):
+        assert band(14.80 - 3.77) == "behind"
 
-    def test_missing_inputs_give_no_quadrant(self):
-        assert quadrant(None, 1.0) is None
+    def test_price_running_ahead_of_a_small_upgrade(self):
+        assert band(1.38 - 43.37) == "ahead"
+
+    def test_both_down_together_is_in_line(self):
+        assert band(-3.0 - -4.0) == "inline"
+
+    def test_both_up_together_is_in_line(self):
+        assert band(9.0 - 8.0) == "inline"
+
+    def test_threshold_is_inclusive(self):
+        assert band(10.0) == "behind"
+        assert band(-10.0) == "ahead"
+        assert band(9.9) == "inline"
+
+    def test_missing_gap_is_in_line(self):
+        assert band(None) == "inline"
 
 
 class TestNiceBound:

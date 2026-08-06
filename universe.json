@@ -1,46 +1,790 @@
 {
-  "_comment": "The tracked universe. Edit freely - fetch.py reads this and nothing else. Keep it to ~40-60 names; every name costs about half a second on refresh.",
-  "names": [
-    {"ticker": "CBA.AX",  "name": "Commonwealth Bank",     "market": "ASX"},
-    {"ticker": "BHP.AX",  "name": "BHP Group",             "market": "ASX"},
-    {"ticker": "CSL.AX",  "name": "CSL",                   "market": "ASX"},
-    {"ticker": "NAB.AX",  "name": "National Australia Bank","market": "ASX"},
-    {"ticker": "WBC.AX",  "name": "Westpac",               "market": "ASX"},
-    {"ticker": "ANZ.AX",  "name": "ANZ Group",             "market": "ASX"},
-    {"ticker": "WES.AX",  "name": "Wesfarmers",            "market": "ASX"},
-    {"ticker": "MQG.AX",  "name": "Macquarie Group",       "market": "ASX"},
-    {"ticker": "GMG.AX",  "name": "Goodman Group",         "market": "ASX"},
-    {"ticker": "WOW.AX",  "name": "Woolworths",            "market": "ASX"},
-    {"ticker": "TLS.AX",  "name": "Telstra",               "market": "ASX"},
-    {"ticker": "RIO.AX",  "name": "Rio Tinto",             "market": "ASX"},
-    {"ticker": "TCL.AX",  "name": "Transurban",            "market": "ASX"},
-    {"ticker": "ALL.AX",  "name": "Aristocrat Leisure",    "market": "ASX"},
-    {"ticker": "WDS.AX",  "name": "Woodside Energy",       "market": "ASX"},
-    {"ticker": "FMG.AX",  "name": "Fortescue",             "market": "ASX"},
-    {"ticker": "QBE.AX",  "name": "QBE Insurance",         "market": "ASX"},
-    {"ticker": "STO.AX",  "name": "Santos",                "market": "ASX"},
-    {"ticker": "COL.AX",  "name": "Coles Group",           "market": "ASX"},
-    {"ticker": "REA.AX",  "name": "REA Group",             "market": "ASX"},
-
-    {"ticker": "AAPL",    "name": "Apple",                 "market": "US"},
-    {"ticker": "MSFT",    "name": "Microsoft",             "market": "US"},
-    {"ticker": "NVDA",    "name": "NVIDIA",                "market": "US"},
-    {"ticker": "GOOGL",   "name": "Alphabet",              "market": "US"},
-    {"ticker": "AMZN",    "name": "Amazon",                "market": "US"},
-    {"ticker": "META",    "name": "Meta Platforms",        "market": "US"},
-    {"ticker": "BRK-B",   "name": "Berkshire Hathaway",    "market": "US"},
-    {"ticker": "JPM",     "name": "JPMorgan Chase",        "market": "US"},
-    {"ticker": "XOM",     "name": "Exxon Mobil",           "market": "US"},
-    {"ticker": "UNH",     "name": "UnitedHealth",          "market": "US"},
-    {"ticker": "V",       "name": "Visa",                  "market": "US"},
-    {"ticker": "JNJ",     "name": "Johnson & Johnson",     "market": "US"},
-    {"ticker": "WMT",     "name": "Walmart",               "market": "US"},
-    {"ticker": "PG",      "name": "Procter & Gamble",      "market": "US"},
-    {"ticker": "HD",      "name": "Home Depot",            "market": "US"},
-    {"ticker": "COST",    "name": "Costco",                "market": "US"},
-    {"ticker": "KO",      "name": "Coca-Cola",             "market": "US"},
-    {"ticker": "PEP",     "name": "PepsiCo",               "market": "US"},
-    {"ticker": "MCD",     "name": "McDonald's",            "market": "US"},
-    {"ticker": "CVX",     "name": "Chevron",               "market": "US"}
-  ]
+ "_comment": "The tracked universe. fetch.py reads this and nothing else. Every name costs roughly a second on refresh.",
+ "names": [
+  {
+   "ticker": "CBA.AX",
+   "name": "Commonwealth Bank",
+   "market": "ASX"
+  },
+  {
+   "ticker": "BHP.AX",
+   "name": "BHP Group",
+   "market": "ASX"
+  },
+  {
+   "ticker": "CSL.AX",
+   "name": "CSL",
+   "market": "ASX"
+  },
+  {
+   "ticker": "NAB.AX",
+   "name": "National Australia Bank",
+   "market": "ASX"
+  },
+  {
+   "ticker": "WBC.AX",
+   "name": "Westpac",
+   "market": "ASX"
+  },
+  {
+   "ticker": "ANZ.AX",
+   "name": "ANZ Group",
+   "market": "ASX"
+  },
+  {
+   "ticker": "WES.AX",
+   "name": "Wesfarmers",
+   "market": "ASX"
+  },
+  {
+   "ticker": "MQG.AX",
+   "name": "Macquarie Group",
+   "market": "ASX"
+  },
+  {
+   "ticker": "GMG.AX",
+   "name": "Goodman Group",
+   "market": "ASX"
+  },
+  {
+   "ticker": "WOW.AX",
+   "name": "Woolworths",
+   "market": "ASX"
+  },
+  {
+   "ticker": "TLS.AX",
+   "name": "Telstra",
+   "market": "ASX"
+  },
+  {
+   "ticker": "RIO.AX",
+   "name": "Rio Tinto",
+   "market": "ASX"
+  },
+  {
+   "ticker": "TCL.AX",
+   "name": "Transurban",
+   "market": "ASX"
+  },
+  {
+   "ticker": "ALL.AX",
+   "name": "Aristocrat Leisure",
+   "market": "ASX"
+  },
+  {
+   "ticker": "WDS.AX",
+   "name": "Woodside Energy",
+   "market": "ASX"
+  },
+  {
+   "ticker": "FMG.AX",
+   "name": "Fortescue",
+   "market": "ASX"
+  },
+  {
+   "ticker": "QBE.AX",
+   "name": "QBE Insurance",
+   "market": "ASX"
+  },
+  {
+   "ticker": "STO.AX",
+   "name": "Santos",
+   "market": "ASX"
+  },
+  {
+   "ticker": "COL.AX",
+   "name": "Coles Group",
+   "market": "ASX"
+  },
+  {
+   "ticker": "REA.AX",
+   "name": "REA Group",
+   "market": "ASX"
+  },
+  {
+   "ticker": "XRO.AX",
+   "name": "Xero",
+   "market": "ASX"
+  },
+  {
+   "ticker": "SUN.AX",
+   "name": "Suncorp",
+   "market": "ASX"
+  },
+  {
+   "ticker": "RMD.AX",
+   "name": "ResMed",
+   "market": "ASX"
+  },
+  {
+   "ticker": "COH.AX",
+   "name": "Cochlear",
+   "market": "ASX"
+  },
+  {
+   "ticker": "SHL.AX",
+   "name": "Sonic Healthcare",
+   "market": "ASX"
+  },
+  {
+   "ticker": "JHX.AX",
+   "name": "James Hardie",
+   "market": "ASX"
+  },
+  {
+   "ticker": "BXB.AX",
+   "name": "Brambles",
+   "market": "ASX"
+  },
+  {
+   "ticker": "SCG.AX",
+   "name": "Scentre Group",
+   "market": "ASX"
+  },
+  {
+   "ticker": "STW.AX",
+   "name": "Stockland",
+   "market": "ASX"
+  },
+  {
+   "ticker": "ORG.AX",
+   "name": "Origin Energy",
+   "market": "ASX"
+  },
+  {
+   "ticker": "AGL.AX",
+   "name": "AGL Energy",
+   "market": "ASX"
+  },
+  {
+   "ticker": "IAG.AX",
+   "name": "Insurance Australia",
+   "market": "ASX"
+  },
+  {
+   "ticker": "ASX.AX",
+   "name": "ASX Ltd",
+   "market": "ASX"
+  },
+  {
+   "ticker": "MIN.AX",
+   "name": "Mineral Resources",
+   "market": "ASX"
+  },
+  {
+   "ticker": "PLS.AX",
+   "name": "Pilbara Minerals",
+   "market": "ASX"
+  },
+  {
+   "ticker": "IGO.AX",
+   "name": "IGO Ltd",
+   "market": "ASX"
+  },
+  {
+   "ticker": "NST.AX",
+   "name": "Northern Star",
+   "market": "ASX"
+  },
+  {
+   "ticker": "EVN.AX",
+   "name": "Evolution Mining",
+   "market": "ASX"
+  },
+  {
+   "ticker": "S32.AX",
+   "name": "South32",
+   "market": "ASX"
+  },
+  {
+   "ticker": "AMC.AX",
+   "name": "Amcor",
+   "market": "ASX"
+  },
+  {
+   "ticker": "TWE.AX",
+   "name": "Treasury Wine",
+   "market": "ASX"
+  },
+  {
+   "ticker": "CPU.AX",
+   "name": "Computershare",
+   "market": "ASX"
+  },
+  {
+   "ticker": "SEK.AX",
+   "name": "Seek",
+   "market": "ASX"
+  },
+  {
+   "ticker": "CAR.AX",
+   "name": "CAR Group",
+   "market": "ASX"
+  },
+  {
+   "ticker": "WTC.AX",
+   "name": "WiseTech Global",
+   "market": "ASX"
+  },
+  {
+   "ticker": "MPL.AX",
+   "name": "Medibank",
+   "market": "ASX"
+  },
+  {
+   "ticker": "NHF.AX",
+   "name": "nib holdings",
+   "market": "ASX"
+  },
+  {
+   "ticker": "QAN.AX",
+   "name": "Qantas",
+   "market": "ASX"
+  },
+  {
+   "ticker": "SGP.AX",
+   "name": "Stockland Group",
+   "market": "ASX"
+  },
+  {
+   "ticker": "VCX.AX",
+   "name": "Vicinity Centres",
+   "market": "ASX"
+  },
+  {
+   "ticker": "DXS.AX",
+   "name": "Dexus",
+   "market": "ASX"
+  },
+  {
+   "ticker": "GPT.AX",
+   "name": "GPT Group",
+   "market": "ASX"
+  },
+  {
+   "ticker": "MGR.AX",
+   "name": "Mirvac",
+   "market": "ASX"
+  },
+  {
+   "ticker": "APA.AX",
+   "name": "APA Group",
+   "market": "ASX"
+  },
+  {
+   "ticker": "ORI.AX",
+   "name": "Orica",
+   "market": "ASX"
+  },
+  {
+   "ticker": "LYC.AX",
+   "name": "Lynas Rare Earths",
+   "market": "ASX"
+  },
+  {
+   "ticker": "BSL.AX",
+   "name": "BlueScope Steel",
+   "market": "ASX"
+  },
+  {
+   "ticker": "HVN.AX",
+   "name": "Harvey Norman",
+   "market": "ASX"
+  },
+  {
+   "ticker": "JBH.AX",
+   "name": "JB Hi-Fi",
+   "market": "ASX"
+  },
+  {
+   "ticker": "EDV.AX",
+   "name": "Endeavour Group",
+   "market": "ASX"
+  },
+  {
+   "ticker": "AAPL",
+   "name": "Apple",
+   "market": "US"
+  },
+  {
+   "ticker": "MSFT",
+   "name": "Microsoft",
+   "market": "US"
+  },
+  {
+   "ticker": "NVDA",
+   "name": "NVIDIA",
+   "market": "US"
+  },
+  {
+   "ticker": "GOOGL",
+   "name": "Alphabet",
+   "market": "US"
+  },
+  {
+   "ticker": "AMZN",
+   "name": "Amazon",
+   "market": "US"
+  },
+  {
+   "ticker": "META",
+   "name": "Meta Platforms",
+   "market": "US"
+  },
+  {
+   "ticker": "BRK-B",
+   "name": "Berkshire Hathaway",
+   "market": "US"
+  },
+  {
+   "ticker": "JPM",
+   "name": "JPMorgan Chase",
+   "market": "US"
+  },
+  {
+   "ticker": "XOM",
+   "name": "Exxon Mobil",
+   "market": "US"
+  },
+  {
+   "ticker": "UNH",
+   "name": "UnitedHealth",
+   "market": "US"
+  },
+  {
+   "ticker": "V",
+   "name": "Visa",
+   "market": "US"
+  },
+  {
+   "ticker": "MA",
+   "name": "Mastercard",
+   "market": "US"
+  },
+  {
+   "ticker": "JNJ",
+   "name": "Johnson & Johnson",
+   "market": "US"
+  },
+  {
+   "ticker": "WMT",
+   "name": "Walmart",
+   "market": "US"
+  },
+  {
+   "ticker": "PG",
+   "name": "Procter & Gamble",
+   "market": "US"
+  },
+  {
+   "ticker": "HD",
+   "name": "Home Depot",
+   "market": "US"
+  },
+  {
+   "ticker": "COST",
+   "name": "Costco",
+   "market": "US"
+  },
+  {
+   "ticker": "KO",
+   "name": "Coca-Cola",
+   "market": "US"
+  },
+  {
+   "ticker": "PEP",
+   "name": "PepsiCo",
+   "market": "US"
+  },
+  {
+   "ticker": "MCD",
+   "name": "McDonald's",
+   "market": "US"
+  },
+  {
+   "ticker": "CVX",
+   "name": "Chevron",
+   "market": "US"
+  },
+  {
+   "ticker": "ABBV",
+   "name": "AbbVie",
+   "market": "US"
+  },
+  {
+   "ticker": "MRK",
+   "name": "Merck",
+   "market": "US"
+  },
+  {
+   "ticker": "LLY",
+   "name": "Eli Lilly",
+   "market": "US"
+  },
+  {
+   "ticker": "PFE",
+   "name": "Pfizer",
+   "market": "US"
+  },
+  {
+   "ticker": "TMO",
+   "name": "Thermo Fisher",
+   "market": "US"
+  },
+  {
+   "ticker": "ABT",
+   "name": "Abbott",
+   "market": "US"
+  },
+  {
+   "ticker": "DHR",
+   "name": "Danaher",
+   "market": "US"
+  },
+  {
+   "ticker": "BMY",
+   "name": "Bristol-Myers",
+   "market": "US"
+  },
+  {
+   "ticker": "AMGN",
+   "name": "Amgen",
+   "market": "US"
+  },
+  {
+   "ticker": "GILD",
+   "name": "Gilead",
+   "market": "US"
+  },
+  {
+   "ticker": "CI",
+   "name": "Cigna",
+   "market": "US"
+  },
+  {
+   "ticker": "ELV",
+   "name": "Elevance Health",
+   "market": "US"
+  },
+  {
+   "ticker": "CVS",
+   "name": "CVS Health",
+   "market": "US"
+  },
+  {
+   "ticker": "BAC",
+   "name": "Bank of America",
+   "market": "US"
+  },
+  {
+   "ticker": "WFC",
+   "name": "Wells Fargo",
+   "market": "US"
+  },
+  {
+   "ticker": "GS",
+   "name": "Goldman Sachs",
+   "market": "US"
+  },
+  {
+   "ticker": "MS",
+   "name": "Morgan Stanley",
+   "market": "US"
+  },
+  {
+   "ticker": "C",
+   "name": "Citigroup",
+   "market": "US"
+  },
+  {
+   "ticker": "AXP",
+   "name": "American Express",
+   "market": "US"
+  },
+  {
+   "ticker": "BLK",
+   "name": "BlackRock",
+   "market": "US"
+  },
+  {
+   "ticker": "SCHW",
+   "name": "Charles Schwab",
+   "market": "US"
+  },
+  {
+   "ticker": "TSLA",
+   "name": "Tesla",
+   "market": "US"
+  },
+  {
+   "ticker": "AMD",
+   "name": "AMD",
+   "market": "US"
+  },
+  {
+   "ticker": "INTC",
+   "name": "Intel",
+   "market": "US"
+  },
+  {
+   "ticker": "QCOM",
+   "name": "Qualcomm",
+   "market": "US"
+  },
+  {
+   "ticker": "AVGO",
+   "name": "Broadcom",
+   "market": "US"
+  },
+  {
+   "ticker": "TXN",
+   "name": "Texas Instruments",
+   "market": "US"
+  },
+  {
+   "ticker": "MU",
+   "name": "Micron",
+   "market": "US"
+  },
+  {
+   "ticker": "AMAT",
+   "name": "Applied Materials",
+   "market": "US"
+  },
+  {
+   "ticker": "LRCX",
+   "name": "Lam Research",
+   "market": "US"
+  },
+  {
+   "ticker": "ADI",
+   "name": "Analog Devices",
+   "market": "US"
+  },
+  {
+   "ticker": "CRM",
+   "name": "Salesforce",
+   "market": "US"
+  },
+  {
+   "ticker": "ORCL",
+   "name": "Oracle",
+   "market": "US"
+  },
+  {
+   "ticker": "ADBE",
+   "name": "Adobe",
+   "market": "US"
+  },
+  {
+   "ticker": "NOW",
+   "name": "ServiceNow",
+   "market": "US"
+  },
+  {
+   "ticker": "INTU",
+   "name": "Intuit",
+   "market": "US"
+  },
+  {
+   "ticker": "IBM",
+   "name": "IBM",
+   "market": "US"
+  },
+  {
+   "ticker": "CSCO",
+   "name": "Cisco",
+   "market": "US"
+  },
+  {
+   "ticker": "ACN",
+   "name": "Accenture",
+   "market": "US"
+  },
+  {
+   "ticker": "NFLX",
+   "name": "Netflix",
+   "market": "US"
+  },
+  {
+   "ticker": "DIS",
+   "name": "Disney",
+   "market": "US"
+  },
+  {
+   "ticker": "CMCSA",
+   "name": "Comcast",
+   "market": "US"
+  },
+  {
+   "ticker": "T",
+   "name": "AT&T",
+   "market": "US"
+  },
+  {
+   "ticker": "VZ",
+   "name": "Verizon",
+   "market": "US"
+  },
+  {
+   "ticker": "TMUS",
+   "name": "T-Mobile",
+   "market": "US"
+  },
+  {
+   "ticker": "BA",
+   "name": "Boeing",
+   "market": "US"
+  },
+  {
+   "ticker": "CAT",
+   "name": "Caterpillar",
+   "market": "US"
+  },
+  {
+   "ticker": "DE",
+   "name": "Deere",
+   "market": "US"
+  },
+  {
+   "ticker": "HON",
+   "name": "Honeywell",
+   "market": "US"
+  },
+  {
+   "ticker": "GE",
+   "name": "GE Aerospace",
+   "market": "US"
+  },
+  {
+   "ticker": "LMT",
+   "name": "Lockheed Martin",
+   "market": "US"
+  },
+  {
+   "ticker": "RTX",
+   "name": "RTX Corp",
+   "market": "US"
+  },
+  {
+   "ticker": "UPS",
+   "name": "UPS",
+   "market": "US"
+  },
+  {
+   "ticker": "UNP",
+   "name": "Union Pacific",
+   "market": "US"
+  },
+  {
+   "ticker": "FDX",
+   "name": "FedEx",
+   "market": "US"
+  },
+  {
+   "ticker": "NKE",
+   "name": "Nike",
+   "market": "US"
+  },
+  {
+   "ticker": "SBUX",
+   "name": "Starbucks",
+   "market": "US"
+  },
+  {
+   "ticker": "TGT",
+   "name": "Target",
+   "market": "US"
+  },
+  {
+   "ticker": "LOW",
+   "name": "Lowe's",
+   "market": "US"
+  },
+  {
+   "ticker": "BKNG",
+   "name": "Booking Holdings",
+   "market": "US"
+  },
+  {
+   "ticker": "COP",
+   "name": "ConocoPhillips",
+   "market": "US"
+  },
+  {
+   "ticker": "SLB",
+   "name": "SLB",
+   "market": "US"
+  },
+  {
+   "ticker": "EOG",
+   "name": "EOG Resources",
+   "market": "US"
+  },
+  {
+   "ticker": "PSX",
+   "name": "Phillips 66",
+   "market": "US"
+  },
+  {
+   "ticker": "NEE",
+   "name": "NextEra Energy",
+   "market": "US"
+  },
+  {
+   "ticker": "DUK",
+   "name": "Duke Energy",
+   "market": "US"
+  },
+  {
+   "ticker": "SO",
+   "name": "Southern Company",
+   "market": "US"
+  },
+  {
+   "ticker": "LIN",
+   "name": "Linde",
+   "market": "US"
+  },
+  {
+   "ticker": "SHW",
+   "name": "Sherwin-Williams",
+   "market": "US"
+  },
+  {
+   "ticker": "FCX",
+   "name": "Freeport-McMoRan",
+   "market": "US"
+  },
+  {
+   "ticker": "NEM",
+   "name": "Newmont",
+   "market": "US"
+  },
+  {
+   "ticker": "MMM",
+   "name": "3M",
+   "market": "US"
+  },
+  {
+   "ticker": "PM",
+   "name": "Philip Morris",
+   "market": "US"
+  },
+  {
+   "ticker": "MDLZ",
+   "name": "Mondelez",
+   "market": "US"
+  },
+  {
+   "ticker": "CL",
+   "name": "Colgate-Palmolive",
+   "market": "US"
+  },
+  {
+   "ticker": "KMB",
+   "name": "Kimberly-Clark",
+   "market": "US"
+  }
+ ]
 }

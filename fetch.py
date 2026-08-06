@@ -45,17 +45,18 @@ def revision_pct(current, prior):
     return (current - prior) / abs(prior) * 100.0
 
 
-def quadrant(price_chg, revision):
-    """Where a name sits. The off-diagonals are the interesting ones."""
+def gap_pp(price_chg, revision):
+    """How far the estimate move ran ahead of (or behind) the price move.
+
+    Classifying by the SIGN of each axis was wrong. It put NVDA in the same box as
+    a name whose price had run 40% on a 1% upgrade, because both were simply
+    "up and up" - when in fact NVDA's estimates rose 14.8% against a 3.8% price
+    move, which is the opposite situation. What matters is the DELTA between the
+    two, so that is what gets measured. Positive means estimates outran price.
+    """
     if price_chg is None or revision is None:
         return None
-    if price_chg >= 0 and revision >= 0:
-        return "earned"        # price up, estimates up - agreement
-    if price_chg >= 0 and revision < 0:
-        return "unearned"      # price up on FALLING estimates - re-rating without support
-    if price_chg < 0 and revision >= 0:
-        return "overlooked"    # estimates up, price hasn't followed
-    return "confirmed"         # both down - agreement
+    return revision - price_chg
 
 
 def fetch_one(entry):
@@ -125,7 +126,7 @@ def fetch_one(entry):
         "industry": industry or "Unclassified",
         "mcap_bn": round(mcap / 1e9, 1) if mcap else None,
     })
-    row["quadrant"] = quadrant(row["price_chg_pct"], row["revision_pct"])
+    row["gap_pp"] = round(gap_pp(row["price_chg_pct"], row["revision_pct"]), 2)
     return row
 
 
@@ -146,7 +147,7 @@ def main():
         "generated_utc": datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ"),
         "window_days": PRICE_DAYS,
         "source": "Yahoo Finance via yfinance",
-        "names": sorted(kept, key=lambda r: r["revision_pct"]),
+        "names": sorted(kept, key=lambda r: r["gap_pp"], reverse=True),
         "dropped": dropped,
     }
     with open("data/latest.json", "w", encoding="utf-8", newline="\n") as fh:
