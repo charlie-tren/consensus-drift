@@ -161,7 +161,8 @@ TEMPLATE = """<!DOCTYPE html>
   h2{font-weight:400;font-size:1.5rem;letter-spacing:-.01em;margin:3.4rem 0 .4rem}
   .sub{color:var(--faint);font:400 14px/1.5 ui-sans-serif,system-ui,sans-serif;margin:0 0 .4rem}
   p{max-width:70ch;color:var(--soft)}
-  .method{font-size:14.5px;line-height:1.6;color:var(--faint);max-width:76ch}
+  .method{font-size:14.5px;line-height:1.62;color:var(--soft);max-width:72ch}
+  .method.detail{font-size:13px;color:var(--faint);margin-top:1rem}
 
   table{width:100%;border-collapse:collapse;margin-top:1rem;
         font:400 14.5px/1.5 ui-sans-serif,system-ui,sans-serif}
@@ -190,6 +191,9 @@ TEMPLATE = """<!DOCTYPE html>
          font:400 14px/1.5 ui-sans-serif,system-ui,sans-serif}
 
   .pager{display:flex;align-items:center;gap:1rem;margin-top:1.1rem;
+         flex-wrap:wrap}
+  .pager.top{margin:1.4rem 0 0}
+  .pager{
          font:500 13px/1 ui-sans-serif,system-ui,sans-serif;color:var(--soft)}
   .pager button{background:var(--raised);border:1px solid var(--rule);border-radius:7px;
         color:var(--ink);padding:.55rem .85rem;cursor:pointer;
@@ -225,6 +229,7 @@ TEMPLATE = """<!DOCTYPE html>
     <select id="f-sector" aria-label="Sector">__SECTORS__</select>
     <select id="f-band" aria-label="Company size">__BANDS__</select>
     <select id="f-gap" aria-label="Gap">__GAPS__</select>
+    <select id="f-cov" aria-label="Analyst coverage">__COVER__</select>
     <input type="search" id="f-text" placeholder="Search name or ticker" aria-label="Search">
     <button class="reset" id="reset" type="button">Reset</button>
   </div>
@@ -241,6 +246,11 @@ TEMPLATE = """<!DOCTYPE html>
   </div>
 
   <p class="sub" id="count" hidden></p>
+  <div class="pager top" id="pager-top">
+    <button type="button" data-nav="prev">&larr; Previous</button>
+    <span data-info></span>
+    <button type="button" data-nav="next">Next &rarr;</button>
+  </div>
   <table>
     <thead><tr>
       <th data-k="ticker">Ticker<span class="ar">&#9650;</span></th>
@@ -267,21 +277,22 @@ __ROWS__
     </tbody>
   </table>
   <p id="empty">Nothing matches those filters.</p>
-  <div class="pager" id="pager">
-    <button type="button" id="prev">&larr; Previous</button>
-    <span id="pageinfo"></span>
-    <button type="button" id="next">Next &rarr;</button>
+  <div class="pager" id="pager-bottom">
+    <button type="button" data-nav="prev">&larr; Previous</button>
+    <span data-info></span>
+    <button type="button" data-nav="next">Next &rarr;</button>
   </div>
 
   <h2>Method</h2>
-  <p class="method">The vertical axis is how much the average analyst forecast for next
-  financial year's earnings per share has moved over 90 days. The horizontal axis is what
-  the share price did over the same window. The gap between the two, in percentage points,
-  is what the colouring and the default sort use.</p>
-  <p class="method">Revisions divide by the absolute prior estimate, so a narrowing loss
-  registers as an upgrade. A name drops out where Yahoo carries no comparable figure 90 days
-  back, or where the prior estimate is too close to zero for a percentage to mean
-  anything.__DROPNOTE__ Names beyond the plotted range sit on the frame edge, drawn hollow. A revision records that analysts changed their minds, nothing more.</p>
+  <p class="method">Analysts publish a forecast for what a company will earn next financial
+  year, and revise it as the year unfolds. The vertical axis is how far that forecast has
+  moved in 90 days. The horizontal axis is what the share price did over the same period.</p>
+  <p class="method">When both move together, the market and the analysts agree. The gap
+  between them is where they do not, and that is what this ranks on. It is a prompt to go
+  and look at something, not a verdict on it - a revision only tells you analysts changed
+  their minds, not that they were right.</p>
+  <p class="method detail">Estimates and prices from Yahoo Finance.__DROPNOTE__ Names whose
+  moves run past the edge of the chart are drawn as hollow rings on the frame.</p>
 
   <p class="foot">Built by <a href="https://charlietrenorden.com/">Charlie Trenorden</a>.
   Data from Yahoo Finance, refreshed weekly.</p>
@@ -304,6 +315,7 @@ __ROWS__
     sector: document.getElementById("f-sector"),
     band:   document.getElementById("f-band"),
     gap:    document.getElementById("f-gap"),
+    cov:    document.getElementById("f-cov"),
     text:   document.getElementById("f-text")
   };
   // per-column filters in the table head: substring on the text columns, minimum
@@ -359,6 +371,7 @@ __ROWS__
     if (els.sector.value && r.sector !== els.sector.value) return false;
     if (els.band.value && r.band !== els.band.value) return false;
     if (els.gap.value && r.bandkey !== els.gap.value) return false;
+    if (els.cov.value && (r.analysts == null || r.analysts < +els.cov.value)) return false;
     var q = els.text.value.trim().toLowerCase();
     if (q && (r.ticker + " " + r.name + " " + r.sector).toLowerCase().indexOf(q) < 0) return false;
     return colMatch(r);
@@ -586,11 +599,16 @@ __ROWS__
       if (!seen[t]) rowFor[t].classList.add("hide");
     });
 
-    document.getElementById("pageinfo").textContent =
-      ordered.length ? "Page " + (page + 1) + " of " + pages : "";
-    document.getElementById("prev").disabled = page === 0;
-    document.getElementById("next").disabled = page >= pages - 1;
-    document.getElementById("pager").style.display = ordered.length > PAGE ? "flex" : "none";
+    var label = ordered.length ? "Page " + (page + 1) + " of " + pages : "";
+    Array.prototype.forEach.call(document.querySelectorAll("[data-info]"), function (el) {
+      el.textContent = label;
+    });
+    Array.prototype.forEach.call(document.querySelectorAll("[data-nav]"), function (btn) {
+      btn.disabled = btn.getAttribute("data-nav") === "prev" ? page === 0 : page >= pages - 1;
+    });
+    Array.prototype.forEach.call(document.querySelectorAll(".pager"), function (el) {
+      el.style.display = ordered.length > PAGE ? "flex" : "none";
+    });
 
     Array.prototype.forEach.call(document.querySelectorAll("th[data-k]"), function (th) {
       th.classList.remove("asc", "desc");
@@ -609,15 +627,18 @@ __ROWS__
     els[k].addEventListener(els[k].tagName === "SELECT" ? "change" : "input", reset0);
   });
   Object.keys(cols).forEach(function (k) { cols[k].addEventListener("input", reset0); });
-  document.getElementById("prev").addEventListener("click", function () {
-    if (page > 0) { page--; apply(); document.getElementById("count").scrollIntoView({block: "start"}); }
-  });
-  document.getElementById("next").addEventListener("click", function () {
-    page++; apply(); document.getElementById("count").scrollIntoView({block: "start"});
+  Array.prototype.forEach.call(document.querySelectorAll("[data-nav]"), function (btn) {
+    btn.addEventListener("click", function () {
+      var dir = btn.getAttribute("data-nav");
+      if (dir === "prev" && page > 0) page--;
+      else if (dir === "next") page++;
+      apply();
+      document.getElementById("pager-top").scrollIntoView({block: "start", behavior: "smooth"});
+    });
   });
   document.getElementById("reset").addEventListener("click", function () {
     els.market.value = ""; els.sector.value = ""; els.band.value = "";
-    els.gap.value = ""; els.text.value = "";
+    els.gap.value = ""; els.cov.value = ""; els.text.value = "";
     Object.keys(cols).forEach(function (k) { cols[k].value = ""; });
     sortKey = "gap"; sortDir = -1; page = 0;
     apply();
@@ -651,11 +672,16 @@ def main():
     gap_select = ('<option value="">Any reading</option>'
                   + "".join(f'<option value="{k}">{BANDS[k][1]}</option>'
                             for k in ("behind", "ahead", "inline")))
+    # thin coverage means the "consensus" is one or two desks, which is worth filtering out
+    cover_select = ('<option value="">Any coverage</option>'
+                    + "".join(f'<option value="{n}">{n}+ analysts</option>'
+                              for n in (5, 10, 15, 20, 30)))
 
     dropnote = ""
     if dropped:
-        dropnote = (f" That is {len(dropped)} of the {len(rows) + len(dropped)} tracked "
-                    f"this week.")
+        dropnote = (f" {len(dropped)} of the {len(rows) + len(dropped)} names tracked are "
+                    f"left out this week, where the estimate history is missing or too "
+                    f"small for a percentage to mean anything.")
 
     page = (TEMPLATE
             .replace("__HEADLINE__", "Where price and estimates have moved apart.")
@@ -667,6 +693,7 @@ def main():
             .replace("__SECTORS__", options(sectors, "All sectors"))
             .replace("__BANDS__", options(sizes, "Any size"))
             .replace("__GAPS__", gap_select)
+            .replace("__COVER__", cover_select)
             .replace("__THRESHNUM__", str(GAP_THRESHOLD_PP))
             .replace("__THRESH__", str(int(GAP_THRESHOLD_PP)))
             .replace("__ROWS__", build_rows(rows))
