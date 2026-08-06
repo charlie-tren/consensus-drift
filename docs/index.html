@@ -98,6 +98,13 @@
   #empty{display:none;color:var(--faint);padding:1.3rem .2rem;
          font:400 14px/1.5 ui-sans-serif,system-ui,sans-serif}
 
+  .pager{display:flex;align-items:center;gap:1rem;margin-top:1.1rem;
+         font:500 13px/1 ui-sans-serif,system-ui,sans-serif;color:var(--soft)}
+  .pager button{background:var(--raised);border:1px solid var(--rule);border-radius:7px;
+        color:var(--ink);padding:.55rem .85rem;cursor:pointer;
+        font:500 13px/1 ui-sans-serif,system-ui,sans-serif}
+  .pager button:hover:enabled{border-color:var(--accent)}
+  .pager button:disabled{color:var(--faint);cursor:default;opacity:.5}
   .foot{margin-top:3.4rem;padding-top:1.3rem;border-top:1px solid var(--rule);
         color:var(--faint);font:400 13px/1.7 ui-sans-serif,system-ui,sans-serif;max-width:70ch}
   .foot a{color:var(--accent)}
@@ -820,6 +827,11 @@
     </tbody>
   </table>
   <p id="empty">Nothing matches those filters.</p>
+  <div class="pager" id="pager">
+    <button type="button" id="prev">&larr; Previous</button>
+    <span id="pageinfo"></span>
+    <button type="button" id="next">Next &rarr;</button>
+  </div>
 
   <h2>Method</h2>
   <p class="method">The vertical axis is the 90-day change in consensus FY2 earnings per
@@ -1063,6 +1075,7 @@
 
   /* ---- sortable table ---------------------------------------------------- */
   var sortKey = "gap", sortDir = -1;
+  var PAGE = 50, page = 0;
   var VAL = {
     ticker: function (r) { return r.ticker; },
     name: function (r) { return r.name; },
@@ -1092,6 +1105,7 @@
     th.addEventListener("click", function () {
       var k = th.getAttribute("data-k");
       if (k === sortKey) { sortDir = -sortDir; } else { sortKey = k; sortDir = -1; }
+      page = 0;
       apply();
     });
   });
@@ -1101,8 +1115,12 @@
     draw(shown);
 
     var ordered = order(shown);
+    var pages = Math.max(1, Math.ceil(ordered.length / PAGE));
+    if (page >= pages) page = pages - 1;
+    var slice = ordered.slice(page * PAGE, page * PAGE + PAGE);
+
     var seen = {};
-    ordered.forEach(function (r) {
+    slice.forEach(function (r) {
       seen[r.ticker] = 1;
       tbody.appendChild(rowFor[r.ticker]);          // appendChild moves, so this reorders
       rowFor[r.ticker].classList.remove("hide");
@@ -1110,6 +1128,12 @@
     Object.keys(rowFor).forEach(function (t) {
       if (!seen[t]) rowFor[t].classList.add("hide");
     });
+
+    document.getElementById("pageinfo").textContent =
+      ordered.length ? "Page " + (page + 1) + " of " + pages : "";
+    document.getElementById("prev").disabled = page === 0;
+    document.getElementById("next").disabled = page >= pages - 1;
+    document.getElementById("pager").style.display = ordered.length > PAGE ? "flex" : "none";
 
     Array.prototype.forEach.call(document.querySelectorAll("th[data-k]"), function (th) {
       th.classList.remove("asc", "desc");
@@ -1119,19 +1143,26 @@
     document.getElementById("count").textContent =
       (shown.length === DATA.length ? "All " + DATA.length + " names"
                                     : shown.length + " of " + DATA.length + " names") +
-      ", sorted by " + sortKey + ".";
+      ", sorted by " + sortKey + ", " + PAGE + " a page.";
     document.getElementById("empty").style.display = shown.length ? "none" : "block";
   }
 
+  function reset0() { page = 0; apply(); }
   Object.keys(els).forEach(function (k) {
-    els[k].addEventListener(els[k].tagName === "SELECT" ? "change" : "input", apply);
+    els[k].addEventListener(els[k].tagName === "SELECT" ? "change" : "input", reset0);
   });
-  Object.keys(cols).forEach(function (k) { cols[k].addEventListener("input", apply); });
+  Object.keys(cols).forEach(function (k) { cols[k].addEventListener("input", reset0); });
+  document.getElementById("prev").addEventListener("click", function () {
+    if (page > 0) { page--; apply(); document.getElementById("count").scrollIntoView({block: "start"}); }
+  });
+  document.getElementById("next").addEventListener("click", function () {
+    page++; apply(); document.getElementById("count").scrollIntoView({block: "start"});
+  });
   document.getElementById("reset").addEventListener("click", function () {
     els.market.value = ""; els.sector.value = ""; els.band.value = "";
     els.gap.value = ""; els.text.value = "";
     Object.keys(cols).forEach(function (k) { cols[k].value = ""; });
-    sortKey = "gap"; sortDir = -1;
+    sortKey = "gap"; sortDir = -1; page = 0;
     apply();
   });
   apply();
