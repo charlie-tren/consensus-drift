@@ -136,10 +136,10 @@ TEMPLATE = """<!DOCTYPE html>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Consensus Drift - where price and estimates disagree</title>
 <meta name="description" content="Sell-side EPS estimate revisions plotted against share price change over 90 days. The interesting names are the ones where the two disagree.">
-<link rel="canonical" href="https://drift.charlietrenorden.com/">
+<link rel="canonical" href="https://charlietrenorden.com/consensus-drift/">
 <meta property="og:title" content="Consensus Drift">
 <meta property="og:description" content="Estimate revisions against price change. The interesting names are where the two disagree.">
-<meta property="og:url" content="https://drift.charlietrenorden.com/">
+<meta property="og:url" content="https://charlietrenorden.com/consensus-drift/">
 <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='24' fill='%231a212b'/><path d='M72.5 37 A26 26 0 1 0 72.5 63' fill='none' stroke='%2382a8ca' stroke-width='13' stroke-linecap='round'/><circle cx='50' cy='50' r='6.5' fill='%2382a8ca'/></svg>">
 <style>
   *,*::before,*::after{box-sizing:border-box}

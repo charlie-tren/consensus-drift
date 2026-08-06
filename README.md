@@ -3,7 +3,11 @@
 Sell-side EPS estimate revisions plotted against share price change, so the names
 where the two disagree stand out.
 
-**Live:** https://drift.charlietrenorden.com/
+**Live:** https://charlietrenorden.com/consensus-drift/
+
+Served as a GitHub Pages PROJECT site. Because the user site `charlie-tren.github.io`
+carries the custom domain, project sites inherit it as `<domain>/<repo>/` - so this
+needed no subdomain and no DNS record of its own.
 
 Estimates move in trends rather than jumps, so the interesting picture is the
 *revision path*, not the level - and specifically the two off-diagonal quadrants:
