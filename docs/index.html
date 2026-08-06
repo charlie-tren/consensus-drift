@@ -3,11 +3,11 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Consensus Drift - where price and estimates disagree</title>
-<meta name="description" content="Sell-side EPS estimate revisions plotted against share price change over 90 days. The interesting names are the ones where the two disagree.">
+<title>Consensus Drift</title>
+<meta name="description" content="Analyst earnings estimates plotted against share price. The interesting names are where the two disagree.">
 <link rel="canonical" href="https://charlietrenorden.com/consensus-drift/">
 <meta property="og:title" content="Consensus Drift">
-<meta property="og:description" content="Estimate revisions against price change. The interesting names are where the two disagree.">
+<meta property="og:description" content="Analyst estimates against share price. The interesting names are where the two disagree.">
 <meta property="og:url" content="https://charlietrenorden.com/consensus-drift/">
 <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='24' fill='%231a212b'/><path d='M72.5 37 A26 26 0 1 0 72.5 63' fill='none' stroke='%2382a8ca' stroke-width='13' stroke-linecap='round'/><circle cx='50' cy='50' r='6.5' fill='%2382a8ca'/></svg>">
 <style>
@@ -17,126 +17,350 @@
   body{margin:0;background:var(--bg);color:var(--ink);
        font:400 17px/1.65 "Iowan Old Style","Palatino Linotype",Palatino,Georgia,serif;
        -webkit-font-smoothing:antialiased}
-  .wrap{max-width:1000px;margin:0 auto;padding:2.2rem 1.5rem 5rem}
-  .bar{display:flex;justify-content:space-between;align-items:center;margin-bottom:3.4rem;gap:1rem}
-  .mark{font:600 17px/1 ui-sans-serif,system-ui,sans-serif;letter-spacing:.12em;text-transform:uppercase}
-  .back{font:500 14px/1 ui-sans-serif,system-ui,sans-serif;color:var(--soft);text-decoration:none;
-        border:1px solid var(--rule);border-radius:999px;padding:.5rem .9rem}
-  .back:hover{color:var(--ink);border-color:var(--accent)}
-  h1{font-weight:400;font-size:clamp(2.1rem,5vw,3rem);line-height:1.06;letter-spacing:-.015em;margin:0 0 1rem}
-  .lede{font-size:1.14rem;color:var(--soft);max-width:62ch;margin:0 0 .6rem}
-  .stamp{font:500 13px/1.5 ui-monospace,Consolas,monospace;color:var(--faint);margin:1.4rem 0 0}
-  figure{margin:2.6rem 0 0;background:var(--raised);border:1px solid var(--rule);border-radius:8px;padding:.6rem}
+  .wrap{max-width:1040px;margin:0 auto;padding:2.2rem 1.5rem 5rem}
+
+  .bar{display:flex;align-items:center;justify-content:space-between;gap:1rem;margin-bottom:3rem}
+  /* navigation, not a title - kept lighter than the page's own name */
+  .home{font:500 13px/1 ui-sans-serif,system-ui,sans-serif;letter-spacing:.1em;
+        text-transform:uppercase;color:var(--soft);text-decoration:none;
+        display:inline-flex;align-items:center;gap:.5rem;transition:color .2s}
+  .home:hover{color:var(--accent)}
+  .home .back{color:var(--accent);font-size:14px}
+
+  h1{font-weight:400;font-size:clamp(2.7rem,7.4vw,4.4rem);line-height:1.02;
+     letter-spacing:-.02em;margin:0 0 1.1rem;max-width:14ch}
+  .lede{font-size:1.16rem;color:var(--soft);max-width:52ch;margin:0}
+
+  .meta-row{display:flex;flex-wrap:wrap;gap:.5rem;margin:1.9rem 0 0}
+  .chip{font:500 12px/1 ui-sans-serif,system-ui,sans-serif;letter-spacing:.04em;
+        color:var(--soft);background:var(--raised);border:1px solid var(--rule);
+        border-radius:999px;padding:.52rem .8rem}
+  .chip b{color:var(--ink);font-weight:600}
+
+  .controls{display:flex;flex-wrap:wrap;gap:.6rem;margin:2.4rem 0 1rem;align-items:center}
+  select,input[type=search]{font:500 13px/1 ui-sans-serif,system-ui,sans-serif;color:var(--ink);
+        background:var(--raised);border:1px solid var(--rule);border-radius:7px;
+        padding:.6rem .7rem;min-width:9.5rem}
+  select:focus,input:focus{outline:2px solid var(--accent);outline-offset:1px}
+  .reset{background:none;border:0;color:var(--faint);cursor:pointer;
+         font:500 12.5px/1 ui-sans-serif,system-ui,sans-serif;padding:.6rem .2rem}
+  .reset:hover{color:var(--accent)}
+
+  figure{margin:0;background:var(--raised);border:1px solid var(--rule);
+         border-radius:8px;padding:.6rem;position:relative}
   figure svg{display:block;width:100%;height:auto}
-  .key{display:flex;flex-wrap:wrap;gap:1.4rem;margin:1.4rem 0 0;
+  circle.pt{cursor:pointer}
+  #tip{position:absolute;pointer-events:none;opacity:0;transition:opacity .12s;
+       background:#0b0e13;border:1px solid var(--rule);border-radius:7px;
+       padding:.5rem .65rem;font:500 12.5px/1.5 ui-sans-serif,system-ui,sans-serif;
+       color:var(--ink);white-space:nowrap;z-index:5;box-shadow:0 6px 20px rgba(0,0,0,.45)}
+  #tip .t-sub{color:var(--soft);font-weight:400;display:block}
+
+  .key{display:flex;flex-wrap:wrap;gap:1.3rem;margin:1.2rem 0 0;
        font:500 13px/1.4 ui-sans-serif,system-ui,sans-serif;color:var(--soft)}
   .key b{font-weight:600}
-  h2{font-weight:400;font-size:1.5rem;letter-spacing:-.01em;margin:3.4rem 0 .8rem}
-  p{max-width:68ch;color:var(--soft)}
-  table{width:100%;border-collapse:collapse;margin-top:1.2rem;
+
+  h2{font-weight:400;font-size:1.55rem;letter-spacing:-.01em;margin:3.6rem 0 .4rem}
+  .sub{color:var(--faint);font:400 14px/1.5 ui-sans-serif,system-ui,sans-serif;margin:0 0 .4rem}
+  p{max-width:66ch;color:var(--soft)}
+
+  table{width:100%;border-collapse:collapse;margin-top:1rem;
         font:400 14.5px/1.5 ui-sans-serif,system-ui,sans-serif}
   th{text-align:left;font:600 11.5px/1 ui-sans-serif,system-ui,sans-serif;letter-spacing:.13em;
-     text-transform:uppercase;color:var(--faint);padding:0 .7rem .7rem;border-bottom:1px solid var(--rule)}
+     text-transform:uppercase;color:var(--faint);padding:0 .7rem .7rem;
+     border-bottom:1px solid var(--rule)}
   td{padding:.62rem .7rem;border-bottom:1px solid var(--rule);color:var(--ink)}
   td.n{text-align:right;font-family:ui-monospace,Consolas,monospace;font-size:13.5px}
   td.tk{font-family:ui-monospace,Consolas,monospace;font-size:13px;color:var(--soft)}
-  td.q{font-size:12.5px;letter-spacing:.05em}
+  td.sec{color:var(--soft);font-size:13.5px}
+  td.q{font-size:13px}
   td.muted{color:var(--faint)}
   th.n{text-align:right}
-  .foot{margin-top:3.4rem;padding-top:1.4rem;border-top:1px solid var(--rule);
-        color:var(--faint);font:400 13.5px/1.65 ui-sans-serif,system-ui,sans-serif;max-width:70ch}
+  tr.hide{display:none}
+  #empty{display:none;color:var(--faint);padding:1.3rem .2rem;
+         font:400 14px/1.5 ui-sans-serif,system-ui,sans-serif}
+
+  .foot{margin-top:3.6rem;padding-top:1.3rem;border-top:1px solid var(--rule);
+        color:var(--faint);font:400 13px/1.7 ui-sans-serif,system-ui,sans-serif;max-width:70ch}
   .foot a{color:var(--accent)}
-  code{font-family:ui-monospace,Consolas,monospace;font-size:.9em;color:var(--ink)}
-  @media (max-width:640px){ .key{gap:.8rem} td,th{padding-left:.35rem;padding-right:.35rem} }
+  @media (max-width:640px){ td,th{padding-left:.35rem;padding-right:.35rem}
+    td.sec,th:nth-child(3){display:none} }
 </style>
 </head>
 <body>
 <div class="wrap">
   <div class="bar">
-    <span class="mark">Consensus Drift</span>
-    <a class="back" href="https://charlietrenorden.com/">Other projects &#8599;</a>
+    <a class="home" href="https://charlietrenorden.com/"><span class="back">&larr;</span>Other projects</a>
   </div>
 
   <h1>Where price and estimates disagree.</h1>
-  <p class="lede">Sell-side earnings estimates move in trends, not jumps. Plotting the
-  <em>revision path</em> against what the share price did over the same window puts every
-  name in one of four boxes - and the two off-diagonal boxes are the ones worth a
-  second look.</p>
-  <p class="stamp">38 names  |  90-day window  |  updated 2026-08-06  |  source: Yahoo Finance</p>
+  <p class="lede">Analysts move their earnings forecasts slowly. When the share price has gone the other way, the gap is worth a look.</p>
 
-  <figure><svg viewBox="0 0 940 620" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Estimate revisions against price change"><defs><style>.gl{stroke:#262d38;stroke-width:1}</style></defs><rect x="494.0" y="30" width="420.0" height="264.0" fill="#7fae8f" opacity="0.05"/><rect x="494.0" y="294.0" width="420.0" height="264.0" fill="#c98a6a" opacity="0.09"/><rect x="74" y="30" width="420.0" height="264.0" fill="#82a8ca" opacity="0.09"/><line class="gl" x1="284.0" y1="30" x2="284.0" y2="558"/><line class="gl" x1="74" y1="426.0" x2="914" y2="426.0"/><line class="gl" x1="704.0" y1="30" x2="704.0" y2="558"/><line class="gl" x1="74" y1="162.0" x2="914" y2="162.0"/><line x1="494.0" y1="30" x2="494.0" y2="558" stroke="#5d6675" stroke-width="1.4"/><line x1="74" y1="294.0" x2="914" y2="294.0" stroke="#5d6675" stroke-width="1.4"/><text x="904" y="50" text-anchor="end" fill="#7fae8f" font-family="ui-sans-serif,system-ui,sans-serif" font-size="12.5" letter-spacing="0.11em">EARNED</text><text x="904" y="548" text-anchor="end" fill="#c98a6a" font-family="ui-sans-serif,system-ui,sans-serif" font-size="12.5" letter-spacing="0.11em">UNEARNED</text><text x="84" y="50" fill="#82a8ca" font-family="ui-sans-serif,system-ui,sans-serif" font-size="12.5" letter-spacing="0.11em">OVERLOOKED</text><text x="84" y="548" fill="#6b7480" font-family="ui-sans-serif,system-ui,sans-serif" font-size="12.5" letter-spacing="0.11em">CONFIRMED</text><text x="74.0" y="576" text-anchor="middle" font-family="ui-monospace,Consolas,monospace" font-size="11" fill="#5d6675">-50%</text><text x="64" y="562.0" text-anchor="end" font-family="ui-monospace,Consolas,monospace" font-size="11" fill="#5d6675">-20%</text><text x="284.0" y="576" text-anchor="middle" font-family="ui-monospace,Consolas,monospace" font-size="11" fill="#5d6675">-25%</text><text x="64" y="430.0" text-anchor="end" font-family="ui-monospace,Consolas,monospace" font-size="11" fill="#5d6675">-10%</text><text x="704.0" y="576" text-anchor="middle" font-family="ui-monospace,Consolas,monospace" font-size="11" fill="#5d6675">+25%</text><text x="64" y="166.0" text-anchor="end" font-family="ui-monospace,Consolas,monospace" font-size="11" fill="#5d6675">+10%</text><text x="914.0" y="576" text-anchor="middle" font-family="ui-monospace,Consolas,monospace" font-size="11" fill="#5d6675">+50%</text><text x="64" y="34.0" text-anchor="end" font-family="ui-monospace,Consolas,monospace" font-size="11" fill="#5d6675">+20%</text><text x="494.0" y="604" text-anchor="middle" font-family="ui-sans-serif,system-ui,sans-serif" font-size="12.5" fill="#8a94a3">Share price change, 90 days</text><text transform="translate(20,294.0) rotate(-90)" text-anchor="middle" font-family="ui-sans-serif,system-ui,sans-serif" font-size="12.5" fill="#8a94a3">FY2 consensus EPS revision, 90 days</text><g><title>Santos (STO.AX)  -  price +0.5%, estimates -16.5%</title><circle cx="497.9" cy="511.7" r="5.5" fill="#c98a6a" fill-opacity="0.85" stroke="#0f1319" stroke-width="1"/></g><text x="497.9" y="500.7" text-anchor="middle" fill="#e6e9ee" font-family="ui-sans-serif,system-ui,sans-serif" font-size="12">STO.AX</text><g><title>CSL (CSL.AX)  -  price +9.4%, estimates -13.8%</title><circle cx="573.0" cy="475.9" r="5.5" fill="#c98a6a" fill-opacity="0.85" stroke="#0f1319" stroke-width="1"/></g><text x="573.0" y="464.9" text-anchor="middle" fill="#e6e9ee" font-family="ui-sans-serif,system-ui,sans-serif" font-size="12">CSL.AX</text><g><title>Woodside Energy (WDS.AX)  -  price +5.4%, estimates -11.0%</title><circle cx="539.1" cy="439.1" r="5.5" fill="#c98a6a" fill-opacity="0.85" stroke="#0f1319" stroke-width="1"/></g><text x="539.1" y="428.1" text-anchor="middle" fill="#e6e9ee" font-family="ui-sans-serif,system-ui,sans-serif" font-size="12">WDS.AX</text><g><title>Fortescue (FMG.AX)  -  price -13.1%, estimates -4.5%</title><circle cx="384.2" cy="353.8" r="5.5" fill="#6b7480" fill-opacity="0.85" stroke="#0f1319" stroke-width="1"/></g><g><title>Meta Platforms (META)  -  price -4.5%, estimates -2.0%</title><circle cx="456.5" cy="319.9" r="5.5" fill="#6b7480" fill-opacity="0.85" stroke="#0f1319" stroke-width="1"/></g><g><title>PepsiCo (PEP)  -  price -10.3%, estimates -1.9%</title><circle cx="407.7" cy="319.2" r="5.5" fill="#6b7480" fill-opacity="0.85" stroke="#0f1319" stroke-width="1"/></g><g><title>National Australia Bank (NAB.AX)  -  price +11.3%, estimates -1.7%</title><circle cx="589.0" cy="316.8" r="5.5" fill="#c98a6a" fill-opacity="0.85" stroke="#0f1319" stroke-width="1"/></g><g><title>McDonald&#x27;s (MCD)  -  price -2.8%, estimates -1.7%</title><circle cx="470.8" cy="316.2" r="5.5" fill="#6b7480" fill-opacity="0.85" stroke="#0f1319" stroke-width="1"/></g><g><title>Westpac (WBC.AX)  -  price +2.9%, estimates -1.6%</title><circle cx="518.4" cy="315.3" r="5.5" fill="#c98a6a" fill-opacity="0.85" stroke="#0f1319" stroke-width="1"/></g><g><title>BHP Group (BHP.AX)  -  price +8.2%, estimates -1.5%</title><circle cx="562.7" cy="314.3" r="5.5" fill="#c98a6a" fill-opacity="0.85" stroke="#0f1319" stroke-width="1"/></g><g><title>Home Depot (HD)  -  price +10.3%, estimates -1.2%</title><circle cx="580.3" cy="310.5" r="5.5" fill="#c98a6a" fill-opacity="0.85" stroke="#0f1319" stroke-width="1"/></g><g><title>Telstra (TLS.AX)  -  price -6.7%, estimates -1.2%</title><circle cx="437.8" cy="309.6" r="5.5" fill="#6b7480" fill-opacity="0.85" stroke="#0f1319" stroke-width="1"/></g><g><title>Procter &amp; Gamble (PG)  -  price +1.3%, estimates -1.2%</title><circle cx="504.6" cy="309.3" r="5.5" fill="#c98a6a" fill-opacity="0.85" stroke="#0f1319" stroke-width="1"/></g><g><title>Berkshire Hathaway (BRK-B)  -  price +9.2%, estimates -0.8%</title><circle cx="571.4" cy="304.8" r="5.5" fill="#c98a6a" fill-opacity="0.85" stroke="#0f1319" stroke-width="1"/></g><g><title>REA Group (REA.AX)  -  price -3.0%, estimates -0.8%</title><circle cx="469.1" cy="304.0" r="5.5" fill="#6b7480" fill-opacity="0.85" stroke="#0f1319" stroke-width="1"/></g><g><title>ANZ Group (ANZ.AX)  -  price +5.9%, estimates -0.4%</title><circle cx="543.7" cy="299.5" r="5.5" fill="#c98a6a" fill-opacity="0.85" stroke="#0f1319" stroke-width="1"/></g><g><title>Apple (AAPL)  -  price +8.3%, estimates -0.3%</title><circle cx="563.7" cy="298.1" r="5.5" fill="#c98a6a" fill-opacity="0.85" stroke="#0f1319" stroke-width="1"/></g><g><title>Coles Group (COL.AX)  -  price +11.8%, estimates -0.2%</title><circle cx="593.5" cy="296.2" r="5.5" fill="#c98a6a" fill-opacity="0.85" stroke="#0f1319" stroke-width="1"/></g><g><title>Walmart (WMT)  -  price -13.6%, estimates -0.0%</title><circle cx="380.2" cy="294.4" r="5.5" fill="#6b7480" fill-opacity="0.85" stroke="#0f1319" stroke-width="1"/></g><g><title>Johnson &amp; Johnson (JNJ)  -  price +16.4%, estimates +0.6%</title><circle cx="632.0" cy="286.3" r="5.5" fill="#7fae8f" fill-opacity="0.85" stroke="#0f1319" stroke-width="1"/></g><g><title>QBE Insurance (QBE.AX)  -  price +9.5%, estimates +0.7%</title><circle cx="573.6" cy="284.2" r="5.5" fill="#7fae8f" fill-opacity="0.85" stroke="#0f1319" stroke-width="1"/></g><g><title>Wesfarmers (WES.AX)  -  price +26.2%, estimates +0.8%</title><circle cx="714.2" cy="283.2" r="5.5" fill="#7fae8f" fill-opacity="0.85" stroke="#0f1319" stroke-width="1"/></g><g><title>Costco (COST)  -  price -6.8%, estimates +0.8%</title><circle cx="437.0" cy="283.0" r="5.5" fill="#82a8ca" fill-opacity="0.85" stroke="#0f1319" stroke-width="1"/></g><g><title>Visa (V)  -  price +14.9%, estimates +1.0%</title><circle cx="619.6" cy="281.3" r="5.5" fill="#7fae8f" fill-opacity="0.85" stroke="#0f1319" stroke-width="1"/></g><g><title>Woolworths (WOW.AX)  -  price +19.2%, estimates +1.3%</title><circle cx="655.6" cy="277.2" r="5.5" fill="#7fae8f" fill-opacity="0.85" stroke="#0f1319" stroke-width="1"/></g><g><title>Aristocrat Leisure (ALL.AX)  -  price +43.2%, estimates +1.4%</title><circle cx="856.5" cy="275.8" r="5.5" fill="#7fae8f" fill-opacity="0.85" stroke="#0f1319" stroke-width="1"/></g><g><title>Macquarie Group (MQG.AX)  -  price +13.7%, estimates +1.4%</title><circle cx="608.7" cy="275.5" r="5.5" fill="#7fae8f" fill-opacity="0.85" stroke="#0f1319" stroke-width="1"/></g><g><title>Coca-Cola (KO)  -  price +11.4%, estimates +1.5%</title><circle cx="589.9" cy="274.5" r="5.5" fill="#7fae8f" fill-opacity="0.85" stroke="#0f1319" stroke-width="1"/></g><g><title>Transurban (TCL.AX)  -  price +4.2%, estimates +2.4%</title><circle cx="529.0" cy="262.5" r="5.5" fill="#7fae8f" fill-opacity="0.85" stroke="#0f1319" stroke-width="1"/></g><g><title>Rio Tinto (RIO.AX)  -  price -1.6%, estimates +2.9%</title><circle cx="480.4" cy="255.6" r="5.5" fill="#82a8ca" fill-opacity="0.85" stroke="#0f1319" stroke-width="1"/></g><g><title>Alphabet (GOOGL)  -  price -8.9%, estimates +3.0%</title><circle cx="419.4" cy="254.1" r="5.5" fill="#82a8ca" fill-opacity="0.85" stroke="#0f1319" stroke-width="1"/></g><g><title>Microsoft (MSFT)  -  price +16.1%, estimates +4.3%</title><circle cx="629.2" cy="236.6" r="5.5" fill="#7fae8f" fill-opacity="0.85" stroke="#0f1319" stroke-width="1"/></g><g><title>Exxon Mobil (XOM)  -  price +4.2%, estimates +4.7%</title><circle cx="528.9" cy="231.8" r="5.5" fill="#7fae8f" fill-opacity="0.85" stroke="#0f1319" stroke-width="1"/></g><g><title>JPMorgan Chase (JPM)  -  price +17.8%, estimates +5.2%</title><circle cx="643.7" cy="225.1" r="5.5" fill="#7fae8f" fill-opacity="0.85" stroke="#0f1319" stroke-width="1"/></g><g><title>Amazon (AMZN)  -  price +0.6%, estimates +5.5%</title><circle cx="498.6" cy="221.0" r="5.5" fill="#7fae8f" fill-opacity="0.85" stroke="#0f1319" stroke-width="1"/></g><g><title>Chevron (CVX)  -  price +3.1%, estimates +7.7%</title><circle cx="519.9" cy="191.8" r="5.5" fill="#7fae8f" fill-opacity="0.85" stroke="#0f1319" stroke-width="1"/></g><text x="519.9" y="180.8" text-anchor="middle" fill="#e6e9ee" font-family="ui-sans-serif,system-ui,sans-serif" font-size="12">CVX</text><g><title>UnitedHealth (UNH)  -  price +12.3%, estimates +8.1%</title><circle cx="597.1" cy="187.1" r="5.5" fill="#7fae8f" fill-opacity="0.85" stroke="#0f1319" stroke-width="1"/></g><text x="597.1" y="176.1" text-anchor="middle" fill="#e6e9ee" font-family="ui-sans-serif,system-ui,sans-serif" font-size="12">UNH</text><g><title>NVIDIA (NVDA)  -  price +3.8%, estimates +14.8%</title><circle cx="525.7" cy="98.6" r="5.5" fill="#7fae8f" fill-opacity="0.85" stroke="#0f1319" stroke-width="1"/></g><text x="525.7" y="87.6" text-anchor="middle" fill="#e6e9ee" font-family="ui-sans-serif,system-ui,sans-serif" font-size="12">NVDA</text></svg></figure>
-
-  <div class="key">
-    <span><b style="color:#c98a6a">Unearned</b> &middot; price up, estimates down</span>
-    <span><b style="color:#82a8ca">Overlooked</b> &middot; estimates up, price down</span>
-    <span><b style="color:#7fae8f">Earned</b> &middot; both up</span>
-    <span><b style="color:#6b7480">Confirmed</b> &middot; both down</span>
+  <div class="meta-row">
+    <span class="chip"><b>38</b> names</span>
+    <span class="chip">90-day window</span>
+    <span class="chip">Updated <b>2026-08-06</b></span>
+    <span class="chip">Yahoo Finance</span>
   </div>
 
-  <h2>Every name</h2>
+  <div class="controls">
+    <select id="f-market" aria-label="Market"><option value="">All markets</option><option value="ASX">ASX</option><option value="US">US</option></select>
+    <select id="f-sector" aria-label="Sector"><option value="">All sectors</option><option value="Basic Materials">Basic Materials</option><option value="Communication Services">Communication Services</option><option value="Consumer Cyclical">Consumer Cyclical</option><option value="Consumer Defensive">Consumer Defensive</option><option value="Energy">Energy</option><option value="Financial Services">Financial Services</option><option value="Healthcare">Healthcare</option><option value="Industrials">Industrials</option><option value="Technology">Technology</option></select>
+    <select id="f-band" aria-label="Company size"><option value="">Any size</option><option value="Under $50bn">Under $50bn</option><option value="$50bn to $250bn">$50bn to $250bn</option><option value="Over $250bn">Over $250bn</option></select>
+    <input type="search" id="f-text" placeholder="Search name or ticker" aria-label="Search">
+    <button class="reset" id="reset" type="button">Reset</button>
+  </div>
+
+  <figure>
+    <div id="chart"></div>
+    <div id="tip"></div>
+  </figure>
+
+  <div class="key">
+    <span><b style="color:#c98a6a">Unearned</b> &middot; Price up, estimates down</span>
+    <span><b style="color:#82a8ca">Overlooked</b> &middot; Estimates up, price down</span>
+    <span><b style="color:#7fae8f">Earned</b> &middot; Both up</span>
+    <span><b style="color:#6b7480">Confirmed</b> &middot; Both down</span>
+  </div>
+
+  <h2>The Full List</h2>
+  <p class="sub" id="count"></p>
   <table>
-    <thead><tr><th>Ticker</th><th>Name</th><th class="n">EPS revision</th>
+    <thead><tr><th>Ticker</th><th>Name</th><th>Sector</th><th class="n">EPS Revision</th>
     <th class="n">Price</th><th class="n">Analysts</th><th>Quadrant</th></tr></thead>
-    <tbody>
-<tr><td class="tk">STO.AX</td><td>Santos</td><td class="n" style="color:#c98a6a">-16.49%</td><td class="n">+0.47%</td><td class="n muted">10</td><td class="q" style="color:#c98a6a">unearned</td></tr>
-<tr><td class="tk">CSL.AX</td><td>CSL</td><td class="n" style="color:#c98a6a">-13.78%</td><td class="n">+9.41%</td><td class="n muted">16</td><td class="q" style="color:#c98a6a">unearned</td></tr>
-<tr><td class="tk">WDS.AX</td><td>Woodside Energy</td><td class="n" style="color:#c98a6a">-10.99%</td><td class="n">+5.37%</td><td class="n muted">8</td><td class="q" style="color:#c98a6a">unearned</td></tr>
-<tr><td class="tk">FMG.AX</td><td>Fortescue</td><td class="n" style="color:#6b7480">-4.53%</td><td class="n">-13.07%</td><td class="n muted">15</td><td class="q" style="color:#6b7480">confirmed</td></tr>
-<tr><td class="tk">META</td><td>Meta Platforms</td><td class="n" style="color:#6b7480">-1.96%</td><td class="n">-4.46%</td><td class="n muted">53</td><td class="q" style="color:#6b7480">confirmed</td></tr>
-<tr><td class="tk">PEP</td><td>PepsiCo</td><td class="n" style="color:#6b7480">-1.91%</td><td class="n">-10.27%</td><td class="n muted">23</td><td class="q" style="color:#6b7480">confirmed</td></tr>
-<tr><td class="tk">NAB.AX</td><td>National Australia Bank</td><td class="n" style="color:#c98a6a">-1.73%</td><td class="n">+11.31%</td><td class="n muted">8</td><td class="q" style="color:#c98a6a">unearned</td></tr>
-<tr><td class="tk">MCD</td><td>McDonald&#x27;s</td><td class="n" style="color:#6b7480">-1.68%</td><td class="n">-2.76%</td><td class="n muted">33</td><td class="q" style="color:#6b7480">confirmed</td></tr>
-<tr><td class="tk">WBC.AX</td><td>Westpac</td><td class="n" style="color:#c98a6a">-1.61%</td><td class="n">+2.91%</td><td class="n muted">10</td><td class="q" style="color:#c98a6a">unearned</td></tr>
-<tr><td class="tk">BHP.AX</td><td>BHP Group</td><td class="n" style="color:#c98a6a">-1.54%</td><td class="n">+8.18%</td><td class="n muted">17</td><td class="q" style="color:#c98a6a">unearned</td></tr>
-<tr><td class="tk">HD</td><td>Home Depot</td><td class="n" style="color:#c98a6a">-1.25%</td><td class="n">+10.27%</td><td class="n muted">34</td><td class="q" style="color:#c98a6a">unearned</td></tr>
-<tr><td class="tk">TLS.AX</td><td>Telstra</td><td class="n" style="color:#6b7480">-1.18%</td><td class="n">-6.69%</td><td class="n muted">11</td><td class="q" style="color:#6b7480">confirmed</td></tr>
-<tr><td class="tk">PG</td><td>Procter &amp; Gamble</td><td class="n" style="color:#c98a6a">-1.16%</td><td class="n">+1.26%</td><td class="n muted">22</td><td class="q" style="color:#c98a6a">unearned</td></tr>
-<tr><td class="tk">BRK-B</td><td>Berkshire Hathaway</td><td class="n" style="color:#c98a6a">-0.82%</td><td class="n">+9.21%</td><td class="n muted">3</td><td class="q" style="color:#c98a6a">unearned</td></tr>
-<tr><td class="tk">REA.AX</td><td>REA Group</td><td class="n" style="color:#6b7480">-0.76%</td><td class="n">-2.97%</td><td class="n muted">14</td><td class="q" style="color:#6b7480">confirmed</td></tr>
-<tr><td class="tk">ANZ.AX</td><td>ANZ Group</td><td class="n" style="color:#c98a6a">-0.42%</td><td class="n">+5.92%</td><td class="n muted">12</td><td class="q" style="color:#c98a6a">unearned</td></tr>
-<tr><td class="tk">AAPL</td><td>Apple</td><td class="n" style="color:#c98a6a">-0.31%</td><td class="n">+8.30%</td><td class="n muted">41</td><td class="q" style="color:#c98a6a">unearned</td></tr>
-<tr><td class="tk">COL.AX</td><td>Coles Group</td><td class="n" style="color:#c98a6a">-0.17%</td><td class="n">+11.84%</td><td class="n muted">15</td><td class="q" style="color:#c98a6a">unearned</td></tr>
-<tr><td class="tk">WMT</td><td>Walmart</td><td class="n" style="color:#6b7480">-0.03%</td><td class="n">-13.55%</td><td class="n muted">39</td><td class="q" style="color:#6b7480">confirmed</td></tr>
-<tr><td class="tk">JNJ</td><td>Johnson &amp; Johnson</td><td class="n" style="color:#7fae8f">+0.58%</td><td class="n">+16.43%</td><td class="n muted">22</td><td class="q" style="color:#7fae8f">earned</td></tr>
-<tr><td class="tk">QBE.AX</td><td>QBE Insurance</td><td class="n" style="color:#7fae8f">+0.74%</td><td class="n">+9.48%</td><td class="n muted">10</td><td class="q" style="color:#7fae8f">earned</td></tr>
-<tr><td class="tk">WES.AX</td><td>Wesfarmers</td><td class="n" style="color:#7fae8f">+0.82%</td><td class="n">+26.21%</td><td class="n muted">14</td><td class="q" style="color:#7fae8f">earned</td></tr>
-<tr><td class="tk">COST</td><td>Costco</td><td class="n" style="color:#82a8ca">+0.83%</td><td class="n">-6.78%</td><td class="n muted">34</td><td class="q" style="color:#82a8ca">overlooked</td></tr>
-<tr><td class="tk">V</td><td>Visa</td><td class="n" style="color:#7fae8f">+0.96%</td><td class="n">+14.95%</td><td class="n muted">40</td><td class="q" style="color:#7fae8f">earned</td></tr>
-<tr><td class="tk">WOW.AX</td><td>Woolworths</td><td class="n" style="color:#7fae8f">+1.27%</td><td class="n">+19.24%</td><td class="n muted">15</td><td class="q" style="color:#7fae8f">earned</td></tr>
-<tr><td class="tk">ALL.AX</td><td>Aristocrat Leisure</td><td class="n" style="color:#7fae8f">+1.38%</td><td class="n">+43.16%</td><td class="n muted">16</td><td class="q" style="color:#7fae8f">earned</td></tr>
-<tr><td class="tk">MQG.AX</td><td>Macquarie Group</td><td class="n" style="color:#7fae8f">+1.40%</td><td class="n">+13.66%</td><td class="n muted">8</td><td class="q" style="color:#7fae8f">earned</td></tr>
-<tr><td class="tk">KO</td><td>Coca-Cola</td><td class="n" style="color:#7fae8f">+1.48%</td><td class="n">+11.42%</td><td class="n muted">24</td><td class="q" style="color:#7fae8f">earned</td></tr>
-<tr><td class="tk">TCL.AX</td><td>Transurban</td><td class="n" style="color:#7fae8f">+2.39%</td><td class="n">+4.17%</td><td class="n muted">6</td><td class="q" style="color:#7fae8f">earned</td></tr>
-<tr><td class="tk">RIO.AX</td><td>Rio Tinto</td><td class="n" style="color:#82a8ca">+2.91%</td><td class="n">-1.62%</td><td class="n muted">13</td><td class="q" style="color:#82a8ca">overlooked</td></tr>
-<tr><td class="tk">GOOGL</td><td>Alphabet</td><td class="n" style="color:#82a8ca">+3.02%</td><td class="n">-8.88%</td><td class="n muted">55</td><td class="q" style="color:#82a8ca">overlooked</td></tr>
-<tr><td class="tk">MSFT</td><td>Microsoft</td><td class="n" style="color:#7fae8f">+4.35%</td><td class="n">+16.10%</td><td class="n muted">33</td><td class="q" style="color:#7fae8f">earned</td></tr>
-<tr><td class="tk">XOM</td><td>Exxon Mobil</td><td class="n" style="color:#7fae8f">+4.71%</td><td class="n">+4.15%</td><td class="n muted">23</td><td class="q" style="color:#7fae8f">earned</td></tr>
-<tr><td class="tk">JPM</td><td>JPMorgan Chase</td><td class="n" style="color:#7fae8f">+5.22%</td><td class="n">+17.82%</td><td class="n muted">12</td><td class="q" style="color:#7fae8f">earned</td></tr>
-<tr><td class="tk">AMZN</td><td>Amazon</td><td class="n" style="color:#7fae8f">+5.53%</td><td class="n">+0.55%</td><td class="n muted">54</td><td class="q" style="color:#7fae8f">earned</td></tr>
-<tr><td class="tk">CVX</td><td>Chevron</td><td class="n" style="color:#7fae8f">+7.74%</td><td class="n">+3.08%</td><td class="n muted">24</td><td class="q" style="color:#7fae8f">earned</td></tr>
-<tr><td class="tk">UNH</td><td>UnitedHealth</td><td class="n" style="color:#7fae8f">+8.10%</td><td class="n">+12.27%</td><td class="n muted">27</td><td class="q" style="color:#7fae8f">earned</td></tr>
-<tr><td class="tk">NVDA</td><td>NVIDIA</td><td class="n" style="color:#7fae8f">+14.80%</td><td class="n">+3.77%</td><td class="n muted">50</td><td class="q" style="color:#7fae8f">earned</td></tr>
+    <tbody id="tbody">
+<tr><td class="tk">STO.AX</td><td>Santos</td><td class="sec">Energy</td><td class="n" style="color:#c98a6a">-16.49%</td><td class="n">+0.33%</td><td class="n muted">10</td><td class="q" style="color:#c98a6a">Unearned</td></tr>
+<tr><td class="tk">CSL.AX</td><td>CSL</td><td class="sec">Healthcare</td><td class="n" style="color:#c98a6a">-13.78%</td><td class="n">+9.33%</td><td class="n muted">16</td><td class="q" style="color:#c98a6a">Unearned</td></tr>
+<tr><td class="tk">WDS.AX</td><td>Woodside Energy</td><td class="sec">Energy</td><td class="n" style="color:#c98a6a">-10.99%</td><td class="n">+5.31%</td><td class="n muted">8</td><td class="q" style="color:#c98a6a">Unearned</td></tr>
+<tr><td class="tk">FMG.AX</td><td>Fortescue</td><td class="sec">Basic Materials</td><td class="n" style="color:#6b7480">-4.53%</td><td class="n">-13.14%</td><td class="n muted">15</td><td class="q" style="color:#6b7480">Confirmed</td></tr>
+<tr><td class="tk">META</td><td>Meta Platforms</td><td class="sec">Communication Services</td><td class="n" style="color:#6b7480">-1.96%</td><td class="n">-4.46%</td><td class="n muted">53</td><td class="q" style="color:#6b7480">Confirmed</td></tr>
+<tr><td class="tk">PEP</td><td>PepsiCo</td><td class="sec">Consumer Defensive</td><td class="n" style="color:#6b7480">-1.91%</td><td class="n">-10.27%</td><td class="n muted">23</td><td class="q" style="color:#6b7480">Confirmed</td></tr>
+<tr><td class="tk">NAB.AX</td><td>National Australia Bank</td><td class="sec">Financial Services</td><td class="n" style="color:#c98a6a">-1.73%</td><td class="n">+11.29%</td><td class="n muted">8</td><td class="q" style="color:#c98a6a">Unearned</td></tr>
+<tr><td class="tk">MCD</td><td>McDonald&#x27;s</td><td class="sec">Consumer Cyclical</td><td class="n" style="color:#6b7480">-1.68%</td><td class="n">-2.76%</td><td class="n muted">33</td><td class="q" style="color:#6b7480">Confirmed</td></tr>
+<tr><td class="tk">WBC.AX</td><td>Westpac</td><td class="sec">Financial Services</td><td class="n" style="color:#c98a6a">-1.61%</td><td class="n">+2.80%</td><td class="n muted">10</td><td class="q" style="color:#c98a6a">Unearned</td></tr>
+<tr><td class="tk">BHP.AX</td><td>BHP Group</td><td class="sec">Basic Materials</td><td class="n" style="color:#c98a6a">-1.54%</td><td class="n">+8.20%</td><td class="n muted">17</td><td class="q" style="color:#c98a6a">Unearned</td></tr>
+<tr><td class="tk">HD</td><td>Home Depot</td><td class="sec">Consumer Cyclical</td><td class="n" style="color:#c98a6a">-1.25%</td><td class="n">+10.27%</td><td class="n muted">34</td><td class="q" style="color:#c98a6a">Unearned</td></tr>
+<tr><td class="tk">TLS.AX</td><td>Telstra</td><td class="sec">Communication Services</td><td class="n" style="color:#6b7480">-1.18%</td><td class="n">-6.78%</td><td class="n muted">11</td><td class="q" style="color:#6b7480">Confirmed</td></tr>
+<tr><td class="tk">PG</td><td>Procter &amp; Gamble</td><td class="sec">Consumer Defensive</td><td class="n" style="color:#c98a6a">-1.16%</td><td class="n">+1.26%</td><td class="n muted">22</td><td class="q" style="color:#c98a6a">Unearned</td></tr>
+<tr><td class="tk">BRK-B</td><td>Berkshire Hathaway</td><td class="sec">Financial Services</td><td class="n" style="color:#c98a6a">-0.82%</td><td class="n">+9.21%</td><td class="n muted">3</td><td class="q" style="color:#c98a6a">Unearned</td></tr>
+<tr><td class="tk">REA.AX</td><td>REA Group</td><td class="sec">Communication Services</td><td class="n" style="color:#6b7480">-0.76%</td><td class="n">-2.08%</td><td class="n muted">14</td><td class="q" style="color:#6b7480">Confirmed</td></tr>
+<tr><td class="tk">ANZ.AX</td><td>ANZ Group</td><td class="sec">Financial Services</td><td class="n" style="color:#c98a6a">-0.42%</td><td class="n">+5.84%</td><td class="n muted">12</td><td class="q" style="color:#c98a6a">Unearned</td></tr>
+<tr><td class="tk">AAPL</td><td>Apple</td><td class="sec">Technology</td><td class="n" style="color:#c98a6a">-0.31%</td><td class="n">+8.30%</td><td class="n muted">41</td><td class="q" style="color:#c98a6a">Unearned</td></tr>
+<tr><td class="tk">COL.AX</td><td>Coles Group</td><td class="sec">Consumer Defensive</td><td class="n" style="color:#c98a6a">-0.17%</td><td class="n">+11.79%</td><td class="n muted">15</td><td class="q" style="color:#c98a6a">Unearned</td></tr>
+<tr><td class="tk">WMT</td><td>Walmart</td><td class="sec">Consumer Defensive</td><td class="n" style="color:#6b7480">-0.03%</td><td class="n">-13.55%</td><td class="n muted">39</td><td class="q" style="color:#6b7480">Confirmed</td></tr>
+<tr><td class="tk">JNJ</td><td>Johnson &amp; Johnson</td><td class="sec">Healthcare</td><td class="n" style="color:#7fae8f">+0.58%</td><td class="n">+16.43%</td><td class="n muted">22</td><td class="q" style="color:#7fae8f">Earned</td></tr>
+<tr><td class="tk">QBE.AX</td><td>QBE Insurance</td><td class="sec">Financial Services</td><td class="n" style="color:#7fae8f">+0.74%</td><td class="n">+9.46%</td><td class="n muted">10</td><td class="q" style="color:#7fae8f">Earned</td></tr>
+<tr><td class="tk">WES.AX</td><td>Wesfarmers</td><td class="sec">Consumer Cyclical</td><td class="n" style="color:#7fae8f">+0.82%</td><td class="n">+26.23%</td><td class="n muted">14</td><td class="q" style="color:#7fae8f">Earned</td></tr>
+<tr><td class="tk">COST</td><td>Costco</td><td class="sec">Consumer Defensive</td><td class="n" style="color:#82a8ca">+0.83%</td><td class="n">-6.78%</td><td class="n muted">34</td><td class="q" style="color:#82a8ca">Overlooked</td></tr>
+<tr><td class="tk">V</td><td>Visa</td><td class="sec">Financial Services</td><td class="n" style="color:#7fae8f">+0.96%</td><td class="n">+14.95%</td><td class="n muted">40</td><td class="q" style="color:#7fae8f">Earned</td></tr>
+<tr><td class="tk">WOW.AX</td><td>Woolworths</td><td class="sec">Consumer Defensive</td><td class="n" style="color:#7fae8f">+1.27%</td><td class="n">+19.11%</td><td class="n muted">15</td><td class="q" style="color:#7fae8f">Earned</td></tr>
+<tr><td class="tk">ALL.AX</td><td>Aristocrat Leisure</td><td class="sec">Consumer Cyclical</td><td class="n" style="color:#7fae8f">+1.38%</td><td class="n">+43.21%</td><td class="n muted">16</td><td class="q" style="color:#7fae8f">Earned</td></tr>
+<tr><td class="tk">MQG.AX</td><td>Macquarie Group</td><td class="sec">Financial Services</td><td class="n" style="color:#7fae8f">+1.40%</td><td class="n">+13.65%</td><td class="n muted">8</td><td class="q" style="color:#7fae8f">Earned</td></tr>
+<tr><td class="tk">KO</td><td>Coca-Cola</td><td class="sec">Consumer Defensive</td><td class="n" style="color:#7fae8f">+1.48%</td><td class="n">+11.42%</td><td class="n muted">24</td><td class="q" style="color:#7fae8f">Earned</td></tr>
+<tr><td class="tk">TCL.AX</td><td>Transurban</td><td class="sec">Industrials</td><td class="n" style="color:#7fae8f">+2.39%</td><td class="n">+4.10%</td><td class="n muted">6</td><td class="q" style="color:#7fae8f">Earned</td></tr>
+<tr><td class="tk">RIO.AX</td><td>Rio Tinto</td><td class="sec">Basic Materials</td><td class="n" style="color:#82a8ca">+2.91%</td><td class="n">-1.56%</td><td class="n muted">13</td><td class="q" style="color:#82a8ca">Overlooked</td></tr>
+<tr><td class="tk">GOOGL</td><td>Alphabet</td><td class="sec">Communication Services</td><td class="n" style="color:#82a8ca">+3.02%</td><td class="n">-8.88%</td><td class="n muted">55</td><td class="q" style="color:#82a8ca">Overlooked</td></tr>
+<tr><td class="tk">MSFT</td><td>Microsoft</td><td class="sec">Technology</td><td class="n" style="color:#7fae8f">+4.35%</td><td class="n">+16.10%</td><td class="n muted">33</td><td class="q" style="color:#7fae8f">Earned</td></tr>
+<tr><td class="tk">XOM</td><td>Exxon Mobil</td><td class="sec">Energy</td><td class="n" style="color:#7fae8f">+4.71%</td><td class="n">+4.15%</td><td class="n muted">23</td><td class="q" style="color:#7fae8f">Earned</td></tr>
+<tr><td class="tk">JPM</td><td>JPMorgan Chase</td><td class="sec">Financial Services</td><td class="n" style="color:#7fae8f">+5.22%</td><td class="n">+17.82%</td><td class="n muted">12</td><td class="q" style="color:#7fae8f">Earned</td></tr>
+<tr><td class="tk">AMZN</td><td>Amazon</td><td class="sec">Consumer Cyclical</td><td class="n" style="color:#7fae8f">+5.53%</td><td class="n">+0.55%</td><td class="n muted">54</td><td class="q" style="color:#7fae8f">Earned</td></tr>
+<tr><td class="tk">CVX</td><td>Chevron</td><td class="sec">Energy</td><td class="n" style="color:#7fae8f">+7.74%</td><td class="n">+3.08%</td><td class="n muted">24</td><td class="q" style="color:#7fae8f">Earned</td></tr>
+<tr><td class="tk">UNH</td><td>UnitedHealth</td><td class="sec">Healthcare</td><td class="n" style="color:#7fae8f">+8.10%</td><td class="n">+12.27%</td><td class="n muted">27</td><td class="q" style="color:#7fae8f">Earned</td></tr>
+<tr><td class="tk">NVDA</td><td>NVIDIA</td><td class="sec">Technology</td><td class="n" style="color:#7fae8f">+14.80%</td><td class="n">+3.77%</td><td class="n muted">50</td><td class="q" style="color:#7fae8f">Earned</td></tr>
     </tbody>
   </table>
+  <p id="empty">Nothing matches those filters.</p>
 
-  <h2>How this is built</h2>
-  <p>For each name the FY2 (next full year) consensus EPS is taken as it stands today and
-  as it stood 90 days ago, and the change between the two is the revision. That is the
-  number on the vertical axis. The horizontal axis is the share price change over the same
-  90 days. Both come from Yahoo Finance, which publishes the estimate at several points in
-  the past - so this reads the revision path directly rather than reconstructing it
-  from stored history.</p>
-  <p>A revision is divided by the <em>absolute</em> prior estimate, so a loss-making name
-  moving from -1.00 to -0.50 registers as an upgrade rather than a downgrade.
-  Where Yahoo has no prior estimate it returns <code>0.0</code> rather than an empty value;
-  those names are dropped rather than plotted as an infinite revision. Dropped this run: CBA.AX, GMG.AX - 2 of 40 tracked.</p>
-  <p>Estimates are opinions with a poor forecasting record, and a revision says only that
-  analysts changed their minds - not that they were right. Nothing here is a view,
-  a recommendation, or advice.</p>
+  <h2>How It Works</h2>
+  <p>Analysts publish an earnings forecast for each company and quietly revise it as the
+  year goes on. This compares where that forecast sits now against where it sat three
+  months ago, and puts it beside what the share price did over the same stretch.</p>
+  <p>Both numbers come from Yahoo Finance. A name is left out when Yahoo has no comparable figure from three months back, which this week means CBA.AX, GMG.AX.</p>
 
   <p class="foot">Built by <a href="https://charlietrenorden.com/">Charlie Trenorden</a>.
-  Data from Yahoo Finance, refreshed weekly. General information only, not advice, and not
-  affiliated with Yahoo.</p>
+  Refreshed weekly. Not advice.</p>
 </div>
+
+<script id="rows" type="application/json">[{"ticker":"STO.AX","name":"Santos","market":"ASX","sector":"Energy","band":"Under $50bn","rev":-16.49,"price":0.33,"quadrant":"unearned"},{"ticker":"CSL.AX","name":"CSL","market":"ASX","sector":"Healthcare","band":"$50bn to $250bn","rev":-13.78,"price":9.33,"quadrant":"unearned"},{"ticker":"WDS.AX","name":"Woodside Energy","market":"ASX","sector":"Energy","band":"$50bn to $250bn","rev":-10.99,"price":5.31,"quadrant":"unearned"},{"ticker":"FMG.AX","name":"Fortescue","market":"ASX","sector":"Basic Materials","band":"$50bn to $250bn","rev":-4.53,"price":-13.14,"quadrant":"confirmed"},{"ticker":"META","name":"Meta Platforms","market":"US","sector":"Communication Services","band":"Over $250bn","rev":-1.96,"price":-4.46,"quadrant":"confirmed"},{"ticker":"PEP","name":"PepsiCo","market":"US","sector":"Consumer Defensive","band":"$50bn to $250bn","rev":-1.91,"price":-10.27,"quadrant":"confirmed"},{"ticker":"NAB.AX","name":"National Australia Bank","market":"ASX","sector":"Financial Services","band":"$50bn to $250bn","rev":-1.73,"price":11.29,"quadrant":"unearned"},{"ticker":"MCD","name":"McDonald's","market":"US","sector":"Consumer Cyclical","band":"$50bn to $250bn","rev":-1.68,"price":-2.76,"quadrant":"confirmed"},{"ticker":"WBC.AX","name":"Westpac","market":"ASX","sector":"Financial Services","band":"$50bn to $250bn","rev":-1.61,"price":2.8,"quadrant":"unearned"},{"ticker":"BHP.AX","name":"BHP Group","market":"ASX","sector":"Basic Materials","band":"Over $250bn","rev":-1.54,"price":8.2,"quadrant":"unearned"},{"ticker":"HD","name":"Home Depot","market":"US","sector":"Consumer Cyclical","band":"Over $250bn","rev":-1.25,"price":10.27,"quadrant":"unearned"},{"ticker":"TLS.AX","name":"Telstra","market":"ASX","sector":"Communication Services","band":"$50bn to $250bn","rev":-1.18,"price":-6.78,"quadrant":"confirmed"},{"ticker":"PG","name":"Procter & Gamble","market":"US","sector":"Consumer Defensive","band":"Over $250bn","rev":-1.16,"price":1.26,"quadrant":"unearned"},{"ticker":"BRK-B","name":"Berkshire Hathaway","market":"US","sector":"Financial Services","band":"Over $250bn","rev":-0.82,"price":9.21,"quadrant":"unearned"},{"ticker":"REA.AX","name":"REA Group","market":"ASX","sector":"Communication Services","band":"Under $50bn","rev":-0.76,"price":-2.08,"quadrant":"confirmed"},{"ticker":"ANZ.AX","name":"ANZ Group","market":"ASX","sector":"Financial Services","band":"$50bn to $250bn","rev":-0.42,"price":5.84,"quadrant":"unearned"},{"ticker":"AAPL","name":"Apple","market":"US","sector":"Technology","band":"Over $250bn","rev":-0.31,"price":8.3,"quadrant":"unearned"},{"ticker":"COL.AX","name":"Coles Group","market":"ASX","sector":"Consumer Defensive","band":"Under $50bn","rev":-0.17,"price":11.79,"quadrant":"unearned"},{"ticker":"WMT","name":"Walmart","market":"US","sector":"Consumer Defensive","band":"Over $250bn","rev":-0.03,"price":-13.55,"quadrant":"confirmed"},{"ticker":"JNJ","name":"Johnson & Johnson","market":"US","sector":"Healthcare","band":"Over $250bn","rev":0.58,"price":16.43,"quadrant":"earned"},{"ticker":"QBE.AX","name":"QBE Insurance","market":"ASX","sector":"Financial Services","band":"Under $50bn","rev":0.74,"price":9.46,"quadrant":"earned"},{"ticker":"WES.AX","name":"Wesfarmers","market":"ASX","sector":"Consumer Cyclical","band":"$50bn to $250bn","rev":0.82,"price":26.23,"quadrant":"earned"},{"ticker":"COST","name":"Costco","market":"US","sector":"Consumer Defensive","band":"Over $250bn","rev":0.83,"price":-6.78,"quadrant":"overlooked"},{"ticker":"V","name":"Visa","market":"US","sector":"Financial Services","band":"Over $250bn","rev":0.96,"price":14.95,"quadrant":"earned"},{"ticker":"WOW.AX","name":"Woolworths","market":"ASX","sector":"Consumer Defensive","band":"Under $50bn","rev":1.27,"price":19.11,"quadrant":"earned"},{"ticker":"ALL.AX","name":"Aristocrat Leisure","market":"ASX","sector":"Consumer Cyclical","band":"Under $50bn","rev":1.38,"price":43.21,"quadrant":"earned"},{"ticker":"MQG.AX","name":"Macquarie Group","market":"ASX","sector":"Financial Services","band":"$50bn to $250bn","rev":1.4,"price":13.65,"quadrant":"earned"},{"ticker":"KO","name":"Coca-Cola","market":"US","sector":"Consumer Defensive","band":"Over $250bn","rev":1.48,"price":11.42,"quadrant":"earned"},{"ticker":"TCL.AX","name":"Transurban","market":"ASX","sector":"Industrials","band":"Under $50bn","rev":2.39,"price":4.1,"quadrant":"earned"},{"ticker":"RIO.AX","name":"Rio Tinto","market":"ASX","sector":"Basic Materials","band":"Over $250bn","rev":2.91,"price":-1.56,"quadrant":"overlooked"},{"ticker":"GOOGL","name":"Alphabet","market":"US","sector":"Communication Services","band":"Over $250bn","rev":3.02,"price":-8.88,"quadrant":"overlooked"},{"ticker":"MSFT","name":"Microsoft","market":"US","sector":"Technology","band":"Over $250bn","rev":4.35,"price":16.1,"quadrant":"earned"},{"ticker":"XOM","name":"Exxon Mobil","market":"US","sector":"Energy","band":"Over $250bn","rev":4.71,"price":4.15,"quadrant":"earned"},{"ticker":"JPM","name":"JPMorgan Chase","market":"US","sector":"Financial Services","band":"Over $250bn","rev":5.22,"price":17.82,"quadrant":"earned"},{"ticker":"AMZN","name":"Amazon","market":"US","sector":"Consumer Cyclical","band":"Over $250bn","rev":5.53,"price":0.55,"quadrant":"earned"},{"ticker":"CVX","name":"Chevron","market":"US","sector":"Energy","band":"Over $250bn","rev":7.74,"price":3.08,"quadrant":"earned"},{"ticker":"UNH","name":"UnitedHealth","market":"US","sector":"Healthcare","band":"Over $250bn","rev":8.1,"price":12.27,"quadrant":"earned"},{"ticker":"NVDA","name":"NVIDIA","market":"US","sector":"Technology","band":"Over $250bn","rev":14.8,"price":3.77,"quadrant":"earned"}]</script>
+<script>
+(function () {
+  var DATA = JSON.parse(document.getElementById("rows").textContent);
+  var COL = {"unearned": "#c98a6a", "earned": "#7fae8f", "overlooked": "#82a8ca", "confirmed": "#6b7480"};
+  var LABEL = {"unearned": "Unearned", "earned": "Earned", "overlooked": "Overlooked", "confirmed": "Confirmed"};
+  var NS = "http://www.w3.org/2000/svg";
+  var W = 940, H = 600, PAD = {l: 74, r: 26, t: 30, b: 62};
+
+  var chart = document.getElementById("chart");
+  var tip = document.getElementById("tip");
+  var els = {
+    market: document.getElementById("f-market"),
+    sector: document.getElementById("f-sector"),
+    band:   document.getElementById("f-band"),
+    text:   document.getElementById("f-text")
+  };
+
+  /* every node is built with createElementNS / textContent - nothing is ever parsed
+     as markup, so a company name from Yahoo cannot become an element */
+  function svgEl(tag, attrs, text) {
+    var e = document.createElementNS(NS, tag), k;
+    for (k in attrs) if (Object.prototype.hasOwnProperty.call(attrs, k)) e.setAttribute(k, attrs[k]);
+    if (text != null) e.textContent = text;
+    return e;
+  }
+
+  function bound(vals) {
+    var m = 0, i;
+    for (i = 0; i < vals.length; i++) m = Math.max(m, Math.abs(vals[i]));
+    m = Math.max(m * 1.12, 5);
+    var steps = [5, 10, 15, 20, 25, 30, 40, 50, 60, 75, 100];
+    for (i = 0; i < steps.length; i++) if (m <= steps[i]) return steps[i];
+    return Math.ceil(m / 25) * 25;
+  }
+
+  function sign(v) { return (v > 0 ? "+" : "") + v.toFixed(1) + "%"; }
+
+  function matches(r) {
+    if (els.market.value && r.market !== els.market.value) return false;
+    if (els.sector.value && r.sector !== els.sector.value) return false;
+    if (els.band.value && r.band !== els.band.value) return false;
+    var q = els.text.value.trim().toLowerCase();
+    if (q && (r.ticker + " " + r.name + " " + r.sector).toLowerCase().indexOf(q) < 0) return false;
+    return true;
+  }
+
+  function clear(node) { while (node.firstChild) node.removeChild(node.firstChild); }
+
+  function draw(rows) {
+    clear(chart);
+    if (!rows.length) return;
+
+    var xb = bound(rows.map(function (r) { return r.price; }));
+    var yb = bound(rows.map(function (r) { return r.rev; }));
+    var x0 = PAD.l, x1 = W - PAD.r, y0 = PAD.t, y1 = H - PAD.b;
+    var cx = x0 + (x1 - x0) / 2, cy = y0 + (y1 - y0) / 2;
+    var px = function (v) { return x0 + (v + xb) / (2 * xb) * (x1 - x0); };
+    var py = function (v) { return y1 - (v + yb) / (2 * yb) * (y1 - y0); };
+
+    var svg = svgEl("svg", {
+      viewBox: "0 0 " + W + " " + H, role: "img",
+      "aria-label": "Earnings estimate change against share price change"
+    });
+
+    [[cx, y0, x1 - cx, cy - y0, "#7fae8f", 0.05],
+     [cx, cy, x1 - cx, y1 - cy, "#c98a6a", 0.09],
+     [x0, y0, cx - x0, cy - y0, "#82a8ca", 0.09]].forEach(function (q) {
+      svg.appendChild(svgEl("rect", {x: q[0], y: q[1], width: q[2], height: q[3],
+                                     fill: q[4], opacity: q[5]}));
+    });
+
+    [-0.5, 0.5].forEach(function (f) {
+      svg.appendChild(svgEl("line", {x1: px(xb * f), y1: y0, x2: px(xb * f), y2: y1, stroke: "#262d38"}));
+      svg.appendChild(svgEl("line", {x1: x0, y1: py(yb * f), x2: x1, y2: py(yb * f), stroke: "#262d38"}));
+    });
+    svg.appendChild(svgEl("line", {x1: cx, y1: y0, x2: cx, y2: y1, stroke: "#5d6675", "stroke-width": 1.4}));
+    svg.appendChild(svgEl("line", {x1: x0, y1: cy, x2: x1, y2: cy, stroke: "#5d6675", "stroke-width": 1.4}));
+
+    var LAB = {"font-family": "ui-sans-serif,system-ui,sans-serif", "font-size": 12.5,
+               "letter-spacing": "0.11em"};
+    function corner(x, y, anchor, fill, text) {
+      var a = {}, k;
+      for (k in LAB) a[k] = LAB[k];
+      a.x = x; a.y = y; a["text-anchor"] = anchor; a.fill = fill;
+      svg.appendChild(svgEl("text", a, text));
+    }
+    corner(x1 - 10, y0 + 20, "end", "#7fae8f", "EARNED");
+    corner(x1 - 10, y1 - 10, "end", "#c98a6a", "UNEARNED");
+    corner(x0 + 10, y0 + 20, "start", "#82a8ca", "OVERLOOKED");
+    corner(x0 + 10, y1 - 10, "start", "#6b7480", "CONFIRMED");
+
+    var TICK = {"font-family": "ui-monospace,Consolas,monospace", "font-size": 11, fill: "#5d6675"};
+    [-1, -0.5, 0.5, 1].forEach(function (f) {
+      var v = xb * f, a = {}, k;
+      for (k in TICK) a[k] = TICK[k];
+      svg.appendChild(svgEl("text", Object.assign({}, a, {x: px(v), y: y1 + 18, "text-anchor": "middle"}),
+                            (v > 0 ? "+" : "") + v.toFixed(0) + "%"));
+      v = yb * f;
+      svg.appendChild(svgEl("text", Object.assign({}, a, {x: x0 - 10, y: py(v) + 4, "text-anchor": "end"}),
+                            (v > 0 ? "+" : "") + v.toFixed(0) + "%"));
+    });
+
+    var AT = {"font-family": "ui-sans-serif,system-ui,sans-serif", "font-size": 12.5, fill: "#8a94a3"};
+    svg.appendChild(svgEl("text", Object.assign({}, AT, {x: cx, y: H - 16, "text-anchor": "middle"}),
+                          "Share price change, 90 days"));
+    svg.appendChild(svgEl("text", Object.assign({}, AT, {
+      transform: "translate(20," + cy + ") rotate(-90)", "text-anchor": "middle"}),
+      "Earnings estimate change, 90 days"));
+
+    rows.forEach(function (r) {
+      var c = svgEl("circle", {"class": "pt", cx: px(r.price).toFixed(1), cy: py(r.rev).toFixed(1),
+                               r: 5.5, fill: COL[r.quadrant], "fill-opacity": 0.85,
+                               stroke: "#0f1319", "stroke-width": 1});
+      c.addEventListener("mouseenter", function () {
+        c.setAttribute("r", 8);
+        showTip(r, svg, px(r.price), py(r.rev));
+      });
+      c.addEventListener("mouseleave", function () {
+        c.setAttribute("r", 5.5);
+        tip.style.opacity = 0;
+      });
+      svg.appendChild(c);
+    });
+
+    chart.appendChild(svg);
+  }
+
+  function showTip(r, svg, sx, sy) {
+    clear(tip);
+    var head = document.createElement("b");
+    head.textContent = r.name;
+    tip.appendChild(head);
+    tip.appendChild(document.createTextNode(" " + r.ticker));
+
+    var l1 = document.createElement("span");
+    l1.className = "t-sub";
+    l1.textContent = "Estimates " + sign(r.rev) + "  ·  Price " + sign(r.price);
+    tip.appendChild(l1);
+
+    var l2 = document.createElement("span");
+    l2.className = "t-sub";
+    l2.textContent = LABEL[r.quadrant] + "  ·  " + r.sector;
+    tip.appendChild(l2);
+
+    var box = svg.getBoundingClientRect();
+    var fb = chart.parentNode.getBoundingClientRect();
+    var scale = box.width / W;
+    tip.style.opacity = 1;
+    var left = box.left - fb.left + sx * scale + 14;
+    var top = box.top - fb.top + sy * scale - 12;
+    if (left + tip.offsetWidth > fb.width - 8) left -= tip.offsetWidth + 28;
+    tip.style.left = Math.max(6, left) + "px";
+    tip.style.top = Math.max(6, top) + "px";
+  }
+
+  function apply() {
+    var shown = DATA.filter(matches);
+    draw(shown);
+    var keep = {};
+    shown.forEach(function (r) { keep[r.ticker] = 1; });
+    Array.prototype.forEach.call(document.querySelectorAll("#tbody tr"), function (tr) {
+      tr.classList.toggle("hide", !keep[tr.querySelector(".tk").textContent]);
+    });
+    document.getElementById("count").textContent =
+      shown.length === DATA.length
+        ? "All " + DATA.length + " names, biggest downgrades first."
+        : shown.length + " of " + DATA.length + " names.";
+    document.getElementById("empty").style.display = shown.length ? "none" : "block";
+  }
+
+  Object.keys(els).forEach(function (k) {
+    els[k].addEventListener(els[k].tagName === "SELECT" ? "change" : "input", apply);
+  });
+  document.getElementById("reset").addEventListener("click", function () {
+    els.market.value = ""; els.sector.value = ""; els.band.value = ""; els.text.value = "";
+    apply();
+  });
+  apply();
+})();
+</script>
 </body>
 </html>

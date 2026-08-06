@@ -95,6 +95,16 @@ def fetch_one(entry):
         row["dropped"] = "zero prior price"
         return row
 
+    # sector / industry / market cap drive the on-page filters
+    sector = industry = None
+    mcap = None
+    try:
+        info = t.info or {}
+        sector, industry = info.get("sector"), info.get("industry")
+        mcap = info.get("marketCap")
+    except Exception:
+        pass
+
     est = t.earnings_estimate
     analysts = None
     try:
@@ -111,6 +121,9 @@ def fetch_one(entry):
         "price_prior": round(then, 2),
         "price_chg_pct": round((last - then) / then * 100.0, 2),
         "analysts": int(analysts) if analysts else None,
+        "sector": sector or "Unclassified",
+        "industry": industry or "Unclassified",
+        "mcap_bn": round(mcap / 1e9, 1) if mcap else None,
     })
     row["quadrant"] = quadrant(row["price_chg_pct"], row["revision_pct"])
     return row

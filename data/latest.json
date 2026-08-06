@@ -1,5 +1,5 @@
 {
- "generated_utc": "2026-08-06T04:41:57Z",
+ "generated_utc": "2026-08-06T05:04:09Z",
  "window_days": 90,
  "source": "Yahoo Finance via yfinance",
  "names": [
@@ -12,8 +12,11 @@
    "revision_pct": -16.49,
    "price_now": 7.55,
    "price_prior": 7.52,
-   "price_chg_pct": 0.47,
+   "price_chg_pct": 0.33,
    "analysts": 10,
+   "sector": "Energy",
+   "industry": "Oil & Gas E&P",
+   "mcap_bn": 24.5,
    "quadrant": "unearned"
   },
   {
@@ -23,10 +26,13 @@
    "eps_now": 6.3578,
    "eps_prior": 7.3737,
    "revision_pct": -13.78,
-   "price_now": 131.15,
+   "price_now": 131.07,
    "price_prior": 119.88,
-   "price_chg_pct": 9.41,
+   "price_chg_pct": 9.33,
    "analysts": 16,
+   "sector": "Healthcare",
+   "industry": "Biotechnology",
+   "mcap_bn": 62.8,
    "quadrant": "unearned"
   },
   {
@@ -36,10 +42,13 @@
    "eps_now": 1.6709,
    "eps_prior": 1.8772,
    "revision_pct": -10.99,
-   "price_now": 31.67,
+   "price_now": 31.65,
    "price_prior": 30.05,
-   "price_chg_pct": 5.37,
+   "price_chg_pct": 5.31,
    "analysts": 8,
+   "sector": "Energy",
+   "industry": "Oil & Gas E&P",
+   "mcap_bn": 60.2,
    "quadrant": "unearned"
   },
   {
@@ -49,10 +58,13 @@
    "eps_now": 0.8785,
    "eps_prior": 0.9202,
    "revision_pct": -4.53,
-   "price_now": 18.49,
+   "price_now": 18.48,
    "price_prior": 21.27,
-   "price_chg_pct": -13.07,
+   "price_chg_pct": -13.14,
    "analysts": 15,
+   "sector": "Basic Materials",
+   "industry": "Other Industrial Metals & Mining",
+   "mcap_bn": 56.9,
    "quadrant": "confirmed"
   },
   {
@@ -66,6 +78,9 @@
    "price_prior": 616.24,
    "price_chg_pct": -4.46,
    "analysts": 53,
+   "sector": "Communication Services",
+   "industry": "Internet Content & Information",
+   "mcap_bn": 1499.9,
    "quadrant": "confirmed"
   },
   {
@@ -79,6 +94,9 @@
    "price_prior": 154.66,
    "price_chg_pct": -10.27,
    "analysts": 23,
+   "sector": "Consumer Defensive",
+   "industry": "Beverages - Non-Alcoholic",
+   "mcap_bn": 189.6,
    "quadrant": "confirmed"
   },
   {
@@ -88,10 +106,13 @@
    "eps_now": 2.4516,
    "eps_prior": 2.4948,
    "revision_pct": -1.73,
-   "price_now": 42.7,
+   "price_now": 42.69,
    "price_prior": 38.36,
-   "price_chg_pct": 11.31,
+   "price_chg_pct": 11.29,
    "analysts": 8,
+   "sector": "Financial Services",
+   "industry": "Banks - Diversified",
+   "mcap_bn": 130.7,
    "quadrant": "unearned"
   },
   {
@@ -105,6 +126,9 @@
    "price_prior": 281.79,
    "price_chg_pct": -2.76,
    "analysts": 33,
+   "sector": "Consumer Cyclical",
+   "industry": "Restaurants",
+   "mcap_bn": 194.7,
    "quadrant": "confirmed"
   },
   {
@@ -114,10 +138,13 @@
    "eps_now": 2.1755,
    "eps_prior": 2.211,
    "revision_pct": -1.61,
-   "price_now": 38.53,
+   "price_now": 38.49,
    "price_prior": 37.44,
-   "price_chg_pct": 2.91,
+   "price_chg_pct": 2.8,
    "analysts": 10,
+   "sector": "Financial Services",
+   "industry": "Banks - Diversified",
+   "mcap_bn": 131.4,
    "quadrant": "unearned"
   },
   {
@@ -127,10 +154,13 @@
    "eps_now": 2.5439,
    "eps_prior": 2.5838,
    "revision_pct": -1.54,
-   "price_now": 62.69,
+   "price_now": 62.7,
    "price_prior": 57.95,
-   "price_chg_pct": 8.18,
+   "price_chg_pct": 8.2,
    "analysts": 17,
+   "sector": "Basic Materials",
+   "industry": "Other Industrial Metals & Mining",
+   "mcap_bn": 318.6,
    "quadrant": "unearned"
   },
   {
@@ -144,6 +174,9 @@
    "price_prior": 320.24,
    "price_chg_pct": 10.27,
    "analysts": 34,
+   "sector": "Consumer Cyclical",
+   "industry": "Home Improvement Retail",
+   "mcap_bn": 352.1,
    "quadrant": "unearned"
   },
   {
@@ -155,8 +188,11 @@
    "revision_pct": -1.18,
    "price_now": 4.95,
    "price_prior": 5.31,
-   "price_chg_pct": -6.69,
+   "price_chg_pct": -6.78,
    "analysts": 11,
+   "sector": "Communication Services",
+   "industry": "Telecom Services",
+   "mcap_bn": 55.1,
    "quadrant": "confirmed"
   },
   {
@@ -170,6 +206,9 @@
    "price_prior": 144.98,
    "price_chg_pct": 1.26,
    "analysts": 22,
+   "sector": "Consumer Defensive",
+   "industry": "Household & Personal Products",
+   "mcap_bn": 341.2,
    "quadrant": "unearned"
   },
   {
@@ -183,6 +222,9 @@
    "price_prior": 475.08,
    "price_chg_pct": 9.21,
    "analysts": 3,
+   "sector": "Financial Services",
+   "industry": "Insurance - Diversified",
+   "mcap_bn": 1119.1,
    "quadrant": "unearned"
   },
   {
@@ -192,10 +234,13 @@
    "eps_now": 5.5063,
    "eps_prior": 5.5487,
    "revision_pct": -0.76,
-   "price_now": 171.63,
+   "price_now": 173.21,
    "price_prior": 176.89,
-   "price_chg_pct": -2.97,
+   "price_chg_pct": -2.08,
    "analysts": 14,
+   "sector": "Communication Services",
+   "industry": "Internet Content & Information",
+   "mcap_bn": 22.6,
    "quadrant": "confirmed"
   },
   {
@@ -205,10 +250,13 @@
    "eps_now": 2.5349,
    "eps_prior": 2.5455,
    "revision_pct": -0.42,
-   "price_now": 38.09,
+   "price_now": 38.06,
    "price_prior": 35.96,
-   "price_chg_pct": 5.92,
+   "price_chg_pct": 5.84,
    "analysts": 12,
+   "sector": "Financial Services",
+   "industry": "Banks - Diversified",
+   "mcap_bn": 114.6,
    "quadrant": "unearned"
   },
   {
@@ -222,6 +270,9 @@
    "price_prior": 287.18,
    "price_chg_pct": 8.3,
    "analysts": 41,
+   "sector": "Technology",
+   "industry": "Consumer Electronics",
+   "mcap_bn": 4538.8,
    "quadrant": "unearned"
   },
   {
@@ -231,10 +282,13 @@
    "eps_now": 1.0067,
    "eps_prior": 1.0084,
    "revision_pct": -0.17,
-   "price_now": 24.19,
+   "price_now": 24.18,
    "price_prior": 21.63,
-   "price_chg_pct": 11.84,
+   "price_chg_pct": 11.79,
    "analysts": 15,
+   "sector": "Consumer Defensive",
+   "industry": "Grocery Stores",
+   "mcap_bn": 32.5,
    "quadrant": "unearned"
   },
   {
@@ -248,6 +302,9 @@
    "price_prior": 129.95,
    "price_chg_pct": -13.55,
    "analysts": 39,
+   "sector": "Consumer Defensive",
+   "industry": "Discount Stores",
+   "mcap_bn": 894.0,
    "quadrant": "confirmed"
   },
   {
@@ -261,6 +318,9 @@
    "price_prior": 221.24,
    "price_chg_pct": 16.43,
    "analysts": 22,
+   "sector": "Healthcare",
+   "industry": "Drug Manufacturers - General",
+   "mcap_bn": 620.8,
    "quadrant": "earned"
   },
   {
@@ -270,10 +330,13 @@
    "eps_now": 1.9839,
    "eps_prior": 1.9693,
    "revision_pct": 0.74,
-   "price_now": 24.42,
+   "price_now": 24.41,
    "price_prior": 22.3,
-   "price_chg_pct": 9.48,
+   "price_chg_pct": 9.46,
    "analysts": 10,
+   "sector": "Financial Services",
+   "industry": "Insurance - Property & Casualty",
+   "mcap_bn": 36.5,
    "quadrant": "earned"
   },
   {
@@ -283,10 +346,13 @@
    "eps_now": 2.7777,
    "eps_prior": 2.755,
    "revision_pct": 0.82,
-   "price_now": 91.19,
+   "price_now": 91.2,
    "price_prior": 72.25,
-   "price_chg_pct": 26.21,
+   "price_chg_pct": 26.23,
    "analysts": 14,
+   "sector": "Consumer Cyclical",
+   "industry": "Home Improvement Retail",
+   "mcap_bn": 103.5,
    "quadrant": "earned"
   },
   {
@@ -300,6 +366,9 @@
    "price_prior": 1010.45,
    "price_chg_pct": -6.78,
    "analysts": 34,
+   "sector": "Consumer Defensive",
+   "industry": "Discount Stores",
+   "mcap_bn": 417.8,
    "quadrant": "overlooked"
   },
   {
@@ -313,6 +382,9 @@
    "price_prior": 320.62,
    "price_chg_pct": 14.95,
    "analysts": 40,
+   "sector": "Financial Services",
+   "industry": "Credit Services",
+   "mcap_bn": 688.1,
    "quadrant": "earned"
   },
   {
@@ -322,10 +394,13 @@
    "eps_now": 1.4249,
    "eps_prior": 1.4071,
    "revision_pct": 1.27,
-   "price_now": 40.06,
+   "price_now": 40.02,
    "price_prior": 33.6,
-   "price_chg_pct": 19.24,
+   "price_chg_pct": 19.11,
    "analysts": 15,
+   "sector": "Consumer Defensive",
+   "industry": "Grocery Stores",
+   "mcap_bn": 48.9,
    "quadrant": "earned"
   },
   {
@@ -335,10 +410,13 @@
    "eps_now": 2.9044,
    "eps_prior": 2.8647,
    "revision_pct": 1.38,
-   "price_now": 66.38,
+   "price_now": 66.4,
    "price_prior": 46.37,
-   "price_chg_pct": 43.16,
+   "price_chg_pct": 43.21,
    "analysts": 16,
+   "sector": "Consumer Cyclical",
+   "industry": "Gambling",
+   "mcap_bn": 39.8,
    "quadrant": "earned"
   },
   {
@@ -348,10 +426,13 @@
    "eps_now": 13.095,
    "eps_prior": 12.9145,
    "revision_pct": 1.4,
-   "price_now": 267.21,
+   "price_now": 267.18,
    "price_prior": 235.09,
-   "price_chg_pct": 13.66,
+   "price_chg_pct": 13.65,
    "analysts": 8,
+   "sector": "Financial Services",
+   "industry": "Capital Markets",
+   "mcap_bn": 101.8,
    "quadrant": "earned"
   },
   {
@@ -365,6 +446,9 @@
    "price_prior": 77.93,
    "price_chg_pct": 11.42,
    "analysts": 24,
+   "sector": "Consumer Defensive",
+   "industry": "Beverages - Non-Alcoholic",
+   "mcap_bn": 373.6,
    "quadrant": "earned"
   },
   {
@@ -374,10 +458,13 @@
    "eps_now": 0.2375,
    "eps_prior": 0.2319,
    "revision_pct": 2.39,
-   "price_now": 14.68,
+   "price_now": 14.67,
    "price_prior": 14.09,
-   "price_chg_pct": 4.17,
+   "price_chg_pct": 4.1,
    "analysts": 6,
+   "sector": "Industrials",
+   "industry": "Infrastructure Operations",
+   "mcap_bn": 45.8,
    "quadrant": "earned"
   },
   {
@@ -387,10 +474,13 @@
    "eps_now": 8.7858,
    "eps_prior": 8.5378,
    "revision_pct": 2.91,
-   "price_now": 175.82,
+   "price_now": 175.93,
    "price_prior": 178.72,
-   "price_chg_pct": -1.62,
+   "price_chg_pct": -1.56,
    "analysts": 13,
+   "sector": "Basic Materials",
+   "industry": "Other Industrial Metals & Mining",
+   "mcap_bn": 285.9,
    "quadrant": "overlooked"
   },
   {
@@ -404,6 +494,9 @@
    "price_prior": 397.75,
    "price_chg_pct": -8.88,
    "analysts": 55,
+   "sector": "Communication Services",
+   "industry": "Internet Content & Information",
+   "mcap_bn": 4432.5,
    "quadrant": "overlooked"
   },
   {
@@ -417,6 +510,9 @@
    "price_prior": 419.86,
    "price_chg_pct": 16.1,
    "analysts": 33,
+   "sector": "Technology",
+   "industry": "Software - Infrastructure",
+   "mcap_bn": 3619.7,
    "quadrant": "earned"
   },
   {
@@ -430,6 +526,9 @@
    "price_prior": 145.59,
    "price_chg_pct": 4.15,
    "analysts": 23,
+   "sector": "Energy",
+   "industry": "Oil & Gas Integrated",
+   "mcap_bn": 628.5,
    "quadrant": "earned"
   },
   {
@@ -443,6 +542,9 @@
    "price_prior": 304.9,
    "price_chg_pct": 17.82,
    "analysts": 12,
+   "sector": "Financial Services",
+   "industry": "Banks - Diversified",
+   "mcap_bn": 954.9,
    "quadrant": "earned"
   },
   {
@@ -456,6 +558,9 @@
    "price_prior": 271.17,
    "price_chg_pct": 0.55,
    "analysts": 54,
+   "sector": "Consumer Cyclical",
+   "industry": "Internet Retail",
+   "mcap_bn": 2940.9,
    "quadrant": "earned"
   },
   {
@@ -469,6 +574,9 @@
    "price_prior": 180.84,
    "price_chg_pct": 3.08,
    "analysts": 24,
+   "sector": "Energy",
+   "industry": "Oil & Gas Integrated",
+   "mcap_bn": 371.3,
    "quadrant": "earned"
   },
   {
@@ -482,6 +590,9 @@
    "price_prior": 367.64,
    "price_chg_pct": 12.27,
    "analysts": 27,
+   "sector": "Healthcare",
+   "industry": "Healthcare Plans",
+   "mcap_bn": 374.8,
    "quadrant": "earned"
   },
   {
@@ -495,6 +606,9 @@
    "price_prior": 211.25,
    "price_chg_pct": 3.77,
    "analysts": 50,
+   "sector": "Technology",
+   "industry": "Semiconductors",
+   "mcap_bn": 5309.7,
    "quadrant": "earned"
   }
  ],
