@@ -109,10 +109,10 @@ TEMPLATE = """<!DOCTYPE html>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Consensus Drift</title>
-<meta name="description" content="The 90-day change in consensus earnings forecasts for __N__ companies across five markets, plotted and ranked against the share price move over the same period.">
+<meta name="description" content="The 90-day change in consensus earnings forecasts for __N__ companies across __NMKT__ markets, plotted and ranked against the share price move over the same period.">
 <link rel="canonical" href="https://charlietrenorden.com/consensus-drift/">
 <meta property="og:title" content="Consensus Drift">
-<meta property="og:description" content="The 90-day change in consensus earnings forecasts for companies across five markets, plotted and ranked against the share price move over the same period.">
+<meta property="og:description" content="The 90-day change in consensus earnings forecasts for companies across __NMKT__ markets, plotted and ranked against the share price move over the same period.">
 <meta property="og:image" content="https://charlietrenorden.com/assets/og-card.png">
 <meta property="og:image:width" content="2400">
 <meta property="og:image:height" content="1260">
@@ -171,7 +171,6 @@ TEMPLATE = """<!DOCTYPE html>
     .controls select,.controls input{width:100%;min-width:0}
     /* the fifth select leaves an empty cell beside it - put Reset there rather than
        stranding it alone on a row of its own */
-    .controls .reset{grid-column:2;justify-self:end;padding-right:.2rem}
     .controls #f-text{grid-column:1 / -1;order:1}
   }
   select,input[type=search]{font:500 13px/1 ui-sans-serif,system-ui,sans-serif;color:var(--ink);
@@ -181,6 +180,9 @@ TEMPLATE = """<!DOCTYPE html>
      making the sector box half as wide again as the rest and pushing the search
      field onto a second row of boxes. Cap it - native selects truncate cleanly. */
   .controls select{max-width:8.9rem}
+  /* the market labels are "Country (Exchange)" and run to ~30 characters, so this
+     one needs more room than the rest or the closed state truncates mid-word */
+  .controls #f-market{max-width:16rem}
   .controls #f-text{flex:1 1 8rem;min-width:8rem;max-width:14rem}
   /* Reset is dead chrome while nothing is filtered - only show it once it does
      something. Kept in the DOM (not display:none in JS) so the row doesn't jump. */
@@ -192,8 +194,12 @@ TEMPLATE = """<!DOCTYPE html>
     .controls #f-text{max-width:none;flex:none}
   }
   select:focus,input:focus{outline:2px solid var(--accent);outline-offset:1px}
+  /* lives on the meta line, not in the control row: at these label lengths
+     ("United States (NYSE & Nasdaq)") the five selects and the search field
+     already fill the row, and Reset was wrapping to a line of its own */
   .reset{background:none;border:0;color:var(--faint);cursor:pointer;
-         font:500 12.5px/1 ui-sans-serif,system-ui,sans-serif;padding:.6rem .2rem}
+         font:inherit;padding:0;margin-left:.9rem;text-decoration:underline;
+         text-underline-offset:3px}
   .reset:hover{color:var(--accent)}
 
   figure{margin:0;background:var(--raised);border:1px solid var(--rule);
@@ -278,6 +284,7 @@ TEMPLATE = """<!DOCTYPE html>
     <span><b>__N__</b> names</span>
     <span>90-day window</span>
     <span>updated <b>__DATE__</b></span>
+    <button class="reset" id="reset" type="button" hidden>Clear filters</button>
   </div>
 
   <div class="controls">
@@ -286,8 +293,7 @@ TEMPLATE = """<!DOCTYPE html>
     <select id="f-band" aria-label="Company size">__BANDS__</select>
     <select id="f-gap" aria-label="Gap">__GAPS__</select>
     <select id="f-cov" aria-label="Analyst coverage">__COVER__</select>
-    <input type="search" id="f-text" placeholder="Search name or ticker" aria-label="Search">
-    <button class="reset" id="reset" type="button" hidden>Reset</button>
+    <input type="search" id="f-text" placeholder="Name or ticker" aria-label="Search by name or ticker">
   </div>
 
   <figure>
@@ -773,6 +779,7 @@ def main():
             .replace("__HEADLINE__", "Where price and earnings estimates have moved apart.")
             .replace("__LEDE__", "The 90-day change in each company's consensus earnings "
                                  "forecast, plotted against its share price over the same period.")
+            .replace("__NMKT__", str(len(markets)))
             .replace("__N__", str(len(rows)))
             .replace("__DATE__", data["generated_utc"][:10])
             .replace("__MARKETS__", options(markets, "All markets"))
