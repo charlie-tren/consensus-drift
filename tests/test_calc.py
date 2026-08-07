@@ -9,7 +9,7 @@ import sys
 
 sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
-from build import band, nice_bound                # noqa: E402
+from build import band, country_of, nice_bound   # noqa: E402
 from fetch import gap_pp, revision_pct            # noqa: E402
 
 
@@ -114,3 +114,21 @@ class TestNiceBound:
 
     def test_large_values_still_bounded(self):
         assert nice_bound([180.0]) >= 180.0
+
+
+class TestCountryOf:
+    """The table cell shows the country; the full label rides in a title attribute
+    and is what the column filter matches, so both halves have to survive."""
+
+    def test_splits_on_the_bracket(self):
+        assert country_of("Australia (ASX)") == "Australia"
+
+    def test_keeps_multi_word_countries(self):
+        assert country_of("United States (NYSE & Nasdaq)") == "United States"
+        assert country_of("New Zealand (NZX)") == "New Zealand"
+
+    def test_bracketed_exchange_can_itself_contain_spaces(self):
+        assert country_of("Netherlands (Euronext Amsterdam)") == "Netherlands"
+
+    def test_label_without_a_bracket_passes_through(self):
+        assert country_of("Australia") == "Australia"
