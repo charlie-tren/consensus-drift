@@ -47,9 +47,9 @@ VIEWS = {
 }
 
 # implied upside bands for the second view - analysts see meaningful room, or none
-UPSIDE_BANDS = [(15.0, "behind", "Room to target"),
-                (0.0, "inline", "Close to target"),
-                (-1e9, "ahead", "Above target")]
+UPSIDE_BANDS = [(15.0, "behind", "Below Target"),
+                (0.0, "inline", "Near Target"),
+                (-1e9, "ahead", "Above Target")]
 
 BANDS = {
     "behind": ("#82a8ca", "Price Behind"),   # estimates outran the price
@@ -215,7 +215,6 @@ TEMPLATE = """<!DOCTYPE html>
   .sub{color:var(--faint);font:400 14px/1.5 ui-sans-serif,system-ui,sans-serif;margin:0 0 .4rem}
   p{max-width:70ch;color:var(--soft)}
   .method{font-size:14.5px;line-height:1.62;color:var(--soft);max-width:72ch}
-  .method.detail{font-size:13px;color:var(--faint);margin-top:1rem}
 
   table{width:100%;border-collapse:collapse;margin-top:1rem;
         font:400 14.5px/1.5 ui-sans-serif,system-ui,sans-serif}
@@ -305,9 +304,9 @@ TEMPLATE = """<!DOCTYPE html>
     <span><b style="color:#6b7480">In Line</b> &middot; Within __THRESH__ points</span>
   </div>
   <div class="key" id="key-target" hidden>
-    <span><b style="color:#82a8ca">Room to target</b> &middot; 15% or more upside</span>
-    <span><b style="color:#6b7480">Close to target</b> &middot; Between 0 and 15%</span>
-    <span><b style="color:#c98a6a">Above target</b> &middot; Trading past the mean target</span>
+    <span><b style="color:#82a8ca">Below Target</b> &middot; 15% or more below the mean target</span>
+    <span><b style="color:#6b7480">Near Target</b> &middot; Within 15% of it</span>
+    <span><b style="color:#c98a6a">Above Target</b> &middot; Trading past it</span>
   </div>
 
   <p class="sub" id="count" hidden></p>
@@ -358,7 +357,7 @@ __ROWS__
   between them is where they do not, and that is what this ranks on. It is a prompt to go
   and look at something, not a verdict on it - a revision only tells you analysts changed
   their minds, not that they were right.</p>
-  <p class="method detail">Estimates and prices from Yahoo Finance.__DROPNOTE__ Names whose
+  <p class="method">Estimates and prices from Yahoo Finance.__DROPNOTE__ Names whose
   moves run past the edge of the chart are drawn as hollow rings on the frame.</p>
 
   <p class="foot">Built by <a href="https://charlietrenorden.com/">Charlie Trenorden</a>.
@@ -535,7 +534,7 @@ __ROWS__
       tag(x0, y0 - 12, "start", "#82a8ca", "PRICE BEHIND");
       tag(x1, y1 + 34, "end", "#c98a6a", "PRICE AHEAD");
     } else {
-      tag(x0, y0 - 12, "start", "#82a8ca", "ROOM TO TARGET");
+      tag(x0, y0 - 12, "start", "#82a8ca", "BELOW TARGET");
       tag(x1, y1 + 34, "end", "#c98a6a", "ABOVE TARGET");
     }
 
