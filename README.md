@@ -27,37 +27,30 @@ situations. Classifying on the delta fixes it: NVIDIA reads Price Behind at +11p
 The 10pp threshold is roughly the median absolute gap across the universe, so In Line
 means the two moves genuinely tracked rather than merely pointed the same way.
 
-## Two views
+## Why there is only one view
 
-A toggle switches the vertical axis.
+A price-target view shipped on 07/08/2026 and was removed the same day, because it was
+measured and found to be mechanical. Implied upside is `(target - price) / price`, so
+with targets slow to move a rising price compresses upside by arithmetic:
 
-**Earnings estimates** (default) - 90-day change in consensus FY2 EPS against 90-day
-price change. Both are CHANGES, so distance from the 45 degree line is meaningful and
-the gap logic applies.
+| | correlation with 90-day price change |
+|---|---|
+| Implied upside | **-0.537** |
+| Estimate change | -0.090 |
 
-**Price target** - implied upside to the mean price target against the same 90-day price
-change. This one cannot use the gap: Yahoo publishes the target only as a CURRENT LEVEL,
-with no 90-day-ago value to difference against. So there is no diagonal, and colouring is
-on the level itself - 15%+ upside, within 15%, or trading above target. Different
-question: view one asks whether the price kept up with the forecasts, view two asks
-whether it has already run past where analysts see it going.
+Mean upside fell monotonically across all ten price-change deciles, +31.8% to +4.0%, with
+no reversals. That is an identity showing through, not a market signal - the view was
+largely re-plotting the horizontal axis against itself. The earnings view does not have
+the problem, which is exactly why its gap carries information.
 
-### Why there is no "change in upside" view yet
+What matters is whether the TARGET moved, not where the price sits against a possibly
+stale one. `fetch.py` still records `target_price` every week, so after ~13 runs from
+07/08/2026 `data/history.csv` supports a genuine 90-day target CHANGE for every name, on
+the same footing as the earnings view. That is when the second view comes back.
 
-The obvious upgrade is to plot the CHANGE in upside rather than its level. Two routes,
-one rejected:
-
-- **`Ticker.upgrades_downgrades`** carries every firm's old and new price target, so a
-  90-day mean target change can be reconstructed - VLO +15.4%, NVDA +10.9%, AAPL +7.9%
-  across 14/31/22 firm actions. **Rejected: it is US-only.** `BHP.AX` and `SHEL.L` both
-  return 404 "no fundamentals data". It would cover 489 of 839 names and silently drop
-  every non-US market, which is worse than not having the view.
-- **`data/history.csv`**, which now stores `target_price` every week. After ~13 weekly
-  runs there is a genuine 90-day target change for EVERY name, on the same footing as
-  the earnings view, with no coverage asymmetry. This is the route.
-
-So the second view stays a level until the archive catches up. That is also the clearest
-argument for the archive existing at all.
+Rejected shortcut: `Ticker.upgrades_downgrades` reconstructs a target change today
+(VLO +15.4%, NVDA +10.9%, AAPL +7.9%) but is US-only - `BHP.AX` and `SHEL.L` both 404 -
+so it would cover 489 of 839 names and silently drop every non-US market.
 
 ## Running it
 
@@ -95,6 +88,11 @@ guessing 4-digit codes would invent tickers.
 
 ## Two things that will bite
 
+0. **A sign flip is not a percentage.** ECHO went from -0.114 to +15.64 - a loss becoming
+   a profit - and reported **+13,816%**, which sorted straight to the top of the page. Every
+   name above 100% in that run was a sign flip and none below it was, so the rule is the
+   sign change itself rather than a magic threshold. Found by hovering a dot, not by any
+   test.
 1. **Yahoo returns `0.0` for a missing prior estimate, not null.** A name with no
    90-day-ago figure computes as an infinite revision and swamps the chart.
    `revision_pct()` treats zero on either side as missing, and dropped names are

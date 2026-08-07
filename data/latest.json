@@ -4,25 +4,6 @@
  "source": "Yahoo Finance via yfinance",
  "names": [
   {
-   "ticker": "ECHO",
-   "name": "EchoStar",
-   "market": "US",
-   "eps_now": 15.6367,
-   "eps_prior": -0.114,
-   "revision_pct": 13816.38,
-   "price_now": 87.03,
-   "price_prior": 127.15,
-   "price_chg_pct": -31.55,
-   "analysts": 3,
-   "sector": "Communication Services",
-   "industry": "Telecom Services",
-   "mcap_bn": 25.3,
-   "target_price": 128.43,
-   "target_upside_pct": 47.57,
-   "target_analysts": 7,
-   "gap_pp": 13847.93
-  },
-  {
    "ticker": "FLEX",
    "name": "Flex Ltd.",
    "market": "US",
@@ -15905,44 +15886,6 @@
    "target_upside_pct": 12.88,
    "target_analysts": 13,
    "gap_pp": -100.53
-  },
-  {
-   "ticker": "DOC",
-   "name": "Healthpeak Properties",
-   "market": "US",
-   "eps_now": -0.15,
-   "eps_prior": 0.2,
-   "revision_pct": -175.0,
-   "price_now": 21.1,
-   "price_prior": 19.35,
-   "price_chg_pct": 9.03,
-   "analysts": 1,
-   "sector": "Real Estate",
-   "industry": "REIT - Healthcare Facilities",
-   "mcap_bn": 15.0,
-   "target_price": 22.39,
-   "target_upside_pct": 6.14,
-   "target_analysts": 19,
-   "gap_pp": -184.03
-  },
-  {
-   "ticker": "IFT.AX",
-   "name": "Infratil",
-   "market": "ASX",
-   "eps_now": -0.153,
-   "eps_prior": 0.134,
-   "revision_pct": -214.18,
-   "price_now": 12.59,
-   "price_prior": 12.31,
-   "price_chg_pct": 2.31,
-   "analysts": 1,
-   "sector": "Industrials",
-   "industry": "Conglomerates",
-   "mcap_bn": 12.6,
-   "target_price": 14.33,
-   "target_upside_pct": 13.82,
-   "target_analysts": 4,
-   "gap_pp": -216.49
   }
  ],
  "dropped": [
@@ -16521,6 +16464,24 @@
    "dropped": "no usable prior estimate (Yahoo returns 0.0 for missing)",
    "eps_now": 134.825,
    "eps_prior": 0.0
+  },
+  {
+   "ticker": "ECHO",
+   "name": "EchoStar",
+   "market": "US",
+   "dropped": "estimate changed sign - not a comparable percentage"
+  },
+  {
+   "ticker": "DOC",
+   "name": "Healthpeak Properties",
+   "market": "US",
+   "dropped": "estimate changed sign - not a comparable percentage"
+  },
+  {
+   "ticker": "IFT.AX",
+   "name": "Infratil",
+   "market": "ASX",
+   "dropped": "estimate changed sign - not a comparable percentage"
   }
  ]
 }

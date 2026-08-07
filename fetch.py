@@ -51,6 +51,14 @@ def revision_pct(current, prior):
         return None
     if abs(prior) < MIN_BASE_EPS:
         return None
+    # A sign flip is not a percentage change on any comparable scale. ECHO went from
+    # -0.114 to +15.64 - a loss becoming a profit - and reported +13,816%, which sorted
+    # to the top of the page. IFT.AX and DOC are the mirror image, profit to loss. All
+    # three are real events worth knowing about, but the percentage is not commensurate
+    # with a +10% revision, so they are dropped and disclosed rather than plotted.
+    # Every name above 100% in the 07/08/2026 run was a sign flip; none below it was.
+    if (current > 0) != (prior > 0):
+        return None
     return (current - prior) / abs(prior) * 100.0
 
 
