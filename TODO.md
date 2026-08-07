@@ -36,6 +36,13 @@ weekly refresh runs itself, so none of this is blocking.
       `data/latest.json`, `data/history.csv` and `docs/index.html` and that the page date
       chip moves.
 
+- [ ] **A Consensus Drift-specific OG card.** The page currently borrows the site-wide
+      `og-card.png`, so a shared link shows Charlie's name rather than the chart. A
+      project card (the scatter, the title, the domain) would sell the link far better.
+      Source pattern to copy: `assets/og-card-source.html` in the hub repo - an HTML file
+      rendered at 2400x1260 and screenshotted. Verify afterwards through
+      linkedin.com/post-inspector/, which is also what caught the missing image.
+
 ## Notes worth keeping
 
 Three data traps, all found by looking at real output rather than by a test:
