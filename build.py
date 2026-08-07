@@ -346,9 +346,6 @@ __ROWS__
   financial year and revise them as the year progresses. The vertical axis shows the 90-day
   change for these estimates. The horizontal axis shows total share price movement over the
   same period.</p>
-  <p class="method">The page ranks on the gap between the two axes. A revision only tells
-  you that analysts changed their forecast, not that they were right, so the ranking is a
-  prompt to look at a name rather than a view on it.</p>
   <p class="method">Estimate and price data sourced from Yahoo Finance.__DROPNOTE__ Names
   whose moves fall outside the plotted range are shown as hollow markers on the chart.</p>
 
