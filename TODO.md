@@ -43,11 +43,54 @@ weekly refresh runs itself, so none of this is blocking.
       price-target view looked reasonable and turned out to be an arithmetic identity.
       MOVED here 07/08/2026 from the hub TODO, where it did not belong.
 
-- [ ] **More markets, if wanted.** `build_universe.py` takes a list of Wikipedia
-      constituent pages, so FTSE 250, S&P MidCap 400 or the DAX are a few lines each.
-      Nikkei 225 needs a different source - its Wikipedia page carries no constituent
-      table, and guessing 4-digit codes would invent tickers. Note fetch time scales
-      linearly: 912 names is about 25 minutes.
+- [ ] **More markets.** Surveyed 07/08/2026 - every candidate below was checked against
+      BOTH Wikipedia (does a constituent table exist) and Yahoo (does `eps_trend` return a
+      usable 90-day revision, sampled 8 names each). New-name counts are net of the
+      existing 912, so the European ones are already net of the EURO STOXX overlap.
+
+      | Index | New names | Yahoo usable (of 8) |
+      |---|---|---|
+      | S&P 600 SmallCap | 603 | 8 |
+      | FTSE 250 | 250 | 6 |
+      | S&P/TSX Composite | 160 | - (CA already 95%) |
+      | Hang Seng | 85 | 8 |
+      | NIFTY 50 | 50 | 5 |
+      | S&P/NZX 50 | 50 | 8 |
+      | FTSE MIB | 35 | 8 |
+      | IBEX 35 | 31 | 8 |
+      | OMX Stockholm 30 | 30 | 8 |
+      | Straits Times | 30 | 7 |
+      | CAC 40 | 25 | 6 |
+      | DAX | 23 | 7 |
+      | SMI | 20 | 6 |
+      | AEX | 19 | 8 |
+
+      RECOMMENDED FIRST CUT: the six European completers (DAX, CAC, SMI, AEX, IBEX, MIB,
+      OMX = ~183) plus Hang Seng, NZX 50 and Straits Times. ~350 new names, ~35 min fetch,
+      and it turns "five markets" into a genuinely global cross-section. Skip or caveat
+      NIFTY - 5 of 8 sampled names had a usable revision, the weakest of the set.
+      DEPRIORITISED: S&P 600 and FTSE 250 add ~850 thinly-covered small caps where the
+      "consensus" is two or three desks, which the coverage filter already exists to
+      exclude. They double the fetch for the noisiest names on the page.
+
+      TWO THINGS TO DECIDE BEFORE BUILDING IT:
+      1. The market filter would go from 5 entries to ~14. Probably wants grouping
+         (Europe / Asia-Pacific / North America) rather than a list of every country.
+      2. The existing labels mix a region and an index (US, EU, UK, ASX, CA). That
+         taxonomy does not survive the addition and needs settling first.
+
+      CODE: `SOURCES` in `build_universe.py` is one tuple per index. The European ticker
+      columns already carry their exchange suffix, so they take `None` like EURO STOXX.
+      Hang Seng and Straits Times are the only ones needing real work - their codes are
+      prefixed (`SEHK: 5`, `SGX: A17U`) and Hong Kong needs zero-padding to four digits.
+
+- [ ] **Japan is the one real gap, and it is a SOURCE problem, not a data problem.**
+      Yahoo returned a usable 90-day revision for 8 of 8 sampled Tokyo names
+      (7203.T, 6758.T, 9984.T, 8306.T, 6501.T, 4063.T, 9432.T, 8058.T), so the estimates
+      are there. What is missing is a constituent list: the Nikkei 225 Wikipedia page's
+      only large table is 113 rows of annual index levels, not members, and there is no
+      TOPIX 100 page. Guessing 4-digit codes would invent tickers. Needs a different
+      source before Japan can go on.
 
 - [ ] **Watch the weekly run for a few weeks.** The cron has never fired unattended - it
       was armed on 06/08/2026 and every run so far has been manual. Confirm it commits
