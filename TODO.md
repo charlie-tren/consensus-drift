@@ -137,6 +137,19 @@ weekly refresh runs itself, so none of this is blocking.
       whole pounds - so pence-quoted currencies map to their major unit rather than being
       divided by 100.
 
+- [ ] **SNDK reports an FY2 EPS of 258 against a prior of 172.** Noticed 07/08/2026 while
+      checking the largest surviving revisions. The +49.9% may well be right - both ends
+      sit on the same basis, so the percentage is internally consistent and `path_break`
+      correctly leaves it alone - but SanDisk does not earn USD 258 a share, so the LEVEL
+      is wrong (a share-count or units artefact). It does not affect this page, which only
+      ever reads percentage changes, but it would matter to any future view that shows a
+      level. Worth a scan for absurd absolute EPS values if a level ever goes on screen.
+
+- [ ] **The weekly fetch now takes about 40 minutes, up from 25.** 1,309 names at roughly
+      1.8s each. Free - the repo is public, so Actions minutes are not billed - and well
+      inside the 6-hour job ceiling, but it is the number that moves if more markets go on.
+      S&P 600 and FTSE 250 would roughly double it again.
+
 ## Notes worth keeping
 
 Three data traps, all found by looking at real output rather than by a test:
