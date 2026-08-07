@@ -25,6 +25,24 @@ weekly refresh runs itself, so none of this is blocking.
       `SHEL.L` both 404 - so it would cover 489 of 839 names and silently drop every
       non-US market.
 
+- [ ] **Use the rest of what Yahoo publishes - a ratings view.** Probed 06/08/2026: the
+      project uses ONE of several consensus fields, and the others come free in the same
+      fetch. Charlie's point that started it: "obv earnings isn't everything" - a stock can
+      be re-rated with no change in forecast earnings.
+        - `Ticker.recommendations` - the buy/hold/sell distribution at 0m/-1m/-2m/-3m. A
+          RATINGS revision path, structurally identical to the EPS one already used, and it
+          does not depend on earnings at all. VLO: 3/7/8/1/1 now vs 3/7/7/2/1 three months
+          back. **This is the strongest candidate**, because it is a genuine 90-day CHANGE
+          rather than a level, so the gap logic and the diagonal transfer unaltered.
+        - `info.recommendationMean` (1 = strong buy, 5 = strong sell). VLO 2.3. A level, so
+          it carries the same mechanical risk the price-target view died of - correlate it
+          against price change before building anything on it.
+        - `Ticker.upgrades_downgrades` - 479 firm actions for VLO alone, with old and new
+          targets. Richest, most work, and **US-only** (BHP.AX, SHEL.L 404).
+      Before shipping any of these: check the correlation against 90-day price change. The
+      price-target view looked reasonable and turned out to be an arithmetic identity.
+      MOVED here 07/08/2026 from the hub TODO, where it did not belong.
+
 - [ ] **More markets, if wanted.** `build_universe.py` takes a list of Wikipedia
       constituent pages, so FTSE 250, S&P MidCap 400 or the DAX are a few lines each.
       Nikkei 225 needs a different source - its Wikipedia page carries no constituent
