@@ -27,6 +27,24 @@ situations. Classifying on the delta fixes it: NVIDIA reads Price Behind at +11p
 The 10pp threshold is roughly the median absolute gap across the universe, so In Line
 means the two moves genuinely tracked rather than merely pointed the same way.
 
+## Two views
+
+A toggle switches the vertical axis.
+
+**Earnings estimates** (default) - 90-day change in consensus FY2 EPS against 90-day
+price change. Both are CHANGES, so distance from the 45 degree line is meaningful and
+the gap logic applies.
+
+**Price target** - implied upside to the mean price target against the same 90-day price
+change. This one cannot use the gap: Yahoo publishes the target only as a CURRENT LEVEL,
+with no 90-day-ago value to difference against. So there is no diagonal, and colouring is
+on the level itself - 15%+ upside, within 15%, or trading above target. Different
+question: view one asks whether the price kept up with the forecasts, view two asks
+whether it has already run past where analysts see it going.
+
+Once `data/history.csv` has a few months in it, a true target REVISION becomes possible
+and the second view can move onto the same footing as the first.
+
 ## Running it
 
 ```bash
