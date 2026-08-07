@@ -109,14 +109,14 @@ TEMPLATE = """<!DOCTYPE html>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Consensus Drift</title>
-<meta name="description" content="Analysts revise their profit forecasts slowly, and the share price does not always agree. This ranks 836 companies across five markets by how far the two have moved apart over 90 days.">
+<meta name="description" content="The 90-day change in consensus earnings forecasts for __N__ companies across five markets, plotted and ranked against the share price move over the same period.">
 <link rel="canonical" href="https://charlietrenorden.com/consensus-drift/">
 <meta property="og:title" content="Consensus Drift">
-<meta property="og:description" content="Analysts revise their profit forecasts slowly, and the share price does not always agree. This ranks companies across five markets by how far the two have moved apart over 90 days.">
+<meta property="og:description" content="The 90-day change in consensus earnings forecasts for companies across five markets, plotted and ranked against the share price move over the same period.">
 <meta property="og:image" content="https://charlietrenorden.com/assets/og-card.png">
 <meta property="og:image:width" content="2400">
 <meta property="og:image:height" content="1260">
-<meta property="og:image:alt" content="Consensus Drift - where price and estimates have moved apart">
+<meta property="og:image:alt" content="Consensus Drift - where price and earnings estimates have moved apart">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:image" content="https://charlietrenorden.com/assets/og-card.png">
 <meta property="og:url" content="https://charlietrenorden.com/consensus-drift/">
@@ -152,7 +152,7 @@ TEMPLATE = """<!DOCTYPE html>
   }
 
   h1{font-weight:400;font-size:clamp(1.7rem,3vw,2.15rem);line-height:1.1;
-     letter-spacing:-.015em;margin:0 0 1.05rem;max-width:24ch}
+     letter-spacing:-.015em;margin:0 0 1.05rem;max-width:26ch}
   .lede{font-size:1.05rem;line-height:1.6;color:var(--soft);max-width:60ch;margin:0}
 
   /* these three were boxed pills, which put a third row of bordered widgets
@@ -342,15 +342,15 @@ __ROWS__
   </div>
 
   <h2>Method</h2>
-  <p class="method">Analysts publish a forecast for what a company will earn next financial
-  year, and revise it as the year unfolds. The vertical axis is how far that forecast has
-  moved in 90 days. The horizontal axis is what the share price did over the same period.</p>
-  <p class="method">When both move together, the market and the analysts agree. The gap
-  between them is where they do not, and that is what this ranks on. It is a prompt to go
-  and look at something, not a verdict on it - a revision only tells you analysts changed
-  their minds, not that they were right.</p>
-  <p class="method">Estimates and prices from Yahoo Finance.__DROPNOTE__ Names whose
-  moves run past the edge of the chart are drawn as hollow rings on the frame.</p>
+  <p class="method">Sell-side analysts publish consensus earnings forecasts for the coming
+  financial year and revise them as the year progresses. The vertical axis shows the 90-day
+  change for these estimates. The horizontal axis shows total share price movement over the
+  same period.</p>
+  <p class="method">The page ranks on the gap between the two axes. A revision only tells
+  you that analysts changed their forecast, not that they were right, so the ranking is a
+  prompt to look at a name rather than a view on it.</p>
+  <p class="method">Estimate and price data sourced from Yahoo Finance.__DROPNOTE__ Names
+  whose moves fall outside the plotted range are shown as hollow markers on the chart.</p>
 
   <p class="foot">Built by <a href="https://charlietrenorden.com/">Charlie Trenorden</a>.
   Data from Yahoo Finance, refreshed weekly.</p>
@@ -768,14 +768,14 @@ def main():
 
     dropnote = ""
     if dropped:
-        dropnote = (f" {len(dropped)} of the {len(rows) + len(dropped)} names tracked are "
-                    f"left out this week, where the estimate history is missing or too "
-                    f"small for a percentage to mean anything.")
+        dropnote = (f" Of the {len(rows) + len(dropped)} names in the universe, "
+                    f"{len(dropped)} are excluded this week where estimate history is "
+                    f"absent or too sparse for a percentage change to be meaningful.")
 
     page = (TEMPLATE
-            .replace("__HEADLINE__", "Where price and estimates have moved apart.")
-            .replace("__LEDE__", "Analysts have been raising or cutting their profit "
-                                 "forecasts. Sometimes the share price agrees. This is where it does not.")
+            .replace("__HEADLINE__", "Where price and earnings estimates have moved apart.")
+            .replace("__LEDE__", "The 90-day change in each company's consensus earnings "
+                                 "forecast, plotted against its share price over the same period.")
             .replace("__N__", str(len(rows)))
             .replace("__DATE__", data["generated_utc"][:10])
             .replace("__MARKETS__", options(markets, "All markets"))
