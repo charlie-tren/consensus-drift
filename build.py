@@ -77,6 +77,17 @@ def mcap_band(bn):
     return "Over $250bn"
 
 
+def country_of(market):
+    """"Australia (ASX)" -> "Australia".
+
+    The full label is 30 characters at its longest, which is far too wide for a
+    table cell, so the cell carries the country and the full label rides along in
+    a title attribute. The column FILTER still matches the whole string, so both
+    "Australia" and "ASX" find the same rows.
+    """
+    return market.split(" (")[0]
+
+
 def _fmt(v, suffix=""):
     return "-" if v is None else f"{v:+.1f}{suffix}"
 
@@ -89,6 +100,8 @@ def build_rows(rows):
             f'<tr><td class="tk">{html.escape(r["ticker"])}</td>'
             f'<td>{html.escape(r["name"])}</td>'
             f'<td class="sec">{html.escape(r["sector"])}</td>'
+            f'<td class="mkt" title="{html.escape(r["market"])}">'
+            f'{html.escape(country_of(r["market"]))}</td>'
             f'<td class="n">{r["revision_pct"]:+.1f}%</td>'
             f'<td class="n">{r["price_chg_pct"]:+.1f}%</td>'
             f'<td class="n" style="color:{colour}"><b>{r["gap_pp"]:+.1f}</b></td>'
@@ -239,7 +252,10 @@ TEMPLATE = """<!DOCTYPE html>
      height:2.5rem}
   td.n{text-align:right;font-family:ui-monospace,Consolas,monospace;font-size:13px}
   td.tk{font-family:ui-monospace,Consolas,monospace;font-size:12.5px;color:var(--soft)}
-  td.sec{color:var(--soft);font-size:13.5px}
+  td.sec,td.mkt{color:var(--soft);font-size:13.5px}
+  td.mkt{white-space:nowrap}
+  tr.filters select{width:100%;min-width:0;font:400 12.5px/1 ui-sans-serif,system-ui,sans-serif;
+        background:var(--bg);border:1px solid var(--rule);border-radius:5px;padding:.3rem .35rem}
   td.q{font-size:13px;white-space:nowrap}
   td.muted{color:var(--faint)}
   th.n{text-align:right}
@@ -266,7 +282,7 @@ TEMPLATE = """<!DOCTYPE html>
         color:var(--faint);font:400 13px/1.7 ui-sans-serif,system-ui,sans-serif;max-width:70ch}
   .foot a{color:var(--accent)}
   @media (max-width:700px){ td,th{padding-left:.3rem;padding-right:.3rem}
-    td.sec,th.sec-h{display:none} }
+    td.sec,th.sec-h,td.mkt,th.mkt-h{display:none} }
 </style>
 </head>
 <body>
@@ -319,6 +335,7 @@ TEMPLATE = """<!DOCTYPE html>
       <th data-k="ticker">Ticker<span class="ar">&#9650;</span></th>
       <th data-k="name">Name<span class="ar">&#9650;</span></th>
       <th data-k="sector" class="sec-h">Sector<span class="ar">&#9650;</span></th>
+      <th data-k="market" class="mkt-h">Market<span class="ar">&#9650;</span></th>
       <th data-k="rev" class="n">Estimates<span class="ar">&#9650;</span></th>
       <th data-k="price" class="n">Price<span class="ar">&#9650;</span></th>
       <th data-k="gap" class="n">Gap (pp)<span class="ar">&#9650;</span></th>
@@ -329,11 +346,12 @@ TEMPLATE = """<!DOCTYPE html>
       <td><input id="c-ticker" type="search" placeholder="filter" aria-label="Filter ticker"></td>
       <td><input id="c-name" type="search" placeholder="filter" aria-label="Filter name"></td>
       <td class="sec"><input id="c-sector" type="search" placeholder="filter" aria-label="Filter sector"></td>
+      <td class="mkt"><input id="c-market" type="search" placeholder="filter" aria-label="Filter market - matches country or exchange"></td>
       <td class="n"><input id="c-rev" type="text" inputmode="decimal" placeholder="min |%|" aria-label="Minimum absolute estimate change"></td>
       <td class="n"><input id="c-price" type="text" inputmode="decimal" placeholder="min |%|" aria-label="Minimum absolute price change"></td>
       <td class="n"><input id="c-gap" type="text" inputmode="decimal" placeholder="min |pp|" aria-label="Minimum absolute gap"></td>
       <td class="n"><input id="c-analysts" type="text" inputmode="numeric" placeholder="min" aria-label="Minimum analysts"></td>
-      <td></td>
+      <td><select id="c-band" aria-label="Filter reading">__READINGS__</select></td>
     </tr></thead>
     <tbody id="tbody">
 __ROWS__
@@ -395,6 +413,8 @@ __ROWS__
     ticker: document.getElementById("c-ticker"),
     name: document.getElementById("c-name"),
     sector: document.getElementById("c-sector"),
+    market: document.getElementById("c-market"),
+    bandlabel: document.getElementById("c-band"),
     rev: document.getElementById("c-rev"),
     price: document.getElementById("c-price"),
     gap: document.getElementById("c-gap"),
@@ -407,7 +427,10 @@ __ROWS__
       if (!Object.prototype.hasOwnProperty.call(cols, k)) continue;
       var v = cols[k].value.trim();
       if (!v) continue;
-      if (k === "ticker" || k === "name" || k === "sector") {
+      if (k === "bandlabel") {
+        // a select of the three fixed readings, so exact match, not substring
+        if (BANDS[r.bandkey][1] !== v) return false;
+      } else if (k === "ticker" || k === "name" || k === "sector" || k === "market") {
         if (String(r[k]).toLowerCase().indexOf(v.toLowerCase()) < 0) return false;
       } else {
         var min = parseFloat(v);
@@ -627,6 +650,7 @@ __ROWS__
     ticker: function (r) { return r.ticker; },
     name: function (r) { return r.name; },
     sector: function (r) { return r.sector; },
+    market: function (r) { return r.market; },
     rev: function (r) { return r.rev; },
     price: function (r) { return r.price; },
     gap: function (r) { return r.gap; },
@@ -709,7 +733,9 @@ __ROWS__
   Object.keys(els).forEach(function (k) {
     els[k].addEventListener(els[k].tagName === "SELECT" ? "change" : "input", reset0);
   });
-  Object.keys(cols).forEach(function (k) { cols[k].addEventListener("input", reset0); });
+  Object.keys(cols).forEach(function (k) {
+    cols[k].addEventListener(cols[k].tagName === "SELECT" ? "change" : "input", reset0);
+  });
   Array.prototype.forEach.call(document.querySelectorAll("[data-nav]"), function (btn) {
     btn.addEventListener("click", function () {
       var dir = btn.getAttribute("data-nav");
@@ -779,6 +805,10 @@ def main():
             .replace("__HEADLINE__", "Where price and earnings estimates have moved apart.")
             .replace("__LEDE__", "The 90-day change in each company's consensus earnings "
                                  "forecast, plotted against its share price over the same period.")
+            .replace("__READINGS__",
+                     '<option value="">any</option>'
+                     + "".join(f'<option value="{lbl}">{lbl}</option>'
+                               for _, lbl in BANDS.values()))
             .replace("__NMKT__", str(len(markets)))
             .replace("__N__", str(len(rows)))
             .replace("__DATE__", data["generated_utc"][:10])

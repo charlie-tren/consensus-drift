@@ -110,6 +110,16 @@ weekly refresh runs itself, so none of this is blocking.
       rendered at 2400x1260 and screenshotted. Verify afterwards through
       linkedin.com/post-inspector/, which is also what caught the missing image.
 
+- [ ] **Check whether Yahoo's FY2 prior is stale for a few large caps.** Spotted while
+      verifying the 07/08/2026 expansion: HON reports a prior estimate of 23.00 against a
+      current 10.01, i.e. -56.5%, which puts it in the top ten revisions on the page.
+      Honeywell's FY2 EPS is around 10, so the 23.00 is far more likely a Yahoo artefact
+      (a pre-separation or wrong-currency figure) than a real halving of consensus. The
+      existing guards catch a zero, a near-zero base and a sign flip, but nothing catches
+      a prior that is simply wrong by a factor of two. Worth sampling the top twenty
+      absolute revisions against a second source before deciding whether a guard is even
+      possible - it may only be disclosable, not detectable.
+
 ## Notes worth keeping
 
 Three data traps, all found by looking at real output rather than by a test:
