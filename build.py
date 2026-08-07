@@ -152,16 +152,18 @@ TEMPLATE = """<!DOCTYPE html>
   }
 
   h1{font-weight:400;font-size:clamp(1.7rem,3vw,2.15rem);line-height:1.1;
-     letter-spacing:-.015em;margin:0 0 .8rem;max-width:20ch}
+     letter-spacing:-.015em;margin:0 0 .7rem;max-width:24ch}
   .lede{font-size:1.05rem;color:var(--soft);max-width:60ch;margin:0}
 
-  .meta-row{display:flex;flex-wrap:wrap;gap:.5rem;margin:1.6rem 0 0}
-  .chip{font:500 12px/1 ui-sans-serif,system-ui,sans-serif;letter-spacing:.04em;
-        color:var(--soft);background:var(--raised);border:1px solid var(--rule);
-        border-radius:999px;padding:.52rem .8rem}
-  .chip b{color:var(--ink);font-weight:600}
+  /* these three were boxed pills, which put a third row of bordered widgets
+     directly above the five selects and made the whole header read as chrome.
+     Plain text, one line, dot-separated - the numbers still stand out. */
+  .meta-row{font:400 12.5px/1.5 ui-sans-serif,system-ui,sans-serif;letter-spacing:.02em;
+            color:var(--faint);margin:1.1rem 0 0}
+  .meta-row b{color:var(--soft);font-weight:600}
+  .meta-row span+span::before{content:"·";margin:0 .55rem;color:var(--rule)}
 
-  .controls{display:flex;flex-wrap:wrap;gap:.6rem;margin:1rem 0 1rem;align-items:center}
+  .controls{display:flex;flex-wrap:wrap;gap:.5rem;margin:.9rem 0 1rem;align-items:center}
   /* a flex wrap left the five selects at ragged widths, 1-2 per row; a grid
      lines them up */
   @media (max-width:560px){
@@ -174,7 +176,21 @@ TEMPLATE = """<!DOCTYPE html>
   }
   select,input[type=search]{font:500 13px/1 ui-sans-serif,system-ui,sans-serif;color:var(--ink);
         background:var(--raised);border:1px solid var(--rule);border-radius:7px;
-        padding:.6rem .7rem;min-width:9.5rem}
+        padding:.55rem .65rem;min-width:8.4rem}
+  /* a select sizes itself to its LONGEST option, so "Communication Services" was
+     making the sector box half as wide again as the rest and pushing the search
+     field onto a second row of boxes. Cap it - native selects truncate cleanly. */
+  .controls select{max-width:8.9rem}
+  .controls #f-text{flex:1 1 8rem;min-width:8rem;max-width:14rem}
+  /* Reset is dead chrome while nothing is filtered - only show it once it does
+     something. Kept in the DOM (not display:none in JS) so the row doesn't jump. */
+  .reset[hidden]{display:none}
+  /* the two caps above are a desktop single-row fix and must not survive into the
+     mobile grid, where the cells set their own widths */
+  @media (max-width:560px){
+    .controls select{max-width:none}
+    .controls #f-text{max-width:none;flex:none}
+  }
   select:focus,input:focus{outline:2px solid var(--accent);outline-offset:1px}
   .reset{background:none;border:0;color:var(--faint);cursor:pointer;
          font:500 12.5px/1 ui-sans-serif,system-ui,sans-serif;padding:.6rem .2rem}
@@ -259,9 +275,9 @@ TEMPLATE = """<!DOCTYPE html>
   <p class="lede">__LEDE__</p>
 
   <div class="meta-row">
-    <span class="chip"><b>__N__</b> names</span>
-    <span class="chip">90-day window</span>
-    <span class="chip">Updated <b>__DATE__</b></span>
+    <span><b>__N__</b> names</span>
+    <span>90-day window</span>
+    <span>updated <b>__DATE__</b></span>
   </div>
 
   <div class="controls">
@@ -271,7 +287,7 @@ TEMPLATE = """<!DOCTYPE html>
     <select id="f-gap" aria-label="Gap">__GAPS__</select>
     <select id="f-cov" aria-label="Analyst coverage">__COVER__</select>
     <input type="search" id="f-text" placeholder="Search name or ticker" aria-label="Search">
-    <button class="reset" id="reset" type="button">Reset</button>
+    <button class="reset" id="reset" type="button" hidden>Reset</button>
   </div>
 
   <figure>
@@ -678,6 +694,11 @@ __ROWS__
                                     : shown.length + " of " + DATA.length + " names") +
       ", sorted by " + sortKey + ", " + PAGE + " a page.";
     document.getElementById("empty").style.display = shown.length ? "none" : "block";
+
+    // Reset only earns its place in the row once a filter is actually on.
+    var any = Object.keys(els).some(function (k) { return els[k].value !== ""; }) ||
+              Object.keys(cols).some(function (k) { return cols[k].value !== ""; });
+    document.getElementById("reset").hidden = !any;
   }
 
   function reset0() { page = 0; apply(); }
