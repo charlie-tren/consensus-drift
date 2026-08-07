@@ -33,6 +33,12 @@
   .home,.bar-pad{flex:0 0 auto;min-width:9.5rem}
   @media (max-width:720px){ .mark{font-size:18px;letter-spacing:.2em} .bar-pad{display:none}
     .home,.bar-pad{min-width:0} }
+  /* below this the wordmark wrapped to two lines and crowded the back-link,
+     because both were sharing one row */
+  @media (max-width:560px){
+    .bar{flex-direction:column;align-items:flex-start;gap:.5rem}
+    .mark{flex:0 0 auto;text-align:left;padding-left:0;font-size:20px}
+  }
 
   h1{font-weight:400;font-size:clamp(1.7rem,3vw,2.15rem);line-height:1.1;
      letter-spacing:-.015em;margin:0 0 .8rem;max-width:20ch}
@@ -45,6 +51,14 @@
   .chip b{color:var(--ink);font-weight:600}
 
   .controls{display:flex;flex-wrap:wrap;gap:.6rem;margin:1rem 0 1rem;align-items:center}
+  /* a flex wrap left the five selects at ragged widths, 1-2 per row; a grid
+     lines them up */
+  @media (max-width:560px){
+    .controls{display:grid;grid-template-columns:1fr 1fr;gap:.5rem}
+    .controls select,.controls input{width:100%;min-width:0}
+    .controls #f-text{grid-column:1 / -1}
+    .controls .reset{grid-column:1 / -1;justify-self:start}
+  }
   select,input[type=search]{font:500 13px/1 ui-sans-serif,system-ui,sans-serif;color:var(--ink);
         background:var(--raised);border:1px solid var(--rule);border-radius:7px;
         padding:.6rem .7rem;min-width:9.5rem}
@@ -73,6 +87,10 @@
   p{max-width:70ch;color:var(--soft)}
   .method{font-size:14.5px;line-height:1.62;color:var(--soft);max-width:72ch}
 
+  /* Without this the 591px min-content table made the BODY 615px wide at a
+     375px viewport, so the whole page panned sideways instead of the table
+     scrolling. Verify with document.documentElement.scrollWidth <= innerWidth. */
+  .tablewrap{overflow-x:auto;-webkit-overflow-scrolling:touch}
   table{width:100%;border-collapse:collapse;margin-top:1rem;
         font:400 14.5px/1.5 ui-sans-serif,system-ui,sans-serif}
   th{text-align:left;font:600 11.5px/1.3 ui-sans-serif,system-ui,sans-serif;letter-spacing:.11em;
@@ -160,6 +178,7 @@
     <span data-info></span>
     <button type="button" data-nav="next">Next &rarr;</button>
   </div>
+  <div class="tablewrap">
   <table>
     <thead><tr>
       <th data-k="ticker">Ticker<span class="ar">&#9650;</span></th>
@@ -1020,6 +1039,7 @@
 <tr><td class="tk">360.AX</td><td>Life360</td><td class="sec">Technology</td><td class="n">-55.6%</td><td class="n">+44.9%</td><td class="n" style="color:#c98a6a"><b>-100.5</b></td><td class="n muted">6</td><td class="q" style="color:#c98a6a">Price Ahead</td></tr>
     </tbody>
   </table>
+  </div>
   <p id="empty">Nothing matches those filters.</p>
   <div class="pager" id="pager-bottom">
     <button type="button" data-nav="prev">&larr; Previous</button>
@@ -1050,6 +1070,16 @@
   var THRESH = 10.0;
   var NS = "http://www.w3.org/2000/svg";
   var W = 940, H = 640, PAD = {l: 74, r: 26, t: 46, b: 78};
+
+  // The chart is one viewBox scaled to fit its container, so on a phone an
+  // 11-unit tick label renders at about 4px. K grows the type in viewBox units
+  // to hold the RENDERED size roughly steady, and the padding grows with it so
+  // the bigger labels still fit their gutters. K is 1 at desktop width, which
+  // reproduces the original constants exactly.
+  function typeScale() {
+    var w = chart.clientWidth || W;
+    return Math.min(2.4, Math.max(1, 700 / w));
+  }
 
   var chart = document.getElementById("chart");
   var tip = document.getElementById("tip");
@@ -1152,6 +1182,8 @@
       // a gap wider than the whole frame cannot be shown faithfully; corner it
       return [Math.max(-b, Math.min(b, nx)), Math.max(-b, Math.min(b, ny))];
     }
+    var K = typeScale();
+    PAD = {l: 30 + 44 * K, r: 12 + 14 * K, t: 26 + 20 * K, b: 40 + 38 * K};
     var x0 = PAD.l, x1 = W - PAD.r, y0 = PAD.t, y1 = H - PAD.b;
     var cx = x0 + (x1 - x0) / 2, cy = y0 + (y1 - y0) / 2;
     var px = function (v) { return x0 + (v + b) / (2 * b) * (x1 - x0); };
@@ -1186,7 +1218,7 @@
     svg.appendChild(svgEl("line", {x1: x0, y1: y1, x2: x1, y2: y0,
                                    stroke: "#5d6675", "stroke-width": 1.2, "stroke-dasharray": "5 5"}));
 
-    var LAB = {"font-family": "ui-sans-serif,system-ui,sans-serif", "font-size": 12.5,
+    var LAB = {"font-family": "ui-sans-serif,system-ui,sans-serif", "font-size": 12.5 * K,
                "letter-spacing": "0.11em"};
     function tag(x, y, anchor, fill, text) {
       var a = {}, k;
@@ -1195,25 +1227,25 @@
       svg.appendChild(svgEl("text", a, text));
     }
     // above and below the frame, not inside it - they were colliding with the data
-      tag(x0, y0 - 12, "start", "#82a8ca", "PRICE BEHIND");
-      tag(x1, y1 + 34, "end", "#c98a6a", "PRICE AHEAD");
+      tag(x0, y0 - 6 - 6 * K, "start", "#82a8ca", "PRICE BEHIND");
+      tag(x1, y1 + 14 + 20 * K, "end", "#c98a6a", "PRICE AHEAD");
 
 
-    var TICK = {"font-family": "ui-monospace,Consolas,monospace", "font-size": 11, fill: "#5d6675"};
+    var TICK = {"font-family": "ui-monospace,Consolas,monospace", "font-size": 11 * K, fill: "#5d6675"};
     [-1, -0.5, 0.5, 1].forEach(function (f) {
       var v = b * f, a = {}, k;
       for (k in TICK) a[k] = TICK[k];
-      svg.appendChild(svgEl("text", Object.assign({}, a, {x: px(v), y: y1 + 18, "text-anchor": "middle"}),
+      svg.appendChild(svgEl("text", Object.assign({}, a, {x: px(v), y: y1 + 8 + 10 * K, "text-anchor": "middle"}),
                             sign(v, 0) + "%"));
-      svg.appendChild(svgEl("text", Object.assign({}, a, {x: x0 - 10, y: py(v) + 4, "text-anchor": "end"}),
+      svg.appendChild(svgEl("text", Object.assign({}, a, {x: x0 - 4 - 6 * K, y: py(v) + 4 * K, "text-anchor": "end"}),
                             sign(v, 0) + "%"));
     });
 
-    var AT = {"font-family": "ui-sans-serif,system-ui,sans-serif", "font-size": 12.5, fill: "#8a94a3"};
-    svg.appendChild(svgEl("text", Object.assign({}, AT, {x: cx, y: H - 16, "text-anchor": "middle"}),
+    var AT = {"font-family": "ui-sans-serif,system-ui,sans-serif", "font-size": 12.5 * K, fill: "#8a94a3"};
+    svg.appendChild(svgEl("text", Object.assign({}, AT, {x: cx, y: H - 6 - 10 * K, "text-anchor": "middle"}),
                           "Share price change, 90 days"));
     svg.appendChild(svgEl("text", Object.assign({}, AT, {
-      transform: "translate(20," + cy + ") rotate(-90)", "text-anchor": "middle"}),
+      transform: "translate(" + (10 + 14 * K) + "," + cy + ") rotate(-90)", "text-anchor": "middle"}),
       "Earnings estimate change, 90 days"));
 
     var drawn = [];
@@ -1222,7 +1254,7 @@
       var pos = place(r.price, yOf(r));
       var c = svgEl("circle", {"class": "pt", cx: px(pos[0]).toFixed(1),
                                cy: py(pos[1]).toFixed(1),
-                               r: 5.2,
+                               r: (5.2 * Math.max(1, K * 0.72)).toFixed(2),
                                fill: off ? "none" : BANDS[bandOf(r)][0],
                                "fill-opacity": 0.85,
                                stroke: off ? BANDS[bandOf(r)][0] : "#0f1319",
@@ -1392,6 +1424,15 @@
     sortKey = "gap"; sortDir = -1; page = 0;
     apply();
   });
+  // The type scale depends on the rendered width, so a rotation or a window
+  // resize has to redraw - otherwise a phone turned landscape keeps the
+  // oversized labels it was given in portrait.
+  var rz;
+  window.addEventListener("resize", function () {
+    clearTimeout(rz);
+    rz = setTimeout(apply, 180);
+  });
+
   apply();
 })();
 </script>
