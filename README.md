@@ -42,8 +42,22 @@ on the level itself - 15%+ upside, within 15%, or trading above target. Differen
 question: view one asks whether the price kept up with the forecasts, view two asks
 whether it has already run past where analysts see it going.
 
-Once `data/history.csv` has a few months in it, a true target REVISION becomes possible
-and the second view can move onto the same footing as the first.
+### Why there is no "change in upside" view yet
+
+The obvious upgrade is to plot the CHANGE in upside rather than its level. Two routes,
+one rejected:
+
+- **`Ticker.upgrades_downgrades`** carries every firm's old and new price target, so a
+  90-day mean target change can be reconstructed - VLO +15.4%, NVDA +10.9%, AAPL +7.9%
+  across 14/31/22 firm actions. **Rejected: it is US-only.** `BHP.AX` and `SHEL.L` both
+  return 404 "no fundamentals data". It would cover 489 of 839 names and silently drop
+  every non-US market, which is worse than not having the view.
+- **`data/history.csv`**, which now stores `target_price` every week. After ~13 weekly
+  runs there is a genuine 90-day target change for EVERY name, on the same footing as
+  the earnings view, with no coverage asymmetry. This is the route.
+
+So the second view stays a level until the archive catches up. That is also the clearest
+argument for the archive existing at all.
 
 ## Running it
 
