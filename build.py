@@ -67,14 +67,21 @@ def nice_bound(vals, floor=5.0):
     return float(int(m / 25 + 1) * 25)
 
 
+# One list, used BOTH to label a row and to order the dropdown. These were two
+# separate copies of the same four strings until 07/08/2026, when relabelling them
+# US$ in one place silently emptied the size filter on the live page - the build
+# printed no error and the tests were green, because nothing compares the two.
+MCAP_BANDS = ["Under US$50bn", "US$50bn to US$250bn", "Over US$250bn", "Unknown"]
+
+
 def mcap_band(bn):
     if bn is None:
-        return "Unknown"
+        return MCAP_BANDS[3]
     if bn < 50:
-        return "Under $50bn"
+        return MCAP_BANDS[0]
     if bn < 250:
-        return "$50bn to $250bn"
-    return "Over $250bn"
+        return MCAP_BANDS[1]
+    return MCAP_BANDS[2]
 
 
 def country_of(market):
@@ -86,6 +93,18 @@ def country_of(market):
     "Australia" and "ASX" find the same rows.
     """
     return market.split(" (")[0]
+
+
+def fmt_mcap(bn):
+    """Market cap in billions, at a precision that stays readable across three
+    orders of magnitude - 4,120 down to 0.6."""
+    if bn is None:
+        return "-"
+    if bn >= 100:
+        return f"{bn:,.0f}"
+    if bn >= 10:
+        return f"{bn:.0f}"
+    return f"{bn:.1f}"
 
 
 def _fmt(v, suffix=""):
@@ -105,6 +124,7 @@ def build_rows(rows):
             f'<td class="n">{r["revision_pct"]:+.1f}%</td>'
             f'<td class="n">{r["price_chg_pct"]:+.1f}%</td>'
             f'<td class="n" style="color:{colour}"><b>{r["gap_pp"]:+.1f}</b></td>'
+            f'<td class="n mc">{fmt_mcap(r.get("mcap_bn"))}</td>'
             f'<td class="n muted">{r["analysts"] or "-"}</td>'
             f'<td class="q" style="color:{colour}">{label}</td></tr>')
     return "\n".join(out)
@@ -282,7 +302,7 @@ TEMPLATE = """<!DOCTYPE html>
         color:var(--faint);font:400 13px/1.7 ui-sans-serif,system-ui,sans-serif;max-width:70ch}
   .foot a{color:var(--accent)}
   @media (max-width:700px){ td,th{padding-left:.3rem;padding-right:.3rem}
-    td.sec,th.sec-h,td.mkt,th.mkt-h{display:none} }
+    td.sec,th.sec-h,td.mkt,th.mkt-h,td.mc,th.mc-h{display:none} }
 </style>
 </head>
 <body>
@@ -339,6 +359,7 @@ TEMPLATE = """<!DOCTYPE html>
       <th data-k="rev" class="n">Estimates<span class="ar">&#9650;</span></th>
       <th data-k="price" class="n">Price<span class="ar">&#9650;</span></th>
       <th data-k="gap" class="n">Gap (pp)<span class="ar">&#9650;</span></th>
+      <th data-k="mcap" class="n mc-h">Cap (US$bn)<span class="ar">&#9650;</span></th>
       <th data-k="analysts" class="n">Analysts<span class="ar">&#9650;</span></th>
       <th data-k="bandlabel">Reading<span class="ar">&#9650;</span></th>
     </tr>
@@ -350,6 +371,7 @@ TEMPLATE = """<!DOCTYPE html>
       <td class="n"><input id="c-rev" type="text" inputmode="decimal" placeholder="min |%|" aria-label="Minimum absolute estimate change"></td>
       <td class="n"><input id="c-price" type="text" inputmode="decimal" placeholder="min |%|" aria-label="Minimum absolute price change"></td>
       <td class="n"><input id="c-gap" type="text" inputmode="decimal" placeholder="min |pp|" aria-label="Minimum absolute gap"></td>
+      <td class="n mc"><input id="c-mcap" type="text" inputmode="decimal" placeholder="min US$bn" aria-label="Minimum market cap in US$ billions"></td>
       <td class="n"><input id="c-analysts" type="text" inputmode="numeric" placeholder="min" aria-label="Minimum analysts"></td>
       <td><select id="c-band" aria-label="Filter reading">__READINGS__</select></td>
     </tr></thead>
@@ -371,7 +393,8 @@ __ROWS__
   change for these estimates. The horizontal axis shows total share price movement over the
   same period.</p>
   <p class="method">Estimate and price data sourced from Yahoo Finance.__DROPNOTE__ Names
-  whose moves fall outside the plotted range are shown as hollow markers on the chart.</p>
+  whose moves fall outside the plotted range are shown as hollow markers on the chart.
+  Market capitalisations are converted to US dollars at the latest spot rate.</p>
 
   <p class="foot">Built by <a href="https://charlietrenorden.com/">Charlie Trenorden</a>.
   Data from Yahoo Finance, refreshed weekly.</p>
@@ -418,6 +441,7 @@ __ROWS__
     rev: document.getElementById("c-rev"),
     price: document.getElementById("c-price"),
     gap: document.getElementById("c-gap"),
+    mcap: document.getElementById("c-mcap"),
     analysts: document.getElementById("c-analysts")
   };
 
@@ -435,7 +459,10 @@ __ROWS__
       } else {
         var min = parseFloat(v);
         if (isNaN(min)) continue;
-        t = k === "analysts" ? (r.analysts == null ? -1 : r.analysts) : Math.abs(r[k]);
+        // analysts and mcap are LEVELS, so a missing one must fail a minimum
+        // rather than pass it; the rest are magnitudes of a change.
+        if (k === "analysts" || k === "mcap") t = r[k] == null ? -1 : r[k];
+        else t = Math.abs(r[k]);
         if (t < min) return false;
       }
     }
@@ -655,6 +682,7 @@ __ROWS__
     price: function (r) { return r.price; },
     gap: function (r) { return r.gap; },
     analysts: function (r) { return r.analysts == null ? -1 : r.analysts; },
+    mcap: function (r) { return r.mcap == null ? -1 : r.mcap; },
     bandlabel: function (r) { return BANDS[r.bandkey][1]; }
   };
 
@@ -777,6 +805,7 @@ def main():
     compact = [{
         "ticker": r["ticker"], "name": r["name"], "market": r["market"],
         "sector": r["sector"], "band": mcap_band(r.get("mcap_bn")),
+        "mcap": r.get("mcap_bn"),
         "rev": r["revision_pct"], "price": r["price_chg_pct"], "gap": r["gap_pp"],
         "analysts": r.get("analysts"), "bandkey": band(r["gap_pp"]),
     } for r in rows]
@@ -784,8 +813,7 @@ def main():
     markets = sorted({r["market"] for r in rows})
     sectors = sorted({r["sector"] for r in rows})
     present = {mcap_band(r.get("mcap_bn")) for r in rows}
-    sizes = [b for b in ["Under $50bn", "$50bn to $250bn", "Over $250bn", "Unknown"]
-             if b in present]
+    sizes = [b for b in MCAP_BANDS if b in present]
     gap_opts = [BANDS[k][1] for k in ("behind", "ahead", "inline")]
     gap_select = ('<option value="">Any reading</option>'
                   + "".join(f'<option value="{k}">{BANDS[k][1]}</option>'
@@ -799,7 +827,9 @@ def main():
     if dropped:
         dropnote = (f" Of the {len(rows) + len(dropped)} names in the universe, "
                     f"{len(dropped)} are excluded this week where estimate history is "
-                    f"absent or too sparse for a percentage change to be meaningful.")
+                    f"absent, too sparse for a percentage change to be meaningful, or "
+                    f"jumps in a single step - a change of reporting basis rather than "
+                    f"a revision.")
 
     page = (TEMPLATE
             .replace("__HEADLINE__", "Where price and earnings estimates have moved apart.")
