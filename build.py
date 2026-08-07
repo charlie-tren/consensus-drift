@@ -152,18 +152,18 @@ TEMPLATE = """<!DOCTYPE html>
   }
 
   h1{font-weight:400;font-size:clamp(1.7rem,3vw,2.15rem);line-height:1.1;
-     letter-spacing:-.015em;margin:0 0 .7rem;max-width:24ch}
-  .lede{font-size:1.05rem;color:var(--soft);max-width:60ch;margin:0}
+     letter-spacing:-.015em;margin:0 0 1.05rem;max-width:24ch}
+  .lede{font-size:1.05rem;line-height:1.6;color:var(--soft);max-width:60ch;margin:0}
 
   /* these three were boxed pills, which put a third row of bordered widgets
      directly above the five selects and made the whole header read as chrome.
      Plain text, one line, dot-separated - the numbers still stand out. */
   .meta-row{font:400 12.5px/1.5 ui-sans-serif,system-ui,sans-serif;letter-spacing:.02em;
-            color:var(--faint);margin:1.1rem 0 0}
+            color:var(--faint);margin:1.7rem 0 0}
   .meta-row b{color:var(--soft);font-weight:600}
   .meta-row span+span::before{content:"·";margin:0 .55rem;color:var(--rule)}
 
-  .controls{display:flex;flex-wrap:wrap;gap:.5rem;margin:.9rem 0 1rem;align-items:center}
+  .controls{display:flex;flex-wrap:wrap;gap:.6rem;margin:1.25rem 0 1.5rem;align-items:center}
   /* a flex wrap left the five selects at ragged widths, 1-2 per row; a grid
      lines them up */
   @media (max-width:560px){
