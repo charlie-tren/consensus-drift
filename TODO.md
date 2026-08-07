@@ -43,7 +43,17 @@ weekly refresh runs itself, so none of this is blocking.
       price-target view looked reasonable and turned out to be an arithmetic identity.
       MOVED here 07/08/2026 from the hub TODO, where it did not belong.
 
-- [ ] **More markets.** Surveyed 07/08/2026 - every candidate below was checked against
+- [x] **More markets. DONE 07/08/2026** - Hong Kong, India, New Zealand, Singapore and the
+      seven European completers (DAX, CAC 40, SMI, AEX, IBEX 35, FTSE MIB, OMX Stockholm 30)
+      are in. Universe 912 -> 1,309 names across 17 markets. The market labels changed with
+      it: markets are now derived from the EXCHANGE SUFFIX rather than the index a name
+      arrived through, and read "Country (Exchange)". That was forced rather than cosmetic -
+      EURO STOXX 50 alone spans eight exchanges, so an "EU" bucket sitting next to a
+      "Germany" one would have listed Germany twice.
+      STILL OPEN below: Japan, and the deliberately-skipped small-cap indices.
+
+- [ ] **~~More markets.~~ Survey kept for the two indices NOT taken.** Every candidate below
+      was checked 07/08/2026 against
       BOTH Wikipedia (does a constituent table exist) and Yahoo (does `eps_trend` return a
       usable 90-day revision, sampled 8 names each). New-name counts are net of the
       existing 912, so the European ones are already net of the EURO STOXX overlap.
@@ -65,24 +75,20 @@ weekly refresh runs itself, so none of this is blocking.
       | SMI | 20 | 6 |
       | AEX | 19 | 8 |
 
-      RECOMMENDED FIRST CUT: the six European completers (DAX, CAC, SMI, AEX, IBEX, MIB,
-      OMX = ~183) plus Hang Seng, NZX 50 and Straits Times. ~350 new names, ~35 min fetch,
-      and it turns "five markets" into a genuinely global cross-section. Skip or caveat
-      NIFTY - 5 of 8 sampled names had a usable revision, the weakest of the set.
-      DEPRIORITISED: S&P 600 and FTSE 250 add ~850 thinly-covered small caps where the
-      "consensus" is two or three desks, which the coverage filter already exists to
-      exclude. They double the fetch for the noisiest names on the page.
+      EVERYTHING IN THAT TABLE IS NOW IN except the three at the top. What is left:
 
-      TWO THINGS TO DECIDE BEFORE BUILDING IT:
-      1. The market filter would go from 5 entries to ~14. Probably wants grouping
-         (Europe / Asia-Pacific / North America) rather than a list of every country.
-      2. The existing labels mix a region and an index (US, EU, UK, ASX, CA). That
-         taxonomy does not survive the addition and needs settling first.
+      - **S&P 600 SmallCap (603) and FTSE 250 (250) - deliberately not taken.** They would
+        add ~850 thinly-covered small caps where the "consensus" is two or three desks,
+        which is the noisiest end of the page and exactly what the analyst-coverage filter
+        exists to screen out. They would also roughly double the fetch. Revisit only if the
+        page ever wants a small-cap view of its own rather than more rows in this one.
+      - **S&P/TSX Composite (160)** - straightforward if Canadian breadth is ever wanted;
+        TSX 60 currently covers the large caps only.
 
-      CODE: `SOURCES` in `build_universe.py` is one tuple per index. The European ticker
-      columns already carry their exchange suffix, so they take `None` like EURO STOXX.
-      Hang Seng and Straits Times are the only ones needing real work - their codes are
-      prefixed (`SEHK: 5`, `SGX: A17U`) and Hong Kong needs zero-padding to four digits.
+      NIFTY 50 went in despite being the weakest of the set on the sample (5 of 8 names
+      with a usable revision, against 7-8 for everything else). Worth checking the India
+      drop rate on the first live run - if it is much worse than the ~8% average, the
+      50 names are buying little.
 
 - [ ] **Japan is the one real gap, and it is a SOURCE problem, not a data problem.**
       Yahoo returned a usable 90-day revision for 8 of 8 sampled Tokyo names
