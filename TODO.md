@@ -110,15 +110,32 @@ weekly refresh runs itself, so none of this is blocking.
       rendered at 2400x1260 and screenshotted. Verify afterwards through
       linkedin.com/post-inspector/, which is also what caught the missing image.
 
-- [ ] **Check whether Yahoo's FY2 prior is stale for a few large caps.** Spotted while
-      verifying the 07/08/2026 expansion: HON reports a prior estimate of 23.00 against a
-      current 10.01, i.e. -56.5%, which puts it in the top ten revisions on the page.
-      Honeywell's FY2 EPS is around 10, so the 23.00 is far more likely a Yahoo artefact
-      (a pre-separation or wrong-currency figure) than a real halving of consensus. The
-      existing guards catch a zero, a near-zero base and a sign flip, but nothing catches
-      a prior that is simply wrong by a factor of two. Worth sampling the top twenty
-      absolute revisions against a second source before deciding whether a guard is even
-      possible - it may only be disclosable, not detectable.
+- [x] **Yahoo's FY2 prior can be a different BASIS, not a stale number. FIXED 07/08/2026.**
+      The original suspicion (HON showing a prior of 23.00 against a current 10.01) was
+      right that the number was wrong, but wrong about the shape - it is not a stale
+      prior, it is a discontinuity. Reading all five points Yahoo publishes made it
+      obvious:
+        HON     23.00 -> 22.96 -> 9.38 -> 9.78 -> 10.01   one -59% step MID-path
+        IFT.NZ   0.13 -> 0.42  -> 0.28 -> 0.33 -> 0.33    the BASE is the outlier
+        FLEX     4.11 -> 6.95  -> 6.95 -> 6.92 -> 7.11    one +69% step at the base
+      All three were in the top ten moves on the page and IFT.NZ was the top row.
+      `path_break()` in fetch.py now drops a path containing a single step that both
+      exceeds 40% and accounts for 80%+ of all movement in the quarter, plus a separate
+      check for a base more than 2x or 0.5x the next point (the mid-path test has nothing
+      to dominate when the break is at the very start). Tuned against real downgrades of
+      comparable size that MUST survive - 360.AX -55.6%, KMD.NZ -59.5%, EXO.AS -54.9% -
+      and all nine cases are in tests/test_calc.py.
+      Costs nothing extra: `eps_trend` already returned all five points.
+
+- [x] **Market caps were in the listing currency. FIXED 07/08/2026.** Found while adding
+      the cap column: Yahoo reports `marketCap` in the LISTING currency, so Reliance came
+      back as 18,066 (INR bn), Tencent 4,288 (HKD bn) and AstraZeneca's Stockholm line
+      2,361 (SEK bn) - all sorting above Nvidia. This silently broke the pre-existing
+      "Any size" band filter too, and got much worse the moment 12 more currencies were
+      added. fetch.py now converts to USD once per run (~10 pairs for 1,300 names).
+      `currency` is "GBp" for London because prices quote in pence, but marketCap is in
+      whole pounds - so pence-quoted currencies map to their major unit rather than being
+      divided by 100.
 
 ## Notes worth keeping
 

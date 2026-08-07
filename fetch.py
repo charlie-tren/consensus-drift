@@ -9,6 +9,7 @@ this needs no stored history of our own.
 """
 
 import json
+import math
 import sys
 from datetime import datetime, timezone
 
@@ -23,6 +24,71 @@ PRICE_DAYS = 90
 # own and squash every real name into the middle. Anything below this floor is
 # dropped and disclosed rather than plotted.
 MIN_BASE_EPS = 0.10
+
+# Yahoo publishes the estimate at five points - 90d / 60d / 30d / 7d / current - and
+# until 07/08/2026 only the two ends were read. That let a DISCONTINUITY in the path
+# pass as a revision. Two shapes were found in the live data, both in the top ten
+# moves on the page:
+#
+#   HON   23.00 -> 22.96 -> 9.38 -> 9.78 -> 10.01   one -59% step mid-path, calm either
+#                                                   side; reported as a -56.5% "cut"
+#   IFT.NZ 0.13 -> 0.42  -> 0.28 -> 0.33 -> 0.33    the BASE is the outlier; reported
+#                                                   as +150%, the top row of the page
+#   FLEX   4.11 -> 6.95  -> 6.95 -> 6.92 -> 7.11    same shape at the base, +72.9%
+#
+# A consensus is a mean over many desks, so it moves progressively. A single step that
+# swamps the rest of the quarter is a change of BASIS - a fiscal-year roll, a
+# restatement, a spin-off - not analysts changing their minds, and the percentage
+# across it is not a revision. Two independent checks, because the break can sit
+# anywhere in the path:
+#
+#   1. DOMINANT STEP - the largest step is big AND accounts for nearly all of the
+#      total movement in the path. Catches a break anywhere, including mid-path.
+#   2. BASE OUTLIER - the base itself is more than double or less than half the next
+#      point. Catches the case where the break is at the 90-day end, where there is
+#      no "before" to compare against and check 1 has nothing to dominate.
+#
+# Deliberately tuned to leave progressive moves alone: 360.AX fell 2.11 -> 1.53 ->
+# 1.26 -> 0.94 over the quarter, a real -55.6% downgrade, and passes both.
+PATH_LABELS = ["90daysAgo", "60daysAgo", "30daysAgo", "7daysAgo", "current"]
+STEP_BIG = 1.40        # a step of more than +/-40% is a candidate break
+STEP_DOMINANT = 0.80   # ...and is a break if it is 80%+ of all movement in the path
+BASE_OUTLIER = 2.00    # the base may not be 2x or 0.5x the next point along
+
+# Yahoo reports marketCap in the LISTING currency, so across 17 markets the raw number
+# is not comparable and a "$bn" size filter on it is simply wrong: Reliance came back
+# as 18,066 (INR bn), Tencent 4,288 (HKD bn) and AstraZeneca's Stockholm line 2,361
+# (SEK bn), all of which sort above Nvidia. Converted to USD once per run - about ten
+# FX pairs for the whole universe, so the cost is a rounding error on 1,300 names.
+#
+# `currency` is GBp for London (prices quote in pence) but marketCap is still in whole
+# pounds, so pence-quoted currencies map to their major unit rather than being scaled.
+MAJOR_UNIT = {"GBP": "GBP", "GBp": "GBP", "ZAc": "ZAR", "ILA": "ILS"}
+_fx = {"USD": 1.0}
+
+
+def usd_rate(ccy):
+    """Units of USD per 1 unit of ccy, or None if Yahoo has no pair for it.
+
+    Cached for the life of the run - the alternative is 1,300 lookups of the same
+    ten pairs.
+    """
+    if not ccy:
+        return None
+    ccy = MAJOR_UNIT.get(ccy, ccy).upper()
+    if ccy in _fx:
+        return _fx[ccy]
+    rate = None
+    try:
+        hist = yf.Ticker(f"{ccy}USD=X").history(period="5d", interval="1d")
+        closes = hist["Close"].dropna() if hist is not None and not hist.empty else []
+        if len(closes):
+            rate = float(closes.iloc[-1])
+    except Exception:
+        pass
+    _fx[ccy] = rate
+    print(f"  FX {ccy}USD = {rate}")
+    return rate
 
 
 def _num(x):
@@ -62,6 +128,36 @@ def revision_pct(current, prior):
     return (current - prior) / abs(prior) * 100.0
 
 
+def path_break(values):
+    """Describe the discontinuity in an estimate path, or None if it reads cleanly.
+
+    `values` is oldest-first. Anything missing, zero, or sign-flipped makes the
+    ratios meaningless, so those paths are passed through untouched - the existing
+    guards in revision_pct already handle the two ends, and a gap in the middle is
+    not evidence of a break.
+    """
+    clean = [v for v in values if v is not None and v != 0]
+    if len(clean) < 3 or len({v > 0 for v in clean}) > 1:
+        return None
+
+    steps = [math.log(abs(clean[i + 1] / clean[i])) for i in range(len(clean) - 1)]
+    total = sum(abs(s) for s in steps)
+    biggest = max(steps, key=abs)
+
+    if (abs(biggest) > math.log(STEP_BIG)
+            and total > 0 and abs(biggest) / total >= STEP_DOMINANT):
+        i = steps.index(biggest)
+        return (f"one {math.exp(biggest) - 1:+.0%} step accounts for "
+                f"{abs(biggest) / total:.0%} of the whole path "
+                f"({clean[i]:.4g} -> {clean[i + 1]:.4g})")
+
+    if abs(steps[0]) > math.log(BASE_OUTLIER):
+        return (f"the 90-day base is out of line with the rest of the path "
+                f"({clean[0]:.4g} -> {clean[1]:.4g}, {math.exp(steps[0]) - 1:+.0%})")
+
+    return None
+
+
 def gap_pp(price_chg, revision):
     """How far the estimate move ran ahead of (or behind) the price move.
 
@@ -94,6 +190,16 @@ def fetch_one(entry):
         row["eps_now"], row["eps_prior"] = cur, prior
         return row
 
+    # The two ends can both look sane while the path between them contains a change
+    # of basis rather than a revision - see PATH_LABELS above.
+    path = [_num(r.get(lbl)) for lbl in PATH_LABELS]
+    broken = path_break(path)
+    if broken is not None:
+        row["dropped"] = f"estimate path is discontinuous - {broken}"
+        row["eps_now"], row["eps_prior"] = cur, prior
+        row["eps_path"] = path
+        return row
+
     hist = t.history(period="6mo", interval="1d")
     if hist is None or hist.empty:
         row["dropped"] = "no price history"
@@ -116,10 +222,12 @@ def fetch_one(entry):
     # sector / industry / market cap drive the on-page filters
     sector = industry = None
     mcap = target = n_opinions = None
+    ccy = None
     try:
         info = t.info or {}
         sector, industry = info.get("sector"), info.get("industry")
         mcap = info.get("marketCap")
+        ccy = info.get("currency")
         target = _num(info.get("targetMeanPrice"))
         n_opinions = _num(info.get("numberOfAnalystOpinions"))
     except Exception:
@@ -143,7 +251,11 @@ def fetch_one(entry):
         "analysts": int(analysts) if analysts else None,
         "sector": sector or "Unclassified",
         "industry": industry or "Unclassified",
-        "mcap_bn": round(mcap / 1e9, 1) if mcap else None,
+        # local-currency cap kept for audit; the USD one is what the page filters on
+        "mcap_local_bn": round(mcap / 1e9, 1) if mcap else None,
+        "mcap_ccy": ccy,
+        "mcap_bn": (round(mcap * usd_rate(ccy) / 1e9, 1)
+                    if mcap and usd_rate(ccy) else None),
         # target price is a LEVEL, not a history - Yahoo publishes no 90-day-ago target,
         # so the second view can only show implied upside, never a target revision
         "target_price": round(target, 2) if target else None,

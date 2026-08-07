@@ -9,8 +9,8 @@ import sys
 
 sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
-from build import band, country_of, nice_bound   # noqa: E402
-from fetch import gap_pp, revision_pct            # noqa: E402
+from build import MCAP_BANDS, band, country_of, mcap_band, nice_bound   # noqa: E402
+from fetch import gap_pp, path_break, revision_pct   # noqa: E402
 
 
 class TestRevisionPct:
@@ -132,3 +132,64 @@ class TestCountryOf:
 
     def test_label_without_a_bracket_passes_through(self):
         assert country_of("Australia") == "Australia"
+
+
+class TestPathBreak:
+    """Real paths off Yahoo, 07/08/2026. The three that must drop were all in the
+    top ten moves on the page; the four that must survive are real downgrades of a
+    comparable size, which is what makes this worth testing rather than eyeballing."""
+
+    def test_mid_path_step_is_a_break(self):
+        # HON: calm, then -59% in one month, then calm again
+        assert path_break([23.00184, 22.96087, 9.38141, 9.77527, 10.01358]) is not None
+
+    def test_outlying_base_is_a_break(self):
+        # IFT.NZ: the 90-day base alone is out of line, and it was the top row
+        assert path_break([0.13, 0.42014, 0.27869, 0.32536, 0.32536]) is not None
+
+    def test_step_at_the_base_is_a_break(self):
+        # FLEX: +69% between 90d and 60d, flat for the remaining two months
+        assert path_break([4.1137, 6.95217, 6.95217, 6.92411, 7.11111]) is not None
+
+    def test_progressive_downgrade_survives(self):
+        # 360.AX, a genuine -55.6% ground out over the whole quarter
+        assert path_break([2.11406, 1.53161, 1.26403, 0.93508, 0.93832]) is None
+
+    def test_choppy_but_progressive_survives(self):
+        assert path_break([0.30494, 0.19144, 0.18444, 0.20788, 0.12354]) is None
+        assert path_break([2.79864, 2.42024, 2.42024, 2.08048, 1.26279]) is None
+
+    def test_loss_maker_survives(self):
+        # all negative: the ratios still work, a widening loss is not a break
+        assert path_break([-0.11547, -0.16365, -0.16365, -0.1865, -0.1865]) is None
+
+    def test_too_few_points_is_not_evidence_of_a_break(self):
+        assert path_break([None, None, None, 1.0, 2.0]) is None
+        assert path_break([]) is None
+
+    def test_zeros_are_dropped_not_treated_as_estimates(self):
+        # Yahoo's missing sentinel is 0.0; it must not create an infinite step
+        assert path_break([0.0, 0.0, 1.0, 1.02, 1.05]) is None
+
+    def test_sign_flip_left_to_the_existing_guard(self):
+        assert path_break([-0.114, 0.5, 4.0, 12.0, 15.64]) is None
+
+
+class TestMcapBands:
+    """The dropdown is ordered from MCAP_BANDS and the rows are labelled by
+    mcap_band. When those were two separate copies of the same strings, relabelling
+    one emptied the size filter on the live page with a green build and green tests."""
+
+    def test_every_label_mcap_band_can_return_is_in_the_ordering(self):
+        produced = {mcap_band(v) for v in (None, 0.5, 49.9, 50, 249.9, 250, 9_999)}
+        assert produced <= set(MCAP_BANDS)
+
+    def test_ordering_contains_nothing_unreachable(self):
+        reachable = {mcap_band(v) for v in (None, 1, 100, 1_000)}
+        assert set(MCAP_BANDS) == reachable
+
+    def test_boundaries_are_inclusive_upward(self):
+        assert mcap_band(49.99) == "Under US$50bn"
+        assert mcap_band(50) == "US$50bn to US$250bn"
+        assert mcap_band(249.99) == "US$50bn to US$250bn"
+        assert mcap_band(250) == "Over US$250bn"
