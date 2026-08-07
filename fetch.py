@@ -107,11 +107,13 @@ def fetch_one(entry):
 
     # sector / industry / market cap drive the on-page filters
     sector = industry = None
-    mcap = None
+    mcap = target = n_opinions = None
     try:
         info = t.info or {}
         sector, industry = info.get("sector"), info.get("industry")
         mcap = info.get("marketCap")
+        target = _num(info.get("targetMeanPrice"))
+        n_opinions = _num(info.get("numberOfAnalystOpinions"))
     except Exception:
         pass
 
@@ -134,6 +136,12 @@ def fetch_one(entry):
         "sector": sector or "Unclassified",
         "industry": industry or "Unclassified",
         "mcap_bn": round(mcap / 1e9, 1) if mcap else None,
+        # target price is a LEVEL, not a history - Yahoo publishes no 90-day-ago target,
+        # so the second view can only show implied upside, never a target revision
+        "target_price": round(target, 2) if target else None,
+        "target_upside_pct": (round((target - last) / last * 100.0, 2)
+                              if target and last else None),
+        "target_analysts": int(n_opinions) if n_opinions else None,
     })
     row["gap_pp"] = round(gap_pp(row["price_chg_pct"], row["revision_pct"]), 2)
     return row

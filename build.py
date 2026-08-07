@@ -22,6 +22,35 @@ import os
 # line, which was the case that exposed the original sign-based model as wrong.
 GAP_THRESHOLD_PP = 10.0
 
+# Two views. The first compares two 90-day CHANGES, so a name's distance from the
+# 45 degree line is meaningful and the gap logic applies.
+#
+# The second cannot work that way. Yahoo publishes the mean price target only as a
+# CURRENT LEVEL - there is no 90-day-ago target - so there is nothing to difference
+# against. It plots implied upside (target vs today's price) instead, which is a
+# position rather than a move, and colours by that directly. Same names, same
+# horizontal axis, different question: view one asks whether the price kept up with
+# the forecasts; view two asks whether it has already run past where analysts see it
+# going. Once history.csv has a few months in it, a true target REVISION becomes
+# possible and this stops being a compromise.
+VIEWS = {
+    "estimates": {
+        "label": "Earnings estimates",
+        "y_axis": "Earnings estimate change, 90 days",
+        "diagonal": True,
+    },
+    "target": {
+        "label": "Price target",
+        "y_axis": "Implied upside to mean price target",
+        "diagonal": False,
+    },
+}
+
+# implied upside bands for the second view - analysts see meaningful room, or none
+UPSIDE_BANDS = [(15.0, "behind", "Room to target"),
+                (0.0, "inline", "Close to target"),
+                (-1e9, "ahead", "Above target")]
+
 BANDS = {
     "behind": ("#82a8ca", "Price Behind"),   # estimates outran the price
     "inline": ("#6b7480", "In Line"),        # the two moved together
@@ -43,6 +72,16 @@ def band(gap):
     if gap <= -GAP_THRESHOLD_PP:
         return "ahead"
     return "inline"
+
+
+def upside_band(upside):
+    """View two colours on the level itself - there is no move to difference."""
+    if upside is None:
+        return None
+    for floor, key, _ in UPSIDE_BANDS:
+        if upside >= floor:
+            return key
+    return "ahead"
 
 
 def nice_bound(vals, floor=5.0):
@@ -67,6 +106,10 @@ def mcap_band(bn):
     return "Over $250bn"
 
 
+def _fmt(v, suffix=""):
+    return "-" if v is None else f"{v:+.1f}{suffix}"
+
+
 def build_rows(rows):
     out = []
     for r in rows:
@@ -77,7 +120,8 @@ def build_rows(rows):
             f'<td class="sec">{html.escape(r["sector"])}</td>'
             f'<td class="n">{r["revision_pct"]:+.1f}%</td>'
             f'<td class="n">{r["price_chg_pct"]:+.1f}%</td>'
-            f'<td class="n" style="color:{colour}"><b>{r["gap_pp"]:+.1f}</b></td>'
+            f'<td class="n est" style="color:{colour}"><b>{r["gap_pp"]:+.1f}</b></td>'
+            f'<td class="n tgt">{_fmt(r.get("target_upside_pct"), "%")}</td>'
             f'<td class="n muted">{r["analysts"] or "-"}</td>'
             f'<td class="q" style="color:{colour}">{label}</td></tr>')
     return "\n".join(out)
@@ -135,7 +179,15 @@ TEMPLATE = """<!DOCTYPE html>
         border-radius:999px;padding:.52rem .8rem}
   .chip b{color:var(--ink);font-weight:600}
 
-  .controls{display:flex;flex-wrap:wrap;gap:.6rem;margin:2.2rem 0 1rem;align-items:center}
+  .viewswitch{display:inline-flex;margin:2.2rem 0 0;border:1px solid var(--rule);
+        border-radius:8px;overflow:hidden;background:var(--raised)}
+  .viewswitch button{background:none;border:0;color:var(--soft);cursor:pointer;
+        font:500 13px/1 ui-sans-serif,system-ui,sans-serif;padding:.65rem 1.05rem;
+        transition:background .15s,color .15s}
+  .viewswitch button + button{border-left:1px solid var(--rule)}
+  .viewswitch button:hover{color:var(--ink)}
+  .viewswitch button.on{background:var(--accent);color:var(--on-accent,#0f1319);font-weight:600}
+  .controls{display:flex;flex-wrap:wrap;gap:.6rem;margin:1rem 0 1rem;align-items:center}
   select,input[type=search]{font:500 13px/1 ui-sans-serif,system-ui,sans-serif;color:var(--ink);
         background:var(--raised);border:1px solid var(--rule);border-radius:7px;
         padding:.6rem .7rem;min-width:9.5rem}
@@ -157,6 +209,7 @@ TEMPLATE = """<!DOCTYPE html>
   .key{display:flex;flex-wrap:wrap;gap:1.3rem;margin:1.2rem 0 0;
        font:500 13px/1.4 ui-sans-serif,system-ui,sans-serif;color:var(--soft)}
   .key b{font-weight:600}
+  .key[hidden]{display:none}   /* display:flex above beats the hidden attribute */
 
   h2{font-weight:400;font-size:1.5rem;letter-spacing:-.01em;margin:3.4rem 0 .4rem}
   .sub{color:var(--faint);font:400 14px/1.5 ui-sans-serif,system-ui,sans-serif;margin:0 0 .4rem}
@@ -182,6 +235,8 @@ TEMPLATE = """<!DOCTYPE html>
   td.muted{color:var(--faint)}
   th.n{text-align:right}
   tr.hide{display:none}
+  body[data-view="target"] .est{display:none}
+  body:not([data-view="target"]) .tgt{display:none}
   tr.filters td{padding:.42rem .6rem;border-bottom:1px solid var(--rule)}
   tr.filters input{width:100%;min-width:0;font:400 12.5px/1 ui-sans-serif,system-ui,sans-serif;
         color:var(--ink);background:#10141b;border:1px solid var(--rule);border-radius:5px;
@@ -224,6 +279,11 @@ TEMPLATE = """<!DOCTYPE html>
     <span class="chip">Updated <b>__DATE__</b></span>
   </div>
 
+  <div class="viewswitch" role="group" aria-label="Chart view">
+    <button type="button" data-view="estimates" class="on">Earnings estimates</button>
+    <button type="button" data-view="target">Price target</button>
+  </div>
+
   <div class="controls">
     <select id="f-market" aria-label="Market">__MARKETS__</select>
     <select id="f-sector" aria-label="Sector">__SECTORS__</select>
@@ -239,10 +299,15 @@ TEMPLATE = """<!DOCTYPE html>
     <div id="tip"></div>
   </figure>
 
-  <div class="key">
+  <div class="key" id="key-estimates">
     <span><b style="color:#82a8ca">Price Behind</b> &middot; Estimates rose more than the price</span>
     <span><b style="color:#c98a6a">Price Ahead</b> &middot; Price rose more than the estimates</span>
     <span><b style="color:#6b7480">In Line</b> &middot; Within __THRESH__ points</span>
+  </div>
+  <div class="key" id="key-target" hidden>
+    <span><b style="color:#82a8ca">Room to target</b> &middot; 15% or more upside</span>
+    <span><b style="color:#6b7480">Close to target</b> &middot; Between 0 and 15%</span>
+    <span><b style="color:#c98a6a">Above target</b> &middot; Trading past the mean target</span>
   </div>
 
   <p class="sub" id="count" hidden></p>
@@ -258,7 +323,8 @@ TEMPLATE = """<!DOCTYPE html>
       <th data-k="sector" class="sec-h">Sector<span class="ar">&#9650;</span></th>
       <th data-k="rev" class="n">Estimates<span class="ar">&#9650;</span></th>
       <th data-k="price" class="n">Price<span class="ar">&#9650;</span></th>
-      <th data-k="gap" class="n">Gap (pp)<span class="ar">&#9650;</span></th>
+      <th data-k="gap" class="n est">Gap (pp)<span class="ar">&#9650;</span></th>
+      <th data-k="upside" class="n tgt">Upside<span class="ar">&#9650;</span></th>
       <th data-k="analysts" class="n">Analysts<span class="ar">&#9650;</span></th>
       <th data-k="bandlabel">Reading<span class="ar">&#9650;</span></th>
     </tr>
@@ -268,7 +334,8 @@ TEMPLATE = """<!DOCTYPE html>
       <td class="sec"><input id="c-sector" type="search" placeholder="filter" aria-label="Filter sector"></td>
       <td class="n"><input id="c-rev" type="text" inputmode="decimal" placeholder="min |%|" aria-label="Minimum absolute estimate change"></td>
       <td class="n"><input id="c-price" type="text" inputmode="decimal" placeholder="min |%|" aria-label="Minimum absolute price change"></td>
-      <td class="n"><input id="c-gap" type="text" inputmode="decimal" placeholder="min |pp|" aria-label="Minimum absolute gap"></td>
+      <td class="n est"><input id="c-gap" type="text" inputmode="decimal" placeholder="min |pp|" aria-label="Minimum absolute gap"></td>
+      <td class="n tgt"><input id="c-upside" type="text" inputmode="decimal" placeholder="min %" aria-label="Minimum upside"></td>
       <td class="n"><input id="c-analysts" type="text" inputmode="numeric" placeholder="min" aria-label="Minimum analysts"></td>
       <td></td>
     </tr></thead>
@@ -303,6 +370,7 @@ __ROWS__
 (function () {
   var DATA = JSON.parse(document.getElementById("rows").textContent);
   var BANDS = __BANDCFG__;
+  var VIEWS = __VIEWCFG__;
   var THRESH = __THRESHNUM__;
   var NS = "http://www.w3.org/2000/svg";
   var W = 940, H = 640, PAD = {l: 74, r: 26, t: 46, b: 78};
@@ -327,6 +395,7 @@ __ROWS__
     rev: document.getElementById("c-rev"),
     price: document.getElementById("c-price"),
     gap: document.getElementById("c-gap"),
+    upside: document.getElementById("c-upside"),
     analysts: document.getElementById("c-analysts")
   };
 
@@ -341,6 +410,10 @@ __ROWS__
       } else {
         var min = parseFloat(v);
         if (isNaN(min)) continue;
+        if (k === "upside") {                    // upside is signed, not a magnitude
+          if (r.upside == null || r.upside < min) return false;
+          continue;
+        }
         t = k === "analysts" ? (r.analysts == null ? -1 : r.analysts) : Math.abs(r[k]);
         if (t < min) return false;
       }
@@ -366,12 +439,18 @@ __ROWS__
 
   function sign(v, d) { return (v > 0 ? "+" : "") + v.toFixed(d == null ? 1 : d); }
 
+  // the only things that differ between the two views
+  function yOf(r)    { return VIEW === "target" ? r.upside : r.rev; }
+  function bandOf(r) { return VIEW === "target" ? r.upband : r.bandkey; }
+  function hasY(r)   { return yOf(r) != null; }
+
   function matches(r) {
     if (els.market.value && r.market !== els.market.value) return false;
     if (els.sector.value && r.sector !== els.sector.value) return false;
     if (els.band.value && r.band !== els.band.value) return false;
     if (els.gap.value && r.bandkey !== els.gap.value) return false;
     if (els.cov.value && (r.analysts == null || r.analysts < +els.cov.value)) return false;
+    if (!hasY(r)) return false;                 // no target published, nothing to plot
     var q = els.text.value.trim().toLowerCase();
     if (q && (r.ticker + " " + r.name + " " + r.sector).toLowerCase().indexOf(q) < 0) return false;
     return colMatch(r);
@@ -388,7 +467,7 @@ __ROWS__
     // squash everything else into the middle. Outliers are pinned to the frame edge
     // and drawn hollow so they read as off-scale rather than as real positions.
     var all = rows.map(function (r) { return Math.abs(r.price); })
-                  .concat(rows.map(function (r) { return Math.abs(r.rev); }))
+                  .concat(rows.map(function (r) { return Math.abs(yOf(r)); }))
                   .sort(function (a, c) { return a - c; });
     var b = bound([all[Math.floor(all.length * 0.98)] || 5]);
 
@@ -416,6 +495,7 @@ __ROWS__
     // band either side of the 45 degree line, where the two moves agree.
     // Drawn well beyond the frame and clipped to the plot, so it runs edge to edge
     // instead of stopping short in the corners.
+    if (VIEWS[VIEW].diagonal) {
     var defs = svgEl("defs", {});
     var clip = svgEl("clipPath", {id: "plot"});
     clip.appendChild(svgEl("rect", {x: x0, y: y0, width: x1 - x0, height: y1 - y0}));
@@ -428,6 +508,7 @@ __ROWS__
     svg.appendChild(svgEl("polygon", {
       points: poly.map(function (p) { return p[0].toFixed(1) + "," + p[1].toFixed(1); }).join(" "),
       fill: "#6b7480", opacity: 0.07, "clip-path": "url(#plot)"}));
+    }
 
     [-0.5, 0.5].forEach(function (f) {
       svg.appendChild(svgEl("line", {x1: px(b * f), y1: y0, x2: px(b * f), y2: y1, stroke: "#262d38"}));
@@ -436,8 +517,10 @@ __ROWS__
     svg.appendChild(svgEl("line", {x1: cx, y1: y0, x2: cx, y2: y1, stroke: "#39424f"}));
     svg.appendChild(svgEl("line", {x1: x0, y1: cy, x2: x1, y2: cy, stroke: "#39424f"}));
     // the line where the estimate move equals the price move
-    svg.appendChild(svgEl("line", {x1: x0, y1: y1, x2: x1, y2: y0,
-                                   stroke: "#5d6675", "stroke-width": 1.2, "stroke-dasharray": "5 5"}));
+    if (VIEWS[VIEW].diagonal) {
+      svg.appendChild(svgEl("line", {x1: x0, y1: y1, x2: x1, y2: y0,
+                                     stroke: "#5d6675", "stroke-width": 1.2, "stroke-dasharray": "5 5"}));
+    }
 
     var LAB = {"font-family": "ui-sans-serif,system-ui,sans-serif", "font-size": 12.5,
                "letter-spacing": "0.11em"};
@@ -448,8 +531,13 @@ __ROWS__
       svg.appendChild(svgEl("text", a, text));
     }
     // above and below the frame, not inside it - they were colliding with the data
-    tag(x0, y0 - 12, "start", "#82a8ca", "PRICE BEHIND");
-    tag(x1, y1 + 34, "end", "#c98a6a", "PRICE AHEAD");
+    if (VIEWS[VIEW].diagonal) {
+      tag(x0, y0 - 12, "start", "#82a8ca", "PRICE BEHIND");
+      tag(x1, y1 + 34, "end", "#c98a6a", "PRICE AHEAD");
+    } else {
+      tag(x0, y0 - 12, "start", "#82a8ca", "ROOM TO TARGET");
+      tag(x1, y1 + 34, "end", "#c98a6a", "ABOVE TARGET");
+    }
 
     var TICK = {"font-family": "ui-monospace,Consolas,monospace", "font-size": 11, fill: "#5d6675"};
     [-1, -0.5, 0.5, 1].forEach(function (f) {
@@ -466,18 +554,18 @@ __ROWS__
                           "Share price change, 90 days"));
     svg.appendChild(svgEl("text", Object.assign({}, AT, {
       transform: "translate(20," + cy + ") rotate(-90)", "text-anchor": "middle"}),
-      "Earnings estimate change, 90 days"));
+      VIEWS[VIEW].y_axis));
 
     var drawn = [];
     rows.forEach(function (r) {
-      var off = Math.abs(r.price) > b || Math.abs(r.rev) > b;
-      var pos = place(r.price, r.rev);
+      var off = Math.abs(r.price) > b || Math.abs(yOf(r)) > b;
+      var pos = place(r.price, yOf(r));
       var c = svgEl("circle", {"class": "pt", cx: px(pos[0]).toFixed(1),
                                cy: py(pos[1]).toFixed(1),
                                r: 5.2,
-                               fill: off ? "none" : BANDS[r.bandkey][0],
+                               fill: off ? "none" : BANDS[bandOf(r)][0],
                                "fill-opacity": 0.85,
-                               stroke: off ? BANDS[r.bandkey][0] : "#0f1319",
+                               stroke: off ? BANDS[bandOf(r)][0] : "#0f1319",
                                "stroke-width": off ? 1.6 : 1});
       c.__row = r; c.__x = px(pos[0]); c.__y = py(pos[1]);
       svg.appendChild(c);
@@ -521,12 +609,16 @@ __ROWS__
 
     var l1 = document.createElement("span");
     l1.className = "t-sub";
-    l1.textContent = "Estimates " + sign(r.rev) + "%   Price " + sign(r.price) + "%";
+    l1.textContent = VIEW === "target"
+      ? "Upside " + sign(r.upside) + "%   Price " + sign(r.price) + "%"
+      : "Estimates " + sign(r.rev) + "%   Price " + sign(r.price) + "%";
     tip.appendChild(l1);
 
     var l2 = document.createElement("span");
     l2.className = "t-sub";
-    l2.textContent = "Gap " + sign(r.gap) + " pp";
+    l2.textContent = VIEW === "target"
+      ? "Mean target " + (r.target != null ? r.target.toFixed(2) : "-")
+      : "Gap " + sign(r.gap) + " pp";
     tip.appendChild(l2);
 
     var box = svg.getBoundingClientRect();
@@ -544,6 +636,7 @@ __ROWS__
   }
 
   /* ---- sortable table ---------------------------------------------------- */
+  var VIEW = "estimates";
   var sortKey = "gap", sortDir = -1;
   var PAGE = 50, page = 0;
   var VAL = {
@@ -553,6 +646,7 @@ __ROWS__
     rev: function (r) { return r.rev; },
     price: function (r) { return r.price; },
     gap: function (r) { return r.gap; },
+    upside: function (r) { return r.upside == null ? -1e9 : r.upside; },
     analysts: function (r) { return r.analysts == null ? -1 : r.analysts; },
     bandlabel: function (r) { return BANDS[r.bandkey][1]; }
   };
@@ -623,6 +717,23 @@ __ROWS__
   }
 
   function reset0() { page = 0; apply(); }
+
+  Array.prototype.forEach.call(document.querySelectorAll(".viewswitch button"), function (btn) {
+    btn.addEventListener("click", function () {
+      VIEW = btn.getAttribute("data-view");
+      Array.prototype.forEach.call(document.querySelectorAll(".viewswitch button"), function (o) {
+        o.classList.toggle("on", o === btn);
+      });
+      document.getElementById("key-estimates").hidden = VIEW !== "estimates";
+      document.getElementById("key-target").hidden = VIEW === "estimates";
+      // the gap column is meaningless in the target view - sort by upside instead
+      if (VIEW === "target" && sortKey === "gap") { sortKey = "upside"; sortDir = -1; }
+      if (VIEW === "estimates" && sortKey === "upside") { sortKey = "gap"; sortDir = -1; }
+      document.body.setAttribute("data-view", VIEW);
+      page = 0;
+      apply();
+    });
+  });
   Object.keys(els).forEach(function (k) {
     els[k].addEventListener(els[k].tagName === "SELECT" ? "change" : "input", reset0);
   });
@@ -661,6 +772,9 @@ def main():
         "sector": r["sector"], "band": mcap_band(r.get("mcap_bn")),
         "rev": r["revision_pct"], "price": r["price_chg_pct"], "gap": r["gap_pp"],
         "analysts": r.get("analysts"), "bandkey": band(r["gap_pp"]),
+        "upside": r.get("target_upside_pct"),
+        "target": r.get("target_price"),
+        "upband": upside_band(r.get("target_upside_pct")),
     } for r in rows]
 
     markets = sorted({r["market"] for r in rows})
@@ -699,7 +813,8 @@ def main():
             .replace("__ROWS__", build_rows(rows))
             .replace("__DROPNOTE__", dropnote)
             .replace("__JSON__", json.dumps(compact, separators=(",", ":")))
-            .replace("__BANDCFG__", json.dumps(BANDS)))
+            .replace("__BANDCFG__", json.dumps(BANDS))
+            .replace("__VIEWCFG__", json.dumps(VIEWS)))
 
     os.makedirs("docs", exist_ok=True)
     with open("docs/index.html", "w", encoding="utf-8", newline="\n") as fh:
