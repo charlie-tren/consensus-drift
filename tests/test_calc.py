@@ -46,6 +46,17 @@ class TestRevisionPct:
     def test_floor_is_on_the_prior_not_the_current(self):
         assert revision_pct(0.001, 5.0) is not None
 
+    # a sign flip is not a comparable percentage - ECHO went -0.114 -> +15.64 and
+    # reported +13,816%, sorting to the top of the page
+    def test_loss_turning_into_profit_is_rejected(self):
+        assert revision_pct(15.6367, -0.1140) is None
+
+    def test_profit_turning_into_loss_is_rejected(self):
+        assert revision_pct(-0.153, 0.134) is None
+
+    def test_same_sign_large_move_is_kept(self):
+        assert revision_pct(15.0, 1.0) is not None
+
     def test_none_either_side(self):
         assert revision_pct(None, 1.0) is None
         assert revision_pct(1.0, None) is None
