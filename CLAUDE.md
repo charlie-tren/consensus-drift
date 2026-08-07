@@ -1,24 +1,29 @@
 # Consensus Drift - notes for whoever edits this next
 
-## The page does not work on mobile yet
+## Mobile: fixed, and how to keep it fixed
 
-Measured 07/08/2026 at a 375px viewport: `document.documentElement.scrollWidth` is
-**615px**, so the whole body pans sideways instead of the table scrolling inside
-itself. The cause is the results table - 591px of minimum content with no
-`overflow-x` wrapper. Also at that width the wordmark wraps onto two lines and
-crowds the "Other Projects" back-link, the five filter dropdowns land at ragged
-widths rather than a grid, and the chart's axis labels are unreadable.
+Fixed 07/08/2026 (commit b59423b). The page used to be 615px wide at a 375px
+viewport, so the body panned sideways. The table now scrolls inside an
+`overflow-x` wrapper, the masthead stacks below 560px, the filters are a grid
+rather than ragged flex, and the chart's type scales with its container.
 
-**If you are touching the page CSS in `build.py`, fix this while you are in there.**
+**The chart is one viewBox scaled to fit**, so every font size, radius and pad in
+viewBox units shrinks with the container - at 375px the 11-unit ticks rendered at
+about 4px. `typeScale()` returns K, and the type and gutters are multiplied by it.
+K is 1 at desktop width, which reproduces the original constants exactly. If you
+add anything textual to the chart, multiply its size by K or it will be unreadable
+on a phone.
 
-Verify it the way it was found, not by eye:
+**Verify by measuring, not by looking.** At 375 / 768 / 1280:
 
 ```python
-# 375px viewport, then:
-assert page.evaluate("document.documentElement.scrollWidth") <= 375
+assert page.evaluate("document.documentElement.scrollWidth") <= viewport_width
 ```
 
-A table scrolling inside a wrapper passes. A body that pans does not.
+plus a check that no `<text>` in the chart falls outside the SVG's own rect. That
+second check found two defects the screenshot did not show: the widest x tick ran
+past the frame once the type grew, and the rotated y-axis title sat flush against
+the edge.
 
 ## Two traps this project has already fallen into
 
