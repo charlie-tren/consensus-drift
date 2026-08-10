@@ -11,12 +11,29 @@ this needs no stored history of our own.
 import json
 import math
 import sys
+import time
 from datetime import datetime, timezone
 
 import yfinance as yf
 
 WINDOW_LABEL = "90daysAgo"   # the revision window we plot
 PRICE_DAYS = 90
+
+# Yahoo rate-limits a ~1,300-name serial sweep, and the failure is SILENT in the worst
+# way: each name drops individually, the run exits 0, and a chart built from a third of
+# the universe looks exactly like a complete one. The 09/08/2026 run published 511 names
+# and dropped 798, of which 750 were "Too Many Requests" - not real data gaps. Every band
+# count on the page was drawn from under half the intended universe with nothing saying so.
+#
+# Three defences, in the order they matter:
+#   1. SLOW DOWN so it mostly does not happen (REQUEST_GAP).
+#   2. RETRY what still trips, with escalating waits - a rate limit is temporary by
+#      definition, so a name lost to one is recoverable, unlike a real data gap.
+#   3. REFUSE TO PUBLISH if too much is still missing. A silent partial is worse than a
+#      missed run, because a missed run is visible and a thin chart is not.
+REQUEST_GAP = 0.4            # seconds between names on the main sweep
+RETRY_WAITS = (15, 45, 120)  # escalating pauses before each retry sweep
+MAX_RATE_LIMIT_SHARE = 0.05  # above this share still missing, do not publish at all
 
 # A percentage change computed off a near-zero base is noise, not information.
 # At 40 names this never showed up; at 665 it did - WBD came back with a prior
@@ -267,18 +284,79 @@ def fetch_one(entry):
     return row
 
 
+def is_rate_limit(exc):
+    """True if this exception is Yahoo throttling us rather than a bad name.
+
+    Matched on the class NAME and the message, not on an imported symbol:
+    `YFRateLimitError` has moved module between yfinance versions, and an
+    ImportError here would turn the guard off silently - which is the exact
+    failure mode this whole block exists to prevent.
+    """
+    return ("ratelimit" in type(exc).__name__.lower()
+            or "too many requests" in str(exc).lower())
+
+
+def attempt(entry):
+    """Fetch one name. Returns (row, rate_limited)."""
+    try:
+        return fetch_one(entry), False
+    except Exception as exc:                          # noqa: BLE001 - one bad name must not kill the run
+        return ({**entry, "dropped": f"error: {type(exc).__name__}: {exc}"[:120]},
+                is_rate_limit(exc))
+
+
 def main():
     universe = json.load(open("universe.json", encoding="utf-8"))["names"]
-    kept, dropped = [], []
+    total = len(universe)
+    kept, dropped, throttled = [], [], []
+
     for i, entry in enumerate(universe, 1):
-        try:
-            row = fetch_one(entry)
-        except Exception as exc:                      # noqa: BLE001 - one bad name must not kill the run
-            row = {**entry, "dropped": f"error: {type(exc).__name__}: {exc}"[:120]}
-        (dropped if "dropped" in row else kept).append(row)
-        print(f"  [{i:>2}/{len(universe)}] {entry['ticker']:<8} "
-              + (f"DROPPED - {row['dropped']}" if "dropped" in row
-                 else f"rev {row['revision_pct']:+6.2f}%  price {row['price_chg_pct']:+6.2f}%"))
+        row, limited = attempt(entry)
+        if limited:
+            throttled.append(entry)
+            print(f"  [{i:>2}/{total}] {entry['ticker']:<8} RATE LIMITED - queued for retry")
+        else:
+            (dropped if "dropped" in row else kept).append(row)
+            print(f"  [{i:>2}/{total}] {entry['ticker']:<8} "
+                  + (f"DROPPED - {row['dropped']}" if "dropped" in row
+                     else f"rev {row['revision_pct']:+6.2f}%  price {row['price_chg_pct']:+6.2f}%"))
+        time.sleep(REQUEST_GAP)
+
+    # A rate limit is temporary, so a name lost to one is recoverable - unlike a real
+    # data gap. Sweep the throttled names again with escalating waits.
+    for wait in RETRY_WAITS:
+        if not throttled:
+            break
+        print(f"\n{len(throttled)} name(s) rate limited - waiting {wait}s, then retrying")
+        time.sleep(wait)
+        still = []
+        for entry in throttled:
+            row, limited = attempt(entry)
+            if limited:
+                still.append(entry)
+            else:
+                (dropped if "dropped" in row else kept).append(row)
+                print(f"  RECOVERED {entry['ticker']}")
+            time.sleep(REQUEST_GAP)
+        throttled = still
+
+    for entry in throttled:
+        dropped.append({**entry, "dropped":
+                        f"error: still rate limited after {len(RETRY_WAITS)} retries"})
+
+    # GUARD BEFORE THE WRITE, not after. The old order wrote latest.json and *then*
+    # checked, so "refusing to publish an empty chart" was not true - it had already
+    # published, and a thin run overwrote a good one. Leaving the previous file in place
+    # means the site keeps showing last week's complete data instead of this week's third.
+    share = len(throttled) / total if total else 0
+    if share > MAX_RATE_LIMIT_SHARE:
+        print(f"\nERROR: {len(throttled)}/{total} ({share:.1%}) still rate limited after "
+              f"retries - over the {MAX_RATE_LIMIT_SHARE:.0%} ceiling")
+        print("Refusing to publish a partial universe - data/latest.json left untouched")
+        sys.exit(1)
+    if not kept:
+        print("\nERROR: nothing usable - refusing to publish an empty chart")
+        sys.exit(1)
 
     out = {
         "generated_utc": datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ"),
@@ -292,9 +370,6 @@ def main():
         fh.write("\n")
 
     print(f"\n{len(kept)} names kept, {len(dropped)} dropped -> data/latest.json")
-    if not kept:
-        print("ERROR: nothing usable - refusing to publish an empty chart")
-        sys.exit(1)
 
 
 if __name__ == "__main__":

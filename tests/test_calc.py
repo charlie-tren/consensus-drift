@@ -10,7 +10,8 @@ import sys
 sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
 from build import MCAP_BANDS, band, country_of, mcap_band, nice_bound   # noqa: E402
-from fetch import gap_pp, path_break, revision_pct   # noqa: E402
+from fetch import (MAX_RATE_LIMIT_SHARE, gap_pp, is_rate_limit, path_break,   # noqa: E402
+                   revision_pct)
 
 
 class TestRevisionPct:
@@ -193,3 +194,38 @@ class TestMcapBands:
         assert mcap_band(50) == "US$50bn to US$250bn"
         assert mcap_band(249.99) == "US$50bn to US$250bn"
         assert mcap_band(250) == "Over US$250bn"
+
+
+class TestRateLimitDetection:
+    """The publish guard is only as good as this predicate. If it stops recognising a
+    rate limit, the run stops refusing to publish and goes back to shipping a third of
+    the universe silently - the 09/08/2026 failure, which nothing caught for two days.
+
+    Matched on class name and message rather than an imported symbol on purpose:
+    `YFRateLimitError` has moved module between yfinance versions, and an ImportError
+    would disable the guard without failing anything.
+    """
+
+    def test_catches_the_real_yfinance_exception(self):
+        from yfinance.exceptions import YFRateLimitError
+        assert is_rate_limit(YFRateLimitError())
+
+    def test_catches_it_by_class_name_alone(self):
+        class YFRateLimitError(Exception):      # a renamed / relocated future version
+            pass
+        assert is_rate_limit(YFRateLimitError("anything"))
+
+    def test_catches_it_by_message_alone(self):
+        assert is_rate_limit(RuntimeError("Too Many Requests. Rate limited."))
+
+    def test_a_real_data_gap_is_not_a_rate_limit(self):
+        # This is the half that matters: a genuine gap must NOT be retried or counted
+        # against the ceiling, or a legitimately thin universe blocks publication.
+        assert not is_rate_limit(KeyError("+1y"))
+        assert not is_rate_limit(ValueError("no eps_trend from Yahoo"))
+
+    def test_the_ceiling_is_a_share_not_a_count(self):
+        # 5% of ~1,300 names is ~65. The 09/08 run had 750 still missing, which must
+        # be nowhere near passing.
+        assert 750 / 1309 > MAX_RATE_LIMIT_SHARE
+        assert 40 / 1309 < MAX_RATE_LIMIT_SHARE

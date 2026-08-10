@@ -53,6 +53,27 @@ Tencent as 4,288 (HKD bn) both sort above Nvidia. `fetch.py` converts to USD onc
 per run. London reports `currency` as "GBp" because prices quote in pence, but
 marketCap is in whole pounds - do not divide it by 100.
 
+**A partial run is worse than a failed one, so it must not be allowed to publish.**
+Yahoo rate-limits a serial sweep of ~1,300 names. On 09/08/2026 the run published
+511 names and dropped 798, of which **750 were "Too Many Requests"** rather than real
+data gaps - and it exited 0, so the site quietly showed a chart and band counts drawn
+from under 40% of the universe with nothing on the page saying so. It went unnoticed
+for two days because a thin chart looks exactly like a complete one.
+
+`fetch.py` now slows down (`REQUEST_GAP`), retries throttled names with escalating
+waits (`RETRY_WAITS` - a rate limit is temporary, unlike a real gap), and **refuses to
+publish** above `MAX_RATE_LIMIT_SHARE`. Two details worth keeping if you touch it:
+
+- **The guard runs BEFORE the write.** It used to write `latest.json` and then check,
+  so "refusing to publish an empty chart" was false - it had already published, and a
+  thin run overwrote a good one. Leaving the old file in place means the site shows
+  last week's complete data rather than this week's third.
+- **`is_rate_limit()` matches on class name and message, not an imported symbol.**
+  `YFRateLimitError` has moved module between yfinance versions, and an ImportError
+  would switch the guard off without failing anything. `tests/test_calc.py` holds both
+  halves: a rate limit must be caught, and a genuine data gap must NOT be, or a
+  legitimately thin universe blocks publication for the wrong reason.
+
 **Never write the same user-visible string in two places.** The size-band labels
 lived both in `mcap_band()` and in a hardcoded ordering list. Relabelling them
 "US$" in one place left the ordering matching nothing, and the size filter rendered
