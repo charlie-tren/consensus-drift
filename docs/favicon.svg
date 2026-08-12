@@ -1,5 +1,8 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
-  <rect width="100" height="100" rx="24" fill="#1a212b"/>
-  <path d="M72.5 37 A26 26 0 1 0 72.5 63" fill="none" stroke="#82a8ca" stroke-width="13" stroke-linecap="round"/>
-  <circle cx="50" cy="50" r="6.5" fill="#82a8ca"/>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32">
+  <rect width="32" height="32" rx="7" fill="#171c24"/>
+  <!-- Estimates and price leaving the same point and parting company - the gap between
+       them IS the site. Both series carry their own chart colour. -->
+  <circle cx="7" cy="16" r="2.6" fill="#8a94a3"/>
+  <path d="M8.5 15 L25.5 8.5" stroke="#82a8ca" stroke-width="3" stroke-linecap="round" fill="none"/>
+  <path d="M8.5 17 L25.5 23.5" stroke="#c98a6a" stroke-width="3" stroke-linecap="round" fill="none"/>
 </svg>
