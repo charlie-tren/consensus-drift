@@ -1,8 +1,9 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32">
   <rect width="32" height="32" rx="7" fill="#171c24"/>
-  <!-- Estimates and price leaving the same point and parting company - the gap between
-       them IS the site. Both series carry their own chart colour. -->
-  <circle cx="7" cy="16" r="2.6" fill="#8a94a3"/>
-  <path d="M8.5 15 L25.5 8.5" stroke="#82a8ca" stroke-width="3" stroke-linecap="round" fill="none"/>
-  <path d="M8.5 17 L25.5 23.5" stroke="#c98a6a" stroke-width="3" stroke-linecap="round" fill="none"/>
+  <!-- Delta - the change. This is the real Georgia Bold glyph for U+0394, converted to a
+       path rather than left as <text>: an SVG favicon renders with the VIEWER's fonts, so a
+       text element would fall back to something else on any machine without Georgia. As a
+       path it looks the same everywhere. Bold, because at 16px the regular weight's counter
+       closes up and it turns into a solid blob. -->
+  <path d="M25.74426685198054 25.5H6.255733148019459V24.747394023627518L15.049339819318973 6.5H17.59763724808895L25.74426685198054 24.747394023627518ZM19.987491313412093 22.8724808895066 14.587213342599028 10.606323835997221 8.764419735927728 22.8724808895066Z" fill="#82a8ca"/>
 </svg>
