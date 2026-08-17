@@ -165,25 +165,30 @@ TEMPLATE = """<!DOCTYPE html>
        -webkit-font-smoothing:antialiased}
   .wrap{max-width:1060px;margin:0 auto;padding:2.2rem 1.5rem 5rem}
 
-  .bar{display:flex;align-items:center;justify-content:space-between;gap:1rem;margin-bottom:2.6rem}
+  /* Wordmark hard left, back-link hard right, and nothing in between: two items
+     under space-between is the whole layout. The previous version was a
+     three-column bar meant to centre the wordmark, with an empty .bar-pad on the
+     right to balance the link on the left - but .mark had no `order` and so sorted
+     ahead of both, which put the wordmark in the LEFT column centred within it and
+     left the pad as 152px of dead space holding the link in off the right edge.
+     DOM order now matches reading order, so no `order` is needed at all. */
+  .bar{display:flex;align-items:baseline;justify-content:space-between;
+       gap:1rem;margin-bottom:2.6rem}
+  .mark{font:300 30px/1 ui-sans-serif,system-ui,sans-serif;letter-spacing:.30em;
+        text-transform:uppercase;color:var(--ink)}
   /* navigation, not a title - kept lighter than the page's own name */
-  .home{order:3;font:500 13px/1 ui-sans-serif,system-ui,sans-serif;letter-spacing:.1em;
+  .home{font:500 13px/1 ui-sans-serif,system-ui,sans-serif;letter-spacing:.1em;
         text-transform:uppercase;color:var(--soft);text-decoration:none;
+        white-space:nowrap;
         display:inline-flex;align-items:center;gap:.5rem;transition:color .2s}
   .home:hover{color:var(--accent)}
   .home .back{color:var(--accent);font-size:14px}
-  .mark{font:300 30px/1 ui-sans-serif,system-ui,sans-serif;letter-spacing:.30em;
-        text-transform:uppercase;color:var(--ink);text-align:center;
-        flex:1 1 auto;padding-left:.30em}
-  .bar{align-items:baseline}
-  .home,.bar-pad{flex:0 0 auto;min-width:9.5rem;order:1}
-  @media (max-width:720px){ .mark{font-size:18px;letter-spacing:.2em} .bar-pad{display:none}
-    .home,.bar-pad{min-width:0} }
+  @media (max-width:720px){ .mark{font-size:18px;letter-spacing:.2em} }
   /* below this the wordmark wrapped to two lines and crowded the back-link,
      because both were sharing one row */
   @media (max-width:560px){
     .bar{flex-direction:column;align-items:flex-start;gap:.5rem}
-    .mark{flex:0 0 auto;text-align:left;padding-left:0;font-size:20px}
+    .mark{font-size:20px}
   }
 
   h1{font-weight:400;font-size:clamp(1.7rem,3vw,2.15rem);line-height:1.1;
@@ -320,9 +325,8 @@ TEMPLATE = """<!DOCTYPE html>
 <body>
 <div class="wrap">
   <div class="bar">
-    <a class="home" href="https://charlietrenorden.com/"><span class="back">&larr;</span>&nbsp;Other projects</a>
     <span class="mark">Consensus Drift</span>
-    <span class="bar-pad" aria-hidden="true"></span>
+    <a class="home" href="https://charlietrenorden.com/"><span class="back">&larr;</span>&nbsp;Other projects</a>
   </div>
 
   <h1>__HEADLINE__</h1>
