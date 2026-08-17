@@ -457,10 +457,24 @@ __ROWS__
     analysts: document.getElementById("c-analysts")
   };
 
+  // Narrowing the window hides a column and its filter control with it, so a
+  // value typed while wide would go on filtering with nothing on screen to undo
+  // it. Ignore those rather than clear them - widen again and they come back.
+  // Read once per apply, not once per row.
+  var colLive = {};
+  function readColLive() {
+    for (var k in cols) {
+      if (Object.prototype.hasOwnProperty.call(cols, k)) {
+        colLive[k] = cols[k].offsetParent !== null;
+      }
+    }
+  }
+
   function colMatch(r) {
     var t;
     for (var k in cols) {
       if (!Object.prototype.hasOwnProperty.call(cols, k)) continue;
+      if (colLive[k] === false) continue;
       var v = cols[k].value.trim();
       if (!v) continue;
       if (k === "bandlabel") {
@@ -722,6 +736,7 @@ __ROWS__
   });
 
   function apply() {
+    readColLive();
     var shown = DATA.filter(matches);
     draw(shown);
 
