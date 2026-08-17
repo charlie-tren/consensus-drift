@@ -167,7 +167,7 @@ TEMPLATE = """<!DOCTYPE html>
 
   .bar{display:flex;align-items:center;justify-content:space-between;gap:1rem;margin-bottom:2.6rem}
   /* navigation, not a title - kept lighter than the page's own name */
-  .home{font:500 13px/1 ui-sans-serif,system-ui,sans-serif;letter-spacing:.1em;
+  .home{order:3;font:500 13px/1 ui-sans-serif,system-ui,sans-serif;letter-spacing:.1em;
         text-transform:uppercase;color:var(--soft);text-decoration:none;
         display:inline-flex;align-items:center;gap:.5rem;transition:color .2s}
   .home:hover{color:var(--accent)}
@@ -176,7 +176,7 @@ TEMPLATE = """<!DOCTYPE html>
         text-transform:uppercase;color:var(--ink);text-align:center;
         flex:1 1 auto;padding-left:.30em}
   .bar{align-items:baseline}
-  .home,.bar-pad{flex:0 0 auto;min-width:9.5rem}
+  .home,.bar-pad{flex:0 0 auto;min-width:9.5rem;order:1}
   @media (max-width:720px){ .mark{font-size:18px;letter-spacing:.2em} .bar-pad{display:none}
     .home,.bar-pad{min-width:0} }
   /* below this the wordmark wrapped to two lines and crowded the back-link,
@@ -320,7 +320,7 @@ TEMPLATE = """<!DOCTYPE html>
 <body>
 <div class="wrap">
   <div class="bar">
-    <a class="home" href="https://charlietrenorden.com/"><span class="back">&larr;</span>Other projects</a>
+    <a class="home" href="https://charlietrenorden.com/"><span class="back">&larr;</span>&nbsp;Other projects</a>
     <span class="mark">Consensus Drift</span>
     <span class="bar-pad" aria-hidden="true"></span>
   </div>
