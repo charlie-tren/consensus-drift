@@ -4833,3 +4833,1210 @@ asof,ticker,name,market,sector,mcap_bn,eps_now,eps_prior,revision_pct,price_now,
 2026-08-16,TECH,Bio-Techne,United States (NYSE & Nasdaq),Healthcare,11.3,1.67,1.78,-6.18,72.4,43.22,67.52,-73.7,3
 2026-08-16,PANW,Palo Alto Networks,United States (NYSE & Nasdaq),Technology,313.2,1.9409,2.2978,-15.53,384.27,242.83,58.25,-73.78,16
 2026-08-16,CRL,Charles River Laboratories,United States (NYSE & Nasdaq),Healthcare,13.5,12.6862,12.3096,3.06,280.05,150.85,85.65,-82.59,16
+2026-08-23,SMCI,Supermicro,United States (NYSE & Nasdaq),Technology,24.1,4.87,2.89,68.51,37.24,35.58,4.67,63.84,7
+2026-08-23,PLS.AX,PLS Group,Australia (ASX),Basic Materials,11.7,0.37,0.2632,40.56,5.07,6.34,-20.03,60.59,14
+2026-08-23,INTC,Intel,United States (NYSE & Nasdaq),Technology,476.1,2.0401,1.5102,35.09,90.07,119.84,-24.84,59.93,44
+2026-08-23,CLS.TO,Celestica Inc.,Canada (TSX),Technology,37.2,19.5496,15.0188,30.17,407.67,507.99,-19.75,49.92,20
+2026-08-23,MIN.AX,Mineral Resources,Australia (ASX),Basic Materials,9.4,4.5683,3.163,44.43,66.29,69.66,-4.84,49.27,13
+2026-08-23,MNST,Monster Beverage,United States (NYSE & Nasdaq),Consumer Defensive,93.6,1.3083,1.2756,2.56,47.79,86.79,-44.94,47.5,13
+2026-08-23,CIEN,Ciena,United States (NYSE & Nasdaq),Technology,56.0,9.6692,8.7238,10.84,395.79,583.74,-32.2,43.04,19
+2026-08-23,ON,ON Semiconductor,United States (NYSE & Nasdaq),Technology,28.9,4.5284,4.2653,6.17,74.21,116.2,-36.14,42.31,30
+2026-08-23,SLR.MC,Solaria,Spain (BME),Utilities,2.7,1.7249,1.5351,12.36,17.12,24.15,-29.09,41.45,14
+2026-08-23,Q,Qnity Electronics,United States (NYSE & Nasdaq),Technology,27.0,5.3594,4.388,22.14,128.88,156.85,-17.83,39.97,8
+2026-08-23,0981.HK,Semiconductor Manufacturing International Corporation,Hong Kong (HKEX),Technology,79.2,0.2256,0.1738,29.81,72.5,79.85,-9.2,39.01,17
+2026-08-23,STMPA.PA,STMicroelectronics,France (Euronext Paris),Technology,44.9,2.5359,2.2551,12.45,43.08,57.85,-25.54,37.99,16
+2026-08-23,STX,Seagate Technology,United States (NYSE & Nasdaq),Technology,192.6,55.3714,38.917,42.28,850.0,812.15,4.66,37.62,19
+2026-08-23,COHR,Coherent Corp.,United States (NYSE & Nasdaq),Technology,56.7,13.9489,12.2363,14.0,289.52,377.57,-23.32,37.32,18
+2026-08-23,SNDK,Sandisk,United States (NYSE & Nasdaq),Technology,233.7,264.7216,182.8869,44.75,1596.08,1478.69,7.94,36.81,19
+2026-08-23,CIA.AX,Champion Iron,Australia (ASX),Basic Materials,1.4,0.4542,0.4204,8.04,3.52,4.9,-28.23,36.27,12
+2026-08-23,WDC,Western Digital,United States (NYSE & Nasdaq),Technology,165.6,31.7495,24.581,29.16,459.44,484.15,-5.1,34.26,20
+2026-08-23,APP,AppLovin,United States (NYSE & Nasdaq),Communication Services,102.7,20.3096,20.9954,-3.27,305.77,481.68,-36.52,33.25,26
+2026-08-23,MPWR,Monolithic Power Systems,United States (NYSE & Nasdaq),Technology,64.7,34.795,30.1589,15.37,1316.28,1587.39,-17.08,32.45,14
+2026-08-23,IFX.DE,Infineon Technologies,Germany (XETRA),Technology,85.0,2.7825,2.5609,8.65,55.97,73.42,-23.77,32.42,24
+2026-08-23,BESI.AS,BE Semiconductors,Netherlands (Euronext Amsterdam),Technology,19.7,6.4956,5.9302,9.53,212.8,273.6,-22.22,31.75,23
+2026-08-23,NXPI,NXP Semiconductors,United States (NYSE & Nasdaq),Technology,56.9,18.0951,17.5761,2.95,225.56,315.4,-28.48,31.43,26
+2026-08-23,PWR,Quanta Services,United States (NYSE & Nasdaq),Industrials,96.1,19.6413,16.4486,19.41,639.34,723.33,-11.61,31.02,25
+2026-08-23,GNRC,Generac,United States (NYSE & Nasdaq),Industrials,12.2,11.8202,11.0388,7.08,205.98,270.14,-23.75,30.83,20
+2026-08-23,MCHP,Microchip Technology,United States (NYSE & Nasdaq),Technology,41.3,4.5652,4.0913,11.58,76.08,93.43,-18.57,30.15,25
+2026-08-23,0992.HK,Lenovo,Hong Kong (HKEX),Technology,47.1,0.3845,0.1734,121.79,29.78,15.54,91.65,30.14,14
+2026-08-23,GLW,Corning Inc.,United States (NYSE & Nasdaq),Technology,129.1,4.3205,4.0423,6.88,149.84,193.75,-22.66,29.54,16
+2026-08-23,JBL,Jabil,United States (NYSE & Nasdaq),Technology,32.8,16.7466,14.5657,14.97,313.21,364.27,-14.02,28.99,10
+2026-08-23,QCOM,Qualcomm,United States (NYSE & Nasdaq),Technology,168.8,10.202,10.6362,-4.08,160.75,237.28,-32.25,28.17,34
+2026-08-23,IGG.L,IG Group,United Kingdom (LSE),Financial Services,6.0,1.3651,1.3726,-0.54,1334.0,1849.8,-27.88,27.34,5
+2026-08-23,TXN,Texas Instruments,United States (NYSE & Nasdaq),Technology,241.4,10.0341,8.8884,12.89,264.36,307.63,-14.07,26.96,28
+2026-08-23,LITE,Lumentum,United States (NYSE & Nasdaq),Technology,77.7,33.0132,28.1237,17.39,866.71,946.9,-8.47,25.86,20
+2026-08-23,SNPS,Synopsys,United States (NYSE & Nasdaq),Technology,76.2,17.2645,17.0505,1.25,397.87,524.74,-24.18,25.43,25
+2026-08-23,ORCL,Oracle Corporation,United States (NYSE & Nasdaq),Technology,421.9,10.9149,10.711,1.9,146.47,191.41,-23.48,25.38,40
+2026-08-23,0868.HK,Xinyi Glass,Hong Kong (HKEX),Basic Materials,5.2,1.0555,0.8997,17.32,9.16,9.94,-7.82,25.14,2
+2026-08-23,HLMA.L,Halma plc,United Kingdom (LSE),Industrials,,1.4178,1.3911,1.92,3510.0,4563.81,-23.09,25.01,17
+2026-08-23,AKAM,Akamai Technologies,United States (NYSE & Nasdaq),Technology,15.9,7.1652,7.1723,-0.1,110.42,147.23,-25.0,24.9,25
+2026-08-23,PRY.MI,Prysmian,Italy (Borsa Italiana),Industrials,42.3,6.1176,5.6952,7.42,124.0,149.8,-17.22,24.64,16
+2026-08-23,FIX,Comfort Systems USA,United States (NYSE & Nasdaq),Industrials,58.3,60.1785,52.3865,14.87,1655.61,1827.3,-9.4,24.27,10
+2026-08-23,UMG.AS,Universal Music Group,Netherlands (Euronext Amsterdam),Communication Services,31.6,1.0993,1.1421,-3.75,14.73,20.44,-27.94,24.19,17
+2026-08-23,KEYS,Keysight Technologies,United States (NYSE & Nasdaq),Technology,53.8,13.6499,11.8694,15.0,316.13,346.56,-8.78,23.78,12
+2026-08-23,ROL,"Rollins, Inc.",United States (NYSE & Nasdaq),Consumer Cyclical,17.8,1.3006,1.3977,-6.95,36.91,53.2,-30.62,23.67,19
+2026-08-23,ILU.AX,Iluka Resources,Australia (ASX),Basic Materials,2.2,-0.2959,-0.3317,10.79,7.01,8.03,-12.7,23.49,7
+2026-08-23,L.TO,Loblaw Companies Limited,Canada (TSX),Consumer Defensive,50.6,2.89,2.38,21.43,60.53,61.28,-1.23,22.66,1
+2026-08-23,VRT,Vertiv,United States (NYSE & Nasdaq),Industrials,100.8,9.0988,8.87,2.58,261.95,327.39,-19.99,22.57,28
+2026-08-23,MU,Micron Technology,United States (NYSE & Nasdaq),Technology,,155.0252,102.7224,50.92,966.78,750.88,28.75,22.17,39
+2026-08-23,RTO.L,Rentokil Initial,United Kingdom (LSE),Industrials,11.8,0.2293,0.2384,-3.81,344.2,463.84,-25.79,21.98,17
+2026-08-23,EME,Emcor,United States (NYSE & Nasdaq),Industrials,34.3,36.749,32.4289,13.32,776.62,848.47,-8.47,21.79,10
+2026-08-23,SMR.AX,Stanmore Resources,Australia (ASX),Basic Materials,1.7,0.1725,0.1304,32.27,2.68,2.42,10.74,21.53,3
+2026-08-23,AAI.AX,Alcoa,Australia (ASX),Basic Materials,13.6,8.635,8.7828,-1.68,71.69,93.17,-23.06,21.38,2
+2026-08-23,0762.HK,China Unicom,Hong Kong (HKEX),Communication Services,22.7,0.648,0.6757,-4.1,5.81,7.77,-25.19,21.09,12
+2026-08-23,CSC.AX,Capstone Copper,Australia (ASX),Basic Materials,8.5,1.4193,1.0573,34.24,15.57,13.75,13.24,21.0,8
+2026-08-23,ASM.AS,ASM International,Netherlands (Euronext Amsterdam),Technology,47.5,30.5194,27.0003,13.03,830.4,900.8,-7.82,20.85,15
+2026-08-23,0960.HK,Longfor Properties,Hong Kong (HKEX),Real Estate,6.0,0.5494,0.5235,4.94,6.84,8.12,-15.7,20.64,9
+2026-08-23,CHRW,C.H. Robinson,United States (NYSE & Nasdaq),Industrials,16.5,7.4992,7.3393,2.18,141.63,173.64,-18.43,20.61,25
+2026-08-23,CBOE,Cboe Global Markets,United States (NYSE & Nasdaq),Financial Services,31.4,15.1984,14.5646,4.35,300.74,356.6,-15.67,20.02,12
+2026-08-23,ABB.ST,ABB Ltd,Sweden (Nasdaq Stockholm),Industrials,181.5,3.9867,3.4775,14.64,946.2,997.8,-5.17,19.81,3
+2026-08-23,ASML.AS,ASML Holding,Netherlands (Euronext Amsterdam),Technology,675.7,51.6893,40.9227,26.31,1506.0,1407.31,7.01,19.3,33
+2026-08-23,TEN.MI,Tenaris,Italy (Borsa Italiana),Energy,26.4,2.1122,2.0333,3.88,22.37,26.44,-15.39,19.27,14
+2026-08-23,ACS.MC,ACS,Spain (BME),Industrials,32.3,4.9331,4.6898,5.19,105.0,121.8,-13.79,18.98,15
+2026-08-23,ERIC-B.ST,Ericsson B,Sweden (Nasdaq Stockholm),Technology,33.5,6.858,7.2124,-4.91,96.64,125.85,-23.21,18.3,17
+2026-08-23,CIP.AX,Centuria Industrial REIT,Australia (ASX),Real Estate,1.3,0.2459,0.2043,20.34,2.97,2.91,2.05,18.29,5
+2026-08-23,AMD,Advanced Micro Devices,United States (NYSE & Nasdaq),Technology,772.6,15.486,12.9595,19.49,473.25,467.51,1.23,18.26,46
+2026-08-23,LRCX,Lam Research,United States (NYSE & Nasdaq),Technology,392.9,11.5571,9.5483,21.04,314.0,305.14,2.91,18.13,26
+2026-08-23,AVGO,Broadcom,United States (NYSE & Nasdaq),Technology,1752.9,19.5041,18.2181,7.06,368.45,413.49,-10.89,17.95,47
+2026-08-23,FCT.MI,Fincantieri,Italy (Borsa Italiana),Industrials,5.2,0.807,0.6436,25.39,12.49,11.61,7.62,17.77,7
+2026-08-23,BKR,Baker Hughes,United States (NYSE & Nasdaq),Energy,61.9,3.1608,2.8141,12.32,62.34,65.82,-5.28,17.6,11
+2026-08-23,ENR.DE,Siemens Energy,Germany (XETRA),Industrials,152.4,6.1874,5.8927,5.0,153.36,175.42,-12.58,17.58,21
+2026-08-23,ANTO.L,Antofagasta plc,United Kingdom (LSE),Basic Materials,52.5,2.0406,1.7534,16.38,3905.0,3931.0,-0.66,17.04,17
+2026-08-23,ADI,Analog Devices,United States (NYSE & Nasdaq),Technology,,16.3582,14.725,11.09,373.09,395.99,-5.78,16.87,31
+2026-08-23,TER,Teradyne,United States (NYSE & Nasdaq),Technology,58.7,11.553,9.5132,21.44,375.74,358.44,4.83,16.61,18
+2026-08-23,VLO,Valero Energy,United States (NYSE & Nasdaq),Energy,100.4,30.5206,19.2687,58.4,348.86,246.01,41.81,16.59,19
+2026-08-23,TELIA.ST,Telia Company,Sweden (Nasdaq Stockholm),Communication Services,18.1,2.6432,2.552,3.57,43.5,49.98,-12.97,16.54,14
+2026-08-23,ANA.MC,Acciona,Spain (BME),Industrials,13.0,9.622,9.55,0.75,209.8,248.91,-15.71,16.46,5
+2026-08-23,ALB,Albemarle Corporation,United States (NYSE & Nasdaq),Basic Materials,16.9,11.5028,11.4902,0.11,143.25,171.14,-16.3,16.41,18
+2026-08-23,FSLR,First Solar,United States (NYSE & Nasdaq),Technology,23.0,23.0492,23.171,-0.53,214.28,257.85,-16.9,16.37,30
+2026-08-23,BATS.L,British American Tobacco,United Kingdom (LSE),Consumer Defensive,121.4,3.8932,3.851,1.1,4131.0,4874.35,-15.25,16.35,14
+2026-08-23,CDNS,Cadence Design Systems,United States (NYSE & Nasdaq),Technology,87.9,9.5356,9.3807,1.65,319.02,373.59,-14.61,16.26,25
+2026-08-23,NUE,Nucor,United States (NYSE & Nasdaq),Basic Materials,55.3,19.1443,15.7849,21.28,243.63,231.43,5.27,16.01,12
+2026-08-23,ISRG,Intuitive Surgical,United States (NYSE & Nasdaq),Healthcare,135.7,12.0708,11.7892,2.39,378.81,438.1,-13.53,15.92,27
+2026-08-23,SGM.AX,Sims Metal,Australia (ASX),Basic Materials,3.3,1.8921,1.6133,17.28,23.56,23.23,1.42,15.86,13
+2026-08-23,LII,Lennox International,United States (NYSE & Nasdaq),Industrials,13.9,26.3286,26.6258,-1.12,402.87,483.48,-16.67,15.55,17
+2026-08-23,STLD,Steel Dynamics,United States (NYSE & Nasdaq),Basic Materials,32.8,19.0184,17.1493,10.9,228.68,239.49,-4.51,15.41,13
+2026-08-23,IGO.AX,IGO,Australia (ASX),Basic Materials,4.5,0.6237,0.5888,5.92,8.36,9.21,-9.23,15.15,12
+2026-08-23,NI,NiSource,United States (NYSE & Nasdaq),Utilities,19.5,2.2539,2.2423,0.51,40.62,47.53,-14.54,15.05,15
+2026-08-23,DECK,Deckers Brands,United States (NYSE & Nasdaq),Consumer Cyclical,12.5,8.3965,8.3283,0.82,91.68,106.67,-14.05,14.87,21
+2026-08-23,TECK-B.TO,Teck Resources Limited,Canada (TSX),Basic Materials,33.8,4.9918,3.9927,25.02,95.3,86.46,10.22,14.8,18
+2026-08-23,D01.SI,DFI Retail Group Holdings Limited,Singapore (SGX),Consumer Defensive,5.0,0.2419,0.2351,2.88,3.66,4.15,-11.82,14.7,11
+2026-08-23,ONGC.NS,Oil and Natural Gas Corporation,India (NSE),Energy,31.1,41.545,43.2084,-3.85,236.4,290.0,-18.48,14.63,20
+2026-08-23,HAL,Halliburton,United States (NYSE & Nasdaq),Energy,29.4,2.9077,2.9034,0.15,35.34,41.29,-14.42,14.57,25
+2026-08-23,NRG,NRG Energy,United States (NYSE & Nasdaq),Utilities,23.8,11.1965,11.5406,-2.98,113.11,137.16,-17.54,14.56,11
+2026-08-23,SWKS,Skyworks Solutions,United States (NYSE & Nasdaq),Technology,10.1,4.9731,5.146,-3.36,67.14,81.71,-17.83,14.47,22
+2026-08-23,IG.MI,Italgas,Italy (Borsa Italiana),Utilities,10.4,0.7991,0.7941,0.63,8.73,10.14,-13.82,14.45,14
+2026-08-23,CMI,Cummins,United States (NYSE & Nasdaq),Industrials,80.9,33.7495,31.6915,6.49,587.68,637.18,-7.77,14.26,13
+2026-08-23,2618.HK,JD Logistics,Hong Kong (HKEX),Industrials,9.2,1.6417,1.6499,-0.5,11.81,13.85,-14.73,14.23,16
+2026-08-23,CCI,Crown Castle,United States (NYSE & Nasdaq),Real Estate,33.0,2.8874,2.9546,-2.27,75.51,90.41,-16.48,14.21,9
+2026-08-23,KLAC,KLA Corporation,United States (NYSE & Nasdaq),Technology,240.4,6.6038,5.9138,11.67,183.99,188.62,-2.46,14.13,23
+2026-08-23,2382.HK,Sunny Optical,Hong Kong (HKEX),Technology,8.5,4.3709,4.3933,-0.51,61.75,72.18,-14.44,13.93,18
+2026-08-23,NTPC.NS,NTPC,India (NSE),Utilities,34.5,24.897,24.5518,1.41,340.0,388.65,-12.52,13.93,18
+2026-08-23,CAT,Caterpillar Inc.,United States (NYSE & Nasdaq),Industrials,380.6,32.2812,29.8636,8.1,827.9,878.26,-5.73,13.83,27
+2026-08-23,LR.PA,Legrand,France (Euronext Paris),Industrials,41.2,6.6918,6.4707,3.42,134.65,150.16,-10.33,13.75,16
+2026-08-23,ENB.TO,Enbridge Inc.,Canada (TSX),Energy,109.9,3.2173,3.1658,1.63,69.54,79.1,-12.09,13.72,18
+2026-08-23,CSCO,Cisco,United States (NYSE & Nasdaq),Technology,437.7,5.5472,5.2327,6.01,111.04,119.96,-7.44,13.45,24
+2026-08-23,TRP.TO,TC Energy Corporation,Canada (TSX),Energy,64.4,3.9141,3.8578,1.46,85.44,97.02,-11.93,13.39,20
+2026-08-23,LHX,L3Harris,United States (NYSE & Nasdaq),Industrials,49.7,13.4615,13.5926,-0.96,266.73,310.72,-14.16,13.2,9
+2026-08-23,AZO,AutoZone,United States (NYSE & Nasdaq),Consumer Cyclical,,175.007,174.9926,0.01,2957.95,3406.5,-13.17,13.18,23
+2026-08-23,GOOGL,Alphabet Inc. (Class A),United States (NYSE & Nasdaq),Communication Services,4217.1,14.8373,14.4409,2.74,344.82,382.74,-9.91,12.65,55
+2026-08-23,IMD.AX,IMDEX,Australia (ASX),Industrials,1.3,0.1591,0.1643,-3.19,3.59,4.26,-15.73,12.54,8
+2026-08-23,GOOG,Alphabet Inc. (Class C),United States (NYSE & Nasdaq),Communication Services,4179.6,14.811,14.4266,2.66,341.75,379.15,-9.86,12.52,51
+2026-08-23,1299.HK,AIA Group Limited,Hong Kong (HKEX),Financial Services,98.8,0.8633,0.8534,1.16,75.15,84.58,-11.15,12.31,6
+2026-08-23,AD.AS,Ahold Delhaize,Netherlands (Euronext Amsterdam),Consumer Defensive,31.7,2.9253,2.9856,-2.02,31.04,36.1,-14.02,12.0,17
+2026-08-23,PRU.L,Prudential plc,United Kingdom (LSE),Financial Services,34.8,1.0208,0.9924,2.86,1028.0,1130.5,-9.07,11.93,7
+2026-08-23,APTV,Aptiv,United States (NYSE & Nasdaq),Consumer Cyclical,10.0,6.5118,6.7831,-4.0,48.28,57.36,-15.83,11.83,18
+2026-08-23,KR,Kroger,United States (NYSE & Nasdaq),Consumer Defensive,,5.5409,5.6257,-1.51,57.9,66.79,-13.31,11.8,22
+2026-08-23,TJX,TJX Companies,United States (NYSE & Nasdaq),Consumer Cyclical,155.2,5.7751,5.7287,0.81,140.53,157.77,-10.93,11.74,13
+2026-08-23,WMT,Walmart,United States (NYSE & Nasdaq),Consumer Defensive,825.3,3.225,3.2885,-1.93,103.7,119.98,-13.57,11.64,40
+2026-08-23,CNA.L,Centrica,United Kingdom (LSE),Utilities,9.7,0.1304,0.1476,-11.61,153.9,200.27,-23.16,11.55,13
+2026-08-23,DVA,DaVita,United States (NYSE & Nasdaq),Healthcare,11.1,17.0153,17.1817,-0.97,173.82,198.52,-12.44,11.47,8
+2026-08-23,WMB,Williams Companies,United States (NYSE & Nasdaq),Energy,86.2,2.621,2.571,1.94,70.49,77.89,-9.51,11.45,8
+2026-08-23,1378.HK,China Hongqiao Group,Hong Kong (HKEX),Basic Materials,29.0,3.2312,3.6027,-10.31,23.18,29.62,-21.74,11.43,15
+2026-08-23,SBAC,SBA Communications,United States (NYSE & Nasdaq),Real Estate,19.4,8.2065,8.1717,0.43,182.59,204.16,-10.57,11.0,10
+2026-08-23,9888.HK,Baidu,Hong Kong (HKEX),Communication Services,32.3,6.424,7.6879,-16.44,93.2,128.2,-27.3,10.86,10
+2026-08-23,ANE.MC,Acciona Energía,Spain (BME),Utilities,7.9,0.7178,0.7249,-0.98,20.86,23.63,-11.72,10.74,14
+2026-08-23,DBI.AX,Dalrymple Bay Infrastructure,Australia (ASX),Industrials,1.9,0.2488,0.2364,5.24,5.23,5.53,-5.47,10.71,9
+2026-08-23,0288.HK,WH Group,Hong Kong (HKEX),Consumer Defensive,13.4,0.1303,0.1304,-0.1,8.2,9.19,-10.72,10.62,9
+2026-08-23,IMO.TO,Imperial Oil Limited,Canada (TSX),Energy,66.5,11.8662,10.3749,14.37,190.0,182.98,3.84,10.53,10
+2026-08-23,TLS.AX,Telstra,Australia (ASX),Communication Services,,0.2283,0.2321,-1.63,4.73,5.38,-12.08,10.45,11
+2026-08-23,TATACONSUM.NS,Tata Consumer Products,India (NSE),Consumer Defensive,10.9,23.9121,24.115,-0.84,1049.0,1181.8,-11.24,10.4,25
+2026-08-23,AZN.L,AstraZeneca,United Kingdom (LSE),Healthcare,258.8,11.4348,11.6301,-1.68,12240.0,13915.08,-12.04,10.36,22
+2026-08-23,ALQ.AX,ALS,Australia (ASX),Industrials,8.1,1.0015,0.9689,3.37,22.14,23.8,-6.98,10.35,14
+2026-08-23,AZN.ST,AstraZeneca,Sweden (Nasdaq Stockholm),Healthcare,258.9,11.3933,11.3533,0.35,1577.5,1752.1,-9.97,10.32,3
+2026-08-23,IMB.L,Imperial Brands,United Kingdom (LSE),Consumer Defensive,25.9,3.6678,3.6723,-0.12,2503.0,2794.54,-10.43,10.31,12
+2026-08-23,SCMN.SW,Swisscom AG,Switzerland (SIX),Communication Services,40.7,31.0416,30.1749,2.87,629.0,679.0,-7.36,10.23,11
+2026-08-23,TEL2-B.ST,Tele2 B,Sweden (Nasdaq Stockholm),Communication Services,12.3,8.7251,8.5704,1.8,167.2,182.6,-8.43,10.23,10
+2026-08-23,TATASTEEL.NS,Tata Steel,India (NSE),Basic Materials,23.9,17.9,18.0,-0.56,183.0,204.96,-10.72,10.16,31
+2026-08-23,SRE,Sempra,United States (NYSE & Nasdaq),Utilities,54.2,5.5395,5.537,0.04,82.89,92.14,-10.04,10.08,16
+2026-08-23,SHELL.AS,Shell plc,Netherlands (Euronext Amsterdam),Energy,257.2,4.6326,3.8671,19.8,39.91,36.37,9.74,10.06,3
+2026-08-23,DOW.AX,Downer Group,Australia (ASX),Industrials,3.1,0.5146,0.5396,-4.63,6.59,7.72,-14.64,10.01,7
+2026-08-23,NG.L,National Grid plc,United Kingdom (LSE),Utilities,80.2,0.9768,0.9631,1.42,1171.0,1280.68,-8.56,9.98,15
+2026-08-23,HII,Huntington Ingalls Industries,United States (NYSE & Nasdaq),Industrials,11.8,20.8366,20.1582,3.37,298.2,319.25,-6.59,9.96,11
+2026-08-23,GEV,GE Vernova,United States (NYSE & Nasdaq),Industrials,254.8,24.7433,24.2336,2.1,956.85,1038.21,-7.84,9.94,27
+2026-08-23,KMI,Kinder Morgan,United States (NYSE & Nasdaq),Energy,69.0,1.5377,1.5005,2.48,30.98,33.48,-7.46,9.94,16
+2026-08-23,LUV,Southwest Airlines,United States (NYSE & Nasdaq),Industrials,19.8,4.9251,4.5104,9.19,40.38,40.68,-0.74,9.93,24
+2026-08-23,BG,Bunge Global,United States (NYSE & Nasdaq),Consumer Defensive,21.7,11.3413,10.886,4.18,113.11,119.95,-5.71,9.89,7
+2026-08-23,NFLX,Netflix,United States (NYSE & Nasdaq),Communication Services,331.4,3.8163,3.8287,-0.33,79.59,88.6,-10.17,9.84,45
+2026-08-23,ABBN.SW,ABB Ltd,Switzerland (SIX),Industrials,181.5,3.5892,3.4013,5.53,80.2,83.8,-4.3,9.83,14
+2026-08-23,0291.HK,China Resources Beer,Hong Kong (HKEX),Consumer Defensive,8.7,2.0877,2.2393,-6.77,21.12,25.32,-16.59,9.82,17
+2026-08-23,2331.HK,Li-Ning,Hong Kong (HKEX),Consumer Cyclical,4.6,1.1957,1.3458,-11.16,14.25,18.03,-20.95,9.79,25
+2026-08-23,H.TO,Hydro One Limited,Canada (TSX),Utilities,23.1,2.3866,2.3803,0.26,53.25,58.8,-9.44,9.7,12
+2026-08-23,KPN.AS,KPN,Netherlands (Euronext Amsterdam),Communication Services,18.2,0.2717,0.2735,-0.64,4.07,4.53,-10.31,9.67,12
+2026-08-23,ORA.PA,Orange,France (Euronext Paris),Communication Services,49.6,1.1709,1.178,-0.6,15.97,17.75,-10.06,9.46,9
+2026-08-23,AZJ.AX,Aurizon,Australia (ASX),Industrials,4.4,0.2462,0.2573,-4.29,3.65,4.23,-13.71,9.42,15
+2026-08-23,J36.SI,Jardine Matheson Holdings Limited,Singapore (SGX),Industrials,18.1,5.8958,6.0827,-3.07,61.69,70.49,-12.48,9.41,9
+2026-08-23,FMG.AX,Fortescue,Australia (ASX),Basic Materials,39.2,0.8088,0.8796,-8.05,17.75,21.5,-17.44,9.39,13
+2026-08-23,BIP-UN.TO,Brookfield Infrastructure Partners L.P.,Canada (TSX),Utilities,30.7,1.4519,1.3451,7.94,53.55,54.33,-1.44,9.38,3
+2026-08-23,EBAY,eBay Inc.,United States (NYSE & Nasdaq),Consumer Cyclical,46.3,6.7329,6.763,-0.45,104.13,115.43,-9.79,9.34,30
+2026-08-23,AMZN,Amazon,United States (NYSE & Nasdaq),Consumer Cyclical,2789.7,10.4821,9.8494,6.42,258.63,266.32,-2.89,9.31,53
+2026-08-23,CNC,Centene Corporation,United States (NYSE & Nasdaq),Healthcare,32.1,5.3125,4.4552,19.24,65.02,59.14,9.94,9.3,21
+2026-08-23,MO,Altria,United States (NYSE & Nasdaq),Consumer Defensive,110.4,5.864,5.8648,-0.01,66.09,72.81,-9.23,9.22,14
+2026-08-23,TXT,Textron,United States (NYSE & Nasdaq),Industrials,14.3,7.263,7.2967,-0.46,82.95,91.81,-9.65,9.19,16
+2026-08-23,CNP,CenterPoint Energy,United States (NYSE & Nasdaq),Utilities,25.5,2.0867,2.0819,0.23,38.77,42.58,-8.94,9.17,18
+2026-08-23,COALINDIA.NS,Coal India,India (NSE),Energy,26.1,56.6427,57.1875,-0.95,405.2,450.53,-10.06,9.11,22
+2026-08-23,VNT.AX,Ventia Services Group,Australia (ASX),Industrials,3.3,0.3661,0.3665,-0.12,5.57,6.12,-8.99,8.87,12
+2026-08-23,ODFL,Old Dominion,United States (NYSE & Nasdaq),Industrials,42.9,6.586,6.1517,7.06,206.47,210.2,-1.78,8.84,19
+2026-08-23,SAND.ST,Sandvik,Sweden (Nasdaq Stockholm),Industrials,50.6,19.7151,18.2038,8.3,380.8,382.4,-0.42,8.72,15
+2026-08-23,GS,Goldman Sachs,United States (NYSE & Nasdaq),Financial Services,302.6,74.1699,65.3989,13.41,1039.28,992.36,4.73,8.68,22
+2026-08-23,LSEG.L,London Stock Exchange Group,United Kingdom (LSE),Financial Services,56.9,5.4107,5.3635,0.88,8602.0,9325.41,-7.76,8.64,13
+2026-08-23,GAW.L,Games Workshop,United Kingdom (LSE),Consumer Cyclical,8.4,6.5323,6.5789,-0.71,18660.0,20559.14,-9.24,8.53,4
+2026-08-23,GMG.AX,Goodman Group,Australia (ASX),Real Estate,,1.5871,1.6038,-1.04,27.27,30.14,-9.52,8.48,14
+2026-08-23,MONC.MI,Moncler,Italy (Borsa Italiana),Consumer Cyclical,15.0,2.5994,2.6023,-0.11,47.1,51.52,-8.58,8.47,25
+2026-08-23,COST,Costco,United States (NYSE & Nasdaq),Consumer Defensive,420.3,22.704,22.5279,0.78,947.74,1026.61,-7.68,8.46,34
+2026-08-23,2015.HK,Li Auto,Hong Kong (HKEX),Consumer Cyclical,12.8,2.58,2.8257,-8.7,51.2,61.8,-17.15,8.45,4
+2026-08-23,FSF.NZ,Fonterra Shareholders' Fund,New Zealand (NZX),Financial Services,0.4,0.6391,0.6022,6.13,6.99,7.16,-2.3,8.43,3
+2026-08-23,STLAP.PA,Stellantis,France (Euronext Paris),Consumer Cyclical,20.5,1.025,1.285,-20.23,4.65,6.51,-28.6,8.37,2
+2026-08-23,2057.HK,ZTO Express,Hong Kong (HKEX),Industrials,16.4,15.6729,15.2025,3.09,169.5,178.6,-5.1,8.19,6
+2026-08-23,TPR,"Tapestry, Inc.",United States (NYSE & Nasdaq),Consumer Cyclical,26.0,8.8709,8.6608,2.43,130.17,138.1,-5.74,8.17,22
+2026-08-23,STJ.L,St. James's Place,United Kingdom (LSE),Financial Services,8.2,1.0675,1.0037,6.36,1188.0,1209.44,-1.77,8.13,14
+2026-08-23,STZ,Constellation Brands,United States (NYSE & Nasdaq),Consumer Defensive,23.2,12.3919,12.4643,-0.58,135.66,148.33,-8.54,7.96,23
+2026-08-23,RYM.NZ,Ryman Healthcare Limited,New Zealand (NZX),Healthcare,1.3,0.1781,0.1672,6.56,2.15,2.18,-1.38,7.94,2
+2026-08-23,1113.HK,CK Asset Holdings,Hong Kong (HKEX),Real Estate,21.1,3.8195,3.7046,3.1,47.32,49.72,-4.82,7.92,9
+2026-08-23,FER.MC,Ferrovial,Spain (BME),Industrials,45.3,1.1872,1.1893,-0.18,53.76,58.46,-8.04,7.86,16
+2026-08-23,VST,Vistra Corp.,United States (NYSE & Nasdaq),Utilities,45.7,10.3602,10.891,-4.87,136.21,156.05,-12.71,7.84,9
+2026-08-23,TRA.NZ,Turners Automotive Group Limited,New Zealand (NZX),Consumer Cyclical,0.4,0.3467,0.3513,-1.32,7.55,8.31,-9.15,7.83,2
+2026-08-23,ETR,Entergy,United States (NYSE & Nasdaq),Utilities,48.8,5.0968,5.0252,1.42,104.62,111.73,-6.37,7.79,21
+2026-08-23,LOGN.SW,Logitech International SA,Switzerland (SIX),Technology,13.7,6.0127,6.2965,-4.51,76.72,87.36,-12.18,7.67,10
+2026-08-23,ENGI.PA,Engie,France (Euronext Paris),Utilities,75.1,2.1033,2.0888,0.69,25.29,27.17,-6.92,7.61,16
+2026-08-23,6862.HK,Haidilao,Hong Kong (HKEX),Consumer Cyclical,7.9,0.8797,0.9119,-3.54,11.48,12.92,-11.15,7.61,22
+2026-08-23,LNT,Alliant Energy,United States (NYSE & Nasdaq),Utilities,17.6,3.6857,3.6854,0.01,67.86,73.39,-7.54,7.55,13
+2026-08-23,U14.SI,UOL Group,Singapore (SGX),Real Estate,6.4,0.605,0.6039,0.19,9.57,10.33,-7.36,7.55,9
+2026-08-23,ABI.BR,Anheuser-Busch InBev,Belgium (Euronext Brussels),Consumer Defensive,154.5,4.9157,4.8739,0.86,67.16,71.9,-6.59,7.45,25
+2026-08-23,HINDUNILVR.NS,Hindustan Unilever,India (NSE),Consumer Defensive,49.5,53.2326,53.3512,-0.22,2015.0,2181.41,-7.63,7.41,20
+2026-08-23,PEG,Public Service Enterprise Group,United States (NYSE & Nasdaq),Utilities,36.2,4.6724,4.697,-0.52,72.61,78.82,-7.88,7.36,21
+2026-08-23,AEP,American Electric Power,United States (NYSE & Nasdaq),Utilities,65.8,6.8532,6.8564,-0.05,120.94,130.6,-7.39,7.34,19
+2026-08-23,CARR,Carrier Global,United States (NYSE & Nasdaq),Industrials,49.8,3.3059,3.2003,3.3,60.37,62.91,-4.04,7.34,24
+2026-08-23,META,Meta Platforms,United States (NYSE & Nasdaq),Communication Services,1400.9,33.8919,34.7544,-2.48,549.9,609.69,-9.81,7.33,52
+2026-08-23,AVIO.MI,Avio,Italy (Borsa Italiana),Industrials,1.7,0.267,0.277,-3.62,32.14,36.09,-10.94,7.32,4
+2026-08-23,TEF.MC,Telefónica,Spain (BME),Communication Services,23.8,0.3919,0.3924,-0.13,3.62,3.91,-7.43,7.3,7
+2026-08-23,CMS,CMS Energy,United States (NYSE & Nasdaq),Utilities,21.4,4.1568,4.1723,-0.37,68.27,73.93,-7.66,7.29,15
+2026-08-23,VICI,Vici Properties,United States (NYSE & Nasdaq),Real Estate,29.2,2.99,2.935,1.87,26.51,28.03,-5.42,7.29,1
+2026-08-23,6618.HK,JD Health,Hong Kong (HKEX),Healthcare,15.7,2.5134,2.451,2.55,38.66,40.58,-4.73,7.28,11
+2026-08-23,2688.HK,ENN Energy,Hong Kong (HKEX),Utilities,6.8,5.8712,6.2447,-5.98,48.0,55.33,-13.24,7.26,11
+2026-08-23,HOLN.SW,Holcim Limited,Switzerland (SIX),Basic Materials,48.5,4.3094,4.2088,2.39,70.3,73.84,-4.79,7.18,17
+2026-08-23,F,Ford Motor Company,United States (NYSE & Nasdaq),Consumer Cyclical,57.5,1.9133,1.8279,4.67,14.41,14.77,-2.44,7.11,22
+2026-08-23,CVNA,Carvana,United States (NYSE & Nasdaq),Consumer Cyclical,104.0,2.2396,2.0468,9.42,69.91,68.28,2.39,7.03,14
+2026-08-23,UNH,UnitedHealth Group,United States (NYSE & Nasdaq),Healthcare,350.2,22.4354,20.7841,7.94,390.11,386.26,1.0,6.94,27
+2026-08-23,TSN,Tyson Foods,United States (NYSE & Nasdaq),Consumer Defensive,20.6,4.478,4.5915,-2.47,58.48,64.51,-9.34,6.87,11
+2026-08-23,0688.HK,China Overseas Land & Investment Limited,Hong Kong (HKEX),Real Estate,19.7,1.3834,1.4013,-1.27,14.1,15.35,-8.14,6.87,12
+2026-08-23,0012.HK,Henderson Land Development Company Limited,Hong Kong (HKEX),Real Estate,18.6,1.8719,1.8296,2.31,30.2,31.63,-4.53,6.84,8
+2026-08-23,GDG.AX,Generation Development Group,Australia (ASX),Financial Services,1.1,0.1324,0.1318,0.4,3.81,4.07,-6.39,6.79,10
+2026-08-23,HUB.AX,HUB24,Australia (ASX),Financial Services,4.5,2.2015,2.2305,-1.3,76.21,82.84,-8.0,6.7,17
+2026-08-23,WIPRO.NS,Wipro,India (NSE),Technology,18.7,13.9048,14.3899,-3.37,180.79,200.82,-9.97,6.6,37
+2026-08-23,PXA.AX,Pexa Group,Australia (ASX),Technology,1.0,0.3038,0.4027,-24.55,8.1,11.75,-31.06,6.51,8
+2026-08-23,TMUS,T-Mobile US,United States (NYSE & Nasdaq),Communication Services,196.3,13.8955,13.5431,2.6,183.04,190.44,-3.88,6.48,21
+2026-08-23,SRG.MI,Snam,Italy (Borsa Italiana),Utilities,22.7,0.437,0.4384,-0.32,5.79,6.21,-6.77,6.45,20
+2026-08-23,ATO,Atmos Energy,United States (NYSE & Nasdaq),Utilities,28.2,9.0177,8.9502,0.76,166.85,176.81,-5.63,6.39,13
+2026-08-23,DTE,DTE Energy,United States (NYSE & Nasdaq),Utilities,28.1,8.3665,8.3517,0.18,135.22,144.15,-6.2,6.38,16
+2026-08-23,POWERGRID.NS,Power Grid,India (NSE),Utilities,26.5,19.5373,19.748,-1.07,272.4,294.3,-7.44,6.37,15
+2026-08-23,ASIANPAINT.NS,Asian Paints,India (NSE),Basic Materials,26.5,60.5729,56.5091,7.19,2640.0,2617.09,0.88,6.31,28
+2026-08-23,HDFCLIFE.NS,HDFC Life,India (NSE),Financial Services,12.6,11.9062,12.3457,-3.56,554.8,614.41,-9.7,6.14,23
+2026-08-23,HEI.DE,Heidelberg Materials,Germany (XETRA),Basic Materials,32.8,14.5717,14.9494,-2.53,159.6,174.65,-8.62,6.09,12
+2026-08-23,DRR.AX,Deterra Royalties,Australia (ASX),Basic Materials,1.7,0.2836,0.2772,2.31,4.37,4.54,-3.74,6.05,9
+2026-08-23,PAH3.DE,Porsche SE,Germany (XETRA),Consumer Cyclical,10.0,14.7597,15.1734,-2.73,27.96,30.65,-8.77,6.04,3
+2026-08-23,SVT.L,Severn Trent,United Kingdom (LSE),Utilities,12.8,2.5171,2.3838,5.59,3114.0,3127.24,-0.42,6.01,13
+2026-08-23,ADDT-B.ST,Addtech B,Sweden (Nasdaq Stockholm),Industrials,9.7,11.6903,11.1067,5.25,337.8,340.4,-0.76,6.01,7
+2026-08-23,0016.HK,Sun Hung Kai Properties Limited,Hong Kong (HKEX),Real Estate,47.4,8.591,8.7254,-1.54,128.2,138.6,-7.5,5.96,12
+2026-08-23,GIL.TO,Gildan Activewear Inc.,Canada (TSX),Consumer Cyclical,10.4,5.5307,5.3798,2.8,77.46,79.98,-3.15,5.95,13
+2026-08-23,HUBB,Hubbell Incorporated,United States (NYSE & Nasdaq),Industrials,24.8,22.878,21.7533,5.17,470.03,473.59,-0.75,5.92,11
+2026-08-23,FFIV,"F5, Inc.",United States (NYSE & Nasdaq),Technology,21.8,18.0768,17.4554,3.56,384.63,393.63,-2.29,5.85,13
+2026-08-23,AAF.L,Airtel Africa,United Kingdom (LSE),Communication Services,16.2,0.3431,0.3294,4.14,327.2,332.57,-1.62,5.76,6
+2026-08-23,9618.HK,JD.com,Hong Kong (HKEX),Consumer Cyclical,40.1,16.4186,16.3632,0.34,115.2,121.7,-5.34,5.68,10
+2026-08-23,WEC,WEC Energy Group,United States (NYSE & Nasdaq),Utilities,34.5,6.0102,6.0137,-0.06,106.01,112.43,-5.71,5.65,9
+2026-08-23,QBE.AX,QBE Insurance,Australia (ASX),Financial Services,,1.9657,1.9522,0.69,22.07,23.22,-4.96,5.65,10
+2026-08-23,DD,DuPont,United States (NYSE & Nasdaq),Basic Materials,18.7,7.9648,7.8526,1.43,138.33,144.36,-4.18,5.61,16
+2026-08-23,ABDN.L,Aberdeen Group,United Kingdom (LSE),Financial Services,6.1,0.1558,0.1499,3.94,242.8,246.93,-1.67,5.61,15
+2026-08-23,LIN,Linde plc,United States (NYSE & Nasdaq),Basic Materials,224.8,18.2557,18.2399,0.09,487.57,515.95,-5.5,5.59,11
+2026-08-23,TOU.TO,Tourmaline Oil Corp.,Canada (TSX),Energy,17.5,5.035,5.0895,-1.07,62.28,66.7,-6.62,5.55,4
+2026-08-23,RIO.AX,Rio Tinto,Australia (ASX),Basic Materials,204.2,8.7372,8.5621,2.05,175.38,181.69,-3.47,5.52,13
+2026-08-23,MRO.L,Melrose Industries,United Kingdom (LSE),Industrials,8.0,0.4525,0.4627,-2.2,470.3,509.57,-7.71,5.51,15
+2026-08-23,BZU.MI,Buzzi,Italy (Borsa Italiana),Basic Materials,8.2,4.9417,5.1262,-3.6,39.76,43.74,-9.1,5.5,14
+2026-08-23,AMT,American Tower,United States (NYSE & Nasdaq),Real Estate,81.9,7.01,6.8728,2.0,175.8,182.11,-3.47,5.47,9
+2026-08-23,PLD,Prologis,United States (NYSE & Nasdaq),Real Estate,137.8,3.405,3.295,3.34,141.8,144.85,-2.1,5.44,4
+2026-08-23,XEL,Xcel Energy,United States (NYSE & Nasdaq),Utilities,47.7,4.5414,4.5319,0.21,76.3,80.47,-5.19,5.4,18
+2026-08-23,RL,Ralph Lauren Corporation,United States (NYSE & Nasdaq),Consumer Cyclical,22.2,20.9145,20.0638,4.24,372.59,376.86,-1.13,5.37,18
+2026-08-23,NEE,NextEra Energy,United States (NYSE & Nasdaq),Utilities,174.5,4.4141,4.3924,0.49,83.65,87.91,-4.84,5.33,22
+2026-08-23,SO,Southern Company,United States (NYSE & Nasdaq),Utilities,102.3,4.925,4.917,0.16,88.94,93.78,-5.16,5.32,22
+2026-08-23,CME,CME Group,United States (NYSE & Nasdaq),Financial Services,98.9,12.9302,12.905,0.19,274.98,289.73,-5.09,5.28,15
+2026-08-23,ROK,Rockwell Automation,United States (NYSE & Nasdaq),Industrials,48.6,14.8339,14.5125,2.21,437.08,450.9,-3.07,5.28,27
+2026-08-23,ADM,Archer Daniels Midland,United States (NYSE & Nasdaq),Consumer Defensive,38.7,5.6831,5.1909,9.48,80.3,77.03,4.24,5.24,11
+2026-08-23,S63.SI,Singapore Technologies Engineering,Singapore (SGX),Industrials,26.3,0.3865,0.3838,0.69,10.68,11.18,-4.46,5.15,13
+2026-08-23,EMA.TO,Emera Incorporated,Canada (TSX),Utilities,15.3,3.6383,3.6347,0.1,69.02,72.68,-5.04,5.14,13
+2026-08-23,EOAN.DE,E.ON,Germany (XETRA),Utilities,53.1,1.2474,1.244,0.27,17.41,18.3,-4.86,5.13,17
+2026-08-23,2318.HK,Ping An Insurance,Hong Kong (HKEX),Financial Services,129.8,9.5167,9.46,0.6,56.2,58.82,-4.45,5.05,3
+2026-08-23,IRM,Iron Mountain,United States (NYSE & Nasdaq),Real Estate,36.3,2.7315,2.6737,2.16,122.02,125.6,-2.85,5.01,6
+2026-08-23,RELIANCE.NS,Reliance Industries,India (NSE),Energy,,28.1,27.4,2.55,1316.0,1348.27,-2.39,4.94,28
+2026-08-23,VOW3.DE,Volkswagen Group,Germany (XETRA),Consumer Cyclical,43.9,23.5442,25.0092,-5.86,75.02,84.07,-10.77,4.91,16
+2026-08-23,CEG,Constellation Energy,United States (NYSE & Nasdaq),Utilities,96.7,13.2947,13.5912,-2.18,272.88,293.62,-7.06,4.88,20
+2026-08-23,ITC.NS,ITC,India (NSE),Consumer Defensive,35.3,16.4882,17.0712,-3.42,269.4,293.7,-8.27,4.85,27
+2026-08-23,0883.HK,CNOOC Limited,Hong Kong (HKEX),Energy,152.7,3.1819,3.2279,-1.42,25.18,26.85,-6.22,4.8,13
+2026-08-23,SBILIFE.NS,SBI Life Insurance Company,India (NSE),Financial Services,18.8,34.9412,34.7341,0.6,1792.9,1870.7,-4.16,4.76,28
+2026-08-23,JBHT,J.B. Hunt,United States (NYSE & Nasdaq),Industrials,25.9,10.1154,9.0832,11.36,275.45,258.33,6.63,4.73,23
+2026-08-23,2899.HK,Zijin Mining,Hong Kong (HKEX),Basic Materials,130.8,3.2575,2.6735,21.84,38.56,32.93,17.11,4.73,2
+2026-08-23,DPLM.L,Diploma,United Kingdom (LSE),Industrials,13.2,2.6201,2.4457,7.13,7200.0,7024.81,2.49,4.64,16
+2026-08-23,PPL,PPL Corporation,United States (NYSE & Nasdaq),Utilities,25.9,2.117,2.1169,0.01,34.38,36.03,-4.58,4.59,15
+2026-08-23,LTR.AX,Liontown Resources,Australia (ASX),Basic Materials,2.9,0.1145,0.1933,-40.73,1.27,2.32,-45.26,4.53,9
+2026-08-23,WBC.AX,Westpac,Australia (ASX),Financial Services,82.8,2.1374,2.2022,-2.94,33.83,36.55,-7.44,4.5,10
+2026-08-23,SU.TO,Suncor Energy Inc.,Canada (TSX),Energy,80.6,7.8508,7.3796,6.38,94.25,92.41,1.99,4.39,11
+2026-08-23,WOR.AX,Worley,Australia (ASX),Energy,,0.8888,0.9695,-8.32,10.9,12.48,-12.66,4.34,10
+2026-08-23,MRL.MC,Merlin Properties,Spain (BME),Real Estate,10.2,0.5745,0.579,-0.78,14.1,14.86,-5.11,4.33,18
+2026-08-23,IBM,IBM,United States (NYSE & Nasdaq),Technology,222.0,13.1624,13.4547,-2.17,235.68,252.03,-6.49,4.32,24
+2026-08-23,TDG,TransDigm Group,United States (NYSE & Nasdaq),Industrials,66.4,48.4001,46.8887,3.22,1200.35,1213.51,-1.08,4.3,20
+2026-08-23,PNW,Pinnacle West Capital,United States (NYSE & Nasdaq),Utilities,11.8,5.6411,5.6565,-0.27,97.36,102.01,-4.56,4.29,9
+2026-08-23,EXC,Exelon,United States (NYSE & Nasdaq),Utilities,45.1,3.033,3.0374,-0.14,43.78,45.8,-4.41,4.27,19
+2026-08-23,DOV,Dover Corporation,United States (NYSE & Nasdaq),Industrials,27.2,11.6438,11.5655,0.68,201.92,209.39,-3.57,4.25,18
+2026-08-23,EPI-A.ST,Epiroc A,Sweden (Nasdaq Stockholm),Industrials,33.6,9.9871,9.664,3.34,262.3,264.7,-0.91,4.25,17
+2026-08-23,NXT.AX,NextDC,Australia (ASX),Technology,7.4,-0.4039,-0.3867,-4.44,13.67,14.95,-8.56,4.12,12
+2026-08-23,MSCI,MSCI Inc.,United States (NYSE & Nasdaq),Financial Services,41.0,22.4968,22.4627,0.15,563.49,586.45,-3.92,4.07,18
+2026-08-23,ADANIPORTS.NS,Adani Ports & SEZ,India (NSE),Industrials,40.9,78.1591,78.4659,-0.39,1700.0,1779.4,-4.46,4.07,20
+2026-08-23,MTS.MC,ArcelorMittal,Spain (BME),Basic Materials,,5.344,4.661,14.65,62.56,56.57,10.59,4.06,2
+2026-08-23,AEE,Ameren,United States (NYSE & Nasdaq),Utilities,29.4,5.8343,5.8309,0.06,106.13,110.51,-3.96,4.02,6
+2026-08-23,BSX,Boston Scientific,United States (NYSE & Nasdaq),Healthcare,73.0,3.4333,3.7655,-8.82,50.37,57.78,-12.82,4.0,27
+2026-08-23,EN.PA,Bouygues,France (Euronext Paris),Industrials,20.8,3.9181,4.0164,-2.45,46.19,49.33,-6.37,3.92,5
+2026-08-23,MAR,Marriott International,United States (NYSE & Nasdaq),Consumer Cyclical,92.9,13.1652,13.0861,0.6,356.39,368.4,-3.26,3.86,27
+2026-08-23,DUK,Duke Energy,United States (NYSE & Nasdaq),Utilities,93.4,7.1723,7.1682,0.06,119.85,124.57,-3.79,3.85,21
+2026-08-23,CRH,CRH plc,United States (NYSE & Nasdaq),Basic Materials,63.2,6.6691,6.7405,-1.06,95.07,99.97,-4.9,3.84,16
+2026-08-23,ORLY,O’Reilly Automotive,United States (NYSE & Nasdaq),Consumer Cyclical,72.1,3.6494,3.6158,0.93,89.11,91.74,-2.87,3.8,22
+2026-08-23,SN.L,Smith & Nephew,United Kingdom (LSE),Healthcare,12.2,1.2138,1.2422,-2.28,1069.5,1138.0,-6.02,3.74,15
+2026-08-23,NVDA,Nvidia,United States (NYSE & Nasdaq),Technology,5200.7,13.0273,12.5839,3.52,214.72,215.08,-0.17,3.69,51
+2026-08-23,ORI.AX,Orica,Australia (ASX),Basic Materials,,1.3776,1.3733,0.32,22.16,22.93,-3.36,3.68,14
+2026-08-23,RHM.DE,Rheinmetall,Germany (XETRA),Industrials,63.0,53.509,54.7285,-2.23,1155.4,1227.2,-5.85,3.62,20
+2026-08-23,DTE.DE,Deutsche Telekom,Germany (XETRA),Communication Services,161.7,2.5426,2.4852,2.31,28.94,29.31,-1.26,3.57,16
+2026-08-23,KIM,Kimco Realty,United States (NYSE & Nasdaq),Real Estate,16.1,0.894,0.858,4.2,24.02,23.85,0.72,3.48,5
+2026-08-23,MC.PA,LVMH Moët Hennessy Louis Vuitton,France (Euronext Paris),Consumer Cyclical,260.6,25.4871,25.6933,-0.8,452.5,472.6,-4.25,3.45,16
+2026-08-23,AVB,AvalonBay Communities,United States (NYSE & Nasdaq),Real Estate,26.3,5.0311,4.8613,3.49,65.9,65.86,0.07,3.42,3
+2026-08-23,CASY,Casey's,United States (NYSE & Nasdaq),Consumer Cyclical,30.9,23.5234,22.4457,4.8,835.74,824.4,1.38,3.42,17
+2026-08-23,BT-A.L,BT Group,United Kingdom (LSE),Communication Services,27.4,0.1879,0.1996,-5.83,203.9,224.63,-9.23,3.4,14
+2026-08-23,AAL.L,Anglo American plc,United Kingdom (LSE),Basic Materials,59.4,2.3798,2.1749,9.42,4067.0,3834.78,6.06,3.36,11
+2026-08-23,CCO.TO,Cameco Corporation,Canada (TSX),Energy,44.5,2.6068,2.5827,0.93,141.19,144.63,-2.38,3.31,19
+2026-08-23,FFH.TO,Fairfax Financial Holdings Limited,Canada (TSX),Financial Services,33.7,165.8267,159.795,3.77,2241.47,2230.97,0.47,3.3,3
+2026-08-23,SAN.NZ,Sanford Limited,New Zealand (NZX),Consumer Defensive,0.4,0.6795,0.7129,-4.67,7.0,7.6,-7.89,3.22,2
+2026-08-23,0001.HK,CK Hutchison Holdings Limited,Hong Kong (HKEX),Industrials,34.6,6.8836,6.6345,3.76,70.8,70.41,0.55,3.21,8
+2026-08-23,HSY,Hershey Company (The),United States (NYSE & Nasdaq),Consumer Defensive,37.5,9.8682,9.9038,-0.36,186.46,193.26,-3.52,3.16,22
+2026-08-23,EVRG,Evergy,United States (NYSE & Nasdaq),Utilities,18.7,4.565,4.5519,0.29,80.92,83.24,-2.79,3.08,11
+2026-08-23,FICO,Fair Isaac,United States (NYSE & Nasdaq),Technology,25.3,53.0395,54.3294,-2.37,1172.67,1239.91,-5.42,3.05,21
+2026-08-23,DAL,Delta Air Lines,United States (NYSE & Nasdaq),Industrials,,8.7359,7.8477,11.32,82.41,75.95,8.5,2.82,7
+2026-08-23,VNA.DE,Vonovia,Germany (XETRA),Real Estate,19.9,1.8716,1.9137,-2.2,20.06,21.12,-5.02,2.82,7
+2026-08-23,ALFA.ST,Alfa Laval,Sweden (Nasdaq Stockholm),Industrials,24.5,25.3732,24.263,4.58,561.2,551.4,1.78,2.8,11
+2026-08-23,AXISBANK.NS,Axis Bank,India (NSE),Financial Services,40.5,126.5,127.0,-0.39,1245.8,1284.41,-3.01,2.62,41
+2026-08-23,SSE.L,SSE plc,United Kingdom (LSE),Utilities,39.2,2.0978,2.0791,0.9,2386.0,2426.55,-1.67,2.57,15
+2026-08-23,1209.HK,China Resources Mixc Lifestyle,Hong Kong (HKEX),Real Estate,12.0,2.1208,2.1546,-1.57,41.2,42.98,-4.13,2.56,11
+2026-08-23,TKO,TKO Group Holdings,United States (NYSE & Nasdaq),Communication Services,36.6,4.9198,4.7397,3.8,193.14,190.76,1.25,2.55,9
+2026-08-23,FTS.TO,Fortis Inc.,Canada (TSX),Utilities,28.0,3.884,3.8735,0.27,75.59,77.35,-2.28,2.55,14
+2026-08-23,U96.SI,Sembcorp Industries,Singapore (SGX),Utilities,8.5,0.6253,0.6156,1.59,6.04,6.1,-0.94,2.53,6
+2026-08-23,LTMC.MI,Lottomatica Group,Italy (Borsa Italiana),Consumer Cyclical,6.6,2.2542,2.2579,-0.16,24.44,25.11,-2.67,2.51,15
+2026-08-23,PNR,Pentair,United States (NYSE & Nasdaq),Industrials,10.3,5.1687,5.8106,-11.05,64.4,74.49,-13.55,2.5,15
+2026-08-23,INW.MI,INWIT,Italy (Borsa Italiana),Real Estate,6.4,0.3565,0.3924,-9.16,6.04,6.84,-11.63,2.47,17
+2026-08-23,0101.HK,Hang Lung Properties Limited,Hong Kong (HKEX),Real Estate,4.9,0.6194,0.671,-7.7,7.34,8.18,-10.16,2.46,11
+2026-08-23,TMPV.NS,Tata Motors Passenger Vehicles,India (NSE),Consumer Cyclical,12.2,47.2239,52.0946,-9.35,317.9,360.36,-11.78,2.43,17
+2026-08-23,BSL.AX,BlueScope,Australia (ASX),Basic Materials,,2.468,2.391,3.22,30.41,30.15,0.86,2.36,13
+2026-08-23,FIS,Fidelity National Information Services,United States (NYSE & Nasdaq),Technology,21.3,6.7028,6.8174,-1.68,41.34,43.07,-4.01,2.33,28
+2026-08-23,PPL.TO,Pembina Pipeline Corporation,Canada (TSX),Energy,28.2,3.1487,3.105,1.41,67.08,67.71,-0.92,2.33,8
+2026-08-23,MPC,Marathon Petroleum,United States (NYSE & Nasdaq),Energy,101.3,32.2018,22.3077,44.35,360.72,253.95,42.04,2.31,19
+2026-08-23,JCI,Johnson Controls,United States (NYSE & Nasdaq),Industrials,86.7,6.0332,5.6925,5.98,143.05,137.98,3.68,2.3,21
+2026-08-23,CI,Cigna,United States (NYSE & Nasdaq),Healthcare,73.3,33.4736,33.547,-0.22,277.51,284.59,-2.49,2.27,24
+2026-08-23,CNU.AX,Chorus,Australia (ASX),Communication Services,2.5,0.1773,0.1813,-2.21,7.97,8.34,-4.44,2.23,3
+2026-08-23,BRK-B,Berkshire Hathaway,United States (NYSE & Nasdaq),Financial Services,1061.4,22.1925,21.307,4.16,495.82,486.38,1.94,2.22,3
+2026-08-23,VHP.NZ,Vital Healthcare Property Trust,New Zealand (NZX),Real Estate,0.9,0.1104,0.1072,2.94,1.83,1.82,0.79,2.15,3
+2026-08-23,REG,Regency Centers,United States (NYSE & Nasdaq),Real Estate,14.2,2.5209,2.5338,-0.51,76.06,78.1,-2.61,2.1,7
+2026-08-23,EQR,Equity Residential,United States (NYSE & Nasdaq),Real Estate,24.6,1.5392,1.5509,-0.75,63.66,65.52,-2.84,2.09,5
+2026-08-23,ROST,Ross Stores,United States (NYSE & Nasdaq),Consumer Cyclical,76.7,8.9237,8.5753,4.06,239.04,234.35,2.0,2.06,16
+2026-08-23,ALGN,Align Technology,United States (NYSE & Nasdaq),Healthcare,11.5,12.5486,12.378,1.38,162.55,163.61,-0.65,2.03,17
+2026-08-23,SLB,Schlumberger,United States (NYSE & Nasdaq),Energy,80.0,3.2318,3.3484,-3.48,53.87,56.98,-5.46,1.98,26
+2026-08-23,2020.HK,Anta Sports,Hong Kong (HKEX),Consumer Cyclical,26.2,5.5613,5.5291,0.58,74.1,75.15,-1.4,1.98,21
+2026-08-23,TT,Trane Technologies,United States (NYSE & Nasdaq),Industrials,99.8,17.4824,17.0246,2.69,453.43,450.0,0.76,1.93,24
+2026-08-23,PFI.NZ,Property for Industry Limited,New Zealand (NZX),Real Estate,0.7,0.1185,0.1212,-2.22,2.34,2.44,-4.1,1.88,2
+2026-08-23,PEP,PepsiCo,United States (NYSE & Nasdaq),Consumer Defensive,196.0,8.9784,9.1475,-1.85,143.48,149.0,-3.71,1.86,23
+2026-08-23,0881.HK,Zhongsheng Group,Hong Kong (HKEX),Consumer Cyclical,1.4,1.1216,1.5336,-26.87,4.59,6.44,-28.73,1.86,11
+2026-08-23,CCL,Carnival Corporation,United States (NYSE & Nasdaq),Consumer Cyclical,35.2,2.6378,2.6011,1.41,25.73,25.84,-0.44,1.85,27
+2026-08-23,MCD,McDonald's,United States (NYSE & Nasdaq),Consumer Cyclical,191.7,13.9984,14.2194,-1.55,270.95,280.37,-3.36,1.81,32
+2026-08-23,APA.AX,APA Group,Australia (ASX),Utilities,10.0,0.2661,0.2488,6.92,10.52,10.01,5.11,1.81,7
+2026-08-23,IFC.TO,Intact Financial Corporation,Canada (TSX),Financial Services,33.8,18.7113,18.9154,-1.08,264.62,272.42,-2.86,1.78,13
+2026-08-23,IDXX,Idexx Laboratories,United States (NYSE & Nasdaq),Healthcare,43.9,16.7397,16.5231,1.31,556.93,559.37,-0.44,1.75,13
+2026-08-23,1044.HK,Hengan International Group Co. Ltd,Hong Kong (HKEX),Consumer Defensive,3.4,2.1456,2.2742,-5.65,22.98,24.8,-7.34,1.69,9
+2026-08-23,2628.HK,China Life,Hong Kong (HKEX),Financial Services,101.2,4.5694,4.512,1.27,28.06,28.18,-0.41,1.68,8
+2026-08-23,VIE.PA,Veolia,France (Euronext Paris),Industrials,29.2,2.6121,2.6139,-0.07,34.09,34.69,-1.73,1.66,16
+2026-08-23,NESN.SW,Nestlé SA,Switzerland (SIX),Consumer Defensive,255.9,4.8179,4.6884,2.76,79.68,78.78,1.14,1.62,15
+2026-08-23,HSX.L,Hiscox,United Kingdom (LSE),Financial Services,7.8,2.0418,2.0327,0.45,1795.0,1815.83,-1.15,1.6,8
+2026-08-23,RWE.DE,RWE,Germany (XETRA),Utilities,52.2,3.1698,3.0842,2.78,57.32,56.64,1.2,1.58,9
+2026-08-23,TEL,TE Connectivity,United States (NYSE & Nasdaq),Technology,58.9,12.9061,12.6229,2.24,203.52,201.99,0.76,1.48,16
+2026-08-23,FRT,Federal Realty Investment Trust,United States (NYSE & Nasdaq),Real Estate,10.2,3.092,3.0991,-0.23,116.74,118.65,-1.61,1.38,7
+2026-08-23,TSCO.L,Tesco,United Kingdom (LSE),Consumer Defensive,38.8,0.3356,0.335,0.17,457.2,462.8,-1.21,1.38,15
+2026-08-23,CVS,CVS Health,United States (NYSE & Nasdaq),Healthcare,119.0,8.5068,8.3628,1.72,93.02,92.69,0.36,1.36,26
+2026-08-23,NOC,Northrop Grumman,United States (NYSE & Nasdaq),Industrials,78.3,30.44,30.1552,0.94,551.03,553.15,-0.38,1.32,22
+2026-08-23,GLEN.L,Glencore,United Kingdom (LSE),Basic Materials,95.5,0.5875,0.5533,6.18,596.8,569.1,4.87,1.31,18
+2026-08-23,AMRZ.SW,Amrize AG,Switzerland (SIX),Basic Materials,24.9,3.0262,3.1915,-5.18,36.5,39.03,-6.48,1.3,6
+2026-08-23,BCE.TO,BCE Inc.,Canada (TSX),Communication Services,22.0,2.6672,2.7055,-1.41,32.65,33.56,-2.7,1.29,17
+2026-08-23,0175.HK,Geely Auto,Hong Kong (HKEX),Consumer Cyclical,25.8,2.3029,2.2976,0.23,18.75,18.95,-1.05,1.28,16
+2026-08-23,TTE.PA,TotalEnergies,France (Euronext Paris),Energy,200.6,9.7714,9.6795,0.95,77.44,77.68,-0.31,1.26,20
+2026-08-23,ED,Consolidated Edison,United States (NYSE & Nasdaq),Utilities,39.3,6.4892,6.4881,0.02,106.35,107.66,-1.21,1.23,14
+2026-08-23,DRREDDY.NS,Dr. Reddy's Laboratories,India (NSE),Healthcare,10.2,59.3924,64.7947,-8.34,1174.7,1298.96,-9.57,1.23,34
+2026-08-23,VTRS,Viatris,United States (NYSE & Nasdaq),Healthcare,18.7,2.6685,2.6732,-0.18,16.32,16.53,-1.25,1.07,9
+2026-08-23,WSP.TO,WSP Global Inc.,Canada (TSX),Industrials,18.6,13.1993,13.2379,-0.29,190.63,193.22,-1.34,1.05,13
+2026-08-23,DLR,Digital Realty,United States (NYSE & Nasdaq),Real Estate,71.8,2.8913,2.8641,0.95,190.62,190.76,-0.07,1.02,4
+2026-08-23,HWM,Howmet Aerospace,United States (NYSE & Nasdaq),Industrials,108.3,6.4075,5.9908,6.96,271.68,256.43,5.95,1.01,20
+2026-08-23,0836.HK,China Resources Power,Hong Kong (HKEX),Utilities,12.0,2.6413,2.7867,-5.22,18.24,19.44,-6.19,0.97,5
+2026-08-23,RMS.PA,Hermès,France (Euronext Paris),Consumer Cyclical,192.5,51.0804,51.6133,-1.03,1573.0,1605.0,-1.99,0.96,21
+2026-08-23,TPL,Texas Pacific Land Corporation,United States (NYSE & Nasdaq),Energy,26.5,9.7649,10.1179,-3.49,383.64,401.42,-4.43,0.94,2
+2026-08-23,DG.PA,Vinci SA,France (Euronext Paris),Industrials,77.2,10.0353,10.1407,-1.04,119.3,121.7,-1.97,0.93,16
+2026-08-23,CSGP,CoStar Group,United States (NYSE & Nasdaq),Real Estate,13.1,1.7253,1.7985,-4.07,32.26,33.95,-4.98,0.91,20
+2026-08-23,0002.HK,CLP Holdings Limited,Hong Kong (HKEX),Utilities,25.7,4.9451,4.6907,5.42,79.8,76.35,4.52,0.9,4
+2026-08-23,ADS.DE,Adidas,Germany (XETRA),Consumer Cyclical,31.6,11.6597,11.5622,0.84,154.45,154.5,-0.03,0.87,17
+2026-08-23,9633.HK,Nongfu Spring,Hong Kong (HKEX),Consumer Defensive,61.0,1.774,1.7627,0.64,42.54,42.6,-0.14,0.78,26
+2026-08-23,CPG.L,Compass Group,United Kingdom (LSE),Consumer Cyclical,52.6,1.6358,1.622,0.85,30.93,30.89,0.14,0.71,18
+2026-08-23,TRENT.NS,Trent,India (NSE),Consumer Cyclical,16.3,50.9485,49.4922,2.94,2924.0,2860.11,2.23,0.71,15
+2026-08-23,VCT.NZ,Vector Limited,New Zealand (NZX),Utilities,2.9,0.2595,0.2682,-3.25,4.88,5.08,-3.94,0.69,2
+2026-08-23,2313.HK,Shenzhou International,Hong Kong (HKEX),Consumer Cyclical,8.0,4.1676,4.4619,-6.6,41.86,45.12,-7.23,0.63,22
+2026-08-23,D,Dominion Energy,United States (NYSE & Nasdaq),Utilities,58.6,3.8146,3.8142,0.01,66.6,67.0,-0.6,0.61,18
+2026-08-23,CBA.AX,Commonwealth Bank,Australia (ASX),Financial Services,189.2,6.7824,6.9519,-2.44,157.99,162.92,-3.03,0.59,14
+2026-08-23,LYC.AX,Lynas Rare Earths,Australia (ASX),Basic Materials,11.7,0.5888,0.6805,-13.47,16.21,18.86,-14.05,0.58,14
+2026-08-23,CL,Colgate-Palmolive,United States (NYSE & Nasdaq),Consumer Defensive,72.6,4.108,4.0411,1.66,91.08,90.09,1.09,0.57,20
+2026-08-23,STLAM.MI,Stellantis,Italy (Borsa Italiana),Consumer Cyclical,20.4,1.1355,1.5781,-28.05,4.65,6.51,-28.61,0.56,12
+2026-08-23,NESTLEIND.NS,Nestlé India,India (NSE),Consumer Defensive,29.8,24.826,23.6893,4.8,1477.1,1416.29,4.29,0.51,34
+2026-08-23,OKE,Oneok,United States (NYSE & Nasdaq),Energy,58.8,6.2289,6.1713,0.93,93.33,92.92,0.44,0.49,16
+2026-08-23,AFL,Aflac,United States (NYSE & Nasdaq),Financial Services,58.2,7.5621,7.6037,-0.55,116.07,117.27,-1.02,0.47,15
+2026-08-23,WN.TO,George Weston Limited,Canada (TSX),Consumer Defensive,26.3,5.49,5.4028,1.61,97.28,96.16,1.16,0.45,6
+2026-08-23,YUM,Yum! Brands,United States (NYSE & Nasdaq),Consumer Cyclical,41.8,7.4586,7.4961,-0.5,152.99,154.39,-0.91,0.41,17
+2026-08-23,A2A.MI,A2A,Italy (Borsa Italiana),Utilities,8.3,0.2108,0.2101,0.33,2.27,2.28,-0.04,0.37,6
+2026-08-23,INVP.L,Investec,United Kingdom (LSE),Financial Services,7.9,0.9891,0.9754,1.4,637.0,630.3,1.06,0.34,4
+2026-08-23,TSLA,"Tesla, Inc.",United States (NYSE & Nasdaq),Consumer Cyclical,1433.1,2.1586,2.5255,-14.53,362.86,426.01,-14.82,0.29,32
+2026-08-23,GQG.AX,GQG Partners,Australia (ASX),Financial Services,3.1,0.1308,0.1409,-7.19,1.42,1.54,-7.47,0.28,8
+2026-08-23,CM.TO,Canadian Imperial Bank of Commerce,Canada (TSX),Financial Services,105.9,11.1879,11.0351,1.38,160.32,158.51,1.14,0.24,14
+2026-08-23,BEZ.L,Beazley,United Kingdom (LSE),Financial Services,10.5,1.362,1.3441,1.33,1296.0,1281.5,1.13,0.2,6
+2026-08-23,0857.HK,PetroChina Company Limited,Hong Kong (HKEX),Energy,236.5,0.9649,0.9995,-3.46,10.13,10.51,-3.62,0.16,13
+2026-08-23,BRBY.L,Burberry Group,United Kingdom (LSE),Consumer Cyclical,5.2,0.5668,0.5948,-4.7,1069.5,1124.0,-4.85,0.15,13
+2026-08-23,AI.PA,Air Liquide,France (Euronext Paris),Basic Materials,124.2,7.2142,7.0687,2.06,167.12,163.98,1.91,0.15,17
+2026-08-23,TDY,Teledyne Technologies,United States (NYSE & Nasdaq),Technology,29.5,26.7259,26.0341,2.66,636.15,620.45,2.53,0.13,11
+2026-08-23,MBG.DE,Mercedes-Benz Group,Germany (XETRA),Consumer Cyclical,50.6,6.8825,7.6188,-9.66,45.22,50.12,-9.79,0.13,13
+2026-08-23,CVX,Chevron Corporation,United States (NYSE & Nasdaq),Energy,402.7,13.2031,12.1922,8.29,205.27,189.77,8.17,0.12,24
+2026-08-23,LVS,Las Vegas Sands,United States (NYSE & Nasdaq),Consumer Cyclical,30.5,3.5234,3.6753,-4.13,47.03,49.12,-4.25,0.12,16
+2026-08-23,RIO.L,Rio Tinto,United Kingdom (LSE),Basic Materials,169.6,8.2987,8.4297,-1.55,7648.0,7774.82,-1.63,0.08,21
+2026-08-23,POT.NZ,Port of Tauranga Limited,New Zealand (NZX),Industrials,3.3,0.2561,0.2621,-2.26,8.11,8.3,-2.29,0.03,5
+2026-08-23,GRASIM.NS,Grasim Industries,India (NSE),Basic Materials,23.4,151.0269,143.5904,5.18,3308.0,3145.5,5.17,0.01,6
+2026-08-23,INFY.NS,Infosys,India (NSE),Technology,47.5,79.939,81.9766,-2.49,1121.0,1149.62,-2.49,0.0,38
+2026-08-23,MS,Morgan Stanley,United States (NYSE & Nasdaq),Financial Services,336.4,13.6493,12.7412,7.13,214.2,199.93,7.14,-0.01,21
+2026-08-23,APOLLOHOSP.NS,Apollo Hospitals,India (NSE),Healthcare,13.1,217.8728,209.3893,4.05,8693.0,8352.78,4.07,-0.02,28
+2026-08-23,PODD,Insulet Corporation,United States (NYSE & Nasdaq),Healthcare,10.3,7.7109,8.0646,-4.39,148.16,154.87,-4.33,-0.06,23
+2026-08-23,PM,Philip Morris International,United States (NYSE & Nasdaq),Consumer Defensive,293.4,9.1688,9.137,0.35,188.23,187.44,0.42,-0.07,16
+2026-08-23,0388.HK,HKEx Limited,Hong Kong (HKEX),Financial Services,67.9,16.0227,15.5856,2.8,421.0,409.2,2.88,-0.08,18
+2026-08-23,ENG.MC,Enagás,Spain (BME),Utilities,5.1,1.0649,1.0549,0.95,16.78,16.6,1.06,-0.11,15
+2026-08-23,MCY.NZ,Mercury NZ Limited,New Zealand (NZX),Utilities,5.9,0.3023,0.3026,-0.11,6.95,6.95,0.0,-0.11,5
+2026-08-23,FE,FirstEnergy,United States (NYSE & Nasdaq),Utilities,26.6,2.9494,2.9462,0.11,45.96,45.86,0.23,-0.12,15
+2026-08-23,BWP.AX,BWP Trust,Australia (ASX),Real Estate,2.1,0.2023,0.2034,-0.57,3.7,3.72,-0.42,-0.15,8
+2026-08-23,AMAT,Applied Materials,United States (NYSE & Nasdaq),Technology,390.9,18.3412,16.1136,13.82,492.32,431.7,14.04,-0.22,34
+2026-08-23,CA.PA,Carrefour,France (Euronext Paris),Consumer Defensive,13.1,1.8714,1.8809,-0.51,15.87,15.91,-0.26,-0.25,14
+2026-08-23,AJBU.SI,Keppel DC Reit,Singapore (SGX),Real Estate,4.4,0.1236,0.1225,0.9,2.26,2.23,1.22,-0.32,11
+2026-08-23,0823.HK,Link REIT,Hong Kong (HKEX),Real Estate,13.2,2.5065,2.5216,-0.6,39.76,39.87,-0.27,-0.33,11
+2026-08-23,CPRT,Copart,United States (NYSE & Nasdaq),Industrials,31.3,1.6814,1.6875,-0.36,33.8,33.79,0.03,-0.39,13
+2026-08-23,BP.L,BP,United Kingdom (LSE),Energy,115.8,0.6907,0.6956,-0.71,549.5,551.11,-0.29,-0.42,20
+2026-08-23,3692.HK,Hansoh Pharmaceutical Group,Hong Kong (HKEX),Healthcare,25.6,1.0664,1.0848,-1.69,33.08,33.51,-1.27,-0.42,17
+2026-08-23,BA,Boeing,United States (NYSE & Nasdaq),Industrials,169.3,4.1208,4.2344,-2.68,214.2,219.02,-2.2,-0.48,22
+2026-08-23,BEN.AX,Bendigo & Adelaide Bank,Australia (ASX),Financial Services,4.2,0.8962,0.8981,-0.21,10.49,10.46,0.29,-0.5,10
+2026-08-23,NWL.AX,Netwealth Group,Australia (ASX),Technology,3.8,0.5913,0.6073,-2.64,21.86,22.32,-2.06,-0.58,17
+2026-08-23,SDR.L,Schroders,United Kingdom (LSE),Financial Services,12.4,0.4101,0.4123,-0.52,584.0,583.43,0.1,-0.62,8
+2026-08-23,CTVA,Corteva,United States (NYSE & Nasdaq),Basic Materials,54.6,3.405,3.326,2.38,81.79,79.38,3.04,-0.66,4
+2026-08-23,ELV,Elevance Health,United States (NYSE & Nasdaq),Healthcare,86.9,29.6055,29.2475,1.22,400.54,393.09,1.9,-0.68,22
+2026-08-23,JSWSTEEL.NS,JSW Steel,India (NSE),Basic Materials,33.0,72.8581,72.464,0.54,1293.7,1278.16,1.22,-0.68,31
+2026-08-23,AIG,American International Group,United States (NYSE & Nasdaq),Financial Services,39.8,8.7837,8.8941,-1.24,76.12,76.54,-0.55,-0.69,22
+2026-08-23,9988.HK,Alibaba Group,Hong Kong (HKEX),Consumer Cyclical,300.8,8.0342,8.3463,-3.74,123.0,126.86,-3.04,-0.7,16
+2026-08-23,NKE,"Nike, Inc.",United States (NYSE & Nasdaq),Consumer Cyclical,60.5,2.2325,2.4439,-8.65,40.76,44.27,-7.94,-0.71,31
+2026-08-23,HDFCBANK.NS,HDFC Bank,India (NSE),Financial Services,117.1,62.6,65.45,-4.35,726.95,754.32,-3.63,-0.72,38
+2026-08-23,SPX.L,Spirax Group,United Kingdom (LSE),Industrials,7.1,3.5998,3.583,0.47,7060.0,6975.0,1.22,-0.75,17
+2026-08-23,FISV,Fiserv,United States (NYSE & Nasdaq),Unclassified,28.0,8.1763,8.9569,-8.72,52.58,57.13,-7.96,-0.76,37
+2026-08-23,FTV,Fortive,United States (NYSE & Nasdaq),Technology,18.1,3.2489,3.219,0.93,60.08,59.07,1.71,-0.78,15
+2026-08-23,ULTA,Ulta Beauty,United States (NYSE & Nasdaq),Consumer Cyclical,22.4,31.8015,31.6536,0.47,521.46,515.04,1.25,-0.78,18
+2026-08-23,XYL,Xylem Inc.,United States (NYSE & Nasdaq),Industrials,26.5,6.2415,6.093,2.44,113.42,109.85,3.25,-0.81,21
+2026-08-23,REC.MI,Recordati,Italy (Borsa Italiana),Healthcare,12.6,3.78,3.6987,2.2,52.85,51.3,3.02,-0.82,4
+2026-08-23,SCG.AX,Scentre Group,Australia (ASX),Real Estate,13.7,0.2491,0.2479,0.5,3.67,3.62,1.33,-0.83,8
+2026-08-23,SBUX,Starbucks,United States (NYSE & Nasdaq),Consumer Cyclical,122.1,3.1156,3.0074,3.6,107.08,102.52,4.45,-0.85,33
+2026-08-23,1099.HK,Sinopharm Group,Hong Kong (HKEX),Healthcare,6.6,2.6498,2.6822,-1.21,16.65,16.7,-0.3,-0.91,12
+2026-08-23,JBH.AX,JB Hi-Fi,Australia (ASX),Consumer Cyclical,5.4,4.5945,4.8752,-5.76,69.2,72.71,-4.83,-0.93,15
+2026-08-23,FTNT,Fortinet,United States (NYSE & Nasdaq),Technology,112.6,3.7596,3.3077,13.66,153.51,133.93,14.62,-0.96,43
+2026-08-23,BPT.AX,Beach Energy,Australia (ASX),Energy,,0.1522,0.1924,-20.88,0.9,1.13,-19.91,-0.97,13
+2026-08-23,BEL.NS,Bharat Electronics,India (NSE),Industrials,31.6,11.1361,11.3,-1.45,414.0,415.99,-0.48,-0.97,18
+2026-08-23,IMCD.AS,IMCD,Netherlands (Euronext Amsterdam),Basic Materials,6.6,6.4709,6.2534,3.48,95.3,91.22,4.47,-0.99,10
+2026-08-23,INVH,Invitation Homes,United States (NYSE & Nasdaq),Real Estate,17.9,0.6832,0.6642,2.85,30.11,28.99,3.85,-1.0,4
+2026-08-23,TRN.MI,Terna,Italy (Borsa Italiana),Utilities,23.0,0.5618,0.5594,0.43,9.82,9.68,1.43,-1.0,17
+2026-08-23,5E2.SI,Seatrium Limited,Singapore (SGX),Energy,5.7,0.1493,0.1565,-4.61,2.15,2.23,-3.59,-1.02,9
+2026-08-23,T,AT&T,United States (NYSE & Nasdaq),Communication Services,173.3,2.5637,2.5532,0.41,25.29,24.93,1.46,-1.05,24
+2026-08-23,FANG,Diamondback Energy,United States (NYSE & Nasdaq),Energy,59.0,18.0854,17.3122,4.47,210.72,199.61,5.57,-1.1,25
+2026-08-23,ESS,Essex Property Trust,United States (NYSE & Nasdaq),Real Estate,19.9,6.1659,5.9173,4.2,289.0,274.28,5.37,-1.17,8
+2026-08-23,TD.TO,Toronto-Dominion Bank,Canada (TSX),Financial Services,192.8,10.8193,10.4282,3.75,161.24,153.67,4.93,-1.18,13
+2026-08-23,PSKY,Paramount Skydance Corporation,United States (NYSE & Nasdaq),Communication Services,11.6,0.8598,0.8762,-1.87,10.35,10.41,-0.58,-1.29,18
+2026-08-23,BAS.DE,BASF,Germany (XETRA),Basic Materials,52.0,2.9526,2.9916,-1.3,51.67,51.67,0.0,-1.3,16
+2026-08-23,HLT,Hilton Worldwide,United States (NYSE & Nasdaq),Consumer Cyclical,73.5,10.4562,10.4153,0.39,326.63,320.93,1.77,-1.38,26
+2026-08-23,GPT.AX,GPT Group,Australia (ASX),Real Estate,6.5,0.3648,0.3649,-0.04,4.73,4.67,1.37,-1.41,7
+2026-08-23,PTC,PTC Inc.,United States (NYSE & Nasdaq),Technology,16.8,8.8882,8.6402,2.87,154.68,148.23,4.35,-1.48,20
+2026-08-23,A17U.SI,CapitaLand Ascendas REIT,Singapore (SGX),Real Estate,9.7,0.1583,0.1622,-2.39,2.46,2.48,-0.9,-1.49,13
+2026-08-23,AAPL,Apple Inc.,United States (NYSE & Nasdaq),Technology,4514.7,9.5313,9.651,-1.24,309.35,308.55,0.26,-1.5,39
+2026-08-23,ES,Eversource Energy,United States (NYSE & Nasdaq),Utilities,26.4,4.9098,4.9729,-1.27,70.21,70.0,0.3,-1.57,11
+2026-08-23,DDOG,Datadog,United States (NYSE & Nasdaq),Technology,84.6,2.9685,2.8446,4.35,235.62,222.32,5.98,-1.63,46
+2026-08-23,UPS,United Parcel Service,United States (NYSE & Nasdaq),Industrials,86.8,8.0795,8.0024,0.96,102.01,99.43,2.59,-1.63,28
+2026-08-23,1211.HK,BYD Company,Hong Kong (HKEX),Consumer Cyclical,108.3,5.4033,5.3739,0.55,93.15,91.16,2.18,-1.63,10
+2026-08-23,HER.MI,Hera,Italy (Borsa Italiana),Utilities,6.7,0.3318,0.3267,1.57,3.87,3.75,3.27,-1.7,5
+2026-08-23,ASB.AX,Austal,Australia (ASX),Industrials,1.3,0.2357,0.2222,6.07,4.14,3.84,7.81,-1.74,4
+2026-08-23,MRU.TO,Metro Inc.,Canada (TSX),Consumer Defensive,13.5,5.4741,5.5688,-1.7,89.4,89.34,0.07,-1.77,8
+2026-08-23,HNR1.DE,Hannover Re,Germany (XETRA),Financial Services,35.3,23.6094,23.1228,2.1,250.8,241.4,3.89,-1.79,9
+2026-08-23,NN.AS,NN Group,Netherlands (Euronext Amsterdam),Financial Services,23.1,8.7097,8.3965,3.73,75.9,71.93,5.52,-1.79,8
+2026-08-23,FOXA,Fox Corporation (Class A),United States (NYSE & Nasdaq),Communication Services,28.8,5.8348,5.54,5.32,68.54,63.98,7.13,-1.81,18
+2026-08-23,EIX,Edison International,United States (NYSE & Nasdaq),Utilities,27.5,6.5075,6.5131,-0.09,71.59,70.34,1.77,-1.86,14
+2026-08-23,EQIX,Equinix,United States (NYSE & Nasdaq),Real Estate,105.1,18.6929,19.2233,-2.76,1065.39,1074.66,-0.86,-1.9,7
+2026-08-23,GSK.L,GSK plc,United Kingdom (LSE),Healthcare,104.8,1.9199,1.9541,-1.75,1918.5,1914.83,0.19,-1.94,17
+2026-08-23,DCC.L,DCC Energy,United Kingdom (LSE),Energy,7.4,5.36,5.2778,1.56,6370.0,6153.51,3.52,-1.96,9
+2026-08-23,SAN.PA,Sanofi,France (Euronext Paris),Healthcare,110.5,9.0675,9.0047,0.7,78.94,76.88,2.68,-1.98,20
+2026-08-23,CNQ.TO,Canadian Natural Resources Limited,Canada (TSX),Energy,105.7,5.3258,5.099,4.45,70.81,66.53,6.43,-1.98,12
+2026-08-23,ADANIENT.NS,Adani Enterprises,India (NSE),Energy,44.6,67.3867,62.185,8.36,2997.0,2716.09,10.34,-1.98,3
+2026-08-23,EQT,EQT Corporation,United States (NYSE & Nasdaq),Energy,33.6,4.3393,4.7665,-8.96,53.72,57.74,-6.96,-2.0,10
+2026-08-23,OXY,Occidental Petroleum,United States (NYSE & Nasdaq),Energy,61.3,3.817,3.7159,2.72,61.3,58.54,4.72,-2.0,20
+2026-08-23,DNL.AX,Dyno Nobel,Australia (ASX),Basic Materials,4.6,0.1951,0.1956,-0.28,3.7,3.64,1.77,-2.05,11
+2026-08-23,CHD,Church & Dwight,United States (NYSE & Nasdaq),Consumer Defensive,23.4,4.0402,4.0053,0.87,98.8,95.96,2.96,-2.09,16
+2026-08-23,ASX.AX,ASX,Australia (ASX),Financial Services,7.9,2.6402,2.8018,-5.77,56.28,58.42,-3.66,-2.11,11
+2026-08-23,OTIS,Otis Worldwide,United States (NYSE & Nasdaq),Industrials,27.2,4.5663,4.726,-3.38,71.49,72.33,-1.16,-2.22,14
+2026-08-23,IAG.AX,Insurance Australia Group,Australia (ASX),Financial Services,,0.4951,0.5064,-2.23,7.67,7.67,0.0,-2.23,10
+2026-08-23,PG,Procter & Gamble,United States (NYSE & Nasdaq),Consumer Defensive,336.3,7.3972,7.4973,-1.33,144.68,143.37,0.91,-2.24,23
+2026-08-23,PHIA.AS,Philips,Netherlands (Euronext Amsterdam),Healthcare,27.0,1.6832,1.7038,-1.21,23.61,23.37,1.03,-2.24,15
+2026-08-23,H78.SI,Hongkong Land Holdings,Singapore (SGX),Real Estate,18.0,0.3097,0.2967,4.4,8.46,7.93,6.64,-2.24,10
+2026-08-23,TROW,T. Rowe Price,United States (NYSE & Nasdaq),Financial Services,23.8,10.2951,9.6318,6.89,111.51,102.16,9.15,-2.26,13
+2026-08-23,AES,AES Corporation,United States (NYSE & Nasdaq),Utilities,10.5,2.3777,2.3888,-0.46,14.77,14.51,1.82,-2.28,11
+2026-08-23,CINF,Cincinnati Financial,United States (NYSE & Nasdaq),Financial Services,25.8,9.0312,9.183,-1.65,168.29,167.18,0.66,-2.31,8
+2026-08-23,SIE.DE,Siemens,Germany (XETRA),Industrials,,13.0084,12.7465,2.05,280.35,268.6,4.37,-2.32,18
+2026-08-23,BLK,BlackRock,United States (NYSE & Nasdaq),Financial Services,187.9,64.3079,60.6424,6.04,1156.55,1066.99,8.39,-2.35,17
+2026-08-23,HWDN.L,Howdens Joinery,United Kingdom (LSE),Consumer Cyclical,5.9,0.5635,0.5543,1.67,798.0,767.0,4.04,-2.37,15
+2026-08-23,T.TO,Telus Corporation,Canada (TSX),Communication Services,15.5,0.773,0.9855,-21.57,13.61,16.84,-19.17,-2.4,16
+2026-08-23,WRB,W. R. Berkley Corporation,United States (NYSE & Nasdaq),Financial Services,25.5,4.8359,4.8325,0.07,68.6,66.94,2.49,-2.42,18
+2026-08-23,ASSA-B.ST,Assa Abloy B,Sweden (Nasdaq Stockholm),Industrials,,18.1521,17.6537,2.82,354.4,336.7,5.26,-2.44,21
+2026-08-23,PGHN.SW,Partners Group Holding AG,Switzerland (SIX),Financial Services,23.0,47.3424,58.5219,-19.1,715.8,858.8,-16.65,-2.45,13
+2026-08-23,BMW.DE,BMW,Germany (XETRA),Consumer Cyclical,41.2,9.1821,11.9903,-23.42,58.88,74.48,-20.95,-2.47,16
+2026-08-23,0267.HK,CITIC Limited,Hong Kong (HKEX),Industrials,48.9,2.555,2.5183,1.46,13.19,12.69,3.94,-2.48,3
+2026-08-23,ZURN.SW,Zurich Insurance Group AG,Switzerland (SIX),Financial Services,109.3,43.0993,42.777,0.75,586.0,567.6,3.24,-2.49,10
+2026-08-23,EXPD,Expeditors International,United States (NYSE & Nasdaq),Industrials,24.4,8.0707,6.9255,16.54,187.81,157.67,19.12,-2.58,14
+2026-08-23,C,Citigroup,United States (NYSE & Nasdaq),Financial Services,220.8,12.8833,12.4847,3.19,131.65,124.46,5.78,-2.59,11
+2026-08-23,HST,Host Hotels & Resorts,United States (NYSE & Nasdaq),Real Estate,16.1,1.0507,1.0,5.07,23.21,21.55,7.68,-2.61,5
+2026-08-23,NDAQ,"Nasdaq, Inc.",United States (NYSE & Nasdaq),Financial Services,54.9,4.6774,4.4287,5.61,98.22,90.68,8.31,-2.7,16
+2026-08-23,LMP.L,LondonMetric Property,United Kingdom (LSE),Real Estate,6.2,0.1499,0.1491,0.57,193.0,186.77,3.34,-2.77,7
+2026-08-23,IAG.L,International Airlines Group,United Kingdom (LSE),Industrials,25.3,0.789,0.7608,3.71,422.9,396.86,6.56,-2.85,14
+2026-08-23,MCY.AX,Mercury NZ,Australia (ASX),Utilities,6.1,0.25,0.24,4.17,5.93,5.54,7.04,-2.87,1
+2026-08-23,NTRS,Northern Trust,United States (NYSE & Nasdaq),Financial Services,33.6,12.5469,11.7046,7.2,183.9,166.99,10.12,-2.92,12
+2026-08-23,EXR,Extra Space Storage,United States (NYSE & Nasdaq),Real Estate,32.4,4.8144,4.7859,0.6,146.81,141.76,3.56,-2.96,8
+2026-08-23,NAB.AX,National Australia Bank,Australia (ASX),Financial Services,,2.4323,2.4872,-2.21,38.17,37.85,0.85,-3.06,9
+2026-08-23,TCS.NS,Tata Consultancy Services,India (NSE),Technology,,162.4278,165.4309,-1.82,2302.0,2273.83,1.24,-3.06,38
+2026-08-23,KEY,KeyCorp,United States (NYSE & Nasdaq),Financial Services,23.3,2.1367,2.1507,-0.65,21.87,21.35,2.44,-3.09,15
+2026-08-23,CIPLA.NS,Cipla,India (NSE),Healthcare,12.1,63.4721,63.3488,0.19,1432.2,1386.2,3.32,-3.13,35
+2026-08-23,MT.AS,ArcelorMittal,Netherlands (Euronext Amsterdam),Basic Materials,55.1,7.5827,7.0671,7.3,62.58,56.67,10.44,-3.14,9
+2026-08-23,MPL.AX,Medibank,Australia (ASX),Financial Services,9.8,0.2682,0.269,-0.3,4.95,4.81,2.91,-3.21,9
+2026-08-23,SUM.NZ,Summerset Group Holdings Limited,New Zealand (NZX),Healthcare,1.1,1.1055,1.135,-2.6,7.75,7.7,0.65,-3.25,4
+2026-08-23,CNU.NZ,Chorus Limited,New Zealand (NZX),Communication Services,2.5,0.1703,0.187,-8.89,9.56,10.13,-5.63,-3.26,3
+2026-08-23,APO,Apollo Global Management,United States (NYSE & Nasdaq),Financial Services,78.4,10.733,10.6906,0.4,132.69,127.97,3.69,-3.29,21
+2026-08-23,IBE.MC,Iberdrola,Spain (BME),Utilities,156.3,1.0826,1.0704,1.14,20.05,19.19,4.48,-3.34,10
+2026-08-23,S68.SI,Singapore Exchange,Singapore (SGX),Financial Services,,0.8336,0.7735,7.78,24.89,22.4,11.12,-3.34,12
+2026-08-23,Y92.SI,Thai Beverages,Singapore (SGX),Consumer Defensive,,1.1492,1.1605,-0.98,0.47,0.45,2.41,-3.39,11
+2026-08-23,CLW.AX,Charter Hall Long WALE REIT,Australia (ASX),Real Estate,1.8,0.2509,0.2501,0.32,3.56,3.43,3.73,-3.41,7
+2026-08-23,VCX.AX,Vicinity Centres,Australia (ASX),Real Estate,8.7,0.164,0.1666,-1.55,2.62,2.57,1.95,-3.5,10
+2026-08-23,RGN.AX,Region Group,Australia (ASX),Real Estate,1.9,0.1681,0.1705,-1.41,2.26,2.21,2.1,-3.51,8
+2026-08-23,MAP.MC,Mapfre,Spain (BME),Financial Services,15.6,0.4231,0.4064,4.11,4.36,4.05,7.63,-3.52,7
+2026-08-23,LT.NS,Larsen & Toubro,India (NSE),Industrials,58.9,125.9,125.0,0.72,4093.0,3926.6,4.24,-3.52,25
+2026-08-23,RCI-B.TO,Rogers Communications Inc.,Canada (TSX),Communication Services,19.5,4.8591,5.051,-3.8,49.94,50.05,-0.22,-3.58,17
+2026-08-23,COL.MC,Inmobiliaria Colonial,Spain (BME),Real Estate,4.0,0.3684,0.3666,0.49,5.47,5.25,4.11,-3.62,14
+2026-08-23,NIBE-B.ST,Nibe Industrier B,Sweden (Nasdaq Stockholm),Industrials,9.0,1.9875,1.9792,0.42,41.99,40.35,4.06,-3.64,10
+2026-08-23,HLN.L,Haleon,United Kingdom (LSE),Healthcare,43.5,0.2293,0.225,1.9,363.1,343.78,5.62,-3.72,17
+2026-08-23,Z74.SI,Singtel,Singapore (SGX),Communication Services,,0.2192,0.2324,-5.68,4.4,4.49,-1.93,-3.75,16
+2026-08-23,ENT.L,Entain,United Kingdom (LSE),Consumer Cyclical,4.7,0.6744,0.7022,-3.96,537.6,538.5,-0.17,-3.79,18
+2026-08-23,VZ,Verizon,United States (NYSE & Nasdaq),Communication Services,205.5,5.2805,5.2738,0.13,49.45,47.54,4.02,-3.89,25
+2026-08-23,LOW,Lowe's,United States (NYSE & Nasdaq),Consumer Cyclical,,13.0969,13.4733,-2.79,216.09,213.71,1.11,-3.9,32
+2026-08-23,INVE-B.ST,Investor B,Sweden (Nasdaq Stockholm),Financial Services,,26.9911,25.7924,4.65,413.1,380.55,8.55,-3.9,1
+2026-08-23,F34.SI,Wilmar International,Singapore (SGX),Consumer Defensive,18.3,0.268,0.2657,0.85,3.71,3.54,4.76,-3.91,9
+2026-08-23,APH,Amphenol,United States (NYSE & Nasdaq),Technology,193.6,6.4774,5.6276,15.1,157.01,131.86,19.07,-3.97,16
+2026-08-23,GWW,W. W. Grainger,United States (NYSE & Nasdaq),Industrials,61.8,51.0404,50.3379,1.4,1312.24,1245.36,5.37,-3.97,19
+2026-08-23,UAL,United Airlines Holdings,United States (NYSE & Nasdaq),Industrials,36.7,15.4422,14.1387,9.22,113.17,99.96,13.22,-4.0,23
+2026-08-23,IBKR,Interactive Brokers,United States (NYSE & Nasdaq),Financial Services,159.9,3.1835,2.8556,11.48,93.87,81.27,15.51,-4.03,12
+2026-08-23,C09.SI,City Developments Limited,Singapore (SGX),Real Estate,5.8,0.5325,0.5451,-2.3,8.25,8.11,1.73,-4.03,6
+2026-08-23,ME8U.SI,Mapletree Industrial Trust,Singapore (SGX),Real Estate,4.3,0.1205,0.1255,-3.99,1.92,1.92,0.05,-4.04,12
+2026-08-23,SCYR.MC,Sacyr,Spain (BME),Industrials,4.0,0.228,0.2458,-7.26,4.29,4.43,-3.2,-4.06,6
+2026-08-23,0003.HK,Hong Kong and China Gas Company Limited,Hong Kong (HKEX),Utilities,17.9,0.3415,0.3346,2.08,7.5,7.07,6.14,-4.06,10
+2026-08-23,ARE,Alexandria Real Estate Equities,United States (NYSE & Nasdaq),Real Estate,9.2,-0.81,-0.88,7.95,53.49,47.74,12.04,-4.09,1
+2026-08-23,SYK,Stryker Corporation,United States (NYSE & Nasdaq),Healthcare,126.4,16.7549,16.7123,0.26,329.45,315.64,4.38,-4.12,27
+2026-08-23,SUNPHARMA.NS,Sun Pharma,India (NSE),Healthcare,47.7,64.5329,65.0037,-0.72,1902.4,1839.78,3.4,-4.12,31
+2026-08-23,CHC.AX,Charter Hall,Australia (ASX),Real Estate,7.0,1.2705,1.2196,4.17,20.71,19.12,8.32,-4.15,10
+2026-08-23,PSON.L,Pearson plc,United Kingdom (LSE),Communication Services,9.8,0.7857,0.7743,1.47,1195.5,1131.92,5.62,-4.15,10
+2026-08-23,TAP,Molson Coors Beverage Company,United States (NYSE & Nasdaq),Consumer Defensive,8.0,4.9122,5.0148,-2.04,42.94,42.05,2.12,-4.16,20
+2026-08-23,CHTR,Charter Communications,United States (NYSE & Nasdaq),Communication Services,20.2,45.2612,45.5841,-0.71,150.17,145.15,3.46,-4.17,17
+2026-08-23,CCL-B.TO,CCL Industries Inc.,Canada (TSX),Consumer Cyclical,11.6,5.4637,5.363,1.88,95.09,89.59,6.13,-4.25,10
+2026-08-23,EW,Edwards Lifesciences,United States (NYSE & Nasdaq),Healthcare,51.8,3.3775,3.3649,0.37,89.79,85.78,4.67,-4.3,28
+2026-08-23,DOL.TO,Dollarama Inc.,Canada (TSX),Consumer Defensive,,5.8264,5.8288,-0.04,186.32,178.69,4.27,-4.31,11
+2026-08-23,ENI.MI,Eni,Italy (Borsa Italiana),Energy,81.4,2.313,2.3293,-0.7,24.14,23.3,3.63,-4.33,21
+2026-08-23,FRW.NZ,Freightways Group Limited,New Zealand (NZX),Industrials,1.4,0.7549,0.7752,-2.62,13.48,13.25,1.74,-4.36,2
+2026-08-23,CCH.L,Coca-Cola HBC,United Kingdom (LSE),Consumer Defensive,22.6,3.2441,3.1868,1.8,4544.0,4278.0,6.22,-4.42,16
+2026-08-23,PRX.AS,Prosus,Netherlands (Euronext Amsterdam),Consumer Cyclical,95.3,4.3501,4.6476,-6.4,38.29,39.06,-1.96,-4.44,14
+2026-08-23,GDDY,GoDaddy,United States (NYSE & Nasdaq),Technology,12.3,9.2359,8.9815,2.83,97.07,90.46,7.31,-4.48,13
+2026-08-23,ADSK,Autodesk,United States (NYSE & Nasdaq),Technology,53.6,14.2287,14.1121,0.83,253.83,240.99,5.33,-4.5,35
+2026-08-23,LMT,Lockheed Martin,United States (NYSE & Nasdaq),Industrials,130.1,32.6879,32.1017,1.83,563.57,529.77,6.38,-4.55,21
+2026-08-23,MAA,Mid-America Apartment Communities,United States (NYSE & Nasdaq),Real Estate,15.6,3.1255,3.2313,-3.27,131.31,129.64,1.29,-4.56,10
+2026-08-23,J69U.SI,Frasers Centrepoint Trust,Singapore (SGX),Real Estate,3.5,0.1182,0.128,-7.66,2.19,2.26,-3.1,-4.56,13
+2026-08-23,ACGL,Arch Capital Group,United States (NYSE & Nasdaq),Financial Services,33.9,9.7662,9.9015,-1.37,99.39,96.3,3.21,-4.58,20
+2026-08-23,RED.MC,Redeia Corporación,Spain (BME),Utilities,9.5,0.9626,0.9592,0.36,15.08,14.37,4.95,-4.59,19
+2026-08-23,CPR.MI,Campari,Italy (Borsa Italiana),Consumer Defensive,8.3,0.3517,0.3495,0.62,5.9,5.6,5.21,-4.59,21
+2026-08-23,SGH.AX,SGH,Australia (ASX),Unclassified,11.8,2.6766,2.8784,-7.01,40.41,41.4,-2.39,-4.62,12
+2026-08-23,BEN,Franklin Resources,United States (NYSE & Nasdaq),Financial Services,17.4,3.1652,2.9557,7.09,34.31,30.71,11.72,-4.63,10
+2026-08-23,0941.HK,China Mobile Ltd,Hong Kong (HKEX),Communication Services,228.6,6.3523,6.6742,-4.82,82.8,82.96,-0.19,-4.63,9
+2026-08-23,WM,Waste Management,United States (NYSE & Nasdaq),Industrials,89.6,9.1192,9.2471,-1.38,224.06,216.96,3.27,-4.65,28
+2026-08-23,IHG.L,IHG Hotels & Resorts,United Kingdom (LSE),Consumer Cyclical,23.5,6.4797,6.4534,0.41,159.45,151.74,5.08,-4.67,17
+2026-08-23,AME,Ametek,United States (NYSE & Nasdaq),Industrials,54.9,8.9989,8.8079,2.17,239.55,224.18,6.85,-4.68,15
+2026-08-23,MND.AX,Monadelphous Group,Australia (ASX),Industrials,,1.2723,1.2413,2.5,32.19,30.03,7.19,-4.69,14
+2026-08-23,APD,Air Products,United States (NYSE & Nasdaq),Basic Materials,67.9,14.4353,14.2437,1.35,305.1,287.68,6.05,-4.7,21
+2026-08-23,CB,Chubb Limited,United States (NYSE & Nasdaq),Financial Services,131.6,29.1094,29.2348,-0.43,340.99,326.87,4.32,-4.75,24
+2026-08-23,BHP.AX,BHP,Australia (ASX),Basic Materials,237.2,2.5825,2.4768,4.27,65.16,59.75,9.05,-4.78,15
+2026-08-23,BOL.ST,Boliden,Sweden (Nasdaq Stockholm),Basic Materials,17.0,51.2298,50.8173,0.81,565.6,535.6,5.6,-4.79,14
+2026-08-23,HEIA.AS,Heineken,Netherlands (Euronext Amsterdam),Consumer Defensive,47.0,5.7171,5.638,1.4,72.42,68.19,6.2,-4.8,22
+2026-08-23,ANZ.AX,Australia & New Zealand Banking Group,Australia (ASX),Financial Services,,2.5538,2.5593,-0.22,37.13,35.5,4.59,-4.81,13
+2026-08-23,XOM,ExxonMobil,United States (NYSE & Nasdaq),Energy,678.9,10.677,10.4218,2.45,165.11,153.92,7.27,-4.82,22
+2026-08-23,ALD.AX,Ampol,Australia (ASX),Energy,6.8,2.5778,2.3961,7.59,39.85,35.44,12.44,-4.85,9
+2026-08-23,ASRNL.AS,ASR Nederland,Netherlands (Euronext Amsterdam),Financial Services,16.8,6.2894,6.2449,0.71,69.46,65.76,5.63,-4.92,11
+2026-08-23,TYL,Tyler Technologies,United States (NYSE & Nasdaq),Technology,14.4,15.3515,14.3597,6.91,350.73,313.25,11.96,-5.05,23
+2026-08-23,BA.L,BAE Systems,United Kingdom (LSE),Industrials,84.9,0.9572,0.9421,1.6,2126.0,1993.5,6.65,-5.05,16
+2026-08-23,WTB.L,Whitbread,United Kingdom (LSE),Consumer Cyclical,5.5,1.9293,1.997,-3.39,2424.0,2383.0,1.72,-5.11,18
+2026-08-23,UBSG.SW,UBS Group AG,Switzerland (SIX),Financial Services,162.5,3.4859,3.1845,9.46,42.5,37.09,14.59,-5.13,13
+2026-08-23,AC.PA,Accor,France (Euronext Paris),Consumer Cyclical,12.3,2.6451,2.658,-0.49,45.53,43.49,4.68,-5.17,16
+2026-08-23,AZM.MI,Azimut,Italy (Borsa Italiana),Financial Services,6.3,3.6456,3.4815,4.71,38.15,34.72,9.88,-5.17,5
+2026-08-23,VTR,Ventas,United States (NYSE & Nasdaq),Real Estate,47.7,0.915,0.9067,0.92,93.06,87.67,6.15,-5.23,2
+2026-08-23,MRK.DE,Merck,Germany (XETRA),Healthcare,70.1,8.8443,8.6676,2.04,137.95,128.6,7.27,-5.23,14
+2026-08-23,CBK.DE,Commerzbank,Germany (XETRA),Financial Services,49.3,3.8229,3.7379,2.27,39.01,36.28,7.52,-5.25,14
+2026-08-23,ACX.MC,Acerinox,Spain (BME),Basic Materials,5.0,1.5566,1.4239,9.31,17.15,14.96,14.62,-5.31,11
+2026-08-23,ETN,Eaton Corporation,United States (NYSE & Nasdaq),Industrials,162.8,16.0337,15.7144,2.03,419.2,390.39,7.38,-5.35,22
+2026-08-23,SU.PA,Schneider Electric,France (Euronext Paris),Industrials,194.9,12.0688,11.5038,4.91,296.8,269.05,10.31,-5.4,21
+2026-08-23,BC.MI,Brunello Cucinelli,Italy (Borsa Italiana),Consumer Cyclical,7.0,2.6231,2.5681,2.14,88.54,82.3,7.58,-5.44,16
+2026-08-23,CVE.TO,Cenovus Energy Inc.,Canada (TSX),Energy,60.6,3.6402,3.4823,4.53,45.39,41.25,10.04,-5.51,7
+2026-08-23,KER.PA,Kering,France (Euronext Paris),Consumer Cyclical,36.4,9.9891,9.9161,0.74,254.3,239.31,6.26,-5.52,23
+2026-08-23,URW.PA,Unibail-Rodamco-Westfield,France (Euronext Paris),Real Estate,17.4,9.4183,9.4139,0.05,103.05,97.6,5.58,-5.53,14
+2026-08-23,CGF.AX,Challenger,Australia (ASX),Financial Services,4.7,0.7387,0.7626,-3.13,9.69,9.46,2.43,-5.56,10
+2026-08-23,ICE,Intercontinental Exchange,United States (NYSE & Nasdaq),Financial Services,90.5,8.8033,8.7838,0.22,161.25,152.4,5.8,-5.58,13
+2026-08-23,TRMB,Trimble Inc.,United States (NYSE & Nasdaq),Technology,14.0,4.1234,4.0685,1.35,60.25,56.34,6.94,-5.59,13
+2026-08-23,SLHN.SW,Swiss Life Holding AG,Switzerland (SIX),Financial Services,31.7,50.9551,50.8882,0.13,909.2,860.0,5.72,-5.59,12
+2026-08-23,HIG,Hartford (The),United States (NYSE & Nasdaq),Financial Services,36.9,13.6889,14.4205,-5.07,136.1,135.38,0.53,-5.6,23
+2026-08-23,OR.PA,L'Oréal,France (Euronext Paris),Consumer Defensive,240.5,14.9128,14.7247,1.28,386.6,361.65,6.9,-5.62,20
+2026-08-23,ITRK.L,Intertek,United Kingdom (LSE),Industrials,,2.8939,2.8645,1.03,5845.0,5478.93,6.68,-5.65,12
+2026-08-23,UBER,Uber,United States (NYSE & Nasdaq),Technology,161.0,4.6317,4.4508,4.06,78.8,71.82,9.72,-5.66,39
+2026-08-23,QSR.TO,Restaurant Brands International Inc.,Canada (TSX),Consumer Cyclical,36.8,6.1841,6.0616,2.02,111.11,103.18,7.69,-5.67,23
+2026-08-23,NOVN.SW,Novartis International AG,Switzerland (SIX),Healthcare,302.4,9.8158,9.7216,0.97,127.42,119.46,6.66,-5.69,20
+2026-08-23,DOW,Dow Inc.,United States (NYSE & Nasdaq),Basic Materials,23.4,1.8194,2.139,-14.95,32.35,35.65,-9.25,-5.7,17
+2026-08-23,CCC.L,Computacenter,United Kingdom (LSE),Technology,7.3,2.4085,2.0927,15.09,5085.0,4209.52,20.8,-5.71,9
+2026-08-23,NDA-FI.HE,Nordea,Finland (Nasdaq Helsinki),Financial Services,68.5,1.5718,1.5449,1.75,17.29,16.08,7.55,-5.8,7
+2026-08-23,ESSITY-B.ST,Essity B,Sweden (Nasdaq Stockholm),Consumer Defensive,19.6,20.6112,20.5263,0.41,273.5,257.4,6.25,-5.84,14
+2026-08-23,C38U.SI,CapitaLand Integrated Commercial Trust,Singapore (SGX),Real Estate,14.9,0.1229,0.123,-0.14,2.4,2.27,5.71,-5.85,11
+2026-08-23,DGE.L,Diageo,United Kingdom (LSE),Consumer Defensive,52.1,1.7484,1.7211,1.58,1719.0,1600.0,7.44,-5.86,21
+2026-08-23,RSG,Republic Services,United States (NYSE & Nasdaq),Industrials,67.6,8.057,8.0603,-0.04,220.67,208.32,5.93,-5.97,26
+2026-08-23,PSA,Public Storage,United States (NYSE & Nasdaq),Real Estate,60.2,10.1748,10.1095,0.65,322.49,302.44,6.63,-5.98,2
+2026-08-23,1088.HK,China Shenhua Energy,Hong Kong (HKEX),Energy,124.6,2.935,2.923,0.41,45.02,42.31,6.4,-5.99,7
+2026-08-23,PPG,PPG Industries,United States (NYSE & Nasdaq),Basic Materials,25.3,8.6728,8.666,0.08,113.63,107.11,6.08,-6.0,22
+2026-08-23,SKT.NZ,Sky Network Television Limited,New Zealand (NZX),Communication Services,0.3,0.3445,0.3335,3.29,3.41,3.12,9.29,-6.0,4
+2026-08-23,ACN,Accenture,United States (NYSE & Nasdaq),Technology,113.4,14.6702,14.8854,-1.45,185.28,177.11,4.61,-6.06,28
+2026-08-23,MDLZ,Mondelez International,United States (NYSE & Nasdaq),Consumer Defensive,82.3,3.3614,3.3896,-0.83,64.45,61.25,5.23,-6.06,24
+2026-08-23,GM,General Motors,United States (NYSE & Nasdaq),Consumer Cyclical,79.5,14.8481,14.0406,5.75,87.93,78.62,11.84,-6.09,25
+2026-08-23,CTD.AX,Corporate Travel Management,Australia (ASX),Consumer Cyclical,1.7,0.7463,0.7947,-6.09,16.07,16.07,0.0,-6.09,1
+2026-08-23,HAS,Hasbro,United States (NYSE & Nasdaq),Consumer Cyclical,13.2,6.5257,6.4134,1.75,93.54,86.73,7.85,-6.1,15
+2026-08-23,NDA-SE.ST,Nordea Bank Abp,Sweden (Nasdaq Stockholm),Financial Services,68.7,1.5493,1.5263,1.51,191.15,177.64,7.61,-6.1,10
+2026-08-23,LIFCO-B.ST,Lifco B,Sweden (Nasdaq Stockholm),Industrials,15.2,10.8832,10.7692,1.06,316.4,295.2,7.18,-6.12,7
+2026-08-23,0316.HK,Orient Overseas (International) Limited,Hong Kong (HKEX),Industrials,14.9,1.7017,1.4334,18.71,176.7,141.53,24.85,-6.14,1
+2026-08-23,DIS,Walt Disney Company (The),United States (NYSE & Nasdaq),Communication Services,186.1,7.4408,7.4945,-0.72,107.78,102.22,5.44,-6.16,29
+2026-08-23,NSC,Norfolk Southern,United States (NYSE & Nasdaq),Industrials,78.8,14.3025,13.5204,5.78,350.72,313.29,11.95,-6.17,22
+2026-08-23,SPM.MI,Saipem,Italy (Borsa Italiana),Energy,,0.2998,0.3003,-0.18,4.48,4.23,6.0,-6.18,17
+2026-08-23,PFG,Principal Financial Group,United States (NYSE & Nasdaq),Financial Services,23.7,10.3367,10.2068,1.27,110.75,103.03,7.49,-6.22,11
+2026-08-23,BN.PA,Danone,France (Euronext Paris),Consumer Defensive,49.9,4.2261,4.1853,0.98,66.32,61.86,7.21,-6.23,17
+2026-08-23,VOW.DE,Volkswagen Group,Germany (XETRA),Consumer Cyclical,44.7,27.1509,32.8692,-17.4,76.3,85.89,-11.17,-6.23,4
+2026-08-23,GRF.MC,Grifols,Spain (BME),Healthcare,7.9,1.1294,1.1359,-0.57,9.91,9.38,5.66,-6.23,10
+2026-08-23,MRVL,Marvell Technology,United States (NYSE & Nasdaq),Technology,212.8,6.2459,5.4545,14.51,237.04,196.28,20.77,-6.26,39
+2026-08-23,0006.HK,Power Assets Holdings Limited,Hong Kong (HKEX),Utilities,17.0,3.0534,3.2608,-6.36,62.45,62.51,-0.1,-6.26,6
+2026-08-23,GILD,Gilead Sciences,United States (NYSE & Nasdaq),Healthcare,181.2,9.8923,9.5854,3.2,146.12,133.48,9.47,-6.27,26
+2026-08-23,0066.HK,MTR Corporation Ltd,Hong Kong (HKEX),Industrials,26.9,1.6117,1.6267,-0.92,33.92,32.19,5.37,-6.29,7
+2026-08-23,REL.L,RELX,United Kingdom (LSE),Industrials,62.1,1.5712,1.5642,0.45,2612.0,2446.81,6.75,-6.3,16
+2026-08-23,VMC,Vulcan Materials Company,United States (NYSE & Nasdaq),Basic Materials,35.8,10.7927,10.8223,-0.27,276.04,260.17,6.1,-6.37,20
+2026-08-23,MLM,Martin Marietta Materials,United States (NYSE & Nasdaq),Basic Materials,32.1,21.5196,23.0244,-6.54,534.92,535.71,-0.15,-6.39,16
+2026-08-23,VOLV-B.ST,Volvo B,Sweden (Nasdaq Stockholm),Industrials,73.8,25.4754,24.8554,2.49,342.8,314.8,8.89,-6.4,18
+2026-08-23,TLC.AX,The Lottery Corporation,Australia (ASX),Consumer Cyclical,8.3,0.1763,0.188,-6.23,5.2,5.19,0.19,-6.42,15
+2026-08-23,BOQ.AX,Bank of Queensland,Australia (ASX),Financial Services,3.0,0.5357,0.5594,-4.24,6.34,6.2,2.2,-6.44,12
+2026-08-23,TRGP,Targa Resources,United States (NYSE & Nasdaq),Energy,64.1,12.0796,11.8292,2.12,299.1,275.46,8.58,-6.46,5
+2026-08-23,LOG.MC,Logista,Spain (BME),Industrials,5.6,2.3963,2.3339,2.67,36.34,33.3,9.13,-6.46,8
+2026-08-23,RR.L,Rolls-Royce Holdings,United Kingdom (LSE),Industrials,169.1,0.4924,0.4327,13.8,1502.2,1248.75,20.3,-6.5,17
+2026-08-23,ANET,Arista Networks,United States (NYSE & Nasdaq),Technology,237.9,5.1596,4.4495,15.96,188.65,154.03,22.48,-6.52,27
+2026-08-23,WY,Weyerhaeuser,United States (NYSE & Nasdaq),Real Estate,17.6,0.6803,0.697,-2.39,24.43,23.46,4.14,-6.53,11
+2026-08-23,DHI,D. R. Horton,United States (NYSE & Nasdaq),Consumer Cyclical,41.5,11.6892,12.0539,-3.03,148.35,143.3,3.52,-6.55,14
+2026-08-23,ALX.AX,Atlas Arteria,Australia (ASX),Industrials,5.0,0.28,0.3024,-7.4,4.82,4.86,-0.82,-6.58,6
+2026-08-23,SHB-A.ST,Handelsbanken A,Sweden (Nasdaq Stockholm),Financial Services,31.2,11.9023,11.881,0.18,146.95,137.65,6.76,-6.58,11
+2026-08-23,NWH.AX,NRW Holdings,Australia (ASX),Industrials,2.7,0.4795,0.4425,8.36,8.2,7.13,15.01,-6.65,10
+2026-08-23,FRES.L,Fresnillo plc,United Kingdom (LSE),Basic Materials,,3.0158,3.2493,-7.19,3219.0,3235.66,-0.51,-6.68,12
+2026-08-23,BMO.TO,Bank of Montreal,Canada (TSX),Financial Services,121.8,16.3974,16.0648,2.07,240.25,220.92,8.75,-6.68,14
+2026-08-23,FDR.MC,Fluidra,Spain (BME),Consumer Cyclical,4.3,1.5314,1.562,-1.96,19.44,18.55,4.79,-6.75,12
+2026-08-23,BHARTIARTL.NS,Bharti Airtel,India (NSE),Communication Services,126.9,82.2187,83.4352,-1.46,1946.0,1848.14,5.3,-6.76,29
+2026-08-23,SLF.TO,Sun Life Financial Inc.,Canada (TSX),Financial Services,43.8,8.6794,8.5084,2.01,108.8,100.02,8.78,-6.77,14
+2026-08-23,BNR.DE,Brenntag,Germany (XETRA),Basic Materials,10.2,4.1655,4.2327,-1.59,60.48,57.5,5.18,-6.77,14
+2026-08-23,UDR,"UDR, Inc.",United States (NYSE & Nasdaq),Real Estate,13.9,0.56,0.6,-6.67,37.77,37.73,0.11,-6.78,1
+2026-08-23,LDO.MI,Leonardo,Italy (Borsa Italiana),Industrials,37.9,2.8547,2.7979,2.03,56.25,51.69,8.81,-6.78,13
+2026-08-23,ZTS,Zoetis,United States (NYSE & Nasdaq),Healthcare,32.1,6.6491,7.4331,-10.55,77.73,80.76,-3.75,-6.8,18
+2026-08-23,BN4.SI,Keppel Corporation,Singapore (SGX),Industrials,16.1,0.602,0.6211,-3.08,11.32,10.91,3.76,-6.84,11
+2026-08-23,SWED-A.ST,Swedbank A,Sweden (Nasdaq Stockholm),Financial Services,44.4,29.9921,29.449,1.84,373.6,343.7,8.7,-6.86,9
+2026-08-23,PSX,Phillips 66,United States (NYSE & Nasdaq),Energy,97.4,21.2552,16.2843,30.53,242.87,176.75,37.41,-6.88,20
+2026-08-23,0939.HK,China Construction Bank,Hong Kong (HKEX),Financial Services,308.5,1.3814,1.3586,1.68,9.24,8.52,8.57,-6.89,12
+2026-08-23,SBRY.L,Sainsbury's,United Kingdom (LSE),Consumer Defensive,9.9,0.2689,0.2667,0.82,333.5,309.5,7.75,-6.93,11
+2026-08-23,EG,Everest Group,United States (NYSE & Nasdaq),Financial Services,14.2,59.752,60.6006,-1.4,370.06,350.61,5.55,-6.95,14
+2026-08-23,POW.TO,Power Corporation of Canada,Canada (TSX),Financial Services,41.5,6.965,6.5725,5.97,91.39,80.87,13.01,-7.04,8
+2026-08-23,PCG,PG&E Corporation,United States (NYSE & Nasdaq),Utilities,38.8,1.8024,1.8025,-0.01,17.6,16.44,7.04,-7.05,17
+2026-08-23,RY.TO,Royal Bank of Canada,Canada (TSX),Financial Services,284.0,17.6636,17.4269,1.36,282.37,260.41,8.43,-7.07,13
+2026-08-23,ATCO-A.ST,Atlas Copco A,Sweden (Nasdaq Stockholm),Industrials,105.7,7.3836,6.8085,8.45,204.7,177.2,15.52,-7.07,16
+2026-08-23,HSBA.L,HSBC,United Kingdom (LSE),Financial Services,354.8,1.9082,1.8451,3.42,1518.4,1374.11,10.5,-7.08,13
+2026-08-23,1109.HK,China Resources Land Limited,Hong Kong (HKEX),Real Estate,32.2,3.7721,3.8723,-2.59,35.38,33.86,4.49,-7.08,15
+2026-08-23,ULTRACEMCO.NS,UltraTech Cement,India (NSE),Basic Materials,35.6,432.127,455.0,-5.03,11570.0,11337.58,2.05,-7.08,35
+2026-08-23,NHF.AX,Nib,Australia (ASX),Financial Services,2.6,0.4726,0.4652,1.57,7.4,6.81,8.66,-7.09,7
+2026-08-23,REN.AS,RELX,Netherlands (Euronext Amsterdam),Industrials,62.4,1.896,1.8663,1.59,30.66,28.19,8.75,-7.16,2
+2026-08-23,MAXHEALTH.NS,Max Healthcare,India (NSE),Healthcare,10.2,23.3553,25.7444,-9.28,1000.0,1021.43,-2.1,-7.18,27
+2026-08-23,COL.AX,Coles Group,Australia (ASX),Consumer Defensive,22.0,1.0007,1.0099,-0.91,22.82,21.47,6.29,-7.2,15
+2026-08-23,LOV.AX,Lovisa,Australia (ASX),Consumer Cyclical,1.8,1.0424,1.0604,-1.69,23.1,21.89,5.53,-7.22,12
+2026-08-23,NVR,"NVR, Inc.",United States (NYSE & Nasdaq),Consumer Cyclical,17.0,411.6239,419.8301,-1.95,6358.51,6036.99,5.33,-7.28,6
+2026-08-23,0386.HK,Sinopec Corp,Hong Kong (HKEX),Energy,67.8,0.4253,0.4468,-4.81,4.41,4.3,2.52,-7.33,13
+2026-08-23,WST,West Pharmaceutical Services,United States (NYSE & Nasdaq),Healthcare,24.8,9.9648,9.5533,4.31,353.08,316.21,11.66,-7.35,16
+2026-08-23,UU.L,United Utilities,United Kingdom (LSE),Utilities,14.4,1.0918,1.1218,-2.68,1424.0,1359.63,4.73,-7.41,14
+2026-08-23,SKF-B.ST,SKF B,Sweden (Nasdaq Stockholm),Industrials,12.7,19.069,18.6684,2.15,262.5,239.6,9.56,-7.41,16
+2026-08-23,SAP.TO,Saputo Inc.,Canada (TSX),Consumer Defensive,11.9,2.3511,2.55,-7.8,41.26,41.41,-0.37,-7.43,9
+2026-08-23,TNE.AX,TechnologyOne,Australia (ASX),Technology,7.5,0.6064,0.5986,1.3,32.0,29.42,8.76,-7.46,16
+2026-08-23,SNA,Snap-on,United States (NYSE & Nasdaq),Industrials,20.3,21.3601,21.2633,0.46,393.39,364.39,7.96,-7.5,10
+2026-08-23,TIT.MI,Telecom Italia,Italy (Borsa Italiana),Communication Services,19.1,0.2784,0.2815,-1.11,7.65,7.19,6.39,-7.5,6
+2026-08-23,ICG.L,ICG,United Kingdom (LSE),Financial Services,7.9,1.9179,1.9446,-1.38,2016.0,1899.37,6.14,-7.52,13
+2026-08-23,ARB.AX,ARB Corporation,Australia (ASX),Consumer Cyclical,1.1,1.1244,1.1646,-3.45,18.81,18.05,4.21,-7.66,15
+2026-08-23,BMY,Bristol Myers Squibb,United States (NYSE & Nasdaq),Healthcare,136.9,6.558,6.1705,6.28,67.01,58.8,13.97,-7.69,28
+2026-08-23,COP,ConocoPhillips,United States (NYSE & Nasdaq),Energy,162.0,9.4509,8.9999,5.01,134.87,119.66,12.71,-7.7,19
+2026-08-23,1398.HK,Industrial and Commercial Bank of China,Hong Kong (HKEX),Financial Services,339.8,1.0831,1.0679,1.41,7.47,6.85,9.12,-7.71,12
+2026-08-23,DHL.DE,Deutsche Post,Germany (XETRA),Industrials,72.6,3.7992,3.6353,4.51,55.98,49.88,12.23,-7.72,16
+2026-08-23,BNY,BNY Mellon,United States (NYSE & Nasdaq),Financial Services,107.5,10.2458,9.6153,6.56,158.49,138.6,14.35,-7.79,13
+2026-08-23,SHEL.L,Shell plc,United Kingdom (LSE),Energy,256.5,4.6729,4.7396,-1.41,3409.5,3204.62,6.39,-7.8,14
+2026-08-23,0241.HK,Alibaba Health,Hong Kong (HKEX),Healthcare,6.7,0.172,0.2087,-17.6,3.26,3.61,-9.72,-7.88,9
+2026-08-23,2388.HK,BOC Hong Kong (Holdings) Ltd,Hong Kong (HKEX),Financial Services,68.8,4.271,4.2285,1.0,51.0,46.83,8.9,-7.9,9
+2026-08-23,WHC.AX,Whitehaven Coal,Australia (ASX),Energy,4.6,0.5426,0.6232,-12.93,7.75,8.16,-5.02,-7.91,11
+2026-08-23,FBK.MI,FinecoBank,Italy (Borsa Italiana),Financial Services,16.9,1.2663,1.2088,4.76,23.63,20.97,12.68,-7.92,15
+2026-08-23,G24.DE,Scout24,Germany (XETRA),Communication Services,6.3,4.7634,4.7003,1.34,77.45,70.85,9.31,-7.97,14
+2026-08-23,TFC,Truist Financial,United States (NYSE & Nasdaq),Financial Services,61.6,4.9898,5.1316,-2.76,50.42,47.91,5.25,-8.01,18
+2026-08-23,HO.PA,Thales,France (Euronext Paris),Industrials,60.8,12.4636,12.1979,2.18,253.1,229.7,10.19,-8.01,18
+2026-08-23,AXP,American Express,United States (NYSE & Nasdaq),Financial Services,226.9,20.1085,20.1058,0.01,336.0,310.93,8.06,-8.05,28
+2026-08-23,BVI.PA,Bureau Veritas,France (Euronext Paris),Industrials,,1.6296,1.6634,-2.03,27.55,25.99,6.02,-8.05,12
+2026-08-23,MNG.L,M&G,United Kingdom (LSE),Financial Services,11.4,0.3166,0.3102,2.08,346.5,314.6,10.14,-8.06,7
+2026-08-23,AIA.NZ,Auckland International Airport Limited,New Zealand (NZX),Industrials,8.8,0.2161,0.2198,-1.67,8.64,8.12,6.4,-8.07,10
+2026-08-23,ZIP.AX,Zip,Australia (ASX),Financial Services,2.3,0.1806,0.1661,8.74,2.57,2.2,16.82,-8.08,8
+2026-08-23,EOG,EOG Resources,United States (NYSE & Nasdaq),Energy,80.3,14.5818,14.4244,1.09,153.05,140.18,9.18,-8.09,26
+2026-08-23,DB1.DE,Deutsche Börse,Germany (XETRA),Financial Services,59.6,13.601,13.2813,2.41,282.9,256.0,10.51,-8.1,9
+2026-08-23,AIZ,Assurant,United States (NYSE & Nasdaq),Financial Services,14.0,23.3177,22.4816,3.72,284.04,253.95,11.85,-8.13,7
+2026-08-23,IAG.MC,International Airlines Group,Spain (BME),Industrials,25.3,0.7982,0.7961,0.26,4.93,4.55,8.4,-8.14,8
+2026-08-23,SUN.AX,Suncorp,Australia (ASX),Financial Services,13.8,1.2322,1.2484,-1.3,18.13,16.96,6.91,-8.21,8
+2026-08-23,WCN.TO,Waste Connections Inc.,Canada (TSX),Industrials,42.5,6.2075,6.1769,0.49,233.35,214.63,8.72,-8.23,25
+2026-08-23,C6L.SI,Singapore Airlines,Singapore (SGX),Industrials,17.3,0.376,0.3875,-2.96,6.94,6.59,5.31,-8.27,10
+2026-08-23,ADBE,Adobe Inc.,United States (NYSE & Nasdaq),Technology,109.4,27.4904,26.3812,4.2,275.3,244.76,12.48,-8.28,35
+2026-08-23,1928.HK,Sands China,Hong Kong (HKEX),Consumer Cyclical,,0.1472,0.1664,-11.54,14.65,15.14,-3.24,-8.3,15
+2026-08-23,CSX,CSX Corporation,United States (NYSE & Nasdaq),Industrials,95.6,2.2715,2.1566,5.33,51.59,45.38,13.68,-8.35,25
+2026-08-23,EXE,Expand Energy,United States (NYSE & Nasdaq),Energy,22.2,8.8804,9.8354,-9.71,96.09,97.36,-1.3,-8.41,20
+2026-08-23,HD,Home Depot (The),United States (NYSE & Nasdaq),Consumer Cyclical,,16.0389,16.1062,-0.42,335.61,310.74,8.0,-8.42,34
+2026-08-23,CS.PA,Axa,France (Euronext Paris),Financial Services,106.8,4.4754,4.451,0.55,43.72,40.12,8.97,-8.42,13
+2026-08-23,PFE,Pfizer,United States (NYSE & Nasdaq),Healthcare,160.0,2.8954,2.8431,1.84,28.07,25.45,10.27,-8.43,25
+2026-08-23,FERG,Ferguson Enterprises,United States (NYSE & Nasdaq),Industrials,46.9,12.5716,12.5273,0.35,242.24,222.48,8.88,-8.53,14
+2026-08-23,O,Realty Income,United States (NYSE & Nasdaq),Real Estate,59.2,1.5852,1.693,-6.36,62.6,61.22,2.25,-8.61,3
+2026-08-23,BNS.TO,Bank of Nova Scotia,Canada (TSX),Financial Services,106.4,9.3131,9.1595,1.68,120.57,109.25,10.36,-8.68,13
+2026-08-23,MARUTI.NS,Maruti Suzuki,India (NSE),Consumer Cyclical,44.6,604.6866,624.5275,-3.18,13565.0,12857.87,5.5,-8.68,38
+2026-08-23,BLND.L,British Land,United Kingdom (LSE),Real Estate,6.0,0.3256,0.3271,-0.46,428.8,396.1,8.26,-8.72,15
+2026-08-23,BARC.L,Barclays,United Kingdom (LSE),Financial Services,90.3,0.645,0.6339,1.76,492.6,445.75,10.51,-8.75,13
+2026-08-23,ULVR.L,Unilever,United Kingdom (LSE),Consumer Defensive,137.4,3.4477,3.4065,1.21,4681.0,4257.15,9.96,-8.75,16
+2026-08-23,IEX,IDEX Corporation,United States (NYSE & Nasdaq),Industrials,17.3,9.5815,9.2268,3.84,234.39,208.1,12.63,-8.79,15
+2026-08-23,ALC.SW,Alcon Inc,Switzerland (SIX),Healthcare,35.5,4.3758,4.308,1.57,58.8,53.28,10.36,-8.79,25
+2026-08-23,G.MI,Generali,Italy (Borsa Italiana),Financial Services,75.8,3.4708,3.4162,1.6,42.99,38.94,10.4,-8.8,11
+2026-08-23,LGEN.L,Legal & General,United Kingdom (LSE),Financial Services,21.1,0.254,0.2647,-4.02,284.0,270.84,4.86,-8.88,8
+2026-08-23,HLG.NZ,Hallenstein Glasson Holdings Limited,New Zealand (NZX),Consumer Cyclical,0.4,0.863,0.8762,-1.51,10.74,10.0,7.4,-8.91,1
+2026-08-23,REG.AX,Regis Healthcare,Australia (ASX),Healthcare,1.4,0.2329,0.2444,-4.71,6.39,6.13,4.24,-8.95,6
+2026-08-23,STE,Steris,United States (NYSE & Nasdaq),Healthcare,23.2,12.2471,12.1,1.22,237.93,215.93,10.19,-8.97,9
+2026-08-23,AWK,American Water Works,United States (NYSE & Nasdaq),Utilities,26.9,6.5658,6.5757,-0.15,135.39,124.37,8.86,-9.01,10
+2026-08-23,VOD.L,Vodafone Group,United Kingdom (LSE),Communication Services,36.9,0.1253,0.1302,-3.82,117.15,111.33,5.23,-9.05,12
+2026-08-23,CABK.MC,CaixaBank,Spain (BME),Financial Services,105.4,1.0858,1.0392,4.48,12.98,11.43,13.56,-9.08,17
+2026-08-23,CAE.TO,CAE Inc.,Canada (TSX),Industrials,8.0,1.4848,1.513,-1.87,34.32,32.01,7.22,-9.09,13
+2026-08-23,1177.HK,Sino Biopharm,Hong Kong (HKEX),Healthcare,12.7,0.2613,0.2631,-0.68,5.59,5.16,8.41,-9.09,13
+2026-08-23,WFC,Wells Fargo,United States (NYSE & Nasdaq),Financial Services,253.5,7.964,7.864,1.27,83.84,75.96,10.37,-9.1,21
+2026-08-23,IMI.L,IMI,United Kingdom (LSE),Industrials,9.9,1.5439,1.5263,1.16,3054.0,2769.89,10.26,-9.1,14
+2026-08-23,JD.L,JD Sports,United Kingdom (LSE),Consumer Cyclical,5.5,0.1241,0.1243,-0.22,84.54,77.63,8.9,-9.12,18
+2026-08-23,SYY,Sysco,United States (NYSE & Nasdaq),Consumer Defensive,40.2,5.3767,5.2795,1.84,84.1,75.79,10.97,-9.13,13
+2026-08-23,MEZ.AX,Meridian Energy,Australia (ASX),Utilities,9.1,0.14,0.16,-12.5,4.69,4.85,-3.3,-9.2,1
+2026-08-23,KVUE,Kenvue,United States (NYSE & Nasdaq),Consumer Defensive,36.6,1.2398,1.231,0.72,19.06,17.34,9.94,-9.22,15
+2026-08-23,STAN.L,Standard Chartered,United Kingdom (LSE),Financial Services,64.9,2.8057,2.7542,1.87,2162.0,1945.82,11.11,-9.24,10
+2026-08-23,DPZ,Domino's,United States (NYSE & Nasdaq),Consumer Cyclical,11.3,20.9202,21.0465,-0.6,341.85,314.58,8.67,-9.27,23
+2026-08-23,LAND.L,Land Securities,United Kingdom (LSE),Real Estate,7.0,0.5576,0.5587,-0.2,687.0,629.79,9.08,-9.28,14
+2026-08-23,MTS.AX,Metcash,Australia (ASX),Consumer Defensive,,0.2586,0.2826,-8.48,2.98,2.96,0.81,-9.29,12
+2026-08-23,LULU,Lululemon Athletica,United States (NYSE & Nasdaq),Consumer Cyclical,13.7,11.4569,13.3413,-14.12,121.07,127.18,-4.8,-9.32,22
+2026-08-23,PMV.AX,Premier Investments,Australia (ASX),Consumer Cyclical,1.3,0.9852,1.0634,-7.35,11.55,11.33,1.99,-9.34,11
+2026-08-23,HBAN,Huntington Bancshares,United States (NYSE & Nasdaq),Financial Services,34.4,1.877,1.9041,-1.42,17.03,15.78,7.94,-9.36,17
+2026-08-23,IVZ,Invesco,United States (NYSE & Nasdaq),Financial Services,14.1,3.2613,2.9705,9.79,32.02,26.87,19.17,-9.38,13
+2026-08-23,RNO.PA,Renault,France (Euronext Paris),Consumer Cyclical,9.7,6.7397,7.2188,-6.64,28.63,27.86,2.76,-9.4,14
+2026-08-23,9CI.SI,CapitaLand Investment,Singapore (SGX),Real Estate,10.5,0.1297,0.1402,-7.49,2.67,2.62,1.91,-9.4,13
+2026-08-23,VRSK,Verisk Analytics,United States (NYSE & Nasdaq),Industrials,24.4,8.6962,8.6573,0.45,187.5,170.64,9.88,-9.43,19
+2026-08-23,WES.AX,Wesfarmers,Australia (ASX),Consumer Cyclical,67.0,2.7791,2.755,0.87,82.37,74.68,10.3,-9.43,14
+2026-08-23,JPM,JPMorgan Chase,United States (NYSE & Nasdaq),Financial Services,934.6,25.007,23.6323,5.82,351.58,305.01,15.27,-9.45,12
+2026-08-23,PNC,PNC Financial Services,United States (NYSE & Nasdaq),Financial Services,97.0,21.5159,21.0292,2.31,243.13,217.5,11.79,-9.48,19
+2026-08-23,3968.HK,China Merchants Bank,Hong Kong (HKEX),Financial Services,159.0,6.266,6.2578,0.13,49.44,45.07,9.69,-9.56,7
+2026-08-23,PGR,Progressive Corporation,United States (NYSE & Nasdaq),Financial Services,127.5,16.2843,16.224,0.37,219.28,199.42,9.96,-9.59,22
+2026-08-23,FME.DE,Fresenius Medical Care,Germany (XETRA),Healthcare,12.5,4.336,4.4213,-1.93,40.14,37.26,7.73,-9.66,15
+2026-08-23,9961.HK,Trip.com Group,Hong Kong (HKEX),Consumer Cyclical,29.2,29.1376,32.709,-10.92,363.0,367.4,-1.2,-9.72,12
+2026-08-23,INF.L,Informa,United Kingdom (LSE),Communication Services,15.3,0.6618,0.6603,0.23,900.8,819.18,9.96,-9.73,14
+2026-08-23,CFG,Citizens Financial Group,United States (NYSE & Nasdaq),Financial Services,29.4,6.5247,6.3934,2.05,69.86,62.48,11.8,-9.75,13
+2026-08-23,PH,Parker Hannifin,United States (NYSE & Nasdaq),Industrials,126.3,39.3933,37.2363,5.79,1001.74,866.96,15.55,-9.76,8
+2026-08-23,DTG.DE,Daimler Truck,Germany (XETRA),Industrials,40.3,4.749,4.5909,3.45,45.43,40.13,13.21,-9.76,13
+2026-08-23,ATD.TO,Alimentation Couche-Tard Inc.,Canada (TSX),Consumer Cyclical,56.9,3.6319,3.651,-0.52,85.66,78.4,9.26,-9.78,17
+2026-08-23,SHW,Sherwin-Williams,United States (NYSE & Nasdaq),Basic Materials,84.1,13.6132,13.2678,2.6,346.59,308.37,12.4,-9.8,24
+2026-08-23,SY1.DE,Symrise,Germany (XETRA),Basic Materials,14.4,4.3605,4.2461,2.7,90.0,80.0,12.5,-9.8,11
+2026-08-23,RKT.L,Reckitt,United Kingdom (LSE),Consumer Defensive,44.5,3.6114,3.6027,0.24,5142.0,4672.22,10.05,-9.81,19
+2026-08-23,ZAL.DE,Zalando,Germany (XETRA),Consumer Cyclical,6.5,1.8494,1.8588,-0.51,22.78,20.84,9.31,-9.82,10
+2026-08-23,MAS,Masco,United States (NYSE & Nasdaq),Industrials,14.5,4.6606,4.7036,-0.91,73.29,67.26,8.97,-9.88,21
+2026-08-23,AON,Aon plc,United States (NYSE & Nasdaq),Financial Services,75.3,21.3443,21.4085,-0.3,355.11,324.04,9.59,-9.89,22
+2026-08-23,SMIN.L,Smiths Group,United Kingdom (LSE),Industrials,10.3,1.1579,1.2302,-5.87,2600.0,2498.0,4.08,-9.95,8
+2026-08-23,HVN.AX,Harvey Norman,Australia (ASX),Consumer Cyclical,4.0,0.3597,0.386,-6.81,4.53,4.39,3.19,-10.0,12
+2026-08-23,0700.HK,Tencent Holdings Limited,Hong Kong (HKEX),Communication Services,525.3,31.0247,33.1915,-6.53,457.0,441.4,3.53,-10.06,34
+2026-08-23,BAM.TO,Brookfield Asset Management Ltd.,Canada (TSX),Financial Services,83.2,2.1724,2.1793,-0.32,71.97,65.57,9.76,-10.08,16
+2026-08-23,RJF,Raymond James Financial,United States (NYSE & Nasdaq),Financial Services,33.7,14.1814,13.3842,5.96,175.2,150.92,16.09,-10.13,14
+2026-08-23,GD,General Dynamics,United States (NYSE & Nasdaq),Industrials,104.0,18.5945,18.1633,2.37,384.29,341.39,12.57,-10.2,20
+2026-08-23,CP.TO,Canadian Pacific Kansas City Limited,Canada (TSX),Industrials,84.7,5.9869,5.8866,1.7,133.08,118.91,11.91,-10.21,28
+2026-08-23,KHC,Kraft Heinz,United States (NYSE & Nasdaq),Consumer Defensive,30.3,2.0922,2.1081,-0.75,25.58,23.37,9.47,-10.22,19
+2026-08-23,SKA-B.ST,Skanska B,Sweden (Nasdaq Stockholm),Industrials,11.9,18.3951,18.5758,-0.97,271.0,248.0,9.27,-10.24,8
+2026-08-23,RMD.AX,ResMed,Australia (ASX),Healthcare,33.0,1.3391,1.3568,-1.3,31.94,29.31,8.98,-10.28,10
+2026-08-23,GL,Globe Life,United States (NYSE & Nasdaq),Financial Services,13.1,16.5182,16.6216,-0.62,171.08,155.99,9.67,-10.29,11
+2026-08-23,QUB.AX,Qube Holdings,Australia (ASX),Industrials,6.5,0.1856,0.1877,-1.13,5.11,4.68,9.2,-10.33,3
+2026-08-23,PHM,PulteGroup,United States (NYSE & Nasdaq),Consumer Cyclical,,11.241,11.1641,0.69,129.0,116.18,11.03,-10.34,12
+2026-08-23,FSV.TO,FirstService Corporation,Canada (TSX),Real Estate,6.3,6.7042,6.7428,-0.57,199.14,181.4,9.78,-10.35,10
+2026-08-23,9999.HK,NetEase,Hong Kong (HKEX),Communication Services,82.5,14.2106,14.0707,0.99,202.0,181.37,11.38,-10.39,14
+2026-08-23,DXS.AX,Dexus,Australia (ASX),Real Estate,4.4,0.5605,0.6443,-13.0,5.74,5.89,-2.6,-10.4,7
+2026-08-23,KDP,Keurig Dr Pepper,United States (NYSE & Nasdaq),Consumer Defensive,43.6,2.534,2.5245,0.38,32.04,28.91,10.81,-10.43,19
+2026-08-23,RI.PA,Pernod Ricard,France (Euronext Paris),Consumer Defensive,20.1,5.8526,5.9003,-0.81,68.42,62.42,9.62,-10.43,18
+2026-08-23,CAH,Cardinal Health,United States (NYSE & Nasdaq),Healthcare,53.4,14.0724,13.5227,4.07,229.51,200.24,14.62,-10.55,17
+2026-08-23,LLOY.L,Lloyds Banking Group,United Kingdom (LSE),Financial Services,88.0,0.1217,0.1203,1.16,111.25,99.59,11.71,-10.55,14
+2026-08-23,U11.SI,United Overseas Bank,Singapore (SGX),Financial Services,52.8,3.5848,3.612,-0.75,40.53,36.91,9.82,-10.57,13
+2026-08-23,QAN.AX,Qantas,Australia (ASX),Industrials,10.0,1.0554,1.0994,-4.01,9.25,8.68,6.57,-10.58,16
+2026-08-23,VGN.AX,Virgin Australia Holdings,Australia (ASX),Industrials,1.5,0.4737,0.4874,-2.82,2.64,2.45,7.76,-10.58,9
+2026-08-23,PST.MI,Poste italiane,Italy (Borsa Italiana),Industrials,41.1,1.9736,1.946,1.42,27.2,24.29,12.0,-10.58,11
+2026-08-23,DRI,Darden Restaurants,United States (NYSE & Nasdaq),Consumer Cyclical,25.2,12.3866,12.4901,-0.83,221.6,201.88,9.77,-10.6,26
+2026-08-23,MCO,Moody's Corporation,United States (NYSE & Nasdaq),Financial Services,87.2,18.9133,18.5965,1.7,503.32,448.17,12.3,-10.6,24
+2026-08-23,GE,GE Aerospace,United States (NYSE & Nasdaq),Industrials,361.5,9.7173,9.3001,4.49,348.37,302.46,15.18,-10.69,13
+2026-08-23,ITW,Illinois Tool Works,United States (NYSE & Nasdaq),Industrials,80.4,12.3946,12.1615,1.92,282.29,250.68,12.61,-10.69,13
+2026-08-23,RF,Regions Financial Corporation,United States (NYSE & Nasdaq),Financial Services,25.9,2.8426,2.8541,-0.4,30.41,27.57,10.31,-10.71,16
+2026-08-23,SPG,Simon Property Group,United States (NYSE & Nasdaq),Real Estate,82.9,6.6924,6.885,-2.8,218.29,202.19,7.96,-10.76,5
+2026-08-23,ADM.L,Admiral Group,United Kingdom (LSE),Financial Services,16.2,2.6651,2.5755,3.48,3976.0,3480.0,14.25,-10.77,10
+2026-08-23,HCLTECH.NS,HCLTech,India (NSE),Technology,36.8,80.3133,78.5499,2.25,1302.5,1152.24,13.04,-10.79,40
+2026-08-23,WOW.AX,Woolworths Group,Australia (ASX),Consumer Defensive,,1.4258,1.4081,1.25,38.86,34.68,12.05,-10.8,15
+2026-08-23,UNA.AS,Unilever,Netherlands (Euronext Amsterdam),Consumer Defensive,137.3,3.4159,3.3908,0.74,54.59,48.91,11.61,-10.87,8
+2026-08-23,CNR.TO,Canadian National Railway Company,Canada (TSX),Industrials,78.2,8.9956,8.7347,2.99,178.7,156.93,13.87,-10.88,30
+2026-08-23,AIA.AX,Auckland International Airport Limited,Australia (ASX),Industrials,8.8,0.2221,0.2289,-2.97,7.2,6.67,7.95,-10.92,2
+2026-08-23,GIB-A.TO,CGI Inc.,Canada (TSX),Technology,15.5,9.7722,9.7116,0.62,103.14,92.46,11.55,-10.93,15
+2026-08-23,GIVN.SW,Givaudan SA,Switzerland (SIX),Basic Materials,37.6,132.3007,129.2227,2.38,3266.0,2882.0,13.32,-10.94,18
+2026-08-23,MFC.TO,Manulife Financial Corporation,Canada (TSX),Financial Services,70.5,4.9871,4.9362,1.03,58.61,52.33,11.99,-10.96,15
+2026-08-23,URI,United Rentals,United States (NYSE & Nasdaq),Industrials,68.4,57.1855,53.8402,6.21,1098.51,937.0,17.24,-11.03,21
+2026-08-23,APA,APA Corporation,United States (NYSE & Nasdaq),Energy,15.2,4.2005,4.1364,1.55,43.39,38.53,12.62,-11.07,23
+2026-08-23,STT,State Street Corporation,United States (NYSE & Nasdaq),Financial Services,51.4,15.303,13.7751,11.09,187.13,153.19,22.16,-11.07,14
+2026-08-23,SYF,Synchrony Financial,United States (NYSE & Nasdaq),Financial Services,25.9,10.4728,10.4693,0.03,79.47,71.52,11.11,-11.08,23
+2026-08-23,GLE.PA,Société Générale,France (Euronext Paris),Financial Services,65.2,9.0189,8.9195,1.11,76.12,67.84,12.21,-11.1,17
+2026-08-23,AGN.AS,Aegon,Netherlands (Euronext Amsterdam),Financial Services,,0.9092,0.9493,-4.23,7.76,7.26,6.87,-11.1,5
+2026-08-23,FITB,Fifth Third Bancorp,United States (NYSE & Nasdaq),Financial Services,49.7,4.8928,4.8719,0.43,54.82,49.13,11.58,-11.15,16
+2026-08-23,VLTO,Veralto,United States (NYSE & Nasdaq),Industrials,24.1,4.7802,4.651,2.78,98.77,86.67,13.96,-11.18,16
+2026-08-23,WYNN,Wynn Resorts,United States (NYSE & Nasdaq),Consumer Cyclical,10.3,4.7839,5.1885,-7.8,100.28,97.0,3.38,-11.18,9
+2026-08-23,NDSN,Nordson Corporation,United States (NYSE & Nasdaq),Industrials,18.5,12.9425,12.4811,3.7,332.24,289.08,14.93,-11.23,8
+2026-08-23,BF-B,Brown–Forman,United States (NYSE & Nasdaq),Consumer Defensive,13.1,1.7006,1.7314,-1.78,28.44,25.97,9.5,-11.28,15
+2026-08-23,KO,Coca-Cola Company (The),United States (NYSE & Nasdaq),Consumer Defensive,392.0,3.5264,3.4836,1.23,91.1,80.96,12.53,-11.3,24
+2026-08-23,MKS.L,Marks & Spencer,United Kingdom (LSE),Consumer Cyclical,10.8,0.3528,0.3565,-1.03,382.9,347.17,10.29,-11.32,17
+2026-08-23,CMG,Chipotle Mexican Grill,United States (NYSE & Nasdaq),Consumer Cyclical,46.7,1.3691,1.3574,0.86,36.9,32.89,12.19,-11.33,35
+2026-08-23,PKG,Packaging Corporation of America,United States (NYSE & Nasdaq),Consumer Cyclical,22.5,12.9364,12.1483,6.49,252.79,214.49,17.86,-11.37,9
+2026-08-23,SHRIRAMFIN.NS,Shriram Finance,India (NSE),Financial Services,27.8,71.7728,65.6225,9.37,1130.0,935.71,20.76,-11.39,31
+2026-08-23,PDN.AX,Paladin Energy,Australia (ASX),Energy,3.4,0.147,0.1747,-15.88,10.58,11.07,-4.43,-11.45,10
+2026-08-23,MG.TO,Magna International Inc.,Canada (TSX),Consumer Cyclical,19.4,7.7531,7.6039,1.96,100.44,88.56,13.42,-11.46,19
+2026-08-23,INGA.AS,ING Group,Netherlands (Euronext Amsterdam),Financial Services,99.5,2.8959,2.8149,2.88,29.83,26.09,14.35,-11.47,16
+2026-08-23,MSFT,Microsoft,United States (NYSE & Nasdaq),Technology,3588.3,23.5733,22.6281,4.18,483.24,417.78,15.67,-11.49,33
+2026-08-23,USB,U.S. Bancorp,United States (NYSE & Nasdaq),Financial Services,96.7,5.7906,5.6418,2.64,62.05,54.36,14.14,-11.5,19
+2026-08-23,CDA.AX,Codan,Australia (ASX),Technology,6.4,1.3828,1.2448,11.08,49.02,39.96,22.67,-11.59,9
+2026-08-23,ROP.SW,Roche Holding AG,Switzerland (SIX),Healthcare,373.6,21.9034,21.7645,0.64,375.6,334.5,12.29,-11.65,16
+2026-08-23,IR,Ingersoll Rand,United States (NYSE & Nasdaq),Industrials,31.2,3.9173,3.846,1.85,80.51,70.89,13.57,-11.72,14
+2026-08-23,KGF.L,Kingfisher plc,United Kingdom (LSE),Consumer Cyclical,7.2,0.2805,0.2855,-1.75,321.3,292.12,9.99,-11.74,18
+2026-08-23,LLY,Lilly (Eli),United States (NYSE & Nasdaq),Healthcare,1119.5,47.234,44.4353,6.3,1255.4,1063.48,18.05,-11.75,27
+2026-08-23,MCK,McKesson Corporation,United States (NYSE & Nasdaq),Healthcare,100.1,50.5567,50.3236,0.46,858.9,765.23,12.24,-11.78,18
+2026-08-23,MEL.NZ,Meridian Energy Limited,New Zealand (NZX),Utilities,8.8,0.1941,0.2334,-16.86,5.6,5.9,-5.08,-11.78,4
+2026-08-23,1038.HK,Cheung Kong Infrastructure Holdings Limited,Hong Kong (HKEX),Utilities,21.4,3.3348,3.5424,-5.86,66.55,62.82,5.94,-11.8,12
+2026-08-23,DSY.PA,Dassault Systèmes,France (Euronext Paris),Technology,34.4,1.4038,1.4034,0.03,22.43,20.05,11.87,-11.84,19
+2026-08-23,CFR.SW,Compagnie Financière Richemont SA,Switzerland (SIX),Consumer Cyclical,136.4,8.5248,7.9429,7.33,185.75,155.75,19.26,-11.93,20
+2026-08-23,NWS.AX,News Corp Class B,Australia (ASX),Communication Services,18.3,1.5739,1.5672,0.43,47.34,42.13,12.37,-11.94,6
+2026-08-23,CF,CF Industries,United States (NYSE & Nasdaq),Basic Materials,19.6,10.6552,11.2138,-4.98,129.6,121.08,7.04,-12.02,10
+2026-08-23,V,Visa Inc.,United States (NYSE & Nasdaq),Financial Services,692.7,14.9828,14.8425,0.95,371.04,328.27,13.03,-12.08,40
+2026-08-23,MUV2.DE,Munich Re,Germany (XETRA),Financial Services,75.9,51.728,52.7915,-2.01,516.4,469.0,10.11,-12.12,11
+2026-08-23,HCA,HCA Healthcare,United States (NYSE & Nasdaq),Healthcare,92.9,32.1088,33.1298,-3.08,429.19,393.28,9.13,-12.21,22
+2026-08-23,BIIB,Biogen,United States (NYSE & Nasdaq),Healthcare,32.0,16.5367,16.5939,-0.34,216.78,193.76,11.88,-12.22,31
+2026-08-23,AENA.MC,AENA,Spain (BME),Industrials,47.2,1.6176,1.6033,0.89,26.92,23.8,13.11,-12.22,12
+2026-08-23,CCEP.L,Coca-Cola Europacific Partners,United Kingdom (LSE),Consumer Defensive,47.6,4.9814,4.9167,1.32,7910.0,6960.0,13.65,-12.33,4
+2026-08-23,CAP.PA,Capgemini,France (Euronext Paris),Technology,21.6,13.7109,13.8648,-1.11,111.15,99.89,11.28,-12.39,15
+2026-08-23,EQT.ST,EQT,Sweden (Nasdaq Stockholm),Financial Services,41.6,1.661,1.7464,-4.89,336.8,313.2,7.54,-12.43,8
+2026-08-23,RMD,ResMed,United States (NYSE & Nasdaq),Healthcare,33.4,13.2175,13.3322,-0.86,231.52,207.45,11.6,-12.46,20
+2026-08-23,MTB,M&T Bank,United States (NYSE & Nasdaq),Financial Services,34.7,21.0678,20.8474,1.06,240.34,211.7,13.53,-12.47,15
+2026-08-23,LNW.AX,Light & Wonder,Australia (ASX),Consumer Cyclical,6.8,8.9109,9.1053,-2.13,126.67,114.8,10.34,-12.47,13
+2026-08-23,TECHM.NS,Tech Mahindra,India (NSE),Technology,14.7,86.8652,85.3419,1.78,1584.0,1386.18,14.27,-12.49,37
+2026-08-23,SPK.NZ,Spark New Zealand Limited,New Zealand (NZX),Communication Services,2.5,0.1507,0.1561,-3.47,2.17,1.99,9.05,-12.52,7
+2026-08-23,GEBN.SW,Geberit AG,Switzerland (SIX),Industrials,23.9,20.8641,20.4337,2.11,579.6,505.6,14.64,-12.53,13
+2026-08-23,CPU.AX,Computershare,Australia (ASX),Financial Services,,1.6374,1.5548,5.31,39.18,33.23,17.91,-12.6,11
+2026-08-23,NWS,News Corp (Class B),United States (NYSE & Nasdaq),Communication Services,18.7,1.5117,1.4573,3.73,34.55,29.68,16.41,-12.68,5
+2026-08-23,HRL,Hormel Foods,United States (NYSE & Nasdaq),Consumer Defensive,,1.5618,1.5451,1.08,23.88,20.99,13.78,-12.7,10
+2026-08-23,BNZL.L,Bunzl,United Kingdom (LSE),Consumer Defensive,12.1,1.9011,1.852,2.65,2754.0,2386.0,15.42,-12.77,17
+2026-08-23,CRM,Salesforce,United States (NYSE & Nasdaq),Technology,,15.5182,14.9683,3.67,209.17,179.61,16.46,-12.79,54
+2026-08-23,ALL,Allstate,United States (NYSE & Nasdaq),Financial Services,64.2,27.5256,26.2142,5.0,253.83,215.46,17.81,-12.81,22
+2026-08-23,CMCSA,Comcast,United States (NYSE & Nasdaq),Communication Services,95.3,3.6222,3.807,-4.85,26.85,24.87,7.96,-12.81,20
+2026-08-23,1810.HK,Xiaomi,Hong Kong (HKEX),Technology,95.3,1.3362,1.5929,-16.11,29.02,30.0,-3.27,-12.84,20
+2026-08-23,KMB,Kimberly-Clark,United States (NYSE & Nasdaq),Consumer Defensive,36.4,7.4951,7.5768,-1.08,109.31,97.8,11.77,-12.85,14
+2026-08-23,LEN,Lennar,United States (NYSE & Nasdaq),Consumer Cyclical,21.0,6.4805,7.5683,-14.37,87.02,88.33,-1.49,-12.88,11
+2026-08-23,AMS.MC,Amadeus IT Group,Spain (BME),Technology,28.1,3.8754,3.8511,0.63,57.26,50.44,13.52,-12.89,19
+2026-08-23,AOS,A. O. Smith,United States (NYSE & Nasdaq),Industrials,8.6,4.0906,4.1794,-2.13,63.08,56.94,10.79,-12.92,12
+2026-08-23,UNP,Union Pacific Corporation,United States (NYSE & Nasdaq),Industrials,183.0,14.155,13.6855,3.43,308.05,264.51,16.46,-13.03,24
+2026-08-23,LYB,LyondellBasell,United States (NYSE & Nasdaq),Basic Materials,21.8,6.4184,7.5661,-15.17,67.53,69.0,-2.13,-13.04,16
+2026-08-23,PCAR,Paccar,United States (NYSE & Nasdaq),Industrials,69.0,7.1892,6.7124,7.1,131.03,109.06,20.14,-13.04,14
+2026-08-23,FCX,Freeport-McMoRan,United States (NYSE & Nasdaq),Basic Materials,110.1,4.123,3.7172,10.92,76.66,61.84,23.97,-13.05,17
+2026-08-23,ALV.DE,Allianz,Germany (XETRA),Financial Services,,33.5126,33.097,1.26,440.8,385.6,14.32,-13.06,10
+2026-08-23,BXP,"BXP, Inc.",United States (NYSE & Nasdaq),Real Estate,12.2,2.092,2.085,0.33,67.67,59.66,13.42,-13.09,4
+2026-08-23,BXB.AX,Brambles,Australia (ASX),Industrials,18.3,0.8295,0.8432,-1.62,19.08,17.11,11.51,-13.13,13
+2026-08-23,EICHERMOT.NS,Eicher Motors,India (NSE),Consumer Cyclical,23.0,271.6366,264.3063,2.77,8010.0,6909.15,15.93,-13.16,31
+2026-08-23,TRV,Travelers Companies (The),United States (NYSE & Nasdaq),Financial Services,75.8,30.2086,28.5169,5.93,363.58,305.18,19.13,-13.2,27
+2026-08-23,ADYEN.AS,Adyen,Netherlands (Euronext Amsterdam),Technology,39.6,46.8297,47.3396,-1.08,1074.0,957.9,12.12,-13.2,27
+2026-08-23,RCL,Royal Caribbean Group,United States (NYSE & Nasdaq),Consumer Cyclical,78.1,20.2829,20.0062,1.38,292.0,254.78,14.61,-13.23,28
+2026-08-23,SGO.PA,Saint-Gobain,France (Euronext Paris),Industrials,46.4,6.8747,7.0191,-2.06,81.2,73.04,11.17,-13.23,13
+2026-08-23,HEN3.DE,Henkel,Germany (XETRA),Consumer Defensive,35.9,5.9453,5.856,1.52,75.84,65.98,14.94,-13.42,17
+2026-08-23,M&M.NS,Mahindra & Mahindra,India (NSE),Consumer Cyclical,42.8,157.5383,160.1079,-1.6,3412.2,3049.28,11.9,-13.5,34
+2026-08-23,WEIR.L,Weir Group,United Kingdom (LSE),Industrials,10.0,1.4752,1.4909,-1.05,2816.0,2504.0,12.46,-13.51,21
+2026-08-23,CBRE,CBRE Group,United States (NYSE & Nasdaq),Real Estate,44.0,9.0774,8.8547,2.51,152.1,131.07,16.04,-13.53,12
+2026-08-23,REA.AX,REA Group,Australia (ASX),Communication Services,16.5,6.5704,6.4242,2.28,176.07,152.02,15.82,-13.54,14
+2026-08-23,ECL,Ecolab,United States (NYSE & Nasdaq),Basic Materials,78.9,9.4178,9.6208,-2.11,281.63,252.63,11.48,-13.59,21
+2026-08-23,WAB,Wabtec,United States (NYSE & Nasdaq),Industrials,50.3,12.4422,12.1294,2.58,297.57,256.15,16.17,-13.59,12
+2026-08-23,NWSA,News Corp (Class A),United States (NYSE & Nasdaq),Communication Services,16.4,1.5117,1.4573,3.73,30.38,25.89,17.34,-13.61,5
+2026-08-23,APE.AX,Eagers Automotive,Australia (ASX),Consumer Cyclical,4.5,1.2702,1.3958,-9.0,22.44,21.45,4.62,-13.62,13
+2026-08-23,PPT.AX,Perpetual,Australia (ASX),Financial Services,1.6,1.6323,1.5361,6.26,19.51,16.27,19.91,-13.65,5
+2026-08-23,BAJAJ-AUTO.NS,Bajaj Auto,India (NSE),Consumer Cyclical,33.6,465.175,471.05,-1.25,11700.0,10403.09,12.47,-13.72,38
+2026-08-23,MET,MetLife,United States (NYSE & Nasdaq),Financial Services,60.0,10.8978,10.9932,-0.87,94.34,83.54,12.92,-13.79,18
+2026-08-23,IDR.MC,Indra,Spain (BME),Technology,12.5,3.2612,3.1599,3.21,61.28,52.38,17.0,-13.79,14
+2026-08-23,XRO.AX,Xero,Australia (ASX),Technology,10.7,2.3775,2.4205,-1.78,85.0,75.84,12.08,-13.86,12
+2026-08-23,UCG.MI,UniCredit,Italy (Borsa Italiana),Financial Services,,8.3244,8.2202,1.27,83.03,72.11,15.14,-13.87,13
+2026-08-23,HGH.NZ,Heartland Group Holdings Limited,New Zealand (NZX),Financial Services,0.8,0.129,0.1257,2.64,1.27,1.09,16.51,-13.87,2
+2026-08-23,CPT,Camden Property Trust,United States (NYSE & Nasdaq),Real Estate,10.8,1.09,1.2513,-12.89,107.59,106.49,1.03,-13.92,1
+2026-08-23,MMM,3M,United States (NYSE & Nasdaq),Industrials,92.3,9.7781,9.4552,3.41,178.96,152.44,17.4,-13.99,18
+2026-08-23,MFT.NZ,Mainfreight Limited,New Zealand (NZX),Industrials,4.1,3.2955,3.135,5.12,68.3,57.34,19.11,-13.99,6
+2026-08-23,CRWD,CrowdStrike,United States (NYSE & Nasdaq),Technology,195.5,1.5674,1.5407,1.73,191.95,165.87,15.73,-14.0,53
+2026-08-23,BRG.AX,Breville Group,Australia (ASX),Consumer Cyclical,3.3,1.1923,1.2292,-3.0,32.19,29.0,11.0,-14.0,14
+2026-08-23,EVO.ST,Evolution,Sweden (Nasdaq Stockholm),Consumer Cyclical,16.3,6.1651,5.9812,3.07,820.0,700.0,17.14,-14.07,18
+2026-08-23,CTC-A.TO,Canadian Tire Corporation Limited,Canada (TSX),Consumer Cyclical,7.5,15.5622,15.8356,-1.73,199.58,177.55,12.41,-14.14,9
+2026-08-23,CSU.TO,Constellation Software Inc.,Canada (TSX),Technology,46.6,131.9667,135.1367,-2.35,3041.21,2720.08,11.81,-14.16,6
+2026-08-23,AV.L,Aviva,United Kingdom (LSE),Financial Services,29.2,0.6784,0.6756,0.4,717.2,625.6,14.64,-14.24,10
+2026-08-23,ITX.MC,Inditex,Spain (BME),Consumer Cyclical,,2.3885,2.3818,0.28,58.22,50.78,14.65,-14.37,24
+2026-08-23,IVG.MI,Iveco,Italy (Borsa Italiana),Industrials,4.3,2.1009,2.4457,-14.1,13.95,13.91,0.29,-14.39,5
+2026-08-23,CTEC.L,Convatec,United Kingdom (LSE),Healthcare,6.0,0.1824,0.1818,0.32,226.0,196.99,14.73,-14.41,9
+2026-08-23,ABN.AS,ABN AMRO,Netherlands (Euronext Amsterdam),Financial Services,38.4,3.6774,3.4532,6.49,40.38,33.38,20.95,-14.46,16
+2026-08-23,6690.HK,Haier,Hong Kong (HKEX),Consumer Cyclical,25.5,2.6719,2.7435,-2.61,21.34,19.07,11.88,-14.49,12
+2026-08-23,EMR,Emerson Electric,United States (NYSE & Nasdaq),Industrials,87.7,7.2374,7.1544,1.16,157.26,135.96,15.67,-14.51,28
+2026-08-23,SOLV,Solventum,United States (NYSE & Nasdaq),Healthcare,15.2,7.2236,7.0771,2.07,89.57,76.83,16.58,-14.51,15
+2026-08-23,AKZA.AS,AkzoNobel,Netherlands (Euronext Amsterdam),Basic Materials,12.1,4.3079,4.2313,1.81,60.36,51.88,16.35,-14.54,15
+2026-08-23,BS6.SI,Yangzijiang Shipbuilding Holdings [zh],Singapore (SGX),Industrials,,3.0412,2.7315,11.34,4.76,3.78,25.93,-14.59,8
+2026-08-23,BAC,Bank of America,United States (NYSE & Nasdaq),Financial Services,431.4,5.2915,5.0347,5.1,61.69,51.53,19.71,-14.61,19
+2026-08-23,GRMN,Garmin,United States (NYSE & Nasdaq),Technology,56.9,10.9863,10.1359,8.39,294.85,239.65,23.03,-14.64,8
+2026-08-23,EL,Estée Lauder Companies (The),United States (NYSE & Nasdaq),Consumer Defensive,,3.9035,3.8573,1.2,101.94,87.98,15.87,-14.67,24
+2026-08-23,SEB-A.ST,SEB A,Sweden (Nasdaq Stockholm),Financial Services,45.2,18.1199,17.649,2.67,219.4,186.95,17.36,-14.69,10
+2026-08-23,EXPN.L,Experian,United Kingdom (LSE),Industrials,35.5,2.2928,2.3129,-0.87,2949.0,2590.64,13.83,-14.7,17
+2026-08-23,KOTAKBANK.NS,Kotak Mahindra Bank,India (NSE),Financial Services,41.9,25.55,28.29,-9.69,402.8,383.49,5.04,-14.73,31
+2026-08-23,AMP,Ameriprise Financial,United States (NYSE & Nasdaq),Financial Services,49.1,51.6685,47.6431,8.45,555.59,450.9,23.22,-14.77,13
+2026-08-23,HUM,Humana,United States (NYSE & Nasdaq),Healthcare,45.5,16.568,15.2632,8.55,378.88,307.23,23.32,-14.77,26
+2026-08-23,PSN.L,Persimmon,United Kingdom (LSE),Consumer Cyclical,5.0,1.0179,1.1248,-9.51,1151.5,1093.61,5.29,-14.8,18
+2026-08-23,NXT.L,Next plc,United Kingdom (LSE),Consumer Cyclical,23.8,8.7757,8.6097,1.93,15285.0,13093.39,16.74,-14.81,18
+2026-08-23,INTU,Intuit,United States (NYSE & Nasdaq),Technology,100.4,27.2905,27.185,0.39,367.0,318.53,15.22,-14.83,33
+2026-08-23,RTX,RTX Corporation,United States (NYSE & Nasdaq),Industrials,282.9,7.8559,7.5612,3.9,209.91,176.42,18.98,-15.08,23
+2026-08-23,FAST,Fastenal,United States (NYSE & Nasdaq),Industrials,58.8,1.3942,1.3648,2.15,51.26,43.7,17.3,-15.15,15
+2026-08-23,AVY,Avery Dennison,United States (NYSE & Nasdaq),Consumer Cyclical,13.9,11.1862,11.1157,0.63,183.71,158.64,15.8,-15.17,11
+2026-08-23,IT,Gartner,United States (NYSE & Nasdaq),Technology,12.4,16.4493,15.3367,7.25,195.9,160.01,22.43,-15.18,15
+2026-08-23,TCL.AX,Transurban,Australia (ASX),Industrials,,0.2381,0.2865,-16.89,13.95,14.19,-1.69,-15.2,9
+2026-08-23,SAF.PA,Safran,France (Euronext Paris),Industrials,,13.0671,12.2529,6.65,343.6,281.83,21.92,-15.27,19
+2026-08-23,CRDA.L,Croda International,United Kingdom (LSE),Basic Materials,,1.7793,1.7896,-0.58,3433.0,2991.0,14.78,-15.36,12
+2026-08-23,SPK.AX,Spark New Zealand,Australia (ASX),Communication Services,2.5,0.1254,0.1312,-4.41,1.82,1.64,10.98,-15.39,7
+2026-08-23,CTSH,Cognizant,United States (NYSE & Nasdaq),Technology,27.9,6.3141,6.1602,2.5,61.87,52.44,17.98,-15.48,28
+2026-08-23,ERF.PA,Eurofins Scientific,France (Euronext Paris),Healthcare,14.7,4.6992,4.6564,0.92,72.84,62.58,16.4,-15.48,12
+2026-08-23,SCA-B.ST,SCA B,Sweden (Nasdaq Stockholm),Basic Materials,8.3,4.5818,4.7591,-3.72,111.1,99.4,11.77,-15.49,13
+2026-08-23,MA,Mastercard,United States (NYSE & Nasdaq),Financial Services,508.6,23.0258,22.7642,1.15,580.63,497.71,16.66,-15.51,37
+2026-08-23,ELE.MC,Endesa,Spain (BME),Utilities,49.1,2.3811,2.3434,1.61,41.23,35.19,17.17,-15.56,22
+2026-08-23,CON.DE,Continental,Germany (XETRA),Consumer Cyclical,,6.4343,7.4167,-13.25,68.78,67.22,2.32,-15.57,6
+2026-08-23,LDOS,Leidos,United States (NYSE & Nasdaq),Technology,17.7,12.7827,13.1751,-2.98,141.39,125.57,12.6,-15.58,17
+2026-08-23,3690.HK,Meituan,Hong Kong (HKEX),Consumer Cyclical,66.9,4.0931,4.604,-11.1,85.0,81.35,4.49,-15.59,28
+2026-08-23,G1A.DE,GEA Group,Germany (XETRA),Industrials,,3.7626,3.5608,5.67,65.8,54.25,21.29,-15.62,14
+2026-08-23,BKT.MC,Bankinter,Spain (BME),Financial Services,17.5,1.4523,1.3903,4.46,16.66,13.87,20.11,-15.65,19
+2026-08-23,GEHC,GE HealthCare,United States (NYSE & Nasdaq),Healthcare,33.8,5.4102,5.363,0.88,74.82,64.19,16.55,-15.67,19
+2026-08-23,KKR,KKR & Co.,United States (NYSE & Nasdaq),Financial Services,100.2,7.3875,7.3948,-0.1,108.48,93.86,15.57,-15.67,22
+2026-08-23,PUIG.MC,Puig,Spain (BME),Consumer Defensive,11.3,1.1866,1.1879,-0.11,17.2,14.88,15.58,-15.69,15
+2026-08-23,NWG.L,NatWest Group,United Kingdom (LSE),Financial Services,74.1,0.8434,0.8324,1.32,683.8,584.1,17.07,-15.75,12
+2026-08-23,SKL.NZ,Skellerup Holdings Limited,New Zealand (NZX),Industrials,0.9,0.4124,0.3835,7.55,7.4,6.0,23.33,-15.78,2
+2026-08-23,COR,Cencora,United States (NYSE & Nasdaq),Healthcare,60.7,19.7881,19.7723,0.08,318.04,274.38,15.91,-15.83,12
+2026-08-23,XYZ,"Block, Inc.",United States (NYSE & Nasdaq),Technology,49.4,5.1929,4.9542,4.82,82.16,68.08,20.68,-15.86,39
+2026-08-23,ML.PA,Michelin,France (Euronext Paris),Unclassified,,3.1946,3.2277,-1.03,34.61,30.14,14.83,-15.86,13
+2026-08-23,NHC.AX,New Hope,Australia (ASX),Energy,3.5,0.4054,0.4562,-11.14,5.76,5.5,4.73,-15.87,7
+2026-08-23,0300.HK,Midea Group,Hong Kong (HKEX),Consumer Cyclical,94.3,6.7348,6.8368,-1.49,96.9,84.69,14.42,-15.91,4
+2026-08-23,S32.AX,South32,Australia (ASX),Basic Materials,15.7,0.2641,0.2738,-3.57,4.89,4.35,12.41,-15.98,9
+2026-08-23,ISP.MI,Intesa Sanpaolo,Italy (Borsa Italiana),Financial Services,138.2,0.651,0.6229,4.5,6.77,5.62,20.49,-15.99,13
+2026-08-23,HM-B.ST,Hennes & Mauritz B,Sweden (Nasdaq Stockholm),Consumer Cyclical,30.9,8.4084,8.8001,-4.45,182.6,163.7,11.55,-16.0,25
+2026-08-23,MSI,Motorola Solutions,United States (NYSE & Nasdaq),Technology,79.5,19.0809,18.4928,3.18,480.47,402.87,19.26,-16.08,14
+2026-08-23,ACA.PA,Crédit Agricole,France (Euronext Paris),Financial Services,67.4,2.4832,2.4362,1.93,19.07,16.14,18.14,-16.21,15
+2026-08-23,DG,Dollar General,United States (NYSE & Nasdaq),Consumer Defensive,27.2,8.0327,7.938,1.19,123.41,105.11,17.41,-16.22,25
+2026-08-23,BMED.MI,Banca Mediolanum,Italy (Borsa Italiana),Financial Services,20.7,1.5756,1.5079,4.49,23.9,19.78,20.8,-16.31,8
+2026-08-23,9992.HK,Pop Mart,Hong Kong (HKEX),Consumer Cyclical,24.9,10.9961,13.3007,-17.33,149.0,150.5,-1.0,-16.33,15
+2026-08-23,DVN,Devon Energy,United States (NYSE & Nasdaq),Energy,54.0,4.808,5.4452,-11.7,49.1,46.89,4.72,-16.42,14
+2026-08-23,ARES,Ares Management,United States (NYSE & Nasdaq),Financial Services,46.6,7.1921,7.3204,-1.75,141.25,123.17,14.68,-16.43,15
+2026-08-23,WKL.AS,Wolters Kluwer,Netherlands (Euronext Amsterdam),Industrials,18.5,6.2552,6.2277,0.44,71.22,60.91,16.93,-16.49,14
+2026-08-23,GEN,Gen Digital,United States (NYSE & Nasdaq),Technology,17.3,3.3011,3.2824,0.57,28.93,24.71,17.07,-16.5,11
+2026-08-23,2319.HK,Mengniu Dairy,Hong Kong (HKEX),Consumer Defensive,9.3,1.4015,1.3992,0.16,18.82,16.12,16.75,-16.59,16
+2026-08-23,EDV.AX,Endeavour Group,Australia (ASX),Consumer Defensive,4.4,0.2054,0.2198,-6.56,3.39,3.08,10.06,-16.62,13
+2026-08-23,SCHW,Charles Schwab Corporation,United States (NYSE & Nasdaq),Financial Services,194.2,7.8046,7.208,8.28,112.3,89.89,24.93,-16.65,22
+2026-08-23,WTC.AX,Wisetech Global,Australia (ASX),Technology,10.2,1.0189,1.0452,-2.52,42.33,37.09,14.13,-16.65,14
+2026-08-23,NTR.TO,Nutrien Ltd.,Canada (TSX),Basic Materials,35.8,4.9382,5.4035,-8.61,103.71,95.99,8.04,-16.65,21
+2026-08-23,RDX.AX,Redox,Australia (ASX),Basic Materials,1.2,0.1937,0.2059,-5.92,3.29,2.97,10.77,-16.69,4
+2026-08-23,WELL,Welltower,United States (NYSE & Nasdaq),Real Estate,172.4,3.17,3.36,-5.65,239.22,215.36,11.08,-16.73,3
+2026-08-23,JKHY,Jack Henry & Associates,United States (NYSE & Nasdaq),Technology,11.8,7.839,7.6629,2.3,166.2,139.56,19.09,-16.79,10
+2026-08-23,SFR.AX,Sandfire Resources,Australia (ASX),Basic Materials,7.2,1.563,1.5734,-0.66,21.65,18.64,16.15,-16.81,10
+2026-08-23,BNP.PA,BNP Paribas,France (Euronext Paris),Financial Services,137.6,13.2118,12.8623,2.72,107.5,89.93,19.54,-16.82,12
+2026-08-23,MRSH,Marsh McLennan,United States (NYSE & Nasdaq),Financial Services,91.6,11.4055,11.3181,0.77,192.01,163.19,17.66,-16.89,23
+2026-08-23,SAN.MC,Banco Santander,Spain (BME),Financial Services,213.2,1.2496,1.2079,3.45,12.55,10.43,20.35,-16.9,19
+2026-08-23,EBO.AX,EBOS Group,Australia (ASX),Healthcare,2.8,1.3201,1.3531,-2.44,18.96,16.56,14.49,-16.93,3
+2026-08-23,CTAS,Cintas,United States (NYSE & Nasdaq),Industrials,81.6,6.0941,6.0283,1.09,203.79,172.48,18.15,-17.06,13
+2026-08-23,PRU,Prudential Financial,United States (NYSE & Nasdaq),Financial Services,41.8,14.7689,14.6529,0.79,121.15,102.72,17.94,-17.15,16
+2026-08-23,MTX.DE,MTU Aero Engines,Germany (XETRA),Industrials,22.2,20.7057,20.3447,1.77,352.4,296.0,19.05,-17.28,16
+2026-08-23,COF,Capital One,United States (NYSE & Nasdaq),Financial Services,133.7,24.0382,24.2647,-0.93,217.91,187.13,16.45,-17.38,19
+2026-08-23,0669.HK,Techtronic Industries,Hong Kong (HKEX),Industrials,33.4,0.921,0.8935,3.08,143.2,118.8,20.54,-17.46,16
+2026-08-23,D05.SI,DBS Group Holdings,Singapore (SGX),Financial Services,170.4,4.4327,4.1741,6.2,76.0,61.44,23.69,-17.49,14
+2026-08-23,KNIN.SW,Kuehne + Nagel,Switzerland (SIX),Industrials,32.5,9.3451,8.7765,6.48,219.4,176.85,24.06,-17.58,17
+2026-08-23,ZBH,Zimmer Biomet,United States (NYSE & Nasdaq),Healthcare,19.3,9.0673,8.9928,0.83,100.98,85.27,18.42,-17.59,27
+2026-08-23,SDLF.L,Standard Life,United Kingdom (LSE),Financial Services,12.6,0.7506,0.7573,-0.89,920.5,788.5,16.74,-17.63,7
+2026-08-23,HSIC,Henry Schein,United States (NYSE & Nasdaq),Healthcare,9.9,5.9984,5.908,1.53,88.5,74.21,19.26,-17.73,17
+2026-08-23,HPQ,HP Inc.,United States (NYSE & Nasdaq),Technology,,3.0071,2.968,1.32,29.71,24.94,19.14,-17.82,16
+2026-08-23,OCA.NZ,Oceania Healthcare Limited,New Zealand (NZX),Healthcare,0.3,0.0957,0.1002,-4.47,0.81,0.71,13.38,-17.85,3
+2026-08-23,SAAB-B.ST,Saab B,Sweden (Nasdaq Stockholm),Industrials,37.4,18.787,17.7685,5.73,655.2,529.9,23.65,-17.92,10
+2026-08-23,VSL.NZ,Vulcan Steel Limited,New Zealand (NZX),Basic Materials,0.6,0.4192,0.5544,-24.38,6.32,6.75,-6.37,-18.01,1
+2026-08-23,LONN.SW,Lonza Group AG,Switzerland (SIX),Healthcare,51.6,21.9831,21.5224,2.14,592.2,492.8,20.17,-18.03,17
+2026-08-23,BGA.AX,Bega Cheese,Australia (ASX),Consumer Defensive,1.4,0.298,0.2914,2.27,6.49,5.39,20.41,-18.14,11
+2026-08-23,UHS,Universal Health Services,United States (NYSE & Nasdaq),Healthcare,10.4,24.0181,25.4756,-5.72,177.26,157.58,12.49,-18.21,15
+2026-08-23,PNI.AX,Pinnacle Investment Management,Australia (ASX),Financial Services,3.1,1.0164,1.0401,-2.28,17.95,15.48,15.96,-18.24,10
+2026-08-23,SPGI,S&P Global,United States (NYSE & Nasdaq),Financial Services,127.1,20.2397,22.2034,-8.84,431.29,394.16,9.42,-18.26,23
+2026-08-23,1093.HK,CSPC Pharmaceutical Group,Hong Kong (HKEX),Healthcare,13.4,0.7192,0.6921,3.92,9.19,7.52,22.19,-18.27,7
+2026-08-23,BPE.MI,BPER Banca,Italy (Borsa Italiana),Financial Services,34.1,1.3014,1.2571,3.52,14.0,11.49,21.82,-18.3,9
+2026-08-23,SREN.SW,Swiss Reinsurance Company Ltd,Switzerland (SIX),Financial Services,51.3,15.6686,16.0391,-2.31,139.3,120.05,16.03,-18.34,9
+2026-08-23,BAJFINANCE.NS,Bajaj Finance,India (NSE),Financial Services,71.2,50.5175,49.6162,1.82,1095.0,910.95,20.2,-18.38,29
+2026-08-23,MKC,McCormick & Company,United States (NYSE & Nasdaq),Consumer Defensive,14.9,3.298,3.3471,-1.46,55.41,47.37,16.97,-18.43,12
+2026-08-23,REP.MC,Repsol,Spain (BME),Energy,35.6,3.5827,3.2439,10.44,27.99,21.71,28.92,-18.48,20
+2026-08-23,STO.AX,Santos,Australia (ASX),Energy,,0.5017,0.6006,-16.48,8.25,8.08,2.06,-18.54,12
+2026-08-23,SJM,J.M. Smucker Company (The),United States (NYSE & Nasdaq),Consumer Defensive,13.3,9.0,8.76,2.74,124.32,102.4,21.41,-18.67,6
+2026-08-23,PRN.AX,Perenti,Australia (ASX),Basic Materials,1.6,0.2092,0.2145,-2.48,2.44,2.1,16.19,-18.67,5
+2026-08-23,EFX,Equifax,United States (NYSE & Nasdaq),Industrials,22.6,10.1463,10.276,-1.26,192.62,164.04,17.42,-18.68,22
+2026-08-23,BAMI.MI,Banco BPM,Italy (Borsa Italiana),Financial Services,29.3,1.4187,1.3288,6.77,16.68,13.3,25.45,-18.68,12
+2026-08-23,AUB.AX,AUB Group,Australia (ASX),Financial Services,2.7,1.9964,1.9978,-0.07,29.31,24.71,18.62,-18.69,10
+2026-08-23,INDIGO.NS,IndiGo,India (NSE),Industrials,20.7,204.1658,211.7553,-3.58,5110.0,4438.6,15.13,-18.71,14
+2026-08-23,RACE.MI,Ferrari,Italy (Borsa Italiana),Consumer Cyclical,76.2,11.0035,10.5577,4.22,371.1,301.55,23.06,-18.84,16
+2026-08-23,ABF.L,Associated British Foods,United Kingdom (LSE),Consumer Defensive,19.6,1.5813,1.6928,-6.59,2061.0,1835.8,12.27,-18.86,17
+2026-08-23,0027.HK,Galaxy Entertainment Group Ltd.,Hong Kong (HKEX),Consumer Cyclical,20.1,2.6389,2.7992,-5.73,36.0,31.82,13.14,-18.87,11
+2026-08-23,AIR.PA,Airbus,France (Euronext Paris),Industrials,188.3,8.7019,8.601,1.17,203.7,169.52,20.16,-18.99,21
+2026-08-23,WAT,Waters Corporation,United States (NYSE & Nasdaq),Healthcare,40.3,16.5645,16.4144,0.91,410.7,342.37,19.96,-19.05,24
+2026-08-23,JNJ,Johnson & Johnson,United States (NYSE & Nasdaq),Healthcare,651.3,12.3075,12.7104,-3.17,270.24,233.0,15.98,-19.15,4
+2026-08-23,PLTR,Palantir Technologies,United States (NYSE & Nasdaq),Technology,432.4,2.3142,2.0646,12.09,179.94,136.88,31.46,-19.37,29
+2026-08-23,SGP.AX,Stockland,Australia (ASX),Real Estate,8.2,0.395,0.3812,3.62,4.7,3.82,23.0,-19.38,4
+2026-08-23,CAR.AX,CAR Group,Australia (ASX),Communication Services,7.8,1.3083,1.3586,-3.7,28.74,24.82,15.79,-19.49,13
+2026-08-23,CDW,CDW Corporation,United States (NYSE & Nasdaq),Technology,17.2,11.9374,11.4414,4.34,137.25,110.82,23.85,-19.51,10
+2026-08-23,OMC,Omnicom Group,United States (NYSE & Nasdaq),Communication Services,24.0,12.0446,12.2275,-1.5,87.54,74.14,18.08,-19.58,12
+2026-08-23,DIA.MI,Diasorin,Italy (Borsa Italiana),Healthcare,4.3,4.2886,4.4384,-3.37,75.14,64.6,16.32,-19.69,12
+2026-08-23,GNE.NZ,Genesis Energy Limited,New Zealand (NZX),Utilities,2.1,0.1258,0.1383,-9.0,2.69,2.43,10.7,-19.7,4
+2026-08-23,MGR.AX,Mirvac,Australia (ASX),Real Estate,5.4,0.1444,0.1493,-3.28,1.91,1.64,16.49,-19.77,11
+2026-08-23,CEN.NZ,Contact Energy Limited,New Zealand (NZX),Utilities,5.8,0.4158,0.5247,-20.76,9.02,9.11,-0.93,-19.83,4
+2026-08-23,BGEO.L,Lion Finance Group,United Kingdom (LSE),Financial Services,7.7,18.3117,17.782,2.98,13090.0,10639.23,23.04,-20.06,3
+2026-08-23,JIOFIN.NS,Jio Financial Services,India (NSE),Financial Services,16.8,4.46,5.4,-17.41,244.0,237.63,2.68,-20.09,3
+2026-08-23,EDV.L,Endeavour Mining,United Kingdom (LSE),Basic Materials,15.4,7.0945,7.975,-11.04,4680.0,4288.0,9.14,-20.18,8
+2026-08-23,VEA.AX,Viva Energy,Australia (ASX),Energy,3.3,0.2357,0.2335,0.94,2.8,2.31,21.21,-20.27,9
+2026-08-23,MGM,MGM Resorts,United States (NYSE & Nasdaq),Consumer Cyclical,11.2,2.0687,2.2125,-6.5,43.74,38.4,13.91,-20.41,16
+2026-08-23,BEI.DE,Beiersdorf,Germany (XETRA),Consumer Defensive,20.3,4.0689,4.56,-10.77,79.6,72.54,9.73,-20.5,19
+2026-08-23,BR,Broadridge Financial Solutions,United States (NYSE & Nasdaq),Technology,20.8,11.5758,11.4379,1.21,182.18,149.48,21.88,-20.67,9
+2026-08-23,RHC.AX,Ramsay Health Care,Australia (ASX),Healthcare,7.4,1.614,1.6586,-2.69,45.0,38.06,18.23,-20.92,14
+2026-08-23,ALL.AX,Aristocrat Leisure,Australia (ASX),Consumer Cyclical,26.0,2.9,2.8693,1.07,60.9,49.92,22.0,-20.93,16
+2026-08-23,BLDR,Builders FirstSource,United States (NYSE & Nasdaq),Industrials,7.6,4.466,6.0588,-26.29,70.21,74.15,-5.31,-20.98,20
+2026-08-23,REH.AX,Reece Group,Australia (ASX),Industrials,7.3,0.5334,0.5326,0.15,16.54,13.65,21.17,-21.02,13
+2026-08-23,TITAN.NS,Titan Company,India (NSE),Consumer Cyclical,47.2,85.1442,82.0182,3.81,5086.1,4066.46,25.07,-21.26,25
+2026-08-23,1929.HK,Chow Tai Fook,Hong Kong (HKEX),Consumer Cyclical,17.0,1.116,1.0855,2.81,13.54,10.9,24.19,-21.38,14
+2026-08-23,SCL.NZ,Scales Corporation Limited,New Zealand (NZX),Consumer Defensive,0.6,0.4357,0.4391,-0.76,6.99,5.79,20.67,-21.43,2
+2026-08-23,LYV,Live Nation Entertainment,United States (NYSE & Nasdaq),Communication Services,42.4,1.8881,2.1387,-11.72,181.82,165.55,9.83,-21.55,17
+2026-08-23,CLX,Clorox,United States (NYSE & Nasdaq),Consumer Defensive,12.9,6.2906,6.8427,-8.07,106.69,94.01,13.49,-21.56,17
+2026-08-23,MDT,Medtronic,United States (NYSE & Nasdaq),Healthcare,119.5,6.4104,6.5255,-1.76,93.35,77.9,19.84,-21.6,29
+2026-08-23,UNI.MC,Unicaja,Spain (BME),Financial Services,10.7,0.2761,0.2628,5.06,3.56,2.81,26.83,-21.77,15
+2026-08-23,AMP.MI,Amplifon,Italy (Borsa Italiana),Healthcare,,0.8804,0.9463,-6.96,11.89,10.35,14.83,-21.79,9
+2026-08-23,EBO.NZ,EBOS Group Limited,New Zealand (NZX),Healthcare,2.8,1.3258,1.4655,-9.53,22.75,20.25,12.35,-21.88,8
+2026-08-23,FRE.DE,Fresenius,Germany (XETRA),Healthcare,,3.9545,3.8988,1.43,46.6,37.73,23.51,-22.08,14
+2026-08-23,NCLH,Norwegian Cruise Line Holdings,United States (NYSE & Nasdaq),Consumer Cyclical,7.9,1.6875,2.0173,-16.35,17.24,16.3,5.77,-22.12,25
+2026-08-23,DGX,Quest Diagnostics,United States (NYSE & Nasdaq),Healthcare,27.0,12.0577,11.6534,3.47,244.39,194.42,25.7,-22.23,16
+2026-08-23,COO,Cooper Companies (The),United States (NYSE & Nasdaq),Healthcare,,4.9962,5.0205,-0.48,76.22,62.55,21.85,-22.33,16
+2026-08-23,SUL.AX,Super Retail Group,Australia (ASX),Consumer Cyclical,2.2,1.0845,1.1061,-1.95,13.35,11.09,20.38,-22.33,12
+2026-08-23,TWE.AX,Treasury Wine Estates,Australia (ASX),Consumer Defensive,3.3,0.4139,0.4013,3.14,5.65,4.5,25.56,-22.42,14
+2026-08-23,IP,International Paper,United States (NYSE & Nasdaq),Consumer Cyclical,22.0,2.9898,2.6775,11.66,41.49,30.94,34.11,-22.45,12
+2026-08-23,ROVI.MC,Laboratorios Rovi [es],Spain (BME),Healthcare,3.6,3.3774,4.1941,-19.47,59.8,58.04,3.04,-22.51,7
+2026-08-23,AGL.AX,AGL Energy,Australia (ASX),Utilities,4.3,0.7164,0.937,-23.54,8.88,8.97,-1.0,-22.54,9
+2026-08-23,ALLE,Allegion,United States (NYSE & Nasdaq),Industrials,13.8,9.7742,9.5448,2.4,162.31,129.89,24.96,-22.56,11
+2026-08-23,TRI.TO,Thomson Reuters Corporation,Canada (TSX),Industrials,45.6,5.0836,5.0424,0.82,145.39,117.83,23.39,-22.57,15
+2026-08-23,WSM,"Williams-Sonoma, Inc.",United States (NYSE & Nasdaq),Consumer Cyclical,28.0,10.2955,10.1714,1.22,237.58,191.86,23.83,-22.61,17
+2026-08-23,SIKA.SW,Sika AG,Switzerland (SIX),Basic Materials,37.2,8.369,8.0671,3.74,185.8,147.0,26.39,-22.65,20
+2026-08-23,BX,Blackstone Inc.,United States (NYSE & Nasdaq),Financial Services,171.4,7.4905,7.5259,-0.47,143.38,117.31,22.22,-22.69,23
+2026-08-23,WDS.AX,Woodside Energy Group,Australia (ASX),Energy,46.0,1.6067,1.9469,-17.48,33.78,32.1,5.23,-22.71,9
+2026-08-23,SHL.DE,Siemens Healthineers,Germany (XETRA),Healthcare,52.6,2.3644,2.5244,-6.34,40.2,34.5,16.52,-22.86,19
+2026-08-23,TSCO,Tractor Supply,United States (NYSE & Nasdaq),Consumer Cyclical,18.2,2.0457,2.309,-11.4,34.98,31.37,11.52,-22.92,14
+2026-08-23,ABX.TO,Barrick Mining Corporation,Canada (TSX),Basic Materials,78.1,4.4013,4.6736,-5.83,65.56,55.97,17.12,-22.95,21
+2026-08-23,SOL.AX,Soul Patts,Australia (ASX),Financial Services,12.1,1.13,1.3835,-18.32,44.38,42.41,4.65,-22.97,1
+2026-08-23,FNV.TO,Franco-Nevada Corporation,Canada (TSX),Basic Materials,51.1,9.4109,9.965,-5.56,365.83,311.44,17.46,-23.02,12
+2026-08-23,DSFIR.AS,DSM Firmenich AG,Netherlands (Euronext Amsterdam),Basic Materials,26.1,4.0905,3.936,3.92,90.76,71.5,26.94,-23.02,19
+2026-08-23,ABBV,AbbVie,United States (NYSE & Nasdaq),Healthcare,468.2,16.282,16.2298,0.32,264.96,214.18,23.71,-23.39,24
+2026-08-23,UNI.MI,Unipol,Italy (Borsa Italiana),Financial Services,23.3,2.2666,2.1588,4.99,27.77,21.6,28.56,-23.57,5
+2026-08-23,SHL.AX,Sonic Healthcare,Australia (ASX),Healthcare,7.5,1.314,1.4743,-10.87,21.08,18.68,12.85,-23.72,15
+2026-08-23,PRU.AX,Perseus Mining,Australia (ASX),Basic Materials,5.8,0.5169,0.5568,-7.17,6.11,5.24,16.6,-23.77,4
+2026-08-23,VRTX,Vertex Pharmaceuticals,United States (NYSE & Nasdaq),Healthcare,138.9,21.9897,21.5032,2.26,548.05,434.52,26.13,-23.87,13
+2026-08-23,S58.SI,SATS,Singapore (SGX),Industrials,4.8,0.2502,0.2465,1.51,4.07,3.25,25.42,-23.91,6
+2026-08-23,BAYN.DE,Bayer,Germany (XETRA),Healthcare,55.1,4.7716,4.7418,0.63,48.04,38.51,24.75,-24.12,16
+2026-08-23,WHS.NZ,The Warehouse Group Limited,New Zealand (NZX),Consumer Cyclical,0.1,0.0797,0.1041,-23.44,0.66,0.65,0.76,-24.2,2
+2026-08-23,BBVA.MC,BBVA,Spain (BME),Financial Services,160.0,2.2906,2.1957,4.32,24.82,19.3,28.63,-24.31,17
+2026-08-23,NEXI.MI,Nexi,Italy (Borsa Italiana),Technology,5.8,0.6643,0.6643,-0.02,4.21,3.38,24.42,-24.44,14
+2026-08-23,DE,Deere & Company,United States (NYSE & Nasdaq),Industrials,174.8,22.4413,22.8623,-1.84,647.47,527.78,22.68,-24.52,21
+2026-08-23,ROP,Roper Technologies,United States (NYSE & Nasdaq),Technology,40.7,24.2924,23.8952,1.66,411.79,326.12,26.27,-24.61,18
+2026-08-23,SGE.L,Sage Group,United Kingdom (LSE),Technology,13.4,0.576,0.5748,0.2,1098.0,878.72,24.95,-24.75,19
+2026-08-23,CWY.AX,Cleanaway,Australia (ASX),Industrials,4.2,0.1255,0.1357,-7.51,2.63,2.24,17.41,-24.92,12
+2026-08-23,ADP,Automatic Data Processing,United States (NYSE & Nasdaq),Technology,111.6,13.3984,13.3212,0.58,280.81,223.61,25.58,-25.0,18
+2026-08-23,SW,Smurfit Westrock,United States (NYSE & Nasdaq),Consumer Cyclical,25.9,3.3665,3.1774,5.95,49.39,37.71,30.99,-25.04,14
+2026-08-23,DHR,Danaher Corporation,United States (NYSE & Nasdaq),Healthcare,153.8,9.2973,9.0912,2.27,218.85,171.64,27.5,-25.23,25
+2026-08-23,DXCM,Dexcom,United States (NYSE & Nasdaq),Healthcare,34.8,3.1245,3.0389,2.82,92.34,72.1,28.07,-25.25,25
+2026-08-23,MRK,Merck & Co.,United States (NYSE & Nasdaq),Healthcare,376.4,9.5395,9.5228,0.18,152.55,121.54,25.52,-25.34,24
+2026-08-23,SAP.DE,SAP,Germany (XETRA),Technology,253.6,8.3688,8.5023,-1.57,188.12,151.78,23.94,-25.51,24
+2026-08-23,MTD,Mettler Toledo,United States (NYSE & Nasdaq),Healthcare,28.0,51.6911,51.1954,0.97,1395.25,1103.09,26.49,-25.52,12
+2026-08-23,TGT,Target Corporation,United States (NYSE & Nasdaq),Consumer Defensive,,9.5019,8.8878,6.91,165.44,124.64,32.73,-25.82,36
+2026-08-23,SAB.MC,Banco Sabadell,Spain (BME),Financial Services,20.4,0.3232,0.3204,0.88,3.68,2.9,26.7,-25.82,16
+2026-08-23,REGN,Regeneron Pharmaceuticals,United States (NYSE & Nasdaq),Healthcare,85.9,50.3847,48.1018,4.75,834.04,638.13,30.7,-25.95,10
+2026-08-23,QIA.DE,Qiagen,Germany (XETRA),Healthcare,9.1,2.2389,2.2592,-0.9,37.56,29.98,25.3,-26.2,5
+2026-08-23,NOW,ServiceNow,United States (NYSE & Nasdaq),Technology,132.8,5.0055,5.0259,-0.41,128.48,102.13,25.8,-26.21,44
+2026-08-23,AMGN,Amgen,United States (NYSE & Nasdaq),Healthcare,237.5,24.3976,23.4771,3.92,439.33,337.33,30.24,-26.32,33
+2026-08-23,MOS,Mosaic Company (The),United States (NYSE & Nasdaq),Basic Materials,7.8,1.6058,1.9588,-18.02,24.41,22.51,8.44,-26.46,17
+2026-08-23,GIS,General Mills,United States (NYSE & Nasdaq),Consumer Defensive,21.4,3.211,3.4096,-5.82,39.97,33.12,20.69,-26.51,18
+2026-08-23,O39.SI,OCBC Bank,Singapore (SGX),Financial Services,109.7,1.9216,1.7938,7.12,30.98,23.18,33.64,-26.52,15
+2026-08-23,BAJAJFINSV.NS,Bajaj Finserv,India (NSE),Financial Services,34.0,94.9241,107.3133,-11.54,2032.5,1764.49,15.19,-26.73,5
+2026-08-23,BRO,Brown & Brown,United States (NYSE & Nasdaq),Financial Services,24.4,4.8225,4.8626,-0.82,72.92,57.69,26.41,-27.23,19
+2026-08-23,GGP.AX,Greatland Resources,Australia (ASX),Basic Materials,6.5,0.8654,1.1357,-23.8,13.49,13.04,3.45,-27.25,11
+2026-08-23,RVTY,Revvity,United States (NYSE & Nasdaq),Healthcare,13.9,5.8919,5.8108,1.39,124.75,96.89,28.76,-27.37,15
+2026-08-23,ORG.AX,Origin Energy,Australia (ASX),Utilities,14.7,0.5817,0.7123,-18.33,11.89,10.9,9.08,-27.41,11
+2026-08-23,ALK.AX,Alkane Resources,Australia (ASX),Basic Materials,,0.2821,0.2961,-4.74,1.79,1.46,22.95,-27.69,5
+2026-08-23,MB.MI,Mediobanca,Italy (Borsa Italiana),Financial Services,26.0,1.8666,1.7955,3.96,27.65,21.0,31.67,-27.71,4
+2026-08-23,AMP.AX,AMP,Australia (ASX),Financial Services,,0.1503,0.1218,23.33,2.39,1.58,51.28,-27.95,10
+2026-08-23,0322.HK,Tingyi,Hong Kong (HKEX),Consumer Defensive,9.8,0.8463,0.8521,-0.68,13.64,10.72,27.27,-27.95,16
+2026-08-23,LH,Labcorp,United States (NYSE & Nasdaq),Healthcare,27.3,19.7838,19.4421,1.76,336.34,259.22,29.75,-27.99,18
+2026-08-23,MTLN.L,Metlen Energy & Metals,United Kingdom (LSE),Utilities,8.1,5.2471,5.2788,-0.6,48.46,38.04,27.4,-28.0,4
+2026-08-23,NEM.AX,Newmont,Australia (ASX),Basic Materials,135.8,14.4202,15.8034,-8.75,179.85,150.77,19.29,-28.04,7
+2026-08-23,PAYX,Paychex,United States (NYSE & Nasdaq),Technology,44.3,6.3845,6.2986,1.36,124.48,96.0,29.67,-28.31,16
+2026-08-23,FDS,FactSet,United States (NYSE & Nasdaq),Financial Services,10.7,19.7009,19.4184,1.45,299.91,230.87,29.9,-28.45,18
+2026-08-23,FPH.NZ,Fisher & Paykel Healthcare Corporation Limited,New Zealand (NZX),Healthcare,,1.0828,1.0806,0.2,43.52,33.81,28.73,-28.53,11
+2026-08-23,K.TO,Kinross Gold Corporation,Canada (TSX),Basic Materials,38.7,3.0627,3.527,-13.16,45.04,39.01,15.46,-28.62,16
+2026-08-23,0285.HK,BYD Electronics,Hong Kong (HKEX),Technology,6.8,2.1333,3.4671,-38.47,23.58,26.12,-9.71,-28.76,7
+2026-08-23,AJG,Arthur J. Gallagher & Co.,United States (NYSE & Nasdaq),Financial Services,67.6,14.8851,14.8501,0.24,263.81,204.07,29.27,-29.03,22
+2026-08-23,GPN,Global Payments,United States (NYSE & Nasdaq),Industrials,24.7,15.9295,16.1947,-1.64,93.49,72.98,28.1,-29.74,34
+2026-08-23,ARGX.BR,Argenx,Belgium (Euronext Brussels),Healthcare,65.5,35.8039,36.2355,-1.19,902.0,701.0,28.67,-29.86,13
+2026-08-23,SWK,Stanley Black & Decker,United States (NYSE & Nasdaq),Industrials,15.1,6.3794,6.2341,2.33,100.02,75.65,32.21,-29.88,14
+2026-08-23,BKNG,Booking Holdings,United States (NYSE & Nasdaq),Consumer Cyclical,157.5,12.3764,12.3129,0.52,209.62,160.66,30.48,-29.96,32
+2026-08-23,AMC.AX,Amcor,Australia (ASX),Consumer Cyclical,22.1,4.4855,4.6422,-3.38,66.81,52.78,26.58,-29.96,7
+2026-08-23,FPH.AX,Fisher & Paykel Healthcare,Australia (ASX),Healthcare,15.3,1.0894,1.0629,2.49,36.31,27.41,32.45,-29.96,8
+2026-08-23,NEM,Newmont,United States (NYSE & Nasdaq),Basic Materials,138.6,10.5808,11.4401,-7.51,131.58,107.39,22.53,-30.04,14
+2026-08-23,WTW,Willis Towers Watson,United States (NYSE & Nasdaq),Financial Services,31.8,22.8917,22.16,3.3,341.99,256.47,33.35,-30.05,21
+2026-08-23,SEK.AX,Seek,Australia (ASX),Communication Services,3.7,0.7112,0.8602,-17.32,14.34,12.71,12.82,-30.14,14
+2026-08-23,IFF,International Flavors & Fragrances,United States (NYSE & Nasdaq),Basic Materials,21.5,3.9558,4.8017,-17.62,84.28,74.88,12.55,-30.17,17
+2026-08-23,OTEX.TO,Open Text Corporation,Canada (TSX),Technology,6.0,4.2613,5.6212,-24.19,33.97,32.04,6.01,-30.2,11
+2026-08-23,FBU.NZ,Fletcher Building Limited,New Zealand (NZX),Basic Materials,2.6,0.2504,0.2503,0.04,3.99,3.06,30.39,-30.35,13
+2026-08-23,FLT.AX,Flight Centre Travel Group,Australia (ASX),Consumer Cyclical,1.8,1.1194,1.187,-5.69,12.51,10.02,24.85,-30.54,11
+2026-08-23,EVT.AX,EVT,Australia (ASX),Communication Services,1.6,0.4099,0.4708,-12.93,14.08,11.97,17.63,-30.56,5
+2026-08-23,FBU.AX,Fletcher Building,Australia (ASX),Basic Materials,2.6,0.2081,0.206,1.04,3.32,2.51,32.27,-31.23,13
+2026-08-23,AMCR,Amcor,United States (NYSE & Nasdaq),Consumer Cyclical,22.5,4.4995,4.6163,-2.53,48.59,37.75,28.71,-31.24,8
+2026-08-23,TTWO,Take-Two Interactive,United States (NYSE & Nasdaq),Communication Services,44.8,5.2919,7.1545,-26.03,239.62,227.55,5.3,-31.33,15
+2026-08-23,J,Jacobs Solutions,United States (NYSE & Nasdaq),Industrials,17.6,8.2589,8.2738,-0.18,150.08,114.41,31.18,-31.36,16
+2026-08-23,III.L,3i,United Kingdom (LSE),Financial Services,39.4,6.1958,6.6062,-6.21,2891.0,2309.52,25.18,-31.39,9
+2026-08-23,MFG.AX,Magellan Financial Group,Australia (ASX),Financial Services,2.2,0.6567,0.7307,-10.12,10.47,8.63,21.32,-31.44,6
+2026-08-23,NTAP,NetApp,United States (NYSE & Nasdaq),Technology,37.7,10.027,9.41,6.56,192.27,138.94,38.39,-31.83,18
+2026-08-23,BDX,Becton Dickinson,United States (NYSE & Nasdaq),Healthcare,52.3,13.2925,13.4452,-1.14,192.0,146.6,30.97,-32.11,14
+2026-08-23,HEXA-B.ST,Hexagon B,Sweden (Nasdaq Stockholm),Technology,28.2,0.3355,0.4049,-17.16,100.15,87.04,15.06,-32.22,13
+2026-08-23,INCY,Incyte,United States (NYSE & Nasdaq),Healthcare,25.9,8.94,9.0232,-0.92,127.81,97.16,31.55,-32.47,19
+2026-08-23,NXG.AX,Nexgen Energy,Australia (ASX),Energy,7.0,-0.1565,-0.1155,-35.53,14.47,14.91,-2.95,-32.58,2
+2026-08-23,BMPS.MI,Banca Monte dei Paschi di Siena,Italy (Borsa Italiana),Financial Services,41.1,0.8919,0.8956,-0.42,11.57,8.71,32.86,-33.28,7
+2026-08-23,DLTR,Dollar Tree,United States (NYSE & Nasdaq),Consumer Defensive,25.3,7.7363,7.3619,5.09,131.48,94.98,38.43,-33.34,28
+2026-08-23,A2M.AX,a2 Milk Company,Australia (ASX),Consumer Defensive,3.6,0.3795,0.412,-7.9,6.84,5.43,25.86,-33.76,9
+2026-08-23,ATM.NZ,The a2 Milk Company Limited,New Zealand (NZX),Consumer Defensive,3.5,0.387,0.4312,-10.25,8.16,6.6,23.65,-33.9,5
+2026-08-23,SGRO.L,Segro,United Kingdom (LSE),Real Estate,17.7,0.4026,0.4025,0.03,957.4,714.53,33.99,-33.96,10
+2026-08-23,1997.HK,Wharf Real Estate Investment Company Limited,Hong Kong (HKEX),Real Estate,13.0,2.2303,2.1836,2.14,33.46,24.58,36.13,-33.99,10
+2026-08-23,ANN.AX,Ansell,Australia (ASX),Healthcare,3.5,1.5229,1.542,-1.24,34.9,26.25,32.95,-34.19,10
+2026-08-23,ABT,Abbott Laboratories,United States (NYSE & Nasdaq),Healthcare,201.8,6.0649,6.064,0.02,116.64,86.79,34.39,-34.37,25
+2026-08-23,AEM.TO,Agnico Eagle Mines Limited,Canada (TSX),Basic Materials,109.2,12.4947,14.1702,-11.82,297.82,242.94,22.59,-34.41,17
+2026-08-23,ORA.AX,Orora,Australia (ASX),Consumer Cyclical,1.3,0.1162,0.1459,-20.39,1.49,1.3,14.23,-34.62,13
+2026-08-23,EVN.AX,Evolution Mining,Australia (ASX),Basic Materials,22.5,1.0406,1.1466,-9.25,15.35,12.17,26.13,-35.38,14
+2026-08-23,BAX,Baxter International,United States (NYSE & Nasdaq),Healthcare,13.6,2.0364,2.0112,1.25,26.34,19.17,37.4,-36.15,13
+2026-08-23,ZBRA,Zebra Technologies,United States (NYSE & Nasdaq),Technology,17.4,22.252,20.6742,7.63,368.51,255.55,44.2,-36.57,17
+2026-08-23,EDEN.PA,Edenred,France (Euronext Paris),Financial Services,7.9,2.4662,2.3948,2.98,29.24,20.89,39.98,-37.0,14
+2026-08-23,SDF.AX,Steadfast Group,Australia (ASX),Financial Services,4.5,0.3442,0.3455,-0.38,5.65,4.13,36.8,-37.18,5
+2026-08-23,RSG.AX,Resolute Mining,Australia (ASX),Basic Materials,2.1,0.1715,0.2382,-27.99,1.34,1.23,9.39,-37.38,4
+2026-08-23,DASH,DoorDash,United States (NYSE & Nasdaq),Consumer Cyclical,97.4,4.464,4.3925,1.63,223.49,160.25,39.46,-37.83,36
+2026-08-23,A,Agilent Technologies,United States (NYSE & Nasdaq),Healthcare,44.9,6.6089,6.5634,0.69,159.0,114.74,38.58,-37.89,21
+2026-08-23,FM.TO,First Quantum Minerals Ltd.,Canada (TSX),Basic Materials,28.7,1.9904,2.1916,-9.18,47.51,36.73,29.35,-38.53,19
+2026-08-23,2359.HK,WuXi AppTec,Hong Kong (HKEX),Healthcare,78.3,8.8964,7.4093,20.07,205.8,129.62,58.77,-38.7,10
+2026-08-23,HOOD,Robinhood Markets,United States (NYSE & Nasdaq),Financial Services,97.2,2.7012,2.4985,8.11,108.13,73.64,46.84,-38.73,20
+2026-08-23,WPM.TO,Wheaton Precious Metals Corp.,Canada (TSX),Basic Materials,71.4,5.0592,5.8986,-14.23,217.07,174.25,24.58,-38.81,15
+2026-08-23,ABNB,Airbnb,United States (NYSE & Nasdaq),Consumer Cyclical,112.2,6.1859,6.0332,2.53,187.3,132.35,41.52,-38.99,40
+2026-08-23,GPC,Genuine Parts Company,United States (NYSE & Nasdaq),Consumer Cyclical,18.5,8.3048,8.3731,-0.82,133.96,96.82,38.37,-39.19,9
+2026-08-23,SHOP.TO,Shopify Inc.,Canada (TSX),Technology,193.1,2.451,2.3337,5.03,205.63,142.5,44.3,-39.27,38
+2026-08-23,PYPL,PayPal,United States (NYSE & Nasdaq),Financial Services,52.7,5.7935,5.7768,0.29,61.55,44.08,39.62,-39.33,42
+2026-08-23,WAF.AX,West African Resources,Australia (ASX),Basic Materials,3.1,0.777,0.9024,-13.9,3.78,3.01,25.58,-39.48,4
+2026-08-23,TMO,Thermo Fisher Scientific,United States (NYSE & Nasdaq),Healthcare,232.7,27.5101,27.2984,0.78,629.27,447.83,40.52,-39.74,27
+2026-08-23,BBY,Best Buy,United States (NYSE & Nasdaq),Consumer Cyclical,,7.081,6.9966,1.21,85.89,60.82,41.22,-40.01,23
+2026-08-23,COH.AX,Cochlear,Australia (ASX),Healthcare,6.3,5.7597,5.8277,-1.17,135.48,97.53,38.91,-40.08,16
+2026-08-23,GMD.AX,Genesis Minerals,Australia (ASX),Basic Materials,7.0,0.7242,0.7196,0.64,8.32,5.9,41.02,-40.38,7
+2026-08-23,JHX.AX,James Hardie,Australia (ASX),Basic Materials,17.8,1.5957,1.4567,9.54,42.84,28.45,50.58,-41.04,17
+2026-08-23,COIN,Coinbase,United States (NYSE & Nasdaq),Financial Services,49.2,2.877,4.9107,-41.41,186.49,184.99,0.81,-42.22,26
+2026-08-23,CYL.AX,Catalyst Metals,Australia (ASX),Basic Materials,1.3,1.1294,1.3247,-14.75,6.8,5.31,28.06,-42.81,6
+2026-08-23,ETERNAL.NS,Eternal,India (NSE),Consumer Cyclical,31.6,3.7586,4.0613,-7.45,328.0,241.95,35.57,-43.02,28
+2026-08-23,BTRW.L,Barratt Redrow,United Kingdom (LSE),Consumer Cyclical,5.9,0.2395,0.3083,-22.3,312.4,254.7,22.65,-44.95,18
+2026-08-23,CMM.AX,Capricorn Metals,Australia (ASX),Basic Materials,5.7,0.8515,0.9797,-13.08,17.5,13.27,31.88,-44.96,6
+2026-08-23,RMS.AX,Ramelius Resources,Australia (ASX),Basic Materials,5.4,0.364,0.4593,-20.76,3.98,3.2,24.37,-45.13,9
+2026-08-23,EXPE,Expedia Group,United States (NYSE & Nasdaq),Consumer Cyclical,38.6,24.1897,23.0874,4.77,321.63,214.2,50.16,-45.39,31
+2026-08-23,THL.NZ,Tourism Holdings Limited,New Zealand (NZX),Consumer Cyclical,0.4,0.2572,0.3122,-17.61,2.82,2.19,28.77,-46.38,2
+2026-08-23,BGL.AX,Bellevue Gold,Australia (ASX),Basic Materials,1.8,0.1311,0.2111,-37.9,1.66,1.53,8.5,-46.4,5
+2026-08-23,RWC.AX,Reliance Worldwide Corporation,Australia (ASX),Industrials,2.4,0.3095,0.331,-6.48,4.41,3.15,40.0,-46.48,14
+2026-08-23,EMR.AX,Emerald Resources,Australia (ASX),Basic Materials,3.3,0.425,0.59,-27.97,7.04,5.88,19.73,-47.7,2
+2026-08-23,NST.AX,Northern Star Resources,Australia (ASX),Basic Materials,24.5,2.1945,2.8279,-22.4,23.97,18.83,27.3,-49.7,12
+2026-08-23,RRL.AX,Regis Resources,Australia (ASX),Basic Materials,4.6,1.0372,1.2566,-17.46,8.5,6.35,33.86,-51.32,9
+2026-08-23,PME.AX,Pro Medicus,Australia (ASX),Healthcare,14.3,2.2744,2.3191,-1.93,191.6,127.95,49.75,-51.68,13
+2026-08-23,IQV,IQVIA,United States (NYSE & Nasdaq),Healthcare,42.8,14.4412,14.1882,1.78,259.82,167.9,54.75,-52.97,21
+2026-08-23,VEEV,Veeva Systems,United States (NYSE & Nasdaq),Healthcare,40.3,10.0278,9.884,1.45,247.9,160.17,54.77,-53.32,28
+2026-08-23,RAND.AS,Randstad,Netherlands (Euronext Amsterdam),Industrials,8.2,2.9478,2.9657,-0.6,39.89,26.1,52.84,-53.44,15
+2026-08-23,PANW,Palo Alto Networks,United States (NYSE & Nasdaq),Technology,291.7,1.9418,2.3309,-16.7,357.87,260.58,37.34,-54.04,16
+2026-08-23,2269.HK,WuXi Biologics,Hong Kong (HKEX),Healthcare,26.7,1.7331,1.7028,1.78,51.0,32.72,55.87,-54.09,13
+2026-08-23,LLC.AX,Lendlease,Australia (ASX),Real Estate,1.4,0.2479,0.5273,-52.98,2.77,2.72,1.71,-54.69,6
+2026-08-23,360.AX,Life360,Australia (ASX),Technology,3.6,0.9434,1.6387,-42.43,20.69,18.31,13.0,-55.43,6
+2026-08-23,VAU.AX,Vault Minerals,Australia (ASX),Basic Materials,5.0,0.6673,0.6773,-1.48,6.78,4.4,54.09,-55.57,7
+2026-08-23,WDAY,"Workday, Inc.",United States (NYSE & Nasdaq),Technology,49.4,12.6396,12.5936,0.37,200.01,128.14,56.09,-55.72,41
+2026-08-23,TECH,Bio-Techne,United States (NYSE & Nasdaq),Healthcare,11.3,1.67,1.78,-6.18,72.32,48.21,50.01,-56.19,3
+2026-08-23,OBM.AX,Ora Banda Mining,Australia (ASX),Basic Materials,2.2,0.1077,0.169,-36.25,1.62,1.33,21.43,-57.68,5
+2026-08-23,EXO.AS,Exor,Netherlands (Euronext Amsterdam),Industrials,27.3,1.2628,2.7986,-54.88,71.2,67.11,6.09,-60.97,1
+2026-08-23,WGX.AX,Westgold Resources,Australia (ASX),Basic Materials,4.3,0.4885,0.7599,-35.71,6.29,4.96,26.81,-62.52,6
+2026-08-23,AXON,Axon Enterprise,United States (NYSE & Nasdaq),Industrials,51.0,10.5594,10.5734,-0.13,627.75,386.0,62.63,-62.76,20
+2026-08-23,KMD.NZ,KMD Brands Limited,New Zealand (NZX),Consumer Cyclical,0.0,0.1235,0.3049,-59.49,1.71,1.6,6.88,-66.37,4
+2026-08-23,CSL.AX,CSL,Australia (ASX),Healthcare,,6.6874,6.988,-4.3,168.3,99.76,68.7,-73.0,16
+2026-08-23,CRL,Charles River Laboratories,United States (NYSE & Nasdaq),Healthcare,14.2,12.686,12.3096,3.06,295.19,160.3,84.15,-81.09,16
+2026-08-23,MRNA,Moderna,United States (NYSE & Nasdaq),Healthcare,57.9,-4.8622,-4.7244,-2.92,145.13,46.88,209.58,-212.5,18
