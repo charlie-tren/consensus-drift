@@ -142,10 +142,10 @@ TEMPLATE = """<!DOCTYPE html>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Consensus Drift</title>
-<meta name="description" content="The 90-day change in consensus earnings forecasts for __N__ companies across __NMKT__ markets, plotted and ranked against the share price move over the same period.">
+<meta name="description" content="Analyst earnings estimates plotted against what the share price actually did, across __NMKT__ equity markets.">
 <link rel="canonical" href="https://charlietrenorden.com/consensus-drift/">
 <meta property="og:title" content="Consensus Drift">
-<meta property="og:description" content="The 90-day change in consensus earnings forecasts for companies across __NMKT__ markets, plotted and ranked against the share price move over the same period.">
+<meta property="og:description" content="Analyst earnings estimates plotted against what the share price actually did, across __NMKT__ equity markets.">
 <meta property="og:image" content="https://charlietrenorden.com/assets/og-card.png">
 <meta property="og:image:width" content="2400">
 <meta property="og:image:height" content="1260">
