@@ -117,7 +117,8 @@ def build_rows(rows):
         colour, label = BANDS[band(r["gap_pp"])]
         out.append(
             f'<tr><td class="tk">{html.escape(r["ticker"])}</td>'
-            f'<td>{html.escape(r["name"])}</td>'
+            f'<td class="nm" title="{html.escape(r["name"])}">'
+            f'<span>{html.escape(r["name"])}</span></td>'
             f'<td class="sec">{html.escape(r["sector"])}</td>'
             f'<td class="mkt" title="{html.escape(r["market"])}">'
             f'{html.escape(country_of(r["market"]))}</td>'
@@ -316,6 +317,17 @@ TEMPLATE = """<!DOCTYPE html>
   @media (max-width:911px){ td.sec,th.sec-h{display:none} }
   @media (max-width:802px){ td.mkt,th.mkt-h{display:none} }
   @media (max-width:700px){ td,th{padding-left:.3rem;padding-right:.3rem} }
+  /* Name is the one column that cannot be dropped - a table of bare tickers is not
+     readable - but it is also the only one that can be arbitrarily long, and
+     "Semiconductor Manufacturing International Corporation" wrapped to FOUR lines at
+     390px. Its row was then four times the height of its neighbours, which breaks the
+     scan down the Gap column that the whole table exists for. One line and an
+     ellipsis below the breakpoint; the full name rides along in the title, the same
+     way the market cell already carries its full label. */
+  @media (max-width:640px){
+    td.nm span{display:block;overflow:hidden;text-overflow:ellipsis;
+               white-space:nowrap;max-width:8.5rem}
+  }
 </style>
 <!-- Cloudflare Web Analytics. Single braces: this page template is a plain
      string with __TOKEN__-style placeholders, NOT an f-string, so doubling them
