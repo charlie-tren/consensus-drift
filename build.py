@@ -188,7 +188,14 @@ TEMPLATE = """<!DOCTYPE html>
   /* below this the wordmark wrapped to two lines and crowded the back-link,
      because both were sharing one row */
   @media (max-width:560px){
-    .bar{flex-direction:column;align-items:flex-start;gap:.5rem}
+     The back-link sits top RIGHT on every project page, and `space-between`
+     only delivers that while it SHARES a line with something. Once the
+     header wraps or stacks on a phone the link gets a line of its own and
+     falls back to the left, which is how three sites ended up on the
+     opposite side from the other seventeen. A wrapped element needs a new
+     alignment, not the old one.
+    .bar{flex-direction:column;align-items:stretch;gap:.5rem}
+    .bar .home{align-self:flex-end}
     .mark{font-size:20px}
   }
 
