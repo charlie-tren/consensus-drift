@@ -442,9 +442,20 @@ __ROWS__
   // to hold the RENDERED size roughly steady, and the padding grows with it so
   // the bigger labels still fit their gutters. K is 1 at desktop width, which
   // reproduces the original constants exactly.
+  // The captions need real estate rather than a particular type size, so this is
+  // decided on the width itself. Expressed in K it moved silently the one time K was
+  // retuned, and 768px went from clean to two overlapping labels.
+  function roomForCaptions() {
+    return (chart.clientWidth || W) >= 620;
+  }
+
   function typeScale() {
     var w = chart.clientWidth || W;
-    return Math.min(2.4, Math.max(1, 700 / w));
+    // 900, not 700: at 700 an 11-unit tick still reached the reader at about 8px on
+    // a 320px phone, which is under the floor for anything a reader has to read.
+    // Measured against the rendered height, not the declared size - in a scaled
+    // viewBox the declared size tells you nothing.
+    return Math.min(3.0, Math.max(1, 900 / w));
   }
 
   var chart = document.getElementById("chart");
@@ -616,18 +627,31 @@ __ROWS__
       svg.appendChild(svgEl("text", a, text));
     }
     // above and below the frame, not inside it - they were colliding with the data
-      tag(x0, y0 - 6 - 6 * K, "start", "#82a8ca", "PRICE BEHIND");
-      tag(x1, y1 + 14 + 20 * K, "end", "#c98a6a", "PRICE AHEAD");
+      // Both captions come off once the type has grown past about half again. There
+      // is no room for them in a fixed 940-unit frame at that size - pushed clear of
+      // the tick labels they land on the axis title instead - and nothing is lost,
+      // because the page prints both of them in full sentences directly underneath
+      // the chart. A label that does not fit is deleted, not shuffled.
+      if (roomForCaptions()) {
+        tag(x0, y0 - 6 - 6 * K, "start", "#82a8ca", "PRICE BEHIND");
+        tag(x1, y1 + 8 + 31 * K, "end", "#c98a6a", "PRICE AHEAD");
+      }
 
 
     var TICK = {"font-family": "ui-monospace,Consolas,monospace", "font-size": 11 * K, fill: "#5d6675"};
     [-1, -0.5, 0.5, 1].forEach(function (f) {
       var v = b * f, a = {}, k;
       for (k in TICK) a[k] = TICK[k];
-      svg.appendChild(svgEl("text", Object.assign({}, a, {x: px(v), y: y1 + 8 + 10 * K, "text-anchor": "middle"}),
+      svg.appendChild(svgEl("text", Object.assign({}, a, {x: px(v), y: y1 + 8 + 10 * K,
+                            "text-anchor": f === -1 ? "start" : f === 1 ? "end" : "middle"}),
                             sign(v, 0) + "%"));
-      svg.appendChild(svgEl("text", Object.assign({}, a, {x: x0 - 4 - 6 * K, y: py(v) + 4 * K, "text-anchor": "end"}),
-                            sign(v, 0) + "%"));
+      // The bottom-left corner carries the same number twice, once per axis, and
+      // once the type grows they overprint: "-50%" over "-50%". The x axis keeps it,
+      // because that is the axis a reader is scanning along.
+      {
+        svg.appendChild(svgEl("text", Object.assign({}, a, {x: x0 - 4 - 6 * K, y: py(v) + 4 * K, "text-anchor": "end"}),
+                              sign(v, 0) + "%"));
+      }
     });
 
     var AT = {"font-family": "ui-sans-serif,system-ui,sans-serif", "font-size": 12.5 * K, fill: "#8a94a3"};
