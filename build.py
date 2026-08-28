@@ -271,10 +271,8 @@ TEMPLATE = """<!DOCTYPE html>
          font:inherit;padding:0;margin-left:.9rem;text-decoration:underline;
          text-underline-offset:3px}
   .reset:hover{color:var(--accent)}
-  /* Above the table the button follows a sentence rather than sitting in a control
-     row, so it needs no left margin of its own beyond the sentence's trailing space. */
+  /* The button is the whole row now, so it starts at the left edge of the table. */
   #found .reset{margin-left:0}
-  #found:not([hidden]){display:flex;flex-wrap:wrap;gap:0 .5rem;align-items:baseline}
 
   figure{margin:0;background:var(--raised);border:1px solid var(--rule);
          border-radius:8px;padding:.6rem;position:relative}
@@ -427,11 +425,9 @@ TEMPLATE = """<!DOCTYPE html>
     <span><b style="color:#6b7480">In Line</b> &middot; Within __THRESH__ points</span>
   </div>
 
-  <!-- Sits directly above the table whenever the name box is narrowing it. On a
-       handoff it also explains the mismatch the reader is looking at: the table shows
-       one company while the chart still shows all of them, which without a word reads
-       as the chart ignoring the filter. -->
-  <p class="sub" id="found" hidden><span id="foundtext"></span><button class="reset" id="showall" type="button">Show all</button></p>
+  <!-- Shown whenever the name box is narrowing the table. A bare button by design:
+       see tests/test_calc.py for why it carries no caption. -->
+  <p class="sub" id="found" hidden><button class="reset" id="showall" type="button">Clear</button></p>
   <p class="sub" id="count" hidden></p>
   <div class="pager top" id="pager-top">
     <button type="button" data-nav="prev">&larr; Previous</button>
@@ -917,21 +913,11 @@ __ROWS__
       ", sorted by " + sortKey + ", " + PAGE + " a page.";
     document.getElementById("empty").style.display = shown.length ? "none" : "block";
 
-    /* Show all is offered whenever the NAME box is narrowing the table, whether the
-       reader typed it or arrived with it. The Clear filters link at the top of the
-       page resets everything; this one undoes the single filter the reader is looking
-       at the effect of, from where they are looking at it. */
-    var foundEl = document.getElementById("found");
-    var narrowed = els.text.value.trim() !== "";
-    document.getElementById("foundtext").textContent = !narrowed || !shown.length ? ""
-      : marked
-        ? (shown.length === 1
-            ? shown[0].name + " is ringed on the chart, and the table is filtered to it. "
-            : shown.length + " matches are ringed on the chart, and the table is "
-              + "filtered to them. ")
-        : shown.length + (shown.length === 1 ? " name matches " : " names match ")
-          + '"' + els.text.value.trim() + '". ';
-    foundEl.hidden = !narrowed;
+    /* Offered whenever the NAME box is narrowing the table, whether the reader typed
+       it or arrived with it. The Clear filters link at the top of the page resets
+       everything; this one undoes the single filter the reader is looking at the
+       effect of, from where they are looking at it. */
+    document.getElementById("found").hidden = els.text.value.trim() === "";
 
     // Reset only earns its place in the row once a filter is actually on.
     var any = Object.keys(els).some(function (k) { return els[k].value !== ""; }) ||
