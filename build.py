@@ -423,6 +423,10 @@ TEMPLATE = """<!DOCTYPE html>
     <span><b style="color:#6b7480">In Line</b> &middot; Within __THRESH__ points</span>
   </div>
 
+  <!-- Only ever filled when a handoff marked a company: the table below is filtered
+       to one name while the chart still shows all of them, which without a word of
+       explanation reads as the chart ignoring the filter. -->
+  <p class="sub" id="found" hidden></p>
   <p class="sub" id="count" hidden></p>
   <div class="pager top" id="pager-top">
     <button type="button" data-nav="prev">&larr; Previous</button>
@@ -614,20 +618,20 @@ __ROWS__
     return false;
   }
 
-  function matches(r) {
+  function matches(r, skipText) {
     if (els.market.value && r.market !== els.market.value) return false;
     if (els.sector.value && r.sector !== els.sector.value) return false;
     if (els.band.value && r.band !== els.band.value) return false;
     if (els.gap.value && r.bandkey !== els.gap.value) return false;
     if (els.cov.value && (r.analysts == null || r.analysts < +els.cov.value)) return false;
-    var q = els.text.value.trim().toLowerCase();
+    var q = skipText ? "" : els.text.value.trim().toLowerCase();
     if (q && !named(r, q)) return false;
     return colMatch(r);
   }
 
   function clear(node) { while (node.firstChild) node.removeChild(node.firstChild); }
 
-  function draw(rows) {
+  function draw(rows, marked) {
     clear(chart);
     if (!rows.length) return;
 
@@ -733,16 +737,27 @@ __ROWS__
       "Earnings estimate change, 90 days"));
 
     var drawn = [];
-    rows.forEach(function (r) {
+    /* A marked company is drawn LAST and larger with a light ring, so it is findable
+       among twelve hundred dots. Distinguished by treatment rather than by a fourth
+       colour: the fill still carries its reading, which is the point of the chart. */
+    var order_ = marked
+      ? rows.slice().sort(function (a, b_) {
+          return (marked[a.ticker] ? 1 : 0) - (marked[b_.ticker] ? 1 : 0);
+        })
+      : rows;
+    order_.forEach(function (r) {
       var off = Math.abs(r.price) > b || Math.abs(yOf(r)) > b;
       var pos = place(r.price, yOf(r));
-      var c = svgEl("circle", {"class": "pt", cx: px(pos[0]).toFixed(1),
+      var hit = !!(marked && marked[r.ticker]);
+      var c = svgEl("circle", {"class": "pt" + (hit ? " found" : ""),
+                               cx: px(pos[0]).toFixed(1),
                                cy: py(pos[1]).toFixed(1),
-                               r: (5.2 * Math.max(1, K * 0.72)).toFixed(2),
+                               r: ((hit ? 8.4 : 5.2) * Math.max(1, K * 0.72)).toFixed(2),
                                fill: off ? "none" : BANDS[bandOf(r)][0],
-                               "fill-opacity": 0.85,
-                               stroke: off ? BANDS[bandOf(r)][0] : "#0f1319",
-                               "stroke-width": off ? 1.6 : 1});
+                               "fill-opacity": hit ? 1 : 0.85,
+                               stroke: hit ? "#e6eaef"
+                                     : off ? BANDS[bandOf(r)][0] : "#0f1319",
+                               "stroke-width": hit ? 2.4 : off ? 1.6 : 1});
       c.__row = r; c.__x = px(pos[0]); c.__y = py(pos[1]);
       svg.appendChild(c);
       drawn.push(c);
@@ -848,8 +863,17 @@ __ROWS__
 
   function apply() {
     readColLive();
-    var shown = DATA.filter(matches);
-    draw(shown);
+    // Not `DATA.filter(matches)`: filter passes the index as the second argument,
+    // which would arrive as skipText and silently drop the text filter on every row
+    // but the first.
+    var shown = DATA.filter(function (r) { return matches(r); });
+    var marked = null, plotted = shown;
+    if (landed && els.text.value.trim()) {
+      plotted = DATA.filter(function (r) { return matches(r, true); });
+      marked = {};
+      shown.forEach(function (r) { marked[r.ticker] = 1; });
+    }
+    draw(plotted, marked);
 
     var ordered = order(shown);
     var pages = Math.max(1, Math.ceil(ordered.length / PAGE));
@@ -888,6 +912,17 @@ __ROWS__
       ", sorted by " + sortKey + ", " + PAGE + " a page.";
     document.getElementById("empty").style.display = shown.length ? "none" : "block";
 
+    var foundEl = document.getElementById("found");
+    if (marked && shown.length) {
+      foundEl.textContent = shown.length === 1
+        ? shown[0].name + " is ringed on the chart, and the table is filtered to it."
+        : shown.length + " matches are ringed on the chart, and the table is filtered "
+          + "to them.";
+      foundEl.hidden = false;
+    } else {
+      foundEl.hidden = true;
+    }
+
     // Reset only earns its place in the row once a filter is actually on.
     var any = Object.keys(els).some(function (k) { return els[k].value !== ""; }) ||
               Object.keys(cols).some(function (k) { return cols[k].value !== ""; });
@@ -896,14 +931,25 @@ __ROWS__
 
   function reset0() { page = 0; writeQuery(); apply(); }
 
+  els.text.addEventListener("input", function () { landed = false; });
+
   // ?q= is how Shortfall and DCF Studio hand a company over. It fills the SAME search
   // box a reader would have typed into, rather than a hidden filter, so the list is
   // never narrowed by something invisible. An empty box removes the parameter instead
   // of writing q=, so the default state never lands in a shared URL.
+  /* True only while the search box holds a query this page ARRIVED with. A handoff
+     names one company, and filtering the chart to one company leaves a single dot with
+     the axes scaled to nothing - which is what a reader clicking through from
+     Shortfall or DCF Studio actually got. So on arrival the chart keeps the population
+     and marks the company; the moment the reader edits the box it is an ordinary
+     filter again and narrows everything, because typing "technology" is a different
+     act from following a link. */
+  var landed = false;
+
   function readQuery() {
     try {
       var q = new URLSearchParams(window.location.search).get("q");
-      if (q) els.text.value = q;
+      if (q) { els.text.value = q; landed = true; }
     } catch (e) { /* no URLSearchParams, no handoff - the page still works */ }
   }
 
