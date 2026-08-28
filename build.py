@@ -550,6 +550,21 @@ __ROWS__
   function yOf(r)    { return r.rev; }
   function bandOf(r) { return r.bandkey; }
 
+  // Match from the START of the ticker or of a word in the name or sector, never from
+  // the middle. This box was a plain substring search until 28/08/2026, which meant
+  // "AMD" also returned Camden Property Trust and "ON" returned every name containing
+  // Constellation, Regeneron or Capstone. It matters more now that Shortfall and DCF
+  // Studio hand a company over through it by ?q=: an exact ticker must land on one row.
+  // Same rule as Shortfall's lookup, deliberately - one behaviour across the estate.
+  function named(r, q) {
+    if (r.ticker.toLowerCase().indexOf(q) === 0) return true;
+    var words = (r.name + " " + r.sector).toLowerCase().split(/[^a-z0-9.]+/);
+    for (var i = 0; i < words.length; i++) {
+      if (words[i].indexOf(q) === 0) return true;
+    }
+    return false;
+  }
+
   function matches(r) {
     if (els.market.value && r.market !== els.market.value) return false;
     if (els.sector.value && r.sector !== els.sector.value) return false;
@@ -557,7 +572,7 @@ __ROWS__
     if (els.gap.value && r.bandkey !== els.gap.value) return false;
     if (els.cov.value && (r.analysts == null || r.analysts < +els.cov.value)) return false;
     var q = els.text.value.trim().toLowerCase();
-    if (q && (r.ticker + " " + r.name + " " + r.sector).toLowerCase().indexOf(q) < 0) return false;
+    if (q && !named(r, q)) return false;
     return colMatch(r);
   }
 
@@ -830,7 +845,28 @@ __ROWS__
     document.getElementById("reset").hidden = !any;
   }
 
-  function reset0() { page = 0; apply(); }
+  function reset0() { page = 0; writeQuery(); apply(); }
+
+  // ?q= is how Shortfall and DCF Studio hand a company over. It fills the SAME search
+  // box a reader would have typed into, rather than a hidden filter, so the list is
+  // never narrowed by something invisible. An empty box removes the parameter instead
+  // of writing q=, so the default state never lands in a shared URL.
+  function readQuery() {
+    try {
+      var q = new URLSearchParams(window.location.search).get("q");
+      if (q) els.text.value = q;
+    } catch (e) { /* no URLSearchParams, no handoff - the page still works */ }
+  }
+
+  function writeQuery() {
+    try {
+      var u = new URL(window.location.href);
+      var v = els.text.value.trim();
+      if (v) u.searchParams.set("q", v);
+      else u.searchParams.delete("q");
+      history.replaceState(null, "", u);
+    } catch (e) { /* a file:// page has no origin to replace against */ }
+  }
 
   Object.keys(els).forEach(function (k) {
     els[k].addEventListener(els[k].tagName === "SELECT" ? "change" : "input", reset0);
@@ -852,6 +888,7 @@ __ROWS__
     els.gap.value = ""; els.cov.value = ""; els.text.value = "";
     Object.keys(cols).forEach(function (k) { cols[k].value = ""; });
     sortKey = "gap"; sortDir = -1; page = 0;
+    writeQuery();
     apply();
   });
   // The type scale depends on the rendered width, so a rotation or a window
@@ -863,6 +900,7 @@ __ROWS__
     rz = setTimeout(apply, 180);
   });
 
+  readQuery();
   apply();
 })();
 </script>
