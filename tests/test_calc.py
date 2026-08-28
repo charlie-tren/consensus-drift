@@ -269,3 +269,36 @@ def test_every_row_has_the_same_number_of_cells_as_the_header():
                        "price_chg_pct": 1.0, "gap_pp": 0.0, "mcap_bn": 1.0,
                        "analysts": 3}], frozenset())
     assert heads == filters == len(re.findall(r"<td[ >]", row)), (heads, filters, row)
+
+
+def test_the_handoff_does_not_filter_the_chart_to_one_dot():
+    """A wiring check, not a behaviour check - this repo has no browser tests, and the
+    behaviour was verified in a real browser: arriving on ?q=AMD leaves 1,207 dots with
+    AMD ringed and the table filtered to one row, while TYPING in the same box still
+    narrows both.
+
+    The bug it guards: ?q= filtered the chart as well as the table, so a reader
+    clicking through from Shortfall or DCF Studio got a scatter plot containing a
+    single dot with the axes scaled to nothing.
+    """
+    from build import TEMPLATE
+    # the text filter can be skipped for the chart
+    assert "function matches(r, skipText)" in TEMPLATE
+    assert 'var q = skipText ? "" : els.text.value' in TEMPLATE
+    # only an ARRIVING query is exempt; editing the box makes it a filter again
+    assert "var landed = false;" in TEMPLATE
+    assert 'els.text.addEventListener("input", function () { landed = false; });' in TEMPLATE
+    # and the mismatch is explained rather than left to look like a broken filter
+    assert 'id="found"' in TEMPLATE
+    assert "is ringed on the chart" in TEMPLATE
+
+
+def test_the_row_filter_is_not_called_with_the_array_index():
+    """`DATA.filter(matches)` would pass the index as the second argument, which now
+    means skipText - so every row after the first would silently ignore the text box.
+    """
+    from build import TEMPLATE
+    # The semicolon is what makes this a CALL rather than the comment above it that
+    # warns against exactly this - the first draft of this test matched its own
+    # cautionary comment and failed.
+    assert "DATA.filter(matches);" not in TEMPLATE
