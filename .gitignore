@@ -4,3 +4,6 @@ __pycache__/
 venv/
 probe.py
 .pytest_cache/
+
+# contact sheets from tools/link_options.py - regenerate, do not commit
+tools/link_options.png
