@@ -302,3 +302,18 @@ def test_the_row_filter_is_not_called_with_the_array_index():
     # warns against exactly this - the first draft of this test matched its own
     # cautionary comment and failed.
     assert "DATA.filter(matches);" not in TEMPLATE
+
+
+def test_show_all_sits_above_the_table():
+    """Charlie asked for it there specifically: the Clear filters link at the top of
+    the page resets everything, and from beside the table what a reader wants is to
+    undo the one filter whose effect they are looking at. Wiring check - the behaviour
+    was verified in a browser, including that it also appears for a TYPED filter and
+    not only for a handoff."""
+    from build import TEMPLATE
+    assert 'id="showall"' in TEMPLATE
+    assert ">Show all</button>" in TEMPLATE
+    # inside #found, which is the element that sits between the key and the table
+    found = TEMPLATE.split('id="found"', 1)[1].split("</p>", 1)[0]
+    assert 'id="showall"' in found, found
+    assert 'id="showall"' in TEMPLATE.split("<table>", 1)[0], "must be ABOVE the table"
