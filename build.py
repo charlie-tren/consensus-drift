@@ -970,6 +970,14 @@ def main():
     os.makedirs("docs", exist_ok=True)
     with open("docs/index.html", "w", encoding="utf-8", newline="\n") as fh:
         fh.write(page)
+
+    # What this site covers, for the sibling sites to read before offering a link
+    # here. The PLOTTED names only: a dropped name has no reading to link to.
+    with open("docs/tickers.json", "w", encoding="utf-8", newline="\n") as fh:
+        json.dump({"site": "Consensus Drift",
+                   "url": "https://charlietrenorden.com/consensus-drift/",
+                   "as_of": data["generated_utc"][:10],
+                   "tickers": sorted(r["ticker"] for r in rows)}, fh, indent=1)
     counts = {}
     for r in compact:
         counts[r["bandkey"]] = counts.get(r["bandkey"], 0) + 1
