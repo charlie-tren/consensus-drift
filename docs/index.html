@@ -110,8 +110,13 @@
          font:inherit;padding:0;margin-left:.9rem;text-decoration:underline;
          text-underline-offset:3px}
   .reset:hover{color:var(--accent)}
-  /* The button is the whole row now, so it starts at the left edge of the table. */
-  #found .reset{margin-left:0}
+  /* A bordered pill flush with the table's left edge, with more room above it than
+     below, so it reads as attached to what follows rather than to the key above. */
+  #found{margin:1.7rem 0 -.55rem}
+  #found .reset{margin-left:0;text-decoration:none;border:1px solid var(--rule);
+                border-radius:999px;padding:.28rem .72rem;color:var(--soft);
+                font:400 12.5px/1 ui-sans-serif,system-ui,sans-serif}
+  #found .reset:hover{border-color:var(--accent);color:var(--accent)}
 
   figure{margin:0;background:var(--raised);border:1px solid var(--rule);
          border-radius:8px;padding:.6rem;position:relative}
@@ -142,10 +147,13 @@
   th{text-align:left;font:600 11.5px/1.3 ui-sans-serif,system-ui,sans-serif;letter-spacing:.11em;
      text-transform:uppercase;color:var(--faint);padding:0 .45rem .55rem;
      border-bottom:1px solid var(--rule);cursor:pointer;user-select:none;white-space:nowrap}
-  /* Numeric headers may wrap. They are the widest labels on the table - "Cap
-     (US$bn)" alone was 112px for a column of three-digit numbers - and holding them
-     on one line is what pushed an eleventh column past the table's own width. */
-  th.n{white-space:normal}
+  /* The two headers carrying a unit put it on a second line as a SUB-LABEL rather
+     than by wrapping. Wrapping recovered the width an eleventh column needed, but it
+     broke mid-phrase and left the sort arrow stranded on line two, which read as a
+     mistake. As a styled unit it reads as a two-line header, which is an ordinary
+     table convention, and it is narrower still. */
+  th .u{display:block;font-weight:400;font-size:9.5px;letter-spacing:.06em;
+        opacity:.62;margin-top:.1rem}
   th:hover{color:var(--soft)}
   th .ar{opacity:0;margin-left:.25rem}
   th.asc .ar,th.desc .ar{opacity:1;color:var(--accent)}
@@ -264,15 +272,17 @@
     <span><b style="color:#6b7480">In Line</b> &middot; Within 10 points</span>
   </div>
 
-  <!-- Shown whenever the name box is narrowing the table. A bare button by design:
-       see tests/test_calc.py for why it carries no caption. -->
-  <p class="sub" id="found" hidden><button class="reset" id="showall" type="button">Clear</button></p>
   <p class="sub" id="count" hidden></p>
   <div class="pager top" id="pager-top">
     <button type="button" data-nav="prev">&larr; Previous</button>
     <span data-info></span>
     <button type="button" data-nav="next">Next &rarr;</button>
   </div>
+  <!-- Directly above the table, because it clears the filter the table is showing the
+       effect of. It sat above the pager for one round and read as belonging to the key
+       further up. A bare button by design: see tests/test_calc.py for why it carries no
+       caption. -->
+  <p id="found" hidden><button class="reset" id="showall" type="button">Clear</button></p>
   <div class="tablewrap">
   <table>
     <thead><tr>
@@ -282,8 +292,8 @@
       <th data-k="market" class="mkt-h">Market<span class="ar">&#9650;</span></th>
       <th data-k="rev" class="n">Estimates<span class="ar">&#9650;</span></th>
       <th data-k="price" class="n">Price<span class="ar">&#9650;</span></th>
-      <th data-k="gap" class="n">Gap (pp)<span class="ar">&#9650;</span></th>
-      <th data-k="mcap" class="n mc-h">Cap (US$bn)<span class="ar">&#9650;</span></th>
+      <th data-k="gap" class="n">Gap<span class="ar">&#9650;</span><span class="u">(pp)</span></th>
+      <th data-k="mcap" class="n mc-h">Cap<span class="ar">&#9650;</span><span class="u">(US$bn)</span></th>
       <th data-k="analysts" class="n">Analysts<span class="ar">&#9650;</span></th>
       <th data-k="bandlabel">Reading<span class="ar">&#9650;</span></th>
       <!-- No data-k: the sort handler keys off it, and there is nothing to sort a
@@ -298,7 +308,7 @@
       <td class="n"><input id="c-rev" type="text" inputmode="decimal" placeholder="min |%|" aria-label="Minimum absolute estimate change"></td>
       <td class="n"><input id="c-price" type="text" inputmode="decimal" placeholder="min |%|" aria-label="Minimum absolute price change"></td>
       <td class="n"><input id="c-gap" type="text" inputmode="decimal" placeholder="min |pp|" aria-label="Minimum absolute gap"></td>
-      <td class="n mc"><input id="c-mcap" type="text" inputmode="decimal" placeholder="min US$bn" aria-label="Minimum market cap in US$ billions"></td>
+      <td class="n mc"><input id="c-mcap" type="text" inputmode="decimal" placeholder="min" aria-label="Minimum market cap in US$ billions"></td>
       <td class="n"><input id="c-analysts" type="text" inputmode="numeric" placeholder="min" aria-label="Minimum analysts"></td>
       <td><select id="c-band" aria-label="Filter reading"><option value="">any</option><option value="Price Behind">Price Behind</option><option value="In Line">In Line</option><option value="Price Ahead">Price Ahead</option></select></td>
       <td></td>
@@ -1805,6 +1815,10 @@
                                      : off ? BANDS[bandOf(r)][0] : "#0f1319",
                                "stroke-width": hit ? 2.4 : off ? 1.6 : 1});
       c.__row = r; c.__x = px(pos[0]); c.__y = py(pos[1]);
+      // Its OWN radius, not the shared default: mouseleave used to reset every dot to
+      // 5.2, which quietly shrank a ringed company the moment the pointer passed over
+      // it and left it looking like any other point.
+      c.__r = hit ? 8.4 : 5.2;
       svg.appendChild(c);
       drawn.push(c);
     });
@@ -1823,16 +1837,40 @@
         if (d < bestD) { bestD = d; best = drawn[i]; }
       }
       if (best === current) return;                // nothing changed - leave it alone
-      if (current) current.setAttribute("r", 5.2);
+      if (current) current.setAttribute("r", current.__r);
       current = best;
       if (!best) { tip.style.opacity = 0; return; }
-      best.setAttribute("r", 8);
+      best.setAttribute("r", Math.max(8, best.__r + 1.6));
       showTip(best.__row, svg, best.__x, best.__y);
     });
     svg.addEventListener("mouseleave", function () {
-      if (current) current.setAttribute("r", 5.2);
+      if (current) current.setAttribute("r", current.__r);
       current = null;
       tip.style.opacity = 0;
+    });
+
+    /* Clicking a point names that company: the table filters to it and the point keeps
+       its ring, which is the same state a link from Shortfall or DCF Studio arrives in.
+       The dots have carried cursor:pointer since the chart was built and nothing
+       happened when you clicked one. Resolved to the nearest point, like the tooltip -
+       an exact hit on a 5px circle is not a fair thing to ask of a pointer. */
+    svg.addEventListener("click", function (ev) {
+      var box = svg.getBoundingClientRect();
+      var scale = W / box.width;
+      var mx = (ev.clientX - box.left) * scale, my = (ev.clientY - box.top) * scale;
+      var best = null, bestD = 14 * 14;
+      for (var i = 0; i < drawn.length; i++) {
+        var dx = drawn[i].__x - mx, dy = drawn[i].__y - my, d = dx * dx + dy * dy;
+        if (d < bestD) { bestD = d; best = drawn[i]; }
+      }
+      if (!best) return;
+      els.text.value = best.__row.ticker;
+      landed = true;              // the chart keeps the population and rings the pick
+      page = 0;
+      tip.style.opacity = 0;
+      current = null;
+      writeQuery();
+      apply();
     });
     chart.appendChild(svg);
   }
