@@ -290,7 +290,6 @@ def test_the_handoff_does_not_filter_the_chart_to_one_dot():
     assert 'els.text.addEventListener("input", function () { landed = false; });' in TEMPLATE
     # and the mismatch is explained rather than left to look like a broken filter
     assert 'id="found"' in TEMPLATE
-    assert "is ringed on the chart" in TEMPLATE
 
 
 def test_the_row_filter_is_not_called_with_the_array_index():
@@ -304,15 +303,19 @@ def test_the_row_filter_is_not_called_with_the_array_index():
     assert "DATA.filter(matches);" not in TEMPLATE
 
 
-def test_show_all_sits_above_the_table():
+def test_clear_sits_above_the_table_with_no_caption():
     """Charlie asked for it there specifically: the Clear filters link at the top of
     the page resets everything, and from beside the table what a reader wants is to
-    undo the one filter whose effect they are looking at. Wiring check - the behaviour
-    was verified in a browser, including that it also appears for a TYPED filter and
-    not only for a handoff."""
+    undo the one filter whose effect they are looking at.
+
+    It is a bare button. It carried an explanatory sentence for one round and he cut
+    it - the ring on the chart and the one-row table are both visible, so a caption
+    saying so is clutter. The assertion is here to stop it coming back."""
     from build import TEMPLATE
     assert 'id="showall"' in TEMPLATE
-    assert ">Show all</button>" in TEMPLATE
+    assert ">Clear</button>" in TEMPLATE
+    assert "is ringed on the chart" not in TEMPLATE
+    assert "foundtext" not in TEMPLATE
     # inside #found, which is the element that sits between the key and the table
     found = TEMPLATE.split('id="found"', 1)[1].split("</p>", 1)[0]
     assert 'id="showall"' in found, found
