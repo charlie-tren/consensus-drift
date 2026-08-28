@@ -14,6 +14,7 @@ a company name coming from Yahoo can never be parsed as markup.
 import html
 import json
 import os
+from urllib.parse import quote
 
 # A name is called out once the two moves diverge by more than this many points.
 # 10 is roughly the median absolute gap across the universe, so "In Line" means the
@@ -111,7 +112,26 @@ def _fmt(v, suffix=""):
     return "-" if v is None else f"{v:+.1f}{suffix}"
 
 
-def build_rows(rows):
+def also_on(ticker, shortfall):
+    """The same company on the sibling sites.
+
+    DCF Studio routes any ticker, so it is always offered. Shortfall ranks the S&P 500
+    and ASX 200 only, so about half these rows cannot go there - and an unavailable
+    target is OMITTED rather than greyed, Charlie's choice on 28/08/2026 from rendered
+    options. Membership comes from Shortfall's published tickers.json via peers.py,
+    never from guessing at the exchange suffix: a .AX ticker is not necessarily in the
+    ASX 200, and a US ticker is not necessarily in the S&P 500.
+    """
+    out = []
+    if ticker in shortfall:
+        out.append(f'<a href="https://charlietrenorden.com/shortfall/'
+                   f'?q={quote(ticker)}">Shortfall</a>')
+    out.append(f'<a href="https://dcf.charlietrenorden.com/{quote(ticker)}"'
+               f'>DCF Studio</a>')
+    return '<span class="sep">&middot;</span>'.join(out)
+
+
+def build_rows(rows, shortfall=frozenset()):
     out = []
     for r in rows:
         colour, label = BANDS[band(r["gap_pp"])]
@@ -119,7 +139,8 @@ def build_rows(rows):
             f'<tr><td class="tk">{html.escape(r["ticker"])}</td>'
             f'<td class="nm" title="{html.escape(r["name"])}">'
             f'<span>{html.escape(r["name"])}</span></td>'
-            f'<td class="sec">{html.escape(r["sector"])}</td>'
+            f'<td class="sec" title="{html.escape(r["sector"])}">'
+            f'{html.escape(r["sector"])}</td>'
             f'<td class="mkt" title="{html.escape(r["market"])}">'
             f'{html.escape(country_of(r["market"]))}</td>'
             f'<td class="n">{r["revision_pct"]:+.1f}%</td>'
@@ -127,7 +148,8 @@ def build_rows(rows):
             f'<td class="n" style="color:{colour}"><b>{r["gap_pp"]:+.1f}</b></td>'
             f'<td class="n mc">{fmt_mcap(r.get("mcap_bn"))}</td>'
             f'<td class="n muted">{r["analysts"] or "-"}</td>'
-            f'<td class="q" style="color:{colour}">{label}</td></tr>')
+            f'<td class="q" style="color:{colour}">{label}</td>'
+            f'<td class="also">{also_on(r["ticker"], shortfall)}</td></tr>')
     return "\n".join(out)
 
 
@@ -279,6 +301,10 @@ TEMPLATE = """<!DOCTYPE html>
   th{text-align:left;font:600 11.5px/1.3 ui-sans-serif,system-ui,sans-serif;letter-spacing:.11em;
      text-transform:uppercase;color:var(--faint);padding:0 .45rem .55rem;
      border-bottom:1px solid var(--rule);cursor:pointer;user-select:none;white-space:nowrap}
+  /* Numeric headers may wrap. They are the widest labels on the table - "Cap
+     (US$bn)" alone was 112px for a column of three-digit numbers - and holding them
+     on one line is what pushed an eleventh column past the table's own width. */
+  th.n{white-space:normal}
   th:hover{color:var(--soft)}
   th .ar{opacity:0;margin-left:.25rem}
   th.asc .ar,th.desc .ar{opacity:1;color:var(--accent)}
@@ -320,9 +346,28 @@ TEMPLATE = """<!DOCTYPE html>
      table never needs its horizontal scrollbar. The thresholds are the measured
      min-content widths plus the 48px the page takes either side: all ten
      columns 976px, without Cap 864, without Sector 755, without Market 643. */
+  /* The Also on column is 11th on a table already capped at 1012px, so the two
+     widest text columns give up the room. They keep their title attributes, so the
+     full sector and market are still one hover away. */
+  /* Stacked, not side by side. Side by side the column was 123px and the room had to
+     come out of Sector and Market, which left "United States" - the most common value
+     on the table - permanently rendered as "United St...". Stacking costs a line of
+     height on rows that mostly wrap anyway and gives 48px back to the data. */
+  td.also{white-space:nowrap;font-size:11.5px;padding-left:.35rem;line-height:1.55}
+  td.also a{display:block;color:var(--link);text-decoration:none;
+            border-bottom:1px solid var(--rule);width:max-content}
+  td.also a:hover{border-bottom-color:var(--link)}
+  td.also .sep{display:none}
+  td.sec,td.mkt{max-width:7rem;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
   @media (max-width:1023px){ td.mc,th.mc-h{display:none} }
   @media (max-width:911px){ td.sec,th.sec-h{display:none} }
   @media (max-width:802px){ td.mkt,th.mkt-h{display:none} }
+  /* Below 700px the table already scrolled sideways inside its box before this
+     column existed (33px at 640, 283px at 390 - measured, not assumed). Adding 84px
+     of links to that is the wrong trade on a phone, where the reader wants the
+     numbers. So the handoff is a tablet-and-up feature and the small screens are
+     left exactly as they were. */
+  @media (max-width:700px){ td.also,th.also-h{display:none} }
   @media (max-width:700px){ td,th{padding-left:.3rem;padding-right:.3rem} }
   /* Name is the one column that cannot be dropped - a table of bare tickers is not
      readable - but it is also the only one that can be arbitrarily long, and
@@ -397,6 +442,9 @@ TEMPLATE = """<!DOCTYPE html>
       <th data-k="mcap" class="n mc-h">Cap (US$bn)<span class="ar">&#9650;</span></th>
       <th data-k="analysts" class="n">Analysts<span class="ar">&#9650;</span></th>
       <th data-k="bandlabel">Reading<span class="ar">&#9650;</span></th>
+      <!-- No data-k: the sort handler keys off it, and there is nothing to sort a
+           pair of links by. -->
+      <th class="also-h">Also on</th>
     </tr>
     <tr class="filters">
       <td><input id="c-ticker" type="search" placeholder="filter" aria-label="Filter ticker"></td>
@@ -409,6 +457,7 @@ TEMPLATE = """<!DOCTYPE html>
       <td class="n mc"><input id="c-mcap" type="text" inputmode="decimal" placeholder="min US$bn" aria-label="Minimum market cap in US$ billions"></td>
       <td class="n"><input id="c-analysts" type="text" inputmode="numeric" placeholder="min" aria-label="Minimum analysts"></td>
       <td><select id="c-band" aria-label="Filter reading">__READINGS__</select></td>
+      <td></td>
     </tr></thead>
     <tbody id="tbody">
 __ROWS__
@@ -910,6 +959,13 @@ __ROWS__
 
 
 def main():
+    import peers
+    # Which of these names Shortfall actually ranks. Fetched, cached under peers/, and
+    # falling back to that cache when the sibling is unreachable - never guessed from
+    # the exchange suffix, which would put every .AX name in the ASX 200.
+    shortfall = frozenset(
+        peers.load().get("shortfall", {}).get("tickers", []))
+
     data = json.load(open("data/latest.json", encoding="utf-8"))
     rows = data["names"]
     dropped = data.get("dropped", [])
@@ -961,7 +1017,7 @@ def main():
             .replace("__COVER__", cover_select)
             .replace("__THRESHNUM__", str(GAP_THRESHOLD_PP))
             .replace("__THRESH__", str(int(GAP_THRESHOLD_PP)))
-            .replace("__ROWS__", build_rows(rows))
+            .replace("__ROWS__", build_rows(rows, shortfall))
             .replace("__DROPNOTE__", dropnote)
             .replace("__JSON__", json.dumps(compact, separators=(",", ":")))
             .replace("__BANDCFG__", json.dumps(BANDS))

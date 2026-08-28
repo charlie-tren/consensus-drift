@@ -229,3 +229,43 @@ class TestRateLimitDetection:
         # be nowhere near passing.
         assert 750 / 1309 > MAX_RATE_LIMIT_SHARE
         assert 40 / 1309 < MAX_RATE_LIMIT_SHARE
+
+
+def test_also_on_omits_a_site_that_does_not_have_the_company():
+    """Half these names are outside Shortfall's S&P 500 + ASX 200 universe. Charlie's
+    choice was to omit the link rather than grey it, which only means anything if
+    membership is checked against the published list - never inferred from the
+    exchange suffix, since a .AX ticker is not necessarily in the ASX 200."""
+    from build import also_on
+    have = frozenset({"AMD", "CBA.AX"})
+    assert "Shortfall" in also_on("AMD", have)
+    assert "Shortfall" in also_on("CBA.AX", have)
+    assert "Shortfall" not in also_on("CLS.TO", have)
+    assert "Shortfall" not in also_on("XYZ.AX", have), "suffix is not membership"
+    # DCF Studio routes any ticker, so it is always offered.
+    for t in ("AMD", "CLS.TO", "XYZ.AX"):
+        assert "DCF Studio" in also_on(t, have)
+
+
+def test_also_on_escapes_the_ticker_into_the_url():
+    """A ticker reaches these URLs as a query value and a path segment. Yahoo symbols
+    carry dots and carets, and one day one will carry something worse."""
+    from build import also_on
+    out = also_on("BRK^B", frozenset({"BRK^B"}))
+    assert "BRK%5EB" in out, out
+    assert "BRK^B" not in out, out
+
+
+def test_every_row_has_the_same_number_of_cells_as_the_header():
+    """A column added to the body and forgotten in the filter row shifts every filter
+    one cell left, which looks like a working page and filters the wrong column."""
+    import re
+    from build import TEMPLATE, build_rows
+    heads = len(re.findall(r"<th[ >]", TEMPLATE.split("<thead>")[1].split("</tr>")[0]))
+    filters = len(re.findall(r"<td[ >]",
+                             TEMPLATE.split('<tr class="filters">')[1].split("</tr>")[0]))
+    row = build_rows([{"ticker": "AMD", "name": "AMD", "sector": "Tech",
+                       "market": "United States (NYSE & Nasdaq)", "revision_pct": 1.0,
+                       "price_chg_pct": 1.0, "gap_pp": 0.0, "mcap_bn": 1.0,
+                       "analysts": 3}], frozenset())
+    assert heads == filters == len(re.findall(r"<td[ >]", row)), (heads, filters, row)
