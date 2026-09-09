@@ -210,14 +210,24 @@ TEMPLATE = """<!DOCTYPE html>
   /* below this the wordmark wrapped to two lines and crowded the back-link,
      because both were sharing one row */
   @media (max-width:560px){
-     The back-link sits top RIGHT on every project page, and `space-between`
-     only delivers that while it SHARES a line with something. Once the
-     header wraps or stacks on a phone the link gets a line of its own and
-     falls back to the left, which is how three sites ended up on the
-     opposite side from the other seventeen. A wrapped element needs a new
-     alignment, not the old one.
+    /* THIS COMMENT HAD NO DELIMITERS UNTIL 09/09/2026 and the prose sat raw inside
+       the media block, so the parser discarded declarations until it could resync at
+       the next brace. That swallowed both .bar rules below while letting .mark
+       through - measured at 390px, flex-direction stayed `row` while font-size
+       correctly became 20px, which is the signature. So the two rules written
+       specifically to keep the back-link on the right on a phone had never once run.
+       Nothing failed: the header simply looked like the desktop one, squeezed.
+
+       The back-link sits top RIGHT on every project page, and `space-between` only
+       delivers that while it SHARES a line with something. Once the header wraps or
+       stacks on a phone the link gets a line of its own and falls back to the left,
+       which is how three sites ended up on the opposite side from the other
+       seventeen. A wrapped element needs a new alignment, not the old one. */
     .bar{flex-direction:column;align-items:stretch;gap:.5rem}
-    .bar .home{align-self:flex-end}
+    /* .nav is the flex item now, not .home - align-self on .home would set its
+       vertical alignment inside .nav and do nothing about which side of the page it
+       lands on. */
+    .bar .nav{align-self:flex-end}
     .mark{font-size:20px}
   }
 
@@ -235,9 +245,14 @@ TEMPLATE = """<!DOCTYPE html>
   /* The one item in this row that is a link rather than a fact, so it has to look
      like one. Accent with a dotted underline, matching the Also on links in the
      table below it rather than inventing a third link style for one line. */
-  .meta-row .cross a{color:var(--accent);text-decoration:underline;
-                     text-decoration-style:dotted;text-underline-offset:2px}
-  .meta-row .cross a:hover{text-decoration-style:solid}
+  /* Two nav items on one line, held together so they wrap as a unit rather than
+     letting Crosscheck strand itself above the back-link on a narrow screen. */
+  .nav{display:flex;align-items:baseline;gap:1.4rem;white-space:nowrap}
+  /* A sibling site, so it reads as navigation like its neighbour rather than as a
+     call to action. No arrow: the arrow on Other projects means up a level, and this
+     one goes sideways. */
+  .nav .cross{color:var(--soft)}
+  .nav .cross:hover{color:var(--accent)}
 
   .controls{display:flex;flex-wrap:wrap;gap:.6rem;margin:1.25rem 0 1.5rem;align-items:center}
   /* a flex wrap left the five selects at ragged widths, 1-2 per row; a grid
@@ -406,7 +421,10 @@ TEMPLATE = """<!DOCTYPE html>
 <div class="wrap">
   <div class="bar">
     <span class="mark">Consensus Drift</span>
-    <a class="home" href="https://charlietrenorden.com/"><span class="back">&larr;</span>&nbsp;Other projects</a>
+    <nav class="nav">
+      <a class="home cross" href="https://charlietrenorden.com/crosscheck/">Crosscheck</a>
+      <a class="home" href="https://charlietrenorden.com/"><span class="back">&larr;</span>&nbsp;Other projects</a>
+    </nav>
   </div>
 
   <h1>__HEADLINE__</h1>
@@ -416,11 +434,6 @@ TEMPLATE = """<!DOCTYPE html>
     <span><b>__N__</b> names</span>
     <span>90-day window</span>
     <span>updated <b>__DATE__</b></span>
-    <!-- Site-level rather than a third link in the Also on column: that column stacks,
-         so a third entry takes every row from 40px to 56px and the table from 2802px to
-         3583px. Measured on the live page 09/09/2026. Crosscheck is a relationship
-         between this whole table and Shortfall's, so one link says it better than 1,216. -->
-    <span class="cross">these names against <a href="https://charlietrenorden.com/crosscheck/">Shortfall's accounting tests</a></span>
     <button class="reset" id="reset" type="button" hidden>Clear filters</button>
   </div>
 
