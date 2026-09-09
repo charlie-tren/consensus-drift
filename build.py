@@ -232,6 +232,12 @@ TEMPLATE = """<!DOCTYPE html>
             color:var(--faint);margin:1.7rem 0 0}
   .meta-row b{color:var(--soft);font-weight:600}
   .meta-row span+span::before{content:"·";margin:0 .55rem;color:var(--rule)}
+  /* The one item in this row that is a link rather than a fact, so it has to look
+     like one. Accent with a dotted underline, matching the Also on links in the
+     table below it rather than inventing a third link style for one line. */
+  .meta-row .cross a{color:var(--accent);text-decoration:underline;
+                     text-decoration-style:dotted;text-underline-offset:2px}
+  .meta-row .cross a:hover{text-decoration-style:solid}
 
   .controls{display:flex;flex-wrap:wrap;gap:.6rem;margin:1.25rem 0 1.5rem;align-items:center}
   /* a flex wrap left the five selects at ragged widths, 1-2 per row; a grid
@@ -410,6 +416,11 @@ TEMPLATE = """<!DOCTYPE html>
     <span><b>__N__</b> names</span>
     <span>90-day window</span>
     <span>updated <b>__DATE__</b></span>
+    <!-- Site-level rather than a third link in the Also on column: that column stacks,
+         so a third entry takes every row from 40px to 56px and the table from 2802px to
+         3583px. Measured on the live page 09/09/2026. Crosscheck is a relationship
+         between this whole table and Shortfall's, so one link says it better than 1,216. -->
+    <span class="cross">these names against <a href="https://charlietrenorden.com/crosscheck/">Shortfall's accounting tests</a></span>
     <button class="reset" id="reset" type="button" hidden>Clear filters</button>
   </div>
 

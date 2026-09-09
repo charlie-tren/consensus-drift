@@ -26,6 +26,12 @@ PEERS = os.path.join(os.path.dirname(os.path.abspath(__file__)), "peers")
 
 SITES = {
     "shortfall": "https://charlietrenorden.com/shortfall/tickers.json",
+    # Crosscheck is deliberately NOT here. It would be a third link in the Also on
+    # column, and that column stacks rather than widening: measured on the live page
+    # 09/09/2026, a third link leaves the table at 1012px and no cell overflowing, but
+    # takes every row from 40px to 56px and the table from 2802px to 3583px. A 28%
+    # taller table is a bad trade on the one site whose known artefact is that the
+    # table is hard to read, so Crosscheck is linked once from the page instead.
 }
 
 # A sibling that loses most of its universe is far more likely to be a broken build
