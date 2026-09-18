@@ -164,11 +164,17 @@ TEMPLATE = """<!DOCTYPE html>
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Consensus Drift</title>
-<meta name="description" content="Analyst earnings estimates plotted against what the share price actually did, across __NMKT__ equity markets.">
+<title>Consensus Drift - analyst estimates vs share price</title>
+<!-- A <title> is a SERP line, not a page heading, so it carries the function as
+     well as the name. Measured 18/09/2026: this page is ~85% of every impression
+     Google gives the estate and converts at 0.4%, ranking around position 6 - so it
+     is already in front of people and "Consensus Drift" alone told them nothing.
+     NOT tuned to queries: site-stats' fetch_search.py pulls date+page only, with no
+     query dimension, so nobody knows what this page ranks FOR. -->
+<meta name="description" content="Analyst earnings estimates plotted against what the share price actually did, for __NFMT__ companies across __NMKT__ equity markets.">
 <link rel="canonical" href="https://charlietrenorden.com/consensus-drift/">
 <meta property="og:title" content="Consensus Drift">
-<meta property="og:description" content="Analyst earnings estimates plotted against what the share price actually did, across __NMKT__ equity markets.">
+<meta property="og:description" content="Analyst earnings estimates plotted against what the share price actually did, for __NFMT__ companies across __NMKT__ equity markets.">
 <meta property="og:image" content="https://charlietrenorden.com/assets/og-card.png">
 <meta property="og:image:width" content="2400">
 <meta property="og:image:height" content="1260">
@@ -1120,6 +1126,10 @@ def main():
                      + "".join(f'<option value="{lbl}">{lbl}</option>'
                                for _, lbl in BANDS.values()))
             .replace("__NMKT__", str(len(markets)))
+            # Two renderings of the same count on purpose: the meta description
+            # reads as prose so it takes the thousands separator, the on-page tally
+            # sits in a stat row and does not.
+            .replace("__NFMT__", f"{len(rows):,}")
             .replace("__N__", str(len(rows)))
             .replace("__DATE__", data["generated_utc"][:10])
             .replace("__MARKETS__", options(markets, "All markets"))
