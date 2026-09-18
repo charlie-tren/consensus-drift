@@ -320,3 +320,40 @@ def test_clear_sits_above_the_table_with_no_caption():
     found = TEMPLATE.split('id="found"', 1)[1].split("</p>", 1)[0]
     assert 'id="showall"' in found, found
     assert 'id="showall"' in TEMPLATE.split("<table>", 1)[0], "must be ABOVE the table"
+
+
+def test_head_placeholders_are_all_substituted():
+    """Every __PLACEHOLDER__ must be substituted, and the counts must render.
+
+    The head is built by a chain of .replace() calls on a plain string, so a
+    placeholder typed into the template and never added to the chain ships
+    verbatim into a meta tag. The page builds, every other test passes, and nobody
+    reads a meta tag on the way past. Added 18/09/2026 with the SERP title rewrite,
+    which introduced a third count placeholder into that head.
+
+    Scoped honestly: this catches an unwired or mistyped placeholder and a
+    description that stopped rendering its numbers. It does NOT police the
+    substitution ORDER, because the placeholders are disjoint - "__N__" is not a
+    substring of "__NMKT__" or "__NFMT__", since after "__N" comes a letter rather
+    than an underscore, and the same holds for __THRESH__ inside __THRESHNUM__. A
+    first draft of this test claimed to guard that ordering; run against a
+    deliberate reorder it passed, because the trap does not exist.
+    """
+    import pathlib
+    import re
+
+    page = pathlib.Path(__file__).resolve().parent.parent / "docs" / "index.html"
+    if not page.exists():                      # nothing built yet in a fresh clone
+        return
+    # Comments first: the template documents the __TOKEN__ convention in one, and a
+    # placeholder NAMED in a comment never renders. Scanning the raw file reports
+    # the documentation as the defect.
+    rendered = re.sub(r"<!--.*?-->", "", page.read_text(encoding="utf-8"), flags=re.S)
+
+    left = sorted(set(re.findall(r"__[A-Z][A-Z0-9_]*__", rendered)))
+    assert not left, f"unsubstituted placeholders in docs/index.html: {left}"
+
+    desc = re.search(r'name="description" content="([^"]+)"', rendered)
+    assert desc, "no description meta in the built page"
+    assert re.search(r"for [\d,]+ companies across \d+ equity markets", desc.group(1)), \
+        f"the description did not render its counts: {desc.group(1)}"
