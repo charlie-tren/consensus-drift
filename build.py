@@ -40,6 +40,22 @@ BANDS = {
 }
 
 
+# The default coverage cut. With one or two desks the "consensus" is one or two
+# opinions, and those names crowded both tails of the page: on 05/10/2026 the
+# second-ranked name was a REIT on a single EPS estimate (CPT, 1 analyst), and four
+# of the bottom eight had four or fewer (VSL.NZ 1, EOS.AX 2, EMR.AX 3, OBM.AX 4).
+# A DEFAULT on the existing coverage filter rather than an exclusion, so a reader can
+# still see them, and Crosscheck reads the same cut through `thin`.
+# Measured that day: 99 of 1,225 names fall under it, and Real Estate keeps 56 of 73,
+# so no sector needs a rule of its own - the coverage does the work.
+MIN_ANALYSTS = 5
+
+# Past this the weekly refresh has missed a run with room to spare. The check runs
+# in the READER's browser against their own clock, because a staleness warning baked
+# in at build time can never fire: the build is exactly what stopped.
+STALE_DAYS = 10
+
+
 def band(gap):
     """Classify on the DELTA between the two moves, not the sign of each.
 
@@ -284,6 +300,9 @@ TEMPLATE = """<!DOCTYPE html>
   /* Reset is dead chrome while nothing is filtered - only show it once it does
      something. Kept in the DOM (not display:none in JS) so the row doesn't jump. */
   .reset[hidden]{display:none}
+  .stale{margin:.2rem 0 1rem;padding:.55rem .8rem;border-left:3px solid #c98a6a;
+    color:var(--soft);font:400 14px/1.5 ui-sans-serif,system-ui,sans-serif}
+  .stale[hidden]{display:none}
   /* the two caps above are a desktop single-row fix and must not survive into the
      mobile grid, where the cells set their own widths */
   @media (max-width:560px){
@@ -442,6 +461,7 @@ TEMPLATE = """<!DOCTYPE html>
     <span>updated <b>__DATE__</b></span>
     <button class="reset" id="reset" type="button" hidden>Clear filters</button>
   </div>
+  <p class="stale" id="stale" hidden>Not refreshed since __DATE__. The weekly update is overdue.</p>
 
   <div class="controls">
     <select id="f-market" aria-label="Market">__MARKETS__</select>
@@ -523,6 +543,8 @@ __ROWS__
   same period.</p>
   <p class="method">Estimate and price data sourced from Yahoo Finance.__DROPNOTE__ Names
   whose moves fall outside the plotted range are shown as hollow markers on the chart.
+  Names covered by fewer than __MINCOV__ analysts are left off by default; the coverage
+  filter brings them back.
   Market capitalisations are converted to US dollars at the latest spot rate.</p>
 
   <p class="foot">Built by <a href="https://charlietrenorden.com/">Charlie Trenorden</a>.
@@ -535,6 +557,7 @@ __ROWS__
   var DATA = JSON.parse(document.getElementById("rows").textContent);
   var BANDS = __BANDCFG__;
   var THRESH = __THRESHNUM__;
+  var DEFAULT_COV = "__MINCOV__", STALE_DAYS = __STALEDAYS__;
   var NS = "http://www.w3.org/2000/svg";
   var W = 940, H = 640, PAD = {l: 74, r: 26, t: 46, b: 78};
 
@@ -664,8 +687,14 @@ __ROWS__
     if (els.sector.value && r.sector !== els.sector.value) return false;
     if (els.band.value && r.band !== els.band.value) return false;
     if (els.gap.value && r.bandkey !== els.gap.value) return false;
-    if (els.cov.value && (r.analysts == null || r.analysts < +els.cov.value)) return false;
     var q = skipText ? "" : els.text.value.trim().toLowerCase();
+    /* The coverage default is a view, not a verdict. A reader who names a company,
+       or follows a link here from Shortfall or Crosscheck with ?q=, is shown it
+       however thinly covered - otherwise a link to CPT lands on an empty table. A
+       cut the reader picked themselves still holds. */
+    var cov = els.cov.value;
+    if (cov && !(q && cov === DEFAULT_COV) &&
+        (r.analysts == null || r.analysts < +cov)) return false;
     if (q && !named(r, q)) return false;
     return colMatch(r);
   }
@@ -940,7 +969,10 @@ __ROWS__
     if (landed && els.text.value.trim()) {
       plotted = DATA.filter(function (r) { return matches(r, true); });
       marked = {};
-      shown.forEach(function (r) { marked[r.ticker] = 1; });
+      shown.forEach(function (r) {
+        marked[r.ticker] = 1;
+        if (plotted.indexOf(r) < 0) plotted.push(r);
+      });
     }
     draw(plotted, marked);
 
@@ -988,7 +1020,9 @@ __ROWS__
     document.getElementById("found").hidden = els.text.value.trim() === "";
 
     // Reset only earns its place in the row once a filter is actually on.
-    var any = Object.keys(els).some(function (k) { return els[k].value !== ""; }) ||
+    var any = Object.keys(els).some(function (k) {
+                return els[k].value !== (k === "cov" ? DEFAULT_COV : "");
+              }) ||
               Object.keys(cols).some(function (k) { return cols[k].value !== ""; });
     document.getElementById("reset").hidden = !any;
   }
@@ -1052,7 +1086,7 @@ __ROWS__
   });
   document.getElementById("reset").addEventListener("click", function () {
     els.market.value = ""; els.sector.value = ""; els.band.value = "";
-    els.gap.value = ""; els.cov.value = ""; els.text.value = "";
+    els.gap.value = ""; els.cov.value = DEFAULT_COV; els.text.value = "";
     Object.keys(cols).forEach(function (k) { cols[k].value = ""; });
     sortKey = "gap"; sortDir = -1; page = 0;
     writeQuery();
@@ -1066,6 +1100,12 @@ __ROWS__
     clearTimeout(rz);
     rz = setTimeout(apply, 180);
   });
+
+  (function () {
+    var asof = Date.parse("__DATE__T00:00:00Z");
+    if (asof && (Date.now() - asof) / 864e5 > STALE_DAYS)
+      document.getElementById("stale").hidden = false;
+  })();
 
   readQuery();
   apply();
@@ -1094,6 +1134,7 @@ def main():
         "mcap": r.get("mcap_bn"),
         "rev": r["revision_pct"], "price": r["price_chg_pct"], "gap": r["gap_pp"],
         "analysts": r.get("analysts"), "bandkey": band(r["gap_pp"]),
+        "thin": (r.get("analysts") or 0) < MIN_ANALYSTS,
     } for r in rows]
 
     markets = sorted({r["market"] for r in rows})
@@ -1106,8 +1147,9 @@ def main():
                             for k in ("behind", "ahead", "inline")))
     # thin coverage means the "consensus" is one or two desks, which is worth filtering out
     cover_select = ('<option value="">Any coverage</option>'
-                    + "".join(f'<option value="{n}">{n}+ analysts</option>'
-                              for n in (5, 10, 15, 20, 30)))
+                    + "".join(f'<option value="{n}"{" selected" if n == MIN_ANALYSTS else ""}>'
+                              f'{n}+ analysts</option>'
+                              for n in sorted({MIN_ANALYSTS, 5, 10, 15, 20, 30})))
 
     dropnote = ""
     if dropped:
@@ -1138,6 +1180,8 @@ def main():
             .replace("__GAPS__", gap_select)
             .replace("__COVER__", cover_select)
             .replace("__THRESHNUM__", str(GAP_THRESHOLD_PP))
+            .replace("__MINCOV__", str(MIN_ANALYSTS))
+            .replace("__STALEDAYS__", str(STALE_DAYS))
             .replace("__THRESH__", str(int(GAP_THRESHOLD_PP)))
             .replace("__ROWS__", build_rows(rows, shortfall))
             .replace("__DROPNOTE__", dropnote)
