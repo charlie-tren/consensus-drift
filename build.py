@@ -187,7 +187,7 @@ TEMPLATE = """<!DOCTYPE html>
      is already in front of people and "Consensus Drift" alone told them nothing.
      NOT tuned to queries: site-stats' fetch_search.py pulls date+page only, with no
      query dimension, so nobody knows what this page ranks FOR. -->
-<meta name="description" content="Analyst earnings estimates plotted against what the share price actually did, for __NFMT__ companies across __NMKT__ equity markets.">
+<meta name="description" content="Analyst earnings estimate revisions against the share price: 90-day changes in consensus EPS forecasts beside the price move, for __NFMT__ companies across __NMKT__ equity markets, from the S&amp;P 500 and ASX 200 to the FTSE 100 and Nifty 50.">
 <link rel="canonical" href="https://charlietrenorden.com/consensus-drift/">
 <meta property="og:title" content="Consensus Drift">
 <meta property="og:description" content="Analyst earnings estimates plotted against what the share price actually did, for __NFMT__ companies across __NMKT__ equity markets.">
