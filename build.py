@@ -180,24 +180,18 @@ TEMPLATE = """<!DOCTYPE html>
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Consensus Drift - analyst estimates vs share price</title>
-<!-- A <title> is a SERP line, not a page heading, so it carries the function as
-     well as the name. Measured 18/09/2026: this page is ~85% of every impression
-     Google gives the estate and converts at 0.4%, ranking around position 6 - so it
-     is already in front of people and "Consensus Drift" alone told them nothing.
-     NOT tuned to queries: site-stats' fetch_search.py pulls date+page only, with no
-     query dimension, so nobody knows what this page ranks FOR. -->
-<meta name="description" content="Analyst earnings estimate revisions against the share price: 90-day changes in consensus EPS forecasts beside the price move, for __NFMT__ companies across __NMKT__ equity markets, from the S&amp;P 500 and ASX 200 to the FTSE 100 and Nifty 50.">
+<title>Consensus Drift</title>
+<meta name="description" content="Analyst estimates against the share price: 90-day revisions to consensus earnings forecasts beside the price move, for __NFMT__ companies across __NMKT__ equity markets, from the S&amp;P 500 and ASX 200 to the FTSE 100 and Nifty 50.">
 <link rel="canonical" href="https://charlietrenorden.com/consensus-drift/">
 <meta property="og:title" content="Consensus Drift">
 <meta property="og:description" content="Analyst earnings estimates plotted against what the share price actually did, for __NFMT__ companies across __NMKT__ equity markets.">
-<meta property="og:image" content="https://charlietrenorden.com/assets/og-card.png">
+<meta property="og:image" content="https://charlietrenorden.com/consensus-drift/og-card.png">
 <meta property="og:image:width" content="2400">
 <meta property="og:image:height" content="1260">
-<meta property="og:image:alt" content="Consensus Drift - where price and earnings estimates have moved apart">
+<meta property="og:image:alt" content="Consensus Drift - a delta mark beside the name">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image" content="https://charlietrenorden.com/assets/og-card.png">
 <meta property="og:url" content="https://charlietrenorden.com/consensus-drift/">
+<meta property="og:type" content="website">
 <link rel="icon" href="favicon.svg" type="image/svg+xml">
 <link rel="icon" href="favicon-192.png" type="image/png" sizes="192x192">
 <link rel="apple-touch-icon" href="apple-touch-icon.png">
@@ -225,9 +219,9 @@ TEMPLATE = """<!DOCTYPE html>
   .home{font:500 13px/1 ui-sans-serif,system-ui,sans-serif;letter-spacing:.1em;
         text-transform:uppercase;color:var(--soft);text-decoration:none;
         white-space:nowrap;
-        display:inline-flex;align-items:center;gap:.5rem;transition:color .2s}
+        display:inline-flex;align-items:center;transition:color .2s}
   .home:hover{color:var(--accent)}
-  .home .back{color:var(--accent);font-size:14px}
+  .home .back{font-size:14px}
   @media (max-width:720px){ .mark{font-size:18px;letter-spacing:.2em} }
   /* below this the wordmark wrapped to two lines and crowded the back-link,
      because both were sharing one row */

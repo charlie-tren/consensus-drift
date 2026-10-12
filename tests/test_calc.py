@@ -357,3 +357,7 @@ def test_head_placeholders_are_all_substituted():
     assert desc, "no description meta in the built page"
     assert re.search(r"for [\d,]+ companies across \d+ equity markets", desc.group(1)), \
         f"the description did not render its counts: {desc.group(1)}"
+    assert "<title>Consensus Drift</title>" in rendered
+    for words in ("analyst estimates", "share price"):
+        assert words in desc.group(1).lower(), words
+    assert 'content="https://charlietrenorden.com/consensus-drift/og-card.png"' in rendered
