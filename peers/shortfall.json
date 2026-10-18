@@ -1,7 +1,7 @@
 {
  "site": "Shortfall",
  "url": "https://charlietrenorden.com/shortfall/",
- "as_of": "2026-10-07",
+ "as_of": "2026-10-13",
  "tickers": [
   "A",
   "A2M.AX",
@@ -165,7 +165,6 @@
   "CTAS",
   "CTD.AX",
   "CTSH",
-  "CTVA",
   "CVNA",
   "CVS",
   "CVX",
@@ -580,6 +579,7 @@
   "TT",
   "TTWO",
   "TUA.AX",
+  "TWLO",
   "TXN",
   "TXT",
   "TYL",
@@ -614,7 +614,6 @@
   "WAF.AX",
   "WAT",
   "WBC.AX",
-  "WBD",
   "WDAY",
   "WDS.AX",
   "WEC",
