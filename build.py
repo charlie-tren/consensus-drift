@@ -215,6 +215,7 @@ TEMPLATE = """<!DOCTYPE html>
        gap:1rem;margin-bottom:2.6rem}
   .mark{font:300 30px/1 ui-sans-serif,system-ui,sans-serif;letter-spacing:.30em;
         text-transform:uppercase;color:var(--ink)}
+  .mark b{font-weight:400;color:var(--accent)}
   /* navigation, not a title - kept lighter than the page's own name */
   .home{font:500 13px/1 ui-sans-serif,system-ui,sans-serif;letter-spacing:.1em;
         text-transform:uppercase;color:var(--soft);text-decoration:none;
@@ -439,7 +440,7 @@ TEMPLATE = """<!DOCTYPE html>
 <body>
 <div class="wrap">
   <div class="bar">
-    <span class="mark">Consensus Drift</span>
+    <span class="mark">Consensus <b>Drift</b></span>
     <nav class="nav">
       <a class="home cross" href="https://charlietrenorden.com/crosscheck/">Crosscheck</a>
       <a class="home" href="https://charlietrenorden.com/"><span class="back">&larr;</span>&nbsp;Other projects</a>
