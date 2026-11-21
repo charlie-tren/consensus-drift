@@ -254,6 +254,12 @@
     td.nm span{display:block;overflow:hidden;text-overflow:ellipsis;
                white-space:nowrap;max-width:8.5rem}
   }
+/* Phones: 16px stops iOS zooming into a field; the back link gets a finger-sized hit area. */
+@media (pointer: coarse) {
+  input:not([type=checkbox]):not([type=radio]):not([type=range]), select, textarea { font-size: 16px !important; }
+  .home { position: relative; }
+  .home::after { content: ""; position: absolute; inset: -14px -10px; }
+}
 </style>
 <!-- Cloudflare Web Analytics. Single braces: this page template is a plain
      string with __TOKEN__-style placeholders, NOT an f-string, so doubling them
