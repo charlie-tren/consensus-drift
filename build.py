@@ -222,7 +222,7 @@ TEMPLATE = """<!DOCTYPE html>
         white-space:nowrap;
         display:inline-flex;align-items:center;transition:color .2s}
   .home:hover{color:var(--accent)}
-  .home .back{font-size:14px}
+  .home .back{font-size:15.5px;position:relative;top:-1.5px}
   @media (max-width:720px){ .mark{font-size:18px;letter-spacing:.2em} }
   /* below this the wordmark wrapped to two lines and crowded the back-link,
      because both were sharing one row */
